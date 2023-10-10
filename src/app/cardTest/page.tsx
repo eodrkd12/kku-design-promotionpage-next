@@ -1,6 +1,6 @@
 "use client";
 import "./styles.css";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
     motion, Variants,
     useScroll,
@@ -46,6 +46,8 @@ const Card = ({ emoji, hueA, hueB }: Props) => {
     //배경이미지
     const backgroundImageUrl = "url(/image/testimage.jpeg)";
 
+
+
     return (
         //viewport애니메이션의 동작 및 스크롤 시점 제어 관련 속성
         <motion.div>
@@ -56,6 +58,8 @@ const Card = ({ emoji, hueA, hueB }: Props) => {
                 viewport={{ once: true, amount: 0.8 }}
 
             >
+
+
                 <div className="splash" />
                 <motion.div className="card" variants={cardVariants}  >
                     {emoji}
@@ -86,6 +90,9 @@ export default function cardTest() {
     const [offsetY, setOffsetY] = useState(0);
     const handleScroll = () => setOffsetY(window.pageYOffset);
 
+    const ref = useRef(null);
+    const { scrollXProgress } = useScroll({ container: ref });
+
     useEffect(() => {
         // window.addEventListener("scroll", handleScroll);
 
@@ -106,8 +113,8 @@ export default function cardTest() {
 
             <div style={backgroundStyle}>
 
-                {food.map(([emoji, hueA, hueB]) => (
-                    <section key={emoji}>
+                {food.map(([emoji, hueA, hueB], index) => (
+                    <section key={index}>
                         <Card emoji={emoji} hueA={hueA} hueB={hueB} />
                     </section>
                 ))}

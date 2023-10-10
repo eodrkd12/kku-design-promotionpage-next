@@ -52,6 +52,18 @@ export default function Dday() {
 
         <Flex onClick={handleClick} style={{ height: '100vh', position: 'relative' }}>
 
+            <Flex
+                position="absolute"
+                top="50%"
+                left="50%"
+                transform="translate(-50%, -50%)"
+                zIndex={100}
+            >
+                <Text color="white" fontSize={300} fontWeight={800} >
+                    D-10
+                </Text>
+
+            </Flex>
             <Flex flexDir={"column"}
                 justifyContent="flex-start"
                 alignItems="flex-start"
