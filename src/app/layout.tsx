@@ -15,8 +15,6 @@ export default function RootLayout(props: Props) {
   const [scrollable, setScrollable] = useState(true);
 
   useEffect(() => {
-
-
     setScreenHeight();
     window.addEventListener('resize', setScreenHeight);
     return () => window.removeEventListener('resize', setScreenHeight);
@@ -57,11 +55,11 @@ export default function RootLayout(props: Props) {
   }
 
   useEffect(() => {
-    if (scrollable == false)
-      document.body.style.overflowY = "hidden";
+    // if (scrollable == false)
+    //   document.body.style.overflowY = "hidden";
 
-    if (scrollable == true)
-      document.body.style.overflowY = "auto";
+    // if (scrollable == true)
+    //   document.body.style.overflowY = "auto";
 
   }, [scrollable])
 
@@ -71,7 +69,7 @@ export default function RootLayout(props: Props) {
       <body>
         <main>
           {props.children}
-          <div id="student">{props.student}</div>
+          {props.student}
           {props.subject}
           {props.end}
         </main>

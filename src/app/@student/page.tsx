@@ -4,7 +4,7 @@
 export default function StudentScreen() {
 
     return (
-        <div>
+        <div id="student">
             student
         </div>
     )
