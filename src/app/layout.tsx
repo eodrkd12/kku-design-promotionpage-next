@@ -5,13 +5,12 @@ import './globals.css';
 
 interface Props {
   children: React.ReactNode,
-  students: React.ReactNode,
+  student: React.ReactNode,
+  subject: React.ReactNode,
+  end: React.ReactNode,
 }
 
-export default function RootLayout({
-  children,
-  students
-}: Props) {
+export default function RootLayout(props: Props) {
 
   useEffect(() => {
     setScreenHeight();
@@ -29,8 +28,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        {children}
-        {students}
+        <main>
+          {props.children}
+          {props.student}
+          {props.subject}
+          {props.end}
+        </main>
       </body>
     </html>
   )

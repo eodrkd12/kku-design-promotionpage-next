@@ -1,11 +1,16 @@
+'use client';
 
+import { useEffect } from "react";
 
-export default function Home() {
+export default function IntroductionScreen() {
+
+  useEffect(() => {
+    console.log(1)
+  }, [])
 
   return (
-    <main>
-      main
-    </main>
-
+    <div>
+      introduction
+    </div>
   )
 }
