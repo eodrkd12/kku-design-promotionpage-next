@@ -1,14 +1,12 @@
 "use client";
-import "./styles.css";
-import React, { useState, useEffect, useRef, ReactNode, useCallback, useMemo } from "react";
-import {
-    motion, Variants,
-    useScroll,
-    useSpring,
-    useTransform,
-    MotionValue
-} from "framer-motion";
 import { Flex, HStack } from "@chakra-ui/react";
+import {
+    Variants,
+    motion,
+    useScroll
+} from "framer-motion";
+import { WheelEvent, useEffect, useRef, useState } from "react";
+import "./styles.css";
 
 interface Props {
     emoji: string;
@@ -64,91 +62,6 @@ const food: [string][] = [
 
 
 ];
-// const array: ReactNode[] = [
-//     <Flex key={1} w={'100vw'} h={'100vh'} overflowY="scroll">
-//         1
-//     </Flex>,
-//     <Flex key={2} w={'100vw'} h={'100vh'} overflowX="scroll" >
-//         <Flex direction={'column'}>
-//             <Flex h={'50vh'}>
-//                 <ul style={{ display: 'flex', listStyleType: 'none' }}>
-//                     <li style={{ margin: '100px' }}>
-//                         <img
-//                             src={"/image/lightDoor.png"}
-//                             alt="SignLogo"
-//                             style={{ width: '200px', height: '200px' }}
-
-//                         />
-//                     </li>
-//                     <li style={{ margin: '100px' }}>
-//                         <img
-//                             src={"/image/lightDoor.png"}
-//                             alt="SignLogo"
-//                             style={{ width: '200px', height: '200px' }}
-
-//                         />
-//                     </li>
-//                     <li style={{ margin: '100px' }}>
-//                         <img
-//                             src={"/image/lightDoor.png"}
-//                             alt="SignLogo"
-//                             style={{ width: '200px', height: '200px' }}
-
-//                         />
-//                     </li>
-//                     <li style={{ margin: '100px' }}>
-//                         <img
-//                             src={"/image/lightDoor.png"}
-//                             alt="SignLogo"
-//                             style={{ width: '200px', height: '200px' }}
-
-//                         />
-//                     </li>
-//                     <li style={{ margin: '100px' }}>
-//                         <img
-//                             src={"/image/lightDoor.png"}
-//                             alt="SignLogo"
-//                             style={{ width: '200px', height: '200px' }}
-
-//                         />
-//                     </li>
-//                     <li style={{ margin: '100px' }}>
-//                         <img
-//                             src={"/image/lightDoor.png"}
-//                             alt="SignLogo"
-//                             style={{ width: '200px', height: '200px' }}
-
-//                         />
-//                     </li>
-
-//                 </ul>
-//             </Flex>
-//             <Flex h={'50vh'}>
-//                 <ul style={{ display: 'flex', listStyleType: 'none' }}>
-//                     <li style={{ marginRight: '1000px' }}></li>
-//                     <li style={{ marginRight: '1000px' }}></li>
-//                     <li style={{ marginRight: '1000px' }}></li>
-
-//                 </ul>
-//             </Flex>
-//         </Flex>
-//     </Flex >,
-//     <Flex key={3} w={'100vw'} h={'100vh'} overflowY="scroll">
-//         3
-//     </Flex>,
-//     <Flex key={4} w={'100vw'} h={'100vh'} overflowY="scroll" >
-//         4
-//     </Flex>,
-//     <Flex key={5} w={'100vw'} h={'100vh'} overflowY="scroll" >
-//         5
-//     </Flex>,
-//     <Flex key={6} w={'100vw'} h={'100vh'} overflowY="scroll">
-//         6
-//     </Flex>
-
-// ]
-
-
 
 export default function Menu() {
     const { scrollYProgress } = useScroll();
@@ -163,15 +76,12 @@ export default function Menu() {
         transform: `translateY(${offsetY * -0.05}px)` // 이미지가 움직이는 속도
     };
 
+    const pageRef = useRef<HTMLDivElement>(null);
     const studentBrakeRef = useRef<HTMLDivElement>(null);
+    const studentRef = useRef<HTMLDivElement>(null);
 
-    const handleScroll = useCallback(() => {
-        console.log(scrollable);
-    }, [scrollable])
 
     useEffect(() => {
-
-        window.addEventListener('scroll', handleScroll)
 
         const observer = new IntersectionObserver(
 
@@ -179,10 +89,12 @@ export default function Menu() {
                 // entries[0]가 이 경우의 첫 번째(및 유일한) 항목입니다
                 if (entries[0].isIntersecting) {
                     console.log(1);
-                    lockScroll();
+                    setScrollable(false);
+                    // lockScroll();
                 } else {
                     console.log(0);
-                    openScroll();
+                    setScrollable(true);
+                    // openScroll();
                 }
             },
             { threshold: 0.1 } //대상의 10% 이상이 보일 때
@@ -199,28 +111,36 @@ export default function Menu() {
         };
     }, []);
 
-    const lockScroll = useCallback(() => {
-        document.body.style.overflow = 'hidden';
-        setScrollable(false);
-    }, []);
+    // const lockScroll = useCallback(() => {
+    //     document.body.style.overflow = 'hidden';
+    //     setScrollable(false);
+    // }, []);
 
-    const openScroll = useCallback(() => {
-        document.body.style.removeProperty('overflow');
-        setScrollable(true);
-    }, []);
+    // const openScroll = useCallback(() => {
+    //     document.body.style.removeProperty('overflow');
+    //     setScrollable(true);
+    // }, []);
 
+    const handleStudentWheel = (e: WheelEvent<HTMLDivElement>) => {
+        e.preventDefault();
+        const div = studentRef.current;
+        if (div) {
+            div.scrollTo({
+                top: 0,
+                left: div.scrollLeft + e.deltaY
+            })
+        }
+    }
     return (
 
         <main >
-
-            <div style={backgroundStyle}>
-                <Flex flexDir={'column'}>
-                    <Flex key={1} w={'100vw'} h={'100vh'} >
+            <div style={backgroundStyle} >
+                <Flex ref={pageRef} flexDir={'column'} style={{ scrollSnapType: 'y mandatory' }} >
+                    <Flex key={1} w={'100vw'} h={'100vh'} style={{ scrollSnapAlign: 'start' }} >
                         1
                     </Flex>
-
-                    <Flex key={2} w={'100vw'} h={'100vh'} flexDir={'column'}>
-                        <HStack spacing={8} p={4} m={50} overflowX="scroll" h={'99vh'} >
+                    <Flex key={2} w={'100vw'} h={'100vh'} justify={'center'} align={'center'} style={{ scrollSnapAlign: 'start' }} flexDir={'column'}>
+                        <HStack ref={studentRef} spacing={8} overflowX="scroll" h={'60vh'} onWheel={handleStudentWheel}>
                             <img src={"/image/lightDoor.png"} alt="SignLogo" style={{ width: '200px', height: '200px' }} />
                             <img src={"/image/lightDoor.png"} alt="SignLogo" style={{ width: '200px', height: '200px' }} />
                             <img src={"/image/lightDoor.png"} alt="SignLogo" style={{ width: '200px', height: '200px' }} />
@@ -231,18 +151,18 @@ export default function Menu() {
                             <img src={"/image/lightDoor.png"} alt="SignLogo" style={{ width: '200px', height: '200px' }} />
                             <img src={"/image/lightDoor.png"} alt="SignLogo" style={{ width: '200px', height: '200px' }} />
                         </HStack>
-                        <Flex ref={studentBrakeRef} w={'100vw'} h={'1vh'}></Flex>
+                        <Flex w={'100vw'} h={'1vh'} ref={studentBrakeRef}></Flex>
                     </Flex >
-                    <Flex key={3} w={'100vw'} h={'100vh'} >
+                    <Flex key={3} w={'100vw'} h={'100vh'} style={{ scrollSnapAlign: 'start' }} >
                         3
                     </Flex>
-                    <Flex key={4} w={'100vw'} h={'100vh'} >
+                    <Flex key={4} w={'100vw'} h={'100vh'} style={{ scrollSnapAlign: 'start' }} >
                         4
                     </Flex>
-                    <Flex key={5} w={'100vw'} h={'100vh'} >
+                    <Flex key={5} w={'100vw'} h={'100vh'} style={{ scrollSnapAlign: 'start' }} >
                         5
                     </Flex>
-                    <Flex key={6} w={'100vw'} h={'100vh'} >
+                    <Flex key={6} w={'100vw'} h={'100vh'} style={{ scrollSnapAlign: 'start' }} >
                         6
                     </Flex>
                 </Flex>
