@@ -13,6 +13,8 @@ interface Props {
 export default function RootLayout(props: Props) {
 
   useEffect(() => {
+
+
     setScreenHeight();
 
     // resize 이벤트가 발생하면 다시 계산하도록 아래 코드 추가

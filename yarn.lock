@@ -2423,7 +2423,7 @@ has@^1.0.3:
   resolved "https://registry.yarnpkg.com/has/-/has-1.0.4.tgz#2eb2860e000011dae4f1406a86fe80e530fb2ec6"
   integrity sha512-qdSAmqLF6209RFj4VVItywPMbm3vWylknmB3nvNiUIs72xAimcM8nVYxYr7ncvZq5qzk9MKIZR8ijqD/1QuYjQ==
 
-hoist-non-react-statics@^3.3.1:
+hoist-non-react-statics@3.3.2, hoist-non-react-statics@^3.3.1:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.3.2.tgz#ece0acaf71d62c2969c2ec59feff42a4b1a85b45"
   integrity sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==
@@ -3192,6 +3192,14 @@ react-horizontal-scrolling-menu@^4.1.1:
   integrity sha512-IahECLO4ovahv/JWYYJf9AkiAznx/oI7G0zKkiAj9GCJTPp+s+susIFsTSnzWxWhHrnSZ1F6flp2yEbrqoGnVg==
   dependencies:
     smooth-scroll-into-view-if-needed "~1.1"
+
+react-is-visible@1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/react-is-visible/-/react-is-visible-1.2.0.tgz#d737ecf6609d31ce4237aeb2e49da2a7454e63cd"
+  integrity sha512-052RH7aHdKrABOBH12wvS2zTAzJ8MnaswPvX2AQGq5wxvD8BnQ5vcnf0cA0cj2g4bjH0+qXz1AIkEL9ZlnN23A==
+  dependencies:
+    "@babel/runtime" "^7.12.5"
+    hoist-non-react-statics "3.3.2"
 
 react-is@^16.13.1, react-is@^16.7.0:
   version "16.13.1"
