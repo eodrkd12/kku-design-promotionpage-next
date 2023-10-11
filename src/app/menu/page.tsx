@@ -29,10 +29,7 @@ const cardVariants: Variants = {
     }
 };
 
-
-
 const Card = ({ emoji }: Props) => {
-
     return (
         //viewport애니메이션의 동작 및 스크롤 시점 제어 관련 속성
         <motion.div>
@@ -48,7 +45,6 @@ const Card = ({ emoji }: Props) => {
                 </motion.div>
             </motion.div >
         </motion.div>
-
     );
 }
 
@@ -59,8 +55,6 @@ const food: [string][] = [
     ["🍐"],
     ["🍏"],
     ["🫐"]
-
-
 ];
 
 export default function Menu() {
@@ -80,7 +74,6 @@ export default function Menu() {
     const studentBrakeRef = useRef<HTMLDivElement>(null);
     const studentRef = useRef<HTMLDivElement>(null);
 
-
     useEffect(() => {
 
         const observer = new IntersectionObserver(
@@ -89,7 +82,7 @@ export default function Menu() {
                 // entries[0]가 이 경우의 첫 번째(및 유일한) 항목입니다
                 if (entries[0].isIntersecting) {
                     console.log(1);
-                    setScrollable(false);
+                    setScrollable(false); // key가 2일때
                     // lockScroll();
                 } else {
                     console.log(0);
@@ -131,8 +124,8 @@ export default function Menu() {
             })
         }
     }
-    return (
 
+    return (
         <main >
             <div style={backgroundStyle} >
                 <Flex ref={pageRef} flexDir={'column'} style={{ scrollSnapType: 'y mandatory' }} >
@@ -168,13 +161,8 @@ export default function Menu() {
                 </Flex>
             </div>
 
-
             <motion.div className="progress-bar" style={{ scaleX: scrollYProgress }} />
         </main>
-
     );
-
-
-
 
 }
