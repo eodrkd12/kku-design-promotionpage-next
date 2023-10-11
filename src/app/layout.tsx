@@ -1,72 +1,94 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import './globals.css';
+import { useCallback, useEffect, useState } from "react";
+import "./globals.css";
+import { debounce } from "lodash";
 
 interface Props {
-  children: React.ReactNode,
-  student: React.ReactNode,
-  subject: React.ReactNode,
-  end: React.ReactNode,
+  children: React.ReactNode;
+  student: React.ReactNode;
+  subject: React.ReactNode;
+  end: React.ReactNode;
 }
 
 export default function RootLayout(props: Props) {
-
   const [scrollable, setScrollable] = useState(true);
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const [fromTop, setFromTop] = useState(true);
+
+  const handleScroll = useCallback(
+    debounce(() => {
+      setScrollPosition((prev) => {
+        setFromTop(window.scrollY - prev > 0);
+
+        return window.scrollY;
+      });
+    }, 100),
+    []
+  );
+
+  useEffect(() => {
+    console.log(fromTop);
+  }, [fromTop]);
 
   useEffect(() => {
     setScreenHeight();
-    window.addEventListener('resize', setScreenHeight);
-    return () => window.removeEventListener('resize', setScreenHeight);
-  }, []);
+    window.addEventListener("resize", setScreenHeight);
 
+    window.addEventListener("scroll", handleScroll);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
+    const io = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting) {
-          console.log(1);
-          setScrollable(false);
-        } else {
-          console.log(0);
-          setScrollable(true);
-        }
+        entries.forEach((entry, index) => {
+          if (entry.isIntersecting) {
+            const scrollTo =
+              entry.target.id === "student"
+                ? window.innerHeight
+                : window.innerHeight * 2;
+            setTimeout(() => {
+              window.scrollTo({
+                left: 0,
+                top: scrollTo,
+                behavior: "smooth",
+              });
+              setScrollable(false);
+            }, 100);
+          }
+        });
       },
-      { threshold: 0.1 }
+      {
+        threshold: 0.8,
+      }
     );
 
-    const studentElement = document.getElementById('student');
-    if (studentElement) {
-      observer.observe(studentElement);
+    const studentDiv = document.getElementById("student");
+    if (studentDiv) {
+      io.observe(studentDiv);
+    }
+    const subjectDiv = document.getElementById("subject");
+    if (subjectDiv) {
+      io.observe(subjectDiv);
     }
 
-    return () => {
-      if (studentElement) {
-        observer.unobserve(studentElement);
-      }
-    };
+    return () => window.removeEventListener("resize", setScreenHeight);
   }, []);
 
-
+  useEffect(() => {
+    if (!scrollable) {
+      document.body.style.overflowY = "hidden";
+    } else {
+      document.body.style.overflowY = "unset";
+    }
+  }, [scrollable]);
 
   function setScreenHeight() {
     const vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
+    document.documentElement.style.setProperty("--vh", `${vh}px`);
   }
-
-  useEffect(() => {
-    // if (scrollable == false)
-    //   document.body.style.overflowY = "hidden";
-
-    // if (scrollable == true)
-    //   document.body.style.overflowY = "auto";
-
-  }, [scrollable])
-
 
   return (
     <html lang="en">
-      <body>
+      <body onClick={() => setScrollable(true)}>
         <main>
           {props.children}
           {props.student}
@@ -75,5 +97,5 @@ export default function RootLayout(props: Props) {
         </main>
       </body>
     </html>
-  )
+  );
 }

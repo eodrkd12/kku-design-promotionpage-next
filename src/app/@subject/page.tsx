@@ -1,11 +1,8 @@
-'use client';
+"use client";
 
+import { debounce } from "lodash";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export default function SubjectScreen() {
-
-    return (
-        <div>
-            subject
-        </div>
-    )
+  return <div id="subject">subject</div>;
 }
