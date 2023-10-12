@@ -1,13 +1,11 @@
 'use client';
 
 
-export default function EndScreen() {
-
-
+export default function AboutScreen() {
 
     return (
         <div className="parent">
-            end
+            about
         </div>
     )
 }

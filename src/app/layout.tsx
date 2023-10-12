@@ -1,11 +1,12 @@
 "use client";
 
+import { debounce } from "lodash";
 import { useCallback, useEffect, useState } from "react";
 import "./globals.css";
-import { debounce } from "lodash";
 
 interface Props {
   children: React.ReactNode;
+  about: React.ReactNode;
   student: React.ReactNode;
   subject: React.ReactNode;
   end: React.ReactNode;
@@ -43,8 +44,8 @@ export default function RootLayout(props: Props) {
           if (entry.isIntersecting) {
             const scrollTo =
               entry.target.id === "student"
-                ? window.innerHeight
-                : window.innerHeight * 2;
+                ? window.innerHeight * 2
+                : window.innerHeight * 3;
             setTimeout(() => {
               window.scrollTo({
                 left: 0,
@@ -91,6 +92,7 @@ export default function RootLayout(props: Props) {
       <body onClick={() => setScrollable(true)}>
         <main>
           {props.children}
+          {props.about}
           {props.student}
           {props.subject}
           {props.end}
