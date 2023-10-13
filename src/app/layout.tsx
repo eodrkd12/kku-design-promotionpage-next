@@ -92,6 +92,7 @@ export default function RootLayout(props: Props) {
       <body onClick={() => setScrollable(true)}>
         <main>
           {props.children}
+          {props.about}
           {props.student}
           {props.subject}
           {props.end}

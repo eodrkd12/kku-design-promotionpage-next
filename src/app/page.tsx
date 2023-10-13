@@ -1,7 +1,7 @@
 'use client';
 
-import { motion } from "framer-motion";
-import { WheelEvent, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { WheelEvent, useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 
 const MainTitleWrapper = styled.div`
@@ -72,12 +72,34 @@ const ContentWrapper = styled.div`
 export default function IntroductionScreen() {
 
   const [contentVisible, setContentVisible] = useState(false);
+  const [isEnd, setIsEnd] = useState(false);
 
-  const handleWheel = (event: WheelEvent<HTMLDivElement>) => {
-    if (!contentVisible) {
+  const handleWheel = useCallback((event: WheelEvent<HTMLDivElement>) => {
+    if (!isEnd && !contentVisible) {
       setContentVisible(true);
+      setIsEnd(true);
     }
-  }
+  }, [isEnd, contentVisible])
+
+  useEffect(() => {
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry, index) => {
+          if (entry.isIntersecting) {
+            setContentVisible(false);
+          }
+        });
+      },
+      {
+        threshold: 0.4,
+      }
+    );
+
+    const aboutDiv = document.getElementById("about");
+    if (aboutDiv) {
+      io.observe(aboutDiv);
+    }
+  }, [])
 
   return (
     <div id="introduction" className="parent" onWheel={handleWheel}>
@@ -88,7 +110,7 @@ export default function IntroductionScreen() {
       >
         <MainTitleWrapper>
           <div>
-
+            <img src={"/image/tag-logo.png"} />
           </div>
           <div>
             <p>2024 KONKUK UNIVERSITY
@@ -106,28 +128,39 @@ export default function IntroductionScreen() {
           </div>
         </MainTitleWrapper>
       </motion.div>
-      {contentVisible && <ContentWrapper>
-        <motion.div
-          initial={{ opacity: 0, }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-        >
-          <h1>전시소개</h1>
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0, y: 100 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-        >
-          <h2>TAG:'나'의 '초대'를 받아 '길'을 타고오다</h2>
-          <p>우리 개개인의 점들이 각자의 길을 찾아 선이 되고 선이 된 점들은 서로 얽히고 부딪히며 하나의 태그가 됩니다.
-            <br />태그는 또 다른 태그로 이어지고 이어져, 순식간에 세상을 잎맥처럼 덮을 거대한 길이 될 것입니다.
-            <br />#건국대학교라는 태그, #시각영상디자인전공이라는 태그로 묶이게 되어 배움의 시간이 지난 지금
-            <br />우리는 #영상디지털이라는 태그 아래 묶여 함께 정성껏 졸업 전시를 만들었습니다.
-            <br /><br />이제 우리의 노력의 시간들을 담은 결과물을 세상에 보이고자, @당신을 초대합니다.
-          </p>
-        </motion.div>
-      </ContentWrapper>}
+      <AnimatePresence>
+        {contentVisible && <ContentWrapper>
+          <motion.div
+            initial={{ opacity: 0, }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0, y: "-100%" }}
+            transition={{ duration: 1 }}
+          >
+            <h1>전시소개</h1>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 100 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: "-100%" }}
+            transition={{ duration: 2 }}
+          >
+            <h2>TAG:'나'의 '초대'를 받아 '길'을 타고오다</h2>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 100 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: "-100%" }}
+            transition={{ duration: 2 }}
+          >
+            <p>우리 개개인의 점들이 각자의 길을 찾아 선이 되고 선이 된 점들은 서로 얽히고 부딪히며 하나의 태그가 됩니다.
+              <br />태그는 또 다른 태그로 이어지고 이어져, 순식간에 세상을 잎맥처럼 덮을 거대한 길이 될 것입니다.
+              <br />#건국대학교라는 태그, #시각영상디자인전공이라는 태그로 묶이게 되어 배움의 시간이 지난 지금
+              <br />우리는 #영상디지털이라는 태그 아래 묶여 함께 정성껏 졸업 전시를 만들었습니다.
+              <br /><br />이제 우리의 노력의 시간들을 담은 결과물을 세상에 보이고자, @당신을 초대합니다.
+            </p>
+          </motion.div>
+        </ContentWrapper>}
+      </AnimatePresence>
     </div>
   )
 }
