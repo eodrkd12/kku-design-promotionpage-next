@@ -2,6 +2,7 @@
 
 import { Button, Flex, HStack, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from "@chakra-ui/react";
 import { WheelEvent, useRef, useState, useEffect } from "react";
+import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons'
 
 import { useDisclosure } from '@chakra-ui/react';
 import StudentModal from "./modal/student.modal";
@@ -29,31 +30,6 @@ export default function StudentScreen() {
         onStudentModalOpen();
     };
 
-
-    const handleStudentWheel = (e: WheelEvent<HTMLDivElement>) => {
-        e.preventDefault();
-
-        const div = studentRef.current;
-        if (div) {
-
-
-
-            // 스크롤이 오른쪽으로 최대로 갔을 때 콘솔에 "1" 출력
-            if (
-                !isScrolledToRight &&
-                div.scrollLeft + div.clientWidth >= div.scrollWidth
-            ) {
-                console.log(1);
-                setIsScrolledToRight(true);
-            }
-            else {
-                console.log(0);
-                setIsScrolledToRight(false);
-            }
-
-        }
-    }
-
     const studentRef = useRef<HTMLDivElement>(null);
 
     const scrollSpeed = 50; // 스크롤 속도
@@ -69,6 +45,23 @@ export default function StudentScreen() {
                     top: 0,
                     left: current!.scrollLeft + (direction === 'right' ? scrollSpeed : -scrollSpeed)
                 });
+
+
+
+                // 스크롤이 오른쪽으로 최대로 갔을 때 콘솔에 "1" 출력
+                if (
+                    !isScrolledToRight &&
+                    current.scrollLeft + current.clientWidth >= current.scrollWidth
+                ) {
+                    setIsScrolledToRight(true);
+                    console.log(1);
+                }
+                else {
+                    console.log(0);
+                    setIsScrolledToRight(false);
+                }
+                console.log(isScrolledToRight)
+
             }, 100); // 100ms마다 실행
 
         }
@@ -76,7 +69,21 @@ export default function StudentScreen() {
 
     //화살표에서 마우스를 땔 때
     const handleArrowMouseLeave = () => {
-        if (scrollInterval) clearInterval(scrollInterval);
+        if (scrollInterval) {
+            clearInterval(scrollInterval);
+        }
+        // if (studentRef.current &&
+        //     !isScrolledToRight &&
+        //     studentRef.current.scrollLeft + studentRef.current.clientWidth >= studentRef.current.scrollWidth
+        // ) {
+        //     console.log(1);
+        //     setIsScrolledToRight(true);
+        // }
+        // else {
+        //     console.log(0);
+        //     setIsScrolledToRight(false);
+        // }
+
     };
 
     const ImageButton = ({ src, alt, onClick }: ImageButtonProps) => (
@@ -115,8 +122,10 @@ export default function StudentScreen() {
             >
 
                 <Flex justifyContent={'center'} alignItems={'center'} ml={'20%'} mr={'1%'}>
-                    <button onMouseEnter={() => handleArrowMouseEnter('left')} onMouseLeave={handleArrowMouseLeave} style={{ fontSize: '50px', color: 'white', height: '60vh', zIndex: 10 }} >◀</button>
-                    <HStack ref={studentRef} spacing={2} overflowX="scroll" h={'80vh'} m={'2%'} onWheel={handleStudentWheel}>
+                    <button onMouseEnter={() => handleArrowMouseEnter('left')} onMouseLeave={handleArrowMouseLeave} style={{ fontSize: '50px', color: 'white', height: '60vh', zIndex: 10 }} >
+                        <ChevronLeftIcon />
+                    </button>
+                    <HStack ref={studentRef} spacing={2} overflowX="scroll" h={'80vh'} m={'2%'} >
                         <Flex flexDir={"column"} >
                             <Flex >
                                 <div style={{ width: '200px', height: '250px', border: '2px solid white', borderLeft: 'none', flexShrink: 0 }}>
@@ -168,7 +177,9 @@ export default function StudentScreen() {
                         </Flex>
 
                     </HStack>
-                    <button onMouseEnter={() => handleArrowMouseEnter('right')} onMouseLeave={handleArrowMouseLeave} style={{ fontSize: '50px', color: 'white', height: '60vh' }}>▶</button>
+                    <button onMouseEnter={() => handleArrowMouseEnter('right')} onMouseLeave={handleArrowMouseLeave} style={{ fontSize: '50px', color: 'white', height: '60vh' }}>
+                        <ChevronRightIcon />
+                    </button>
                 </Flex>
 
                 {isStudentModalOpen && (
