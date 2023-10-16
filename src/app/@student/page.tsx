@@ -115,7 +115,7 @@ export default function StudentScreen() {
             >
 
                 <Flex justifyContent={'center'} alignItems={'center'} ml={'20%'} mr={'1%'}>
-                    <button onMouseEnter={() => handleArrowMouseEnter('left')} onMouseLeave={handleArrowMouseLeave} style={{ fontSize: '50px', color: 'white', height: '60vh' }} >◀</button>
+                    <button onMouseEnter={() => handleArrowMouseEnter('left')} onMouseLeave={handleArrowMouseLeave} style={{ fontSize: '50px', color: 'white', height: '60vh', zIndex: 10 }} >◀</button>
                     <HStack ref={studentRef} spacing={2} overflowX="scroll" h={'80vh'} m={'2%'} onWheel={handleStudentWheel}>
                         <Flex flexDir={"column"} >
                             <Flex >
