@@ -11,6 +11,7 @@ import {
     ModalHeader,
     ModalOverlay,
     Tab,
+    TabIndicator,
     TabList,
     TabPanel,
     TabPanels,
@@ -68,8 +69,6 @@ const StudentModal = (props: Props) => {
                             X
                         </Button>
                     </Flex> */}
-
-
                     {/* <Text
 
                         color={'white'}
@@ -82,18 +81,24 @@ const StudentModal = (props: Props) => {
                     >
                         X
                     </Text> */}
-                    <ModalCloseButton color='white' />
+
+                    <ModalCloseButton color={'white'} />
 
                 </ModalHeader>
                 <ModalBody overflowY="auto" maxHeight="80vh" h={'80vh'} >
                     <FormControl isRequired mb={'3%'}>
-                        <Tabs variant='soft-rounded' colorScheme='blue' >
+                        <Tabs position="relative" variant="unstyled">
                             <TabList justifyContent={'space-around'} mb={'1%'}>
-                                <Tab>전공연구프로젝트</Tab>
-                                <Tab>프로모션</Tab>
-                                <Tab>IMC</Tab>
+                                <Tab color={'white'}>전공연구프로젝트</Tab>
+                                <Tab color={'white'}>프로모션</Tab>
+                                <Tab color={'white'}>IMC</Tab>
                             </TabList>
-
+                            <TabIndicator
+                                mt="-5px"
+                                height="2px"
+                                bg="blue"
+                                borderRadius="1px"
+                            />
                             <TabPanels>
 
                                 <TabPanel>
@@ -111,7 +116,7 @@ const StudentModal = (props: Props) => {
 
                                 </TabPanel>
                                 <TabPanel>
-                                    <img src={"/image/testimage.jpeg"} alt="SignLogo" style={{ width: '100vw', height: '200px' }} />
+                                    <img src={"/image/lightDoor.png"} alt="SignLogo" style={{ width: '100vw', height: '200px' }} />
                                     <Flex margin={'5%'} flexDir={'column'}>
                                         <Text color={'white'} mb={'5%'} >작은 섬마을 곳곳에 알 수없는 태엽이 생겨나고 자연물들의 성장이 멈춰, 어른들은 태엽을 두려워하게 된다.... 프로모션</Text>
                                         <iframe
