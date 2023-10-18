@@ -1,8 +1,6 @@
 import {
-    Button,
     Flex,
     FormControl,
-    FormLabel,
     Modal,
     ModalBody,
     ModalCloseButton,
@@ -16,7 +14,7 @@ import {
     TabPanel,
     TabPanels,
     Tabs,
-    Text,
+    Text
 } from '@chakra-ui/react';
 
 
@@ -40,47 +38,6 @@ const StudentModal = (props: Props) => {
             <ModalOverlay />
             <ModalContent backgroundColor="black" borderColor={'blue'} borderWidth={2} borderRadius="25px">
                 <ModalHeader>
-                    {/* <Flex justifyContent={'space-between'} mt={'2%'} mb={'2%'}>
-                        <Flex alignItems={'center'} justifyContent={'space-around'} flexGrow={1}>
-                            <Button
-                                color={'white'}
-                            >
-                                전공연구프로젝트
-                            </Button>
-                            <Button
-                                color={'white'}
-                            >
-                                프로모션
-                            </Button>
-                            <Button
-                                color={'white'}
-                            >
-                                IMC
-                            </Button>
-                        </Flex>
-                        <Button
-
-                            color={'white'}
-                            mr={'2%'}
-                            onClick={props.onClose}
-                            fontWeight={'bold'}
-                            fontSize={'20'}
-                        >
-                            X
-                        </Button>
-                    </Flex> */}
-                    {/* <Text
-
-                        color={'white'}
-                        mr={'2%'}
-                        onClick={props.onClose}
-                        fontWeight={'bold'}
-                        fontSize={'25'}
-                        position={'absolute'}
-                        right={0}
-                    >
-                        X
-                    </Text> */}
 
                     <ModalCloseButton color={'white'} />
 
@@ -108,8 +65,7 @@ const StudentModal = (props: Props) => {
                                         <iframe
                                             width="100%"
                                             height="500"
-                                            src="https://www.youtube.com/embed/XzDzK3txrgw"
-                                            title="YouTube video player"
+                                            src="https://player.vimeo.com/video/697947484"
                                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         ></iframe>
                                     </Flex>
@@ -122,8 +78,7 @@ const StudentModal = (props: Props) => {
                                         <iframe
                                             width="100%"
                                             height="500"
-                                            src="https://www.youtube.com/embed/XzDzK3txrgw"
-                                            title="YouTube video player"
+                                            src="https://player.vimeo.com/video/697947484"
                                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         ></iframe>
                                     </Flex>
@@ -135,8 +90,7 @@ const StudentModal = (props: Props) => {
                                         <iframe
                                             width="100%"
                                             height="500"
-                                            src="https://www.youtube.com/embed/XzDzK3txrgw"
-                                            title="YouTube video player"
+                                            src="https://player.vimeo.com/video/697947484"
                                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         ></iframe>
                                     </Flex>
