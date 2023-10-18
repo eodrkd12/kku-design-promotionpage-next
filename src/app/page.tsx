@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { WheelEvent, useCallback, useEffect, useState } from "react";
+import { useMediaQuery } from 'react-responsive';
 import styled from "styled-components";
 
 const MainTitleWrapper = styled.div`
@@ -71,11 +72,17 @@ export default function IntroductionScreen() {
   const [contentVisible, setContentVisible] = useState(false);
   const [isEnd, setIsEnd] = useState(false);
 
+  const isMobile = useMediaQuery({
+    query: '(max-width: 500px)'
+  });
+
   const handleWheel = useCallback(
     (event: WheelEvent<HTMLDivElement>) => {
       if (!isEnd && !contentVisible) {
         setContentVisible(true);
-        setIsEnd(true);
+        setTimeout(() => {
+          setIsEnd(true);
+        }, 500)
         document.getElementsByTagName("main")[0].style.overflow = "unset";
       }
     },
@@ -83,11 +90,20 @@ export default function IntroductionScreen() {
   );
 
   useEffect(() => {
+
+    if (isMobile) {
+      setTimeout(() => {
+        setContentVisible(true);
+        setIsEnd(true);
+        document.getElementsByTagName("main")[0].style.overflow = "unset";
+      }, 2000)
+    }
+
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry, index) => {
           if (entry.isIntersecting) {
-            setContentVisible(false);
+            if (!isEnd) setContentVisible(false);
           }
         });
       },
@@ -101,6 +117,14 @@ export default function IntroductionScreen() {
       io.observe(aboutDiv);
     }
   }, []);
+
+  useEffect(() => {
+    if (isEnd && !contentVisible) {
+      setTimeout(() => {
+        setContentVisible(true);
+      }, 1000)
+    }
+  }, [contentVisible])
 
   return (
     <div id="introduction" className="parent" onWheel={handleWheel}>
@@ -155,18 +179,18 @@ export default function IntroductionScreen() {
               <h1>전시소개</h1>
             </motion.div>
             <motion.div
-              initial={{ opacity: 0, y: 100 }}
+              initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: "-100%" }}
-              transition={{ duration: 2 }}
+              transition={{ duration: 1 }}
             >
               <h2>TAG:'나'의 '초대'를 받아 '길'을 타고오다</h2>
             </motion.div>
             <motion.div
-              initial={{ opacity: 0, y: 100 }}
+              initial={{ opacity: 0, y: isEnd ? 0 : 100 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: "-100%" }}
-              transition={{ duration: 2 }}
+              transition={{ duration: 1.5 }}
             >
               <p>
                 우리 개개인의 점들이 각자의 길을 찾아 선이 되고 선이 된 점들은
