@@ -1,7 +1,7 @@
 "use client";
 
-import { Flex, VStack } from "@chakra-ui/react";
-import { WheelEvent, useRef, useState, useEffect } from "react";
+import { Flex } from "@chakra-ui/react";
+import { useRef, useState } from "react";
 
 export default function SubjectScreen() {
   const [isScrolledToBottom, setIsScrolledToBottom] = useState(false);
@@ -9,7 +9,7 @@ export default function SubjectScreen() {
 
   return <div id="subject" className="parent-infinite">
 
-    <Flex flexDir={"column"} mt={'50%'} ml={'20%'} mr={'5%'}>
+    <Flex flexDir={"column"} ml={'20vw'} mr={'6vw'}>
       <a href="https://youtube.com">
         <img src={"/image/lightDoor.png"} alt="SignLogo" style={{ width: '100vw', height: '200px', border: '2px solid white' }} />
       </a>
