@@ -37,7 +37,7 @@ const MainTitleWrapper = styled.div`
   }
 `;
 
-const ContentWrapper = styled.div`
+const ContentWrapper = styled.div<{ mobile: boolean }>`
   display: flex;
   flex-direction: column;
   width: 60vw;
@@ -60,7 +60,7 @@ const ContentWrapper = styled.div`
     }
     > p {
       color: white;
-      font-size: 2vh;
+      font-size: ${(props) => props.mobile ? '1vh' : '2vh'};
       font-weight: 300;
       text-align: center;
       line-height: 3vh;
@@ -126,6 +126,7 @@ export default function IntroductionScreen() {
     }
   }, [contentVisible])
 
+
   return (
     <div id="introduction" className="parent" onWheel={handleWheel}>
       <motion.div
@@ -169,7 +170,7 @@ export default function IntroductionScreen() {
       </motion.div>
       <AnimatePresence>
         {contentVisible && (
-          <ContentWrapper>
+          <ContentWrapper mobile={isMobile}>
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
