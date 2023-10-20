@@ -7,6 +7,7 @@ import {
 } from "framer-motion";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { useMediaQuery } from 'react-responsive';
 import "./globals.css";
 
 interface Props {
@@ -27,6 +28,8 @@ const ScrollProgressWrapper = styled.div`
   left: 50%;
   transform: translate(-50%, 0);
   
+
+
   > div{
     width: 100%;
     height: 100%;
@@ -59,6 +62,17 @@ const ScrollProgressWrapper = styled.div`
         color: white;
         font-weight: 900;
       }
+    }
+  }
+
+  @media (max-width: 500px) {
+    left: 60%;
+    > div > span {
+      height: 72%;
+    }
+    
+    > div > span > p {
+      visibility: hidden;
     }
   }
 `;
@@ -135,7 +149,6 @@ export default function RootLayout(props: Props) {
 
 
   function setScreenHeight() {
-
     const vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty("--vh", `${vh}px`);
   }

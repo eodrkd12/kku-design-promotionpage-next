@@ -1,9 +1,26 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
-import { WheelEvent, useCallback, useEffect, useState } from "react";
+import { AnimatePresence, motion, useViewportScroll, useTransform, useAnimation } from "framer-motion";
+import { WheelEvent, useCallback, useEffect, useState} from "react";
 import { useMediaQuery } from 'react-responsive';
 import styled from "styled-components";
+
+const MobileNavWrapper = styled.div`
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+
+  > div:nth-child(1){
+    width: 20vw;
+  }
+`;
 
 const MainTitleWrapper = styled.div`
   position: fixed;
@@ -13,6 +30,19 @@ const MainTitleWrapper = styled.div`
   width: 20vw;
   opacity: 1;
   animation: fadeOut ease-in-out 1s;
+
+  @media (max-width: 500px) {
+      top: 2vw;
+      width: 100%;
+
+      > div:nth-child(1){
+        visibility: visible;
+        width: 20vw;
+      }
+      > div{
+        visibility: hidden;
+      }
+  }
 
   > div:nth-child(1) {
     height: 28%;
@@ -37,7 +67,7 @@ const MainTitleWrapper = styled.div`
   }
 `;
 
-const ContentWrapper = styled.div<{ mobile: boolean }>`
+const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 60vw;
@@ -60,7 +90,7 @@ const ContentWrapper = styled.div<{ mobile: boolean }>`
     }
     > p {
       color: white;
-      font-size: ${(props) => props.mobile ? '1vh' : '2vh'};
+      font-size: 2vh;
       font-weight: 300;
       text-align: center;
       line-height: 3vh;
@@ -75,6 +105,7 @@ export default function IntroductionScreen() {
   const isMobile = useMediaQuery({
     query: '(max-width: 500px)'
   });
+
 
   const handleWheel = useCallback(
     (event: WheelEvent<HTMLDivElement>) => {
@@ -91,13 +122,13 @@ export default function IntroductionScreen() {
 
   useEffect(() => {
 
-    if (isMobile) {
-      setTimeout(() => {
-        setContentVisible(true);
-        setIsEnd(true);
-        document.getElementsByTagName("main")[0].style.overflow = "unset";
-      }, 2000)
-    }
+    // if (isMobile) {
+    //   setTimeout(() => {
+    //     setContentVisible(true);
+    //     setIsEnd(true);
+    //     document.getElementsByTagName("main")[0].style.overflow = "unset";
+    //   }, 2000)
+    // }
 
     const io = new IntersectionObserver(
       (entries) => {
@@ -126,7 +157,6 @@ export default function IntroductionScreen() {
     }
   }, [contentVisible])
 
-
   return (
     <div id="introduction" className="parent" onWheel={handleWheel}>
       <motion.div
@@ -134,7 +164,7 @@ export default function IntroductionScreen() {
         animate={{ opacity: 1 }}
         transition={{ duration: 1.5 }}
       >
-        <MainTitleWrapper>
+      <MainTitleWrapper>
           <div>
             <img src={"/image/tag-logo.png"} />
           </div>
@@ -168,9 +198,19 @@ export default function IntroductionScreen() {
           </div>
         </MainTitleWrapper>
       </motion.div>
+      <motion.div
+        initial={{ opacity: 0, y: 0}}
+        transition={{ duration: 1.5 }}
+      >
+        <MobileNavWrapper>
+          <div>
+            <img src={"/image/tag-logo.png"} />
+          </div>
+        </MobileNavWrapper>
+      </motion.div>
       <AnimatePresence>
         {contentVisible && (
-          <ContentWrapper mobile={isMobile}>
+          <ContentWrapper>
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
