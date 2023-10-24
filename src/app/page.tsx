@@ -1,7 +1,7 @@
 "use client";
 
-import { AnimatePresence, motion, useViewportScroll, useTransform, useAnimation } from "framer-motion";
-import { WheelEvent, useCallback, useEffect, useState} from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { WheelEvent, useCallback, useEffect, useState } from "react";
 import { useMediaQuery } from 'react-responsive';
 import styled from "styled-components";
 
@@ -52,6 +52,7 @@ const MainTitleWrapper = styled.div`
     > div:nth-child(2){
       width: 220px;
       height: 15%;
+      visibility: hidden;
     }
     > div:nth-child(3){
       visibility: hidden;
@@ -127,13 +128,13 @@ export default function IntroductionScreen() {
 
   useEffect(() => {
 
-    // if (isMobile) {
-    //   setTimeout(() => {
-    //     setContentVisible(true);
-    //     setIsEnd(true);
-    //     document.getElementsByTagName("main")[0].style.overflow = "unset";
-    //   }, 2000)
-    // }
+    if (isMobile) {
+      setTimeout(() => {
+        setContentVisible(true);
+        setIsEnd(true);
+        document.getElementsByTagName("main")[0].style.overflow = "unset";
+      }, 2000)
+    }
 
     const io = new IntersectionObserver(
       (entries) => {
@@ -158,7 +159,7 @@ export default function IntroductionScreen() {
     if (isEnd && !contentVisible) {
       setTimeout(() => {
         setContentVisible(true);
-      }, 1000)
+      }, 5000)
     }
   }, [contentVisible])
 
@@ -169,10 +170,11 @@ export default function IntroductionScreen() {
         animate={{ opacity: 1 }}
         transition={{ duration: 1.5 }}
       >
-      <MainTitleWrapper>
+        <MainTitleWrapper>
           <div>
             <img src={"/image/tag-logo.png"} />
           </div>
+
           <div>
             <p>
               2024 KONKUK UNIVERSITY
@@ -204,7 +206,7 @@ export default function IntroductionScreen() {
         </MainTitleWrapper>
       </motion.div>
       <motion.div
-        initial={{ opacity: 0, y: 0}}
+        initial={{ opacity: 0, y: 0 }}
         transition={{ duration: 1.5 }}
       >
       </motion.div>
