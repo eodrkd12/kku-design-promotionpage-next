@@ -109,9 +109,6 @@ export default function RootLayout(props: Props) {
                 case "introduction":
                   setProgress(1);
                   break;
-                case "student":
-                  setProgress(2);
-                  break;
                 case "subject":
                   setProgress(3);
               }
@@ -126,7 +123,13 @@ export default function RootLayout(props: Props) {
         (entries) => {
           entries.forEach((entry, index) => {
             if (entry.isIntersecting) {
-              setProgress(1);
+              switch (entry.target.id) {
+                case "about":
+                  setProgress(1);
+                  break;
+                case "student":
+                  setProgress(2);
+              }
             }
           });
         },
@@ -142,7 +145,7 @@ export default function RootLayout(props: Props) {
       const aboutDiv = document.getElementById("about");
       if (introDiv && studentDiv && subjectDiv && aboutDiv) {
         io.observe(introDiv);
-        io.observe(studentDiv);
+        io200vh.observe(studentDiv);
         io.observe(subjectDiv);
         io200vh.observe(aboutDiv);
       }
@@ -183,7 +186,7 @@ export default function RootLayout(props: Props) {
                   initial={false}
                   animate={{ width: `${progress * 25}%` }} />
                 <span>
-                  {progress >= 1 && <motion.div className="head"
+                  {progress >= 1 && <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 1 }} />}
