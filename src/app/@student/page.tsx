@@ -141,7 +141,7 @@ export default function StudentScreen() {
 
 
     const ImageButton = ({ src, alt, name, englishName, onClick }: ImageButtonProps) => (
-        <Flex style={{ position: 'relative', width: isMobile ? '32vw' : '14vw', border: '2px solid white' }}>
+        <Flex style={{ position: 'relative', width: '14vw', border: '2px solid white', overflowX: 'hidden', overflowY: 'hidden' }}>
             <img
                 src={src}
                 alt={alt}
