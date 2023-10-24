@@ -1,6 +1,5 @@
 import {
     Flex,
-    FormControl,
     Modal,
     ModalBody,
     ModalCloseButton,
@@ -9,22 +8,23 @@ import {
     ModalHeader,
     ModalOverlay,
     Tab,
-    TabIndicator,
     TabList,
     TabPanel,
     TabPanels,
     Tabs,
     Text
 } from '@chakra-ui/react';
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useMediaQuery } from 'react-responsive';
 
-import uiuxData from '../data/uiux-data';
-import imcData from '../data/imc-data';
-import videoMajorProjectData from '../data/videoMajorProject-data';
-import digitalMajorProjectData from '../data/digitalMajorProject-data';
-import brandPackageDesignData from '../data/brandPackageDesign-data';
 import PromotionVideoData from '../data/PromotionVideo-data';
 import animationStudioData from '../data/animationStudio-data';
+import brandPackageDesignData from '../data/brandPackageDesign-data';
+import digitalMajorProjectData from '../data/digitalMajorProject-data';
+import imcData from '../data/imc-data';
+import uiuxData from '../data/uiux-data';
+import videoMajorProjectData from '../data/videoMajorProject-data';
+
 
 interface Props {
     isOpen: boolean;
@@ -32,11 +32,76 @@ interface Props {
     studentData: any;
 }
 
+interface Work {
+    name: string;
+    student: Student[];
+    introduction: string;
+    explanation: string;
+}
+
+interface Student {
+    sname: string;
+    englishName: string;
+    studentNumber: string;
+    email: string;
+}
+
 const StudentModal = (props: Props) => {
 
     // 선택한 학생
     const [selectedStudent, setSelectedStudent] = useState<any>(null);
 
+    const [subjectList, setSubjectList] = useState<string[]>([]);
+    const [tabIdx, setTabIdx] = useState<number | null>(null);
+    const [work, setWork] = useState<Work>();
+
+    useEffect(() => {
+
+        if (props.studentData) {
+            const _subjectList: string[] = [];
+            props.studentData.subject.split("/").forEach((value: string) => {
+                _subjectList.push(value.trim());
+            })
+            setSubjectList(_subjectList);
+            setTabIdx(0);
+        }
+    }, [props])
+
+    useEffect(() => {
+        if (tabIdx !== null) {
+            let workList: Work[] = [];
+            switch (subjectList[tabIdx]) {
+                case '전공연구프로젝트(영상)':
+                    workList = videoMajorProjectData;
+                    break;
+                case 'IMC':
+                    workList = imcData;
+                    break;
+                case '프로모션영상':
+                    workList = PromotionVideoData;
+                    break;
+                case '전공연구프로젝트(디지털)':
+                    workList = digitalMajorProjectData;
+                    break;
+                case 'UIUX캡스톤디자인':
+                    workList = uiuxData;
+                    break;
+                case '애니메이션스튜디오':
+                    workList = animationStudioData;
+                    break;
+                case '브랜드패키지디자인':
+                    workList = brandPackageDesignData;
+            }
+
+            if (workList) {
+                setWork(workList.filter((value) => value.student.some((value) => value.sname === props.studentData.name))[0]);
+            }
+        }
+    }, [tabIdx])
+
+    const isMobile = useMediaQuery({
+        query: '(max-width: 500px)'
+    });
 
     return (
         <Modal
@@ -53,78 +118,97 @@ const StudentModal = (props: Props) => {
                     <ModalCloseButton color={'white'} />
 
                 </ModalHeader>
-                <ModalBody overflowY="auto" maxHeight="80vh" h={'80vh'} sx={{
+                <ModalBody overflowY="scroll" sx={{
                     '::-webkit-scrollbar': {
                         display: 'none',
                     },
                 }} >
-                    <FormControl isRequired mb={'3%'}>
-                        <Tabs position="relative" variant="unstyled">
-                            <TabList justifyContent={'space-around'} mb={'1%'}>
-                                <Tab color={'white'}>{props.studentData.subject.split("/")[0]}</Tab>
-                                <Tab color={'white'}>{props.studentData.subject.split("/")[1]}</Tab>
-                                <Tab color={'white'}>{props.studentData.subject.split("/")[2]}</Tab>
-                            </TabList>
-                            <TabIndicator
-                                mt="-5px"
-                                height="2px"
-                                bg="blue"
-                                borderRadius="1px"
-                            />
-                            <TabPanels>
-                                <TabPanel>
-                                    <Flex position={'relative'}>
-                                        <img src={"/image/lightDoor.png"} alt="SignLogo" style={{ width: '100vw', height: '200px' }} />
-                                        <Text position={'absolute'} color={'white'} top={'40%'} left={'10%'} > gi</Text>
-                                        <Flex position={'absolute'} color={'white'} top={'5%'} left={'80%'}>
-                                            <Text>{props.studentData.name} {props.studentData.email}</Text>
-                                        </Flex>
+                    <Tabs h={'80vh'} position="relative" variant="unstyled" onChange={(index: number) => {
+                        setTabIdx(index);
+                    }}>
+                        <TabList justifyContent={'space-around'} mb={'1%'}>
+                            {subjectList.map((value, index) => {
+                                return <Tab key={index} color={tabIdx === index ? 'white' : 'gray.500'}>{value}</Tab>;
+                            })}
+                        </TabList>
+                        <TabPanels h={'90%'}>
+                            <TabPanel h={'100%'}>
+                                <Flex position={'relative'} h={'30%'}>
+                                    <img src={"/image/lightDoor.png"} alt="SignLogo" style={{ width: '100vw', height: '100%' }} />
+
+                                    <Text position={'absolute'} color={'white'} top={'50%'} left={'5%'} fontSize={50} transform='translateY(-50%)'>{work?.name}</Text>
+
+                                    <Flex position={'absolute'} color={'white'} top={'5%'} right={0} flexDir={'column'}>
+                                        {
+                                            work?.student.map((student, index) => {
+                                                return <Text key={index}>{student.sname} {student.email}</Text>
+                                            })
+                                        }
                                     </Flex>
+                                </Flex>
+                                <Flex flexDir={'column'} w={'100%'} h={'70%'}>
+                                    <Text color={'white'} m={'1%'} >{work?.introduction}</Text>
+                                    <Text color={'white'} m={'1%'} >{work?.explanation}</Text>
+                                    <iframe
+                                        width="100%"
+                                        height="100%"
+                                        src="https://player.vimeo.com/video/697947484"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    ></iframe>
+                                </Flex>
+                            </TabPanel>
+                            <TabPanel h={'100%'}>
+                                <Flex position={'relative'} h={'30%'}>
+                                    <img src={"/image/lightDoor.png"} alt="SignLogo" style={{ width: '100vw', height: '100%' }} />
 
-                                    <Flex margin={'5%'} flexDir={'column'}>
-                                        <Text color={'white'} mb={'5%'} >작은 섬마을 곳곳에 알 수없는 태엽이 생겨나고 자연물들의 성장이 멈춰, 어른들은 태엽을 두려워하게 된다.... 전공연구프로젝트</Text>
-                                        <iframe
-                                            width="100%"
-                                            height="500"
-                                            src="https://player.vimeo.com/video/697947484"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        ></iframe>
+                                    <Text position={'absolute'} color={'white'} top={'50%'} left={'5%'} fontSize={50} transform='translateY(-50%)'>{work?.name}</Text>
+
+                                    <Flex position={'absolute'} color={'white'} top={'5%'} right={0} flexDir={'column'}>
+                                        {
+                                            work?.student.map((student, index) => {
+                                                return <Text key={index}>{student.sname} {student.email}</Text>
+                                            })
+                                        }
                                     </Flex>
+                                </Flex>
+                                <Flex flexDir={'column'} w={'100%'} h={'70%'}>
+                                    <Text color={'white'} m={'1%'} >{work?.introduction}</Text>
+                                    <Text color={'white'} m={'1%'} >{work?.explanation}</Text>
+                                    <iframe
+                                        width="100%"
+                                        height="100%"
+                                        src="https://player.vimeo.com/video/697947484"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    ></iframe>
+                                </Flex>
+                            </TabPanel>
+                            <TabPanel h={'100%'}>
+                                <Flex position={'relative'} h={'30%'}>
+                                    <img src={"/image/lightDoor.png"} alt="SignLogo" style={{ width: '100vw', height: '100%' }} />
 
-                                </TabPanel>
-                                <TabPanel>
-                                    <img src={"/image/lightDoor.png"} alt="SignLogo" style={{ width: '100vw', height: '200px' }} />
-                                    <Flex margin={'5%'} flexDir={'column'}>
-                                        <Text color={'white'} mb={'5%'} >작은 섬마을 곳곳에 알 수없는 태엽이 생겨나고 자연물들의 성장이 멈춰, 어른들은 태엽을 두려워하게 된다.... 프로모션</Text>
-                                        <iframe
-                                            width="100%"
-                                            height="500"
-                                            src="https://player.vimeo.com/video/697947484"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        ></iframe>
+                                    <Text position={'absolute'} color={'white'} top={'50%'} left={'5%'} fontSize={50} transform='translateY(-50%)'>{work?.name}</Text>
+
+                                    <Flex position={'absolute'} color={'white'} top={'5%'} right={0} flexDir={'column'}>
+                                        {
+                                            work?.student.map((student, index) => {
+                                                return <Text key={index}>{student.sname} {student.email}</Text>
+                                            })
+                                        }
                                     </Flex>
-                                </TabPanel>
-                                <TabPanel>
-                                    <img src={"/image/lightDoor.png"} alt="SignLogo" style={{ width: '100vw', height: '200px' }} />
-                                    <Flex margin={'5%'} flexDir={'column'}>
-                                        <Text color={'white'} mb={'5%'} >작은 섬마을 곳곳에 알 수없는 태엽이 생겨나고 자연물들의 성장이 멈춰, 어른들은 태엽을 두려워하게 된다.... IMC</Text>
-                                        <iframe
-                                            width="100%"
-                                            height="500"
-                                            src="https://player.vimeo.com/video/697947484"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        ></iframe>
-                                    </Flex>
-                                </TabPanel>
-
-                            </TabPanels>
-
-
-
-
-
-                        </Tabs>
-                    </FormControl>
+                                </Flex>
+                                <Flex flexDir={'column'} w={'100%'} h={'70%'}>
+                                    <Text color={'white'} m={'1%'} >{work?.introduction}</Text>
+                                    <Text color={'white'} m={'1%'} >{work?.explanation}</Text>
+                                    <iframe
+                                        width="100%"
+                                        height="100%"
+                                        src="https://player.vimeo.com/video/697947484"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    ></iframe>
+                                </Flex>
+                            </TabPanel>
+                        </TabPanels>
+                    </Tabs>
                 </ModalBody>
                 <ModalFooter>
 
