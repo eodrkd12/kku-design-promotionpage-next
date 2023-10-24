@@ -47,13 +47,10 @@ const MainTitleWrapper = styled.div`
     left: 5vw;
 
     > div:nth-child(1){
+      visibility: visible;
       width: 20vw;
     }
-    > div:nth-child(2){
-      width: 220px;
-      height: 15%;
-    }
-    > div:nth-child(3){
+    > div {
       visibility: hidden;
     }
   }
@@ -91,13 +88,11 @@ const ContentWrapper = styled.div`
 
   @media (max-width: 500px) {
     width: 90vw;
-    font-family: Pretendard-Regular;
     > div {
       display: block;
       text-align: left;
       > p {
         text-align: left;
-        font-family: Pretendard-Regular;
       }
     }
   }

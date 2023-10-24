@@ -107,3 +107,15 @@ div.parent-infinite {
   background: var(--white);
   transform-origin: 0%;
 }
+
+p {
+    font-family: Pretendard-Regular;
+}
+
+h1 {
+    font-family: Pretendard-Regular;
+}
+
+h2 {
+    font-family: Pretendard-Regular;
+}
