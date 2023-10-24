@@ -7,7 +7,7 @@ export default [
         phoneNumber: '010-2915-5622',
         track: '디지털',
         subject: '전공연구프로젝트(디지털) / UIUX / 애니메이션스튜디오',
-        profile: '/Image/digitalTrack15/김나경-nana3467@naver-w.jpg'
+        profile: '/image/digitalTrack15/김나경-nana3467@naver-w.jpg'
     },
     {
         name: '김민영',
@@ -17,7 +17,7 @@ export default [
         phoneNumber: '010-6478-3807',
         track: '디지털',
         subject: '전공연구프로젝트(디지털) / UIUX / IMC',
-        profile: '/Image/digitalTrack15/김민영-minyoung3807@gmail-w.jpg'
+        profile: '/image/digitalTrack15/김민영-minyoung3807@gmail-w.jpg'
     },
     {
         name: '김민정',
@@ -27,7 +27,7 @@ export default [
         phoneNumber: '010-2031-8381',
         track: '디지털',
         subject: '전공연구프로젝트(디지털) / UIUX / 애니메이션스튜디오',
-        profile: '/Image/digitalTrack15/김민정-beauty5sock@naver-w.jpg'
+        profile: '/image/digitalTrack15/김민정-beauty5sock@naver-w.jpg'
     },
     {
         name: '김세현',
@@ -37,7 +37,7 @@ export default [
         phoneNumber: '010-8702-6632',
         track: '디지털',
         subject: '전공연구프로젝트(디지털) / UIUX / 브랜드패키지',
-        profile: '/Image/digitalTrack15/김세현-kimsaen111@gmail-w.jpg'
+        profile: '/image/digitalTrack15/김세현-kimsaen111@gmail-w.jpg'
     },
     {
         name: '김주화',
@@ -47,7 +47,7 @@ export default [
         phoneNumber: '010-4123-3452',
         track: '디지털',
         subject: '전공연구프로젝트(디지털) / UIUX / 애니메이션스튜디오',
-        profile: '/Image/digitalTrack15/김주화-caahsio@naver-w.jpg'
+        profile: '/image/digitalTrack15/김주화-caahsio@naver-w.jpg'
     },
     {
         name: '김창호',
@@ -57,7 +57,7 @@ export default [
         phoneNumber: '010-6659-7980',
         track: '디지털',
         subject: '전공연구프로젝트(디지털) / UIUX / 애니메이션스튜디오',
-        profile: '/Image/digitalTrack15/김창호-srlackdgh@naver-w.jpg'
+        profile: '/image/digitalTrack15/김창호-srlackdgh@naver-w.jpg'
     },
     {
         name: '노경원',
@@ -67,7 +67,7 @@ export default [
         phoneNumber: '010-4423-1294',
         track: '디지털',
         subject: '전공연구프로젝트(디지털) / UIUX / 애니메이션스튜디오',
-        profile: '/Image/digitalTrack15/노경원-shruddnjs416@naver-w.jpg'
+        profile: '/image/digitalTrack15/노경원-shruddnjs416@naver-w.jpg'
     },
     {
         name: '노연주',
@@ -77,7 +77,7 @@ export default [
         phoneNumber: '010-5833-7875',
         track: '디지털',
         subject: '전공연구프로젝트(디지털) / UIUX / 애니메이션스튜디오',
-        profile: '/Image/digitalTrack15/노연주-nyj5328@naver-w.jpg'
+        profile: '/image/digitalTrack15/노연주-nyj5328@naver-w.jpg'
     },
     {
         name: '박경민',
@@ -87,7 +87,7 @@ export default [
         phoneNumber: '010-4005-4797',
         track: '디지털',
         subject: '전공연구프로젝트(디지털) / UIUX / 애니메이션스튜디오',
-        profile: '/Image/digitalTrack15/박경민-bg_0830@naver-w.jpg'
+        profile: '/image/digitalTrack15/박경민-bg_0830@naver-w.jpg'
     },
     {
         name: '손종현',
@@ -97,7 +97,7 @@ export default [
         phoneNumber: '010-7733-7016',
         track: '디지털',
         subject: '전공연구프로젝트(디지털) / UIUX / 애니메이션스튜디오',
-        profile: '/Image/digitalTrack15/손종현-whdgus509@naver-w.jpg'
+        profile: '/image/digitalTrack15/손종현-whdgus509@naver-w.jpg'
     },
     {
         name: '안예진',
@@ -107,7 +107,7 @@ export default [
         phoneNumber: '010-7196-7161',
         track: '디지털',
         subject: '전공연구프로젝트(디지털) / UIUX / 애니메이션스튜디오',
-        profile: '/Image/digitalTrack15/안예진-goodluckayj@naver-w.jpg'
+        profile: '/image/digitalTrack15/안예진-goodluckayj@naver-w.jpg'
     },
     {
         name: '이선창',
@@ -117,7 +117,7 @@ export default [
         phoneNumber: '010-5717-8974',
         track: '디지털',
         subject: '전공연구프로젝트(디지털) / UIUX / 애니메이션스튜디오',
-        profile: '/Image/digitalTrack15/이선창-samsam8974@gmail-w.jpg'
+        profile: '/image/digitalTrack15/이선창-samsam8974@gmail-w.jpg'
     },
     {
         name: '장아영',
@@ -127,7 +127,7 @@ export default [
         phoneNumber: '010-3344-4693',
         track: '디지털',
         subject: '전공연구프로젝트(디지털) / UIUX / 애니메이션스튜디오',
-        profile: '/Image/digitalTrack15/장아영-jay46934@gmail-w.jpg'
+        profile: '/image/digitalTrack15/장아영-jay46934@gmail-w.jpg'
     },
     {
         name: '최이영',
@@ -137,7 +137,7 @@ export default [
         phoneNumber: '010-7307-9030',
         track: '디지털',
         subject: '전공연구프로젝트(디지털) / 애니메이션스튜디오 /브랜드패키지',
-        profile: '/Image/digitalTrack15/최이영-20banana47@gmail-w.jpg'
+        profile: '/image/digitalTrack15/최이영-20banana47@gmail-w.jpg'
     },
     {
         name: '황선경',
@@ -147,7 +147,7 @@ export default [
         phoneNumber: '010-9476-3674',
         track: '디지털',
         subject: '전공연구프로젝트(디지털) / UIUX / 애니메이션스튜디오',
-        profile: '/Image/digitalTrack15/황선경-hwang990330@gmail-w.jpg'
+        profile: '/image/digitalTrack15/황선경-hwang990330@gmail-w.jpg'
     },
 
 ]
