@@ -10,6 +10,11 @@ const Page = styled.div`
   justify-content: flex-start;
   width: 60vw;
   height: 40vh;
+
+  @media (max-width: 500px) {
+    width: 90vw;
+    height: 60vh;
+  }
 `;
 
 const ContentWrapper = styled.div`
@@ -39,6 +44,24 @@ const ContentWrapper = styled.div`
       font-weight: 300;
       text-align: center;
       line-height: 3vh;
+    }
+  }
+
+  @media (max-width: 500px){
+    br{
+       display: inline-block;
+       content: " ";
+    }
+
+    width: 90vw;
+    > div {
+      display: block;
+      text-align: left;
+      font-size: 1.5vh;
+      > p {
+        font-size: 1.8vh;
+        text-align: left;
+      }
     }
   }
 `;

@@ -4,7 +4,6 @@ import { Button, Flex, Text } from "@chakra-ui/react";
 export default function EndScreen() {
 
 
-
     return (
         <div className="parent" id="end">
             <Flex flexDir={'column'} alignItems={'center'}>

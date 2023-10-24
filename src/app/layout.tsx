@@ -7,6 +7,7 @@ import {
 } from "framer-motion";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { useMediaQuery } from 'react-responsive';
 import "./globals.css";
 
 interface Props {
@@ -27,6 +28,8 @@ const ScrollProgressWrapper = styled.div`
   left: 50%;
   transform: translate(-50%, 0);
   
+
+
   > div{
     width: 100%;
     height: 100%;
@@ -61,6 +64,19 @@ const ScrollProgressWrapper = styled.div`
       }
     }
   }
+
+  @media (max-width: 500px) {
+    left: 60%;
+    top: 5vh;
+
+    > div > span {
+      height: 72%;
+    }
+    
+    > div > span > p {
+      visibility: hidden;
+    }
+  }
 `;
 
 export default function RootLayout(props: Props) {
@@ -93,9 +109,6 @@ export default function RootLayout(props: Props) {
                 case "introduction":
                   setProgress(1);
                   break;
-                case "student":
-                  setProgress(2);
-                  break;
                 case "subject":
                   setProgress(3);
               }
@@ -110,7 +123,13 @@ export default function RootLayout(props: Props) {
         (entries) => {
           entries.forEach((entry, index) => {
             if (entry.isIntersecting) {
-              setProgress(1);
+              switch (entry.target.id) {
+                case "about":
+                  setProgress(1);
+                  break;
+                case "student":
+                  setProgress(2);
+              }
             }
           });
         },
@@ -126,7 +145,7 @@ export default function RootLayout(props: Props) {
       const aboutDiv = document.getElementById("about");
       if (introDiv && studentDiv && subjectDiv && aboutDiv) {
         io.observe(introDiv);
-        io.observe(studentDiv);
+        io200vh.observe(studentDiv);
         io.observe(subjectDiv);
         io200vh.observe(aboutDiv);
       }
@@ -135,7 +154,6 @@ export default function RootLayout(props: Props) {
 
 
   function setScreenHeight() {
-
     const vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty("--vh", `${vh}px`);
   }
@@ -168,7 +186,7 @@ export default function RootLayout(props: Props) {
                   initial={false}
                   animate={{ width: `${progress * 25}%` }} />
                 <span>
-                  {progress >= 1 && <motion.div className="head"
+                  {progress >= 1 && <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 1 }} />}

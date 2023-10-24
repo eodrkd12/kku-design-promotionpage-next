@@ -35,6 +35,25 @@ const MainTitleWrapper = styled.div`
       font-weight: 200;
     }
   }
+
+  @media (max-width: 500px) {
+    br{
+       display: inline-block;
+       content: " ";
+    }
+
+    top: 4vw;
+    width: 100%;
+    left: 5vw;
+
+    > div:nth-child(1){
+      visibility: visible;
+      width: 20vw;
+    }
+    > div {
+      visibility: hidden;
+    }
+  }
 `;
 
 const ContentWrapper = styled.div`
@@ -66,6 +85,17 @@ const ContentWrapper = styled.div`
       line-height: 3vh;
     }
   }
+
+  @media (max-width: 500px) {
+    width: 90vw;
+    > div {
+      display: block;
+      text-align: left;
+      > p {
+        text-align: left;
+      }
+    }
+  }
 `;
 
 export default function IntroductionScreen() {
@@ -75,6 +105,7 @@ export default function IntroductionScreen() {
   const isMobile = useMediaQuery({
     query: '(max-width: 500px)'
   });
+
 
   const handleWheel = useCallback(
     (event: WheelEvent<HTMLDivElement>) => {
@@ -122,7 +153,7 @@ export default function IntroductionScreen() {
     if (isEnd && !contentVisible) {
       setTimeout(() => {
         setContentVisible(true);
-      }, 1000)
+      }, 5000)
     }
   }, [contentVisible])
 
@@ -137,6 +168,7 @@ export default function IntroductionScreen() {
           <div>
             <img src={"/image/tag-logo.png"} />
           </div>
+
           <div>
             <p>
               2024 KONKUK UNIVERSITY
@@ -166,6 +198,11 @@ export default function IntroductionScreen() {
             </p>
           </div>
         </MainTitleWrapper>
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, y: 0 }}
+        transition={{ duration: 1.5 }}
+      >
       </motion.div>
       <AnimatePresence>
         {contentVisible && (
