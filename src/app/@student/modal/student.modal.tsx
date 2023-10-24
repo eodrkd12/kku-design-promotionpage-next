@@ -16,7 +16,7 @@ import {
 } from '@chakra-ui/react';
 import { useEffect, useState } from "react";
 import { useMediaQuery } from 'react-responsive';
-import PromotionVideoData from '../data/PromotionVideo-data';
+import promotionVideoData from '../data/promotionVideo-data';
 import animationStudioData from '../data/animationStudio-data';
 import brandPackageDesignData from '../data/brandPackageDesign-data';
 import digitalMajorProjectData from '../data/digitalMajorProject-data';
@@ -76,7 +76,7 @@ const StudentModal = (props: Props) => {
                 workList = imcData;
                 break;
             case '프로모션영상':
-                workList = PromotionVideoData;
+                workList = promotionVideoData;
                 break;
             case '전공연구프로젝트(디지털)':
                 workList = digitalMajorProjectData;
@@ -133,7 +133,9 @@ const StudentModal = (props: Props) => {
                             <TabPanel h={'100%'}>
                                 <Flex position={'relative'} h={'30%'}>
                                     <img src={"/image/lightDoor.png"} alt="SignLogo" style={{ width: '100vw', height: '100%' }} />
-                                    <Text position={'absolute'} color={'white'} top={'40%'} left={'10%'} >{work?.name}</Text>
+
+                                    <Text position={'absolute'} color={'white'} top={'50%'} left={'5%'} fontSize={50} transform='translateY(-50%)'>{work?.name}</Text>
+
                                     <Flex position={'absolute'} color={'white'} top={'5%'} right={0} flexDir={'column'}>
                                         {
                                             work?.student.map((student, index) => {
@@ -143,7 +145,8 @@ const StudentModal = (props: Props) => {
                                     </Flex>
                                 </Flex>
                                 <Flex flexDir={'column'} w={'100%'} h={'70%'}>
-                                    <Text color={'white'} mb={'5%'} >작은 섬마을 곳곳에 알 수없는 태엽이 생겨나고 자연물들의 성장이 멈춰, 어른들은 태엽을 두려워하게 된다.... 전공연구프로젝트</Text>
+                                    <Text color={'white'} m={'1%'} >{work?.introduction}</Text>
+                                    <Text color={'white'} m={'1%'} >{work?.explanation}</Text>
                                     <iframe
                                         width="100%"
                                         height="100%"
@@ -152,25 +155,51 @@ const StudentModal = (props: Props) => {
                                     ></iframe>
                                 </Flex>
                             </TabPanel>
-                            <TabPanel>
-                                <img src={"/image/lightDoor.png"} alt="SignLogo" style={{ width: '100vw', height: '200px' }} />
-                                <Flex flexDir={'column'}>
-                                    <Text color={'white'} mb={'5%'} >작은 섬마을 곳곳에 알 수없는 태엽이 생겨나고 자연물들의 성장이 멈춰, 어른들은 태엽을 두려워하게 된다.... 프로모션</Text>
+                            <TabPanel h={'100%'}>
+                                <Flex position={'relative'} h={'30%'}>
+                                    <img src={"/image/lightDoor.png"} alt="SignLogo" style={{ width: '100vw', height: '100%' }} />
+
+                                    <Text position={'absolute'} color={'white'} top={'50%'} left={'5%'} fontSize={50} transform='translateY(-50%)'>{work?.name}</Text>
+
+                                    <Flex position={'absolute'} color={'white'} top={'5%'} right={0} flexDir={'column'}>
+                                        {
+                                            work?.student.map((student, index) => {
+                                                return <Text key={index}>{student.sname} {student.email}</Text>
+                                            })
+                                        }
+                                    </Flex>
+                                </Flex>
+                                <Flex flexDir={'column'} w={'100%'} h={'70%'}>
+                                    <Text color={'white'} m={'1%'} >{work?.introduction}</Text>
+                                    <Text color={'white'} m={'1%'} >{work?.explanation}</Text>
                                     <iframe
                                         width="100%"
-                                        height="500"
+                                        height="100%"
                                         src="https://player.vimeo.com/video/697947484"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     ></iframe>
                                 </Flex>
                             </TabPanel>
-                            <TabPanel>
-                                <img src={"/image/lightDoor.png"} alt="SignLogo" style={{ width: '100vw', height: '200px' }} />
-                                <Flex flexDir={'column'}>
-                                    <Text color={'white'} mb={'5%'} >작은 섬마을 곳곳에 알 수없는 태엽이 생겨나고 자연물들의 성장이 멈춰, 어른들은 태엽을 두려워하게 된다.... IMC</Text>
+                            <TabPanel h={'100%'}>
+                                <Flex position={'relative'} h={'30%'}>
+                                    <img src={"/image/lightDoor.png"} alt="SignLogo" style={{ width: '100vw', height: '100%' }} />
+
+                                    <Text position={'absolute'} color={'white'} top={'50%'} left={'5%'} fontSize={50} transform='translateY(-50%)'>{work?.name}</Text>
+
+                                    <Flex position={'absolute'} color={'white'} top={'5%'} right={0} flexDir={'column'}>
+                                        {
+                                            work?.student.map((student, index) => {
+                                                return <Text key={index}>{student.sname} {student.email}</Text>
+                                            })
+                                        }
+                                    </Flex>
+                                </Flex>
+                                <Flex flexDir={'column'} w={'100%'} h={'70%'}>
+                                    <Text color={'white'} m={'1%'} >{work?.introduction}</Text>
+                                    <Text color={'white'} m={'1%'} >{work?.explanation}</Text>
                                     <iframe
                                         width="100%"
-                                        height="500"
+                                        height="100%"
                                         src="https://player.vimeo.com/video/697947484"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     ></iframe>
