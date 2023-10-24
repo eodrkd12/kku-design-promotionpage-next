@@ -1,8 +1,17 @@
 "use client";
 
-import { Flex } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import styled from "styled-components";
+import SubjectItem from "./component/item/subject.item";
+
+const SubjectList = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 74vw;
+  margin-left: 20vw;
+  margin-right: 6vw;
+`;
 
 export default function SubjectScreen() {
   const [isScrolledToBottom, setIsScrolledToBottom] = useState(false);
@@ -37,26 +46,14 @@ export default function SubjectScreen() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 2 }}
       >
-        <Flex flexDir={"column"} ml={'20vw'} mr={'6vw'}>
-          <a href="https://youtube.com">
-            <img src={"/image/lightDoor.png"} alt="SignLogo" style={{ width: '100vw', height: '200px', border: '2px solid white' }} />
-          </a>
-          <a href="https://youtube.com">
-            <img src={"/image/lightDoor.png"} alt="SignLogo" style={{ width: '100vw', height: '200px', border: '2px solid white' }} />
-          </a>
-          <a href="https://youtube.com">
-            <img src={"/image/lightDoor.png"} alt="SignLogo" style={{ width: '100vw', height: '200px', border: '2px solid white' }} />
-          </a>
-          <a href="https://youtube.com">
-            <img src={"/image/lightDoor.png"} alt="SignLogo" style={{ width: '100vw', height: '200px', border: '2px solid white' }} />
-          </a>
-          <a href="https://youtube.com">
-            <img src={"/image/lightDoor.png"} alt="SignLogo" style={{ width: '100vw', height: '200px', border: '2px solid white' }} />
-          </a>
-          <a href="https://youtube.com">
-            <img src={"/image/lightDoor.png"} alt="SignLogo" style={{ width: '100vw', height: '200px', border: '2px solid white' }} />
-          </a>
-        </Flex>
+        <SubjectList>
+          <SubjectItem subject={"전공연구프로젝트(영상)"} img={"/image/lightDoor.png"} />
+          <SubjectItem subject={"IMC"} img={"/image/lightDoor.png"} />
+          <SubjectItem subject={"프로모션영상"} img={"/image/lightDoor.png"} />
+          <SubjectItem subject={"전공연구프로젝트(디지털)"} img={"/image/lightDoor.png"} />
+          <SubjectItem subject={"애니메이션스튜디오"} img={"/image/lightDoor.png"} />
+          <SubjectItem subject={"UXUI"} img={"/image/lightDoor.png"} />
+        </SubjectList>
       </motion.div>}
 
   </div>;
