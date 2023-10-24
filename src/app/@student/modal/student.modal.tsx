@@ -75,7 +75,8 @@ const StudentModal = (props: Props) => {
                                 <TabPanel>
                                     <Flex position={'relative'}>
                                         <img src={"/image/lightDoor.png"} alt="SignLogo" style={{ width: '100vw', height: '200px' }} />
-                                        <Flex position={'absolute'} color={'white'}>
+                                        <Text position={'absolute'} color={'white'} top={'40%'} left={'10%'} > gi</Text>
+                                        <Flex position={'absolute'} color={'white'} top={'5%'} left={'80%'}>
                                             <Text>{props.studentData.name} {props.studentData.email}</Text>
                                         </Flex>
                                     </Flex>
