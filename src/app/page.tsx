@@ -5,23 +5,6 @@ import { WheelEvent, useCallback, useEffect, useState} from "react";
 import { useMediaQuery } from 'react-responsive';
 import styled from "styled-components";
 
-const MobileNavWrapper = styled.div`
-  position: fixed;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: black;
-
-  > div:nth-child(1){
-    width: 20vw;
-  }
-`;
-
 const MainTitleWrapper = styled.div`
   position: fixed;
   left: 2vw;
@@ -30,19 +13,6 @@ const MainTitleWrapper = styled.div`
   width: 20vw;
   opacity: 1;
   animation: fadeOut ease-in-out 1s;
-
-  @media (max-width: 500px) {
-      top: 2vw;
-      width: 100%;
-
-      > div:nth-child(1){
-        visibility: visible;
-        width: 20vw;
-      }
-      > div{
-        visibility: hidden;
-      }
-  }
 
   > div:nth-child(1) {
     height: 28%;
@@ -63,6 +33,28 @@ const MainTitleWrapper = styled.div`
       color: white;
       font-size: 1vh;
       font-weight: 200;
+    }
+  }
+
+  @media (max-width: 500px) {
+    br{
+       display: inline-block;
+       content: " ";
+    }
+
+    top: 4vw;
+    width: 100%;
+    left: 5vw;
+
+    > div:nth-child(1){
+      width: 20vw;
+    }
+    > div:nth-child(2){
+      width: 220px;
+      height: 15%;
+    }
+    > div:nth-child(3){
+      visibility: hidden;
     }
   }
 `;
@@ -94,6 +86,19 @@ const ContentWrapper = styled.div`
       font-weight: 300;
       text-align: center;
       line-height: 3vh;
+    }
+  }
+
+  @media (max-width: 500px) {
+    width: 90vw;
+    font-family: Pretendard-Regular;
+    > div {
+      display: block;
+      text-align: left;
+      > p {
+        text-align: left;
+        font-family: Pretendard-Regular;
+      }
     }
   }
 `;
@@ -202,11 +207,6 @@ export default function IntroductionScreen() {
         initial={{ opacity: 0, y: 0}}
         transition={{ duration: 1.5 }}
       >
-        <MobileNavWrapper>
-          <div>
-            <img src={"/image/tag-logo.png"} />
-          </div>
-        </MobileNavWrapper>
       </motion.div>
       <AnimatePresence>
         {contentVisible && (

@@ -67,6 +67,8 @@ const ScrollProgressWrapper = styled.div`
 
   @media (max-width: 500px) {
     left: 60%;
+    top: 5vh;
+
     > div > span {
       height: 72%;
     }
