@@ -16,7 +16,8 @@ import {
 } from '@chakra-ui/react';
 import { useEffect, useState } from "react";
 import { useMediaQuery } from 'react-responsive';
-import promotionVideoData from '../data/promotionVideo-data';
+
+import PromotionVideoData from '../data/PromotionVideo-data';
 import animationStudioData from '../data/animationStudio-data';
 import brandPackageDesignData from '../data/brandPackageDesign-data';
 import digitalMajorProjectData from '../data/digitalMajorProject-data';
@@ -51,7 +52,7 @@ const StudentModal = (props: Props) => {
     const [selectedStudent, setSelectedStudent] = useState<any>(null);
 
     const [subjectList, setSubjectList] = useState<string[]>([]);
-    const [tabIdx, setTabIdx] = useState(0);
+    const [tabIdx, setTabIdx] = useState<number | null>(null);
     const [work, setWork] = useState<Work>();
 
     useEffect(() => {
@@ -62,38 +63,39 @@ const StudentModal = (props: Props) => {
                 _subjectList.push(value.trim());
             })
             setSubjectList(_subjectList);
+            setTabIdx(0);
         }
     }, [props])
 
     useEffect(() => {
-        console.log(subjectList[tabIdx])
-        let workList: Work[] = [];
-        switch (subjectList[tabIdx]) {
-            case '전공연구프로젝트(영상)':
-                workList = videoMajorProjectData;
-                break;
-            case 'IMC':
-                workList = imcData;
-                break;
-            case '프로모션영상':
-                workList = promotionVideoData;
-                break;
-            case '전공연구프로젝트(디지털)':
-                workList = digitalMajorProjectData;
-                break;
-            case 'UIUX캡스톤디자인':
-                workList = uiuxData;
-                break;
-            case '애니메이션스튜디오':
-                workList = animationStudioData;
-                break;
-            case '브랜드패키지디자인':
-                workList = brandPackageDesignData;
-        }
+        if (tabIdx !== null) {
+            let workList: Work[] = [];
+            switch (subjectList[tabIdx]) {
+                case '전공연구프로젝트(영상)':
+                    workList = videoMajorProjectData;
+                    break;
+                case 'IMC':
+                    workList = imcData;
+                    break;
+                case '프로모션영상':
+                    workList = PromotionVideoData;
+                    break;
+                case '전공연구프로젝트(디지털)':
+                    workList = digitalMajorProjectData;
+                    break;
+                case 'UIUX캡스톤디자인':
+                    workList = uiuxData;
+                    break;
+                case '애니메이션스튜디오':
+                    workList = animationStudioData;
+                    break;
+                case '브랜드패키지디자인':
+                    workList = brandPackageDesignData;
+            }
 
-        if (workList) {
-            console.log(workList.filter((value) => value.student.some((value) => value.sname === props.studentData.name))[0]);
-            setWork(workList.filter((value) => value.student.some((value) => value.sname === props.studentData.name))[0]);
+            if (workList) {
+                setWork(workList.filter((value) => value.student.some((value) => value.sname === props.studentData.name))[0]);
+            }
         }
     }, [tabIdx])
 
