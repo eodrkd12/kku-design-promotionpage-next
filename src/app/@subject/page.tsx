@@ -6,11 +6,15 @@ import styled from "styled-components";
 import SubjectItem from "./component/item/subject.item";
 
 const SubjectList = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 74vw;
-  margin-left: 20vw;
-  margin-right: 6vw;
+    display: flex;
+    flex-direction: column;
+    width: 74vw;
+    margin-left: 20vw;
+    margin-right: 6vw;
+
+    @media (max-width: 500px) {
+      margin: 0;
+    }
 `;
 
 export default function SubjectScreen() {
