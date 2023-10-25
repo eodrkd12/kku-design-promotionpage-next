@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useMotionValue, useTransform } from "framer-motion";
 import { WheelEvent, useCallback, useEffect, useState } from "react";
 import { useMediaQuery } from 'react-responsive';
 import styled from "styled-components";
@@ -98,9 +98,24 @@ const ContentWrapper = styled.div`
   }
 `;
 
+
+const Dday = styled.p`
+  color: white;
+  font-size: 20vh;
+  font-weight: 600;
+`
+
 export default function IntroductionScreen() {
   const [contentVisible, setContentVisible] = useState(false);
   const [isEnd, setIsEnd] = useState(false);
+  const [dday, setDday] = useState(100);
+
+  const wheel = useMotionValue(0);
+
+  const endWheel = 20;
+
+  const opacity = useTransform(wheel, [0, endWheel], [0, 1]);
+  const y = useTransform(wheel, [0, endWheel], [30, 0]);
 
   const isMobile = useMediaQuery({
     query: '(max-width: 500px)'
@@ -109,12 +124,23 @@ export default function IntroductionScreen() {
 
   const handleWheel = useCallback(
     (event: WheelEvent<HTMLDivElement>) => {
-      if (!isEnd && !contentVisible) {
-        setContentVisible(true);
-        setTimeout(() => {
-          setIsEnd(true);
-        }, 500)
+
+      const delta = event.deltaY > 0 ? 1 : -1;
+
+      if (wheel.get() + delta > 0) {
+        if (wheel.get() + delta > endWheel) {
+          wheel.set(endWheel);
+        } else {
+          wheel.set(wheel.get() + delta)
+        }
+      } else {
+        wheel.set(0);
+      }
+
+      if (wheel.get() === endWheel) {
         document.getElementsByTagName("main")[0].style.overflow = "unset";
+      } else {
+        document.getElementsByTagName("main")[0].style.overflow = "hidden";
       }
     },
     [isEnd, contentVisible]
@@ -157,77 +183,97 @@ export default function IntroductionScreen() {
     }
   }, [contentVisible])
 
-  return (
-    <div id="introduction" className="parent" onWheel={handleWheel}>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.5 }}
-      >
-        <MainTitleWrapper>
-          <div>
-            <img src={"/image/tag-logo.png"} />
-          </div>
+  useEffect(() => {
+    const setDate = new Date("2023-11-02T00:00:00+0900");
 
-          <div>
-            <p>
-              2024 KONKUK UNIVERSITY
-              <br />
-              VISUAL MOVING DESIGN
-              <br />
-              <br />
-              VIDEO/DIGITAL TRACK
-              <br />
-              GRADUATION
-              <br />
-              EXHIBITION
-            </p>
-          </div>
-          <div>
-            <p>
-              2024 건국대학교 시각영상디자인전공
-              <br />
-              영상/디지털 트랙 졸업전시회
-              <br />
-              <br />
-              Fri Nov, 3th - Mon, 6th
-              <br />
-              서울 종로구 우정국로 68
-              <br />
-              동덕빌딩 동덕아트갤러리
-            </p>
-          </div>
-        </MainTitleWrapper>
-      </motion.div>
-      <motion.div
-        initial={{ opacity: 0, y: 0 }}
-        transition={{ duration: 1.5 }}
-      >
-      </motion.div>
-      <AnimatePresence>
-        {contentVisible && (
+    const now = new Date();
+
+    const distance = setDate.getTime() - now.getTime();
+
+    const day = Math.floor(distance / (1000 * 60 * 60 * 24));
+
+    setDday(day + 1);
+  }, [])
+
+  if (dday > 0) {
+    return (
+      <div className="parent">
+        <Dday>
+          D-{dday}
+        </Dday>
+      </div>
+    )
+  } else {
+
+    return (
+      <div id="introduction" className="parent" onWheel={handleWheel}>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.5 }}
+        >
+          <MainTitleWrapper>
+            <div>
+              <img src={"/image/tag-logo.png"} />
+            </div>
+
+            <div>
+              <p>
+                2024 KONKUK UNIVERSITY
+                <br />
+                VISUAL MOVING DESIGN
+                <br />
+                <br />
+                VIDEO/DIGITAL TRACK
+                <br />
+                GRADUATION
+                <br />
+                EXHIBITION
+              </p>
+            </div>
+            <div>
+              <p>
+                2024 건국대학교 시각영상디자인전공
+                <br />
+                영상/디지털 트랙 졸업전시회
+                <br />
+                <br />
+                Fri Nov, 3th - Mon, 6th
+                <br />
+                서울 종로구 우정국로 68
+                <br />
+                동덕빌딩 동덕아트갤러리
+              </p>
+            </div>
+          </MainTitleWrapper>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 0 }}
+          transition={{ duration: 1.5 }}
+        >
+        </motion.div>
+        <AnimatePresence>
           <ContentWrapper>
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0, y: "-100%" }}
-              transition={{ duration: 1 }}
+              style={{
+                opacity
+              }}
             >
               <h1>전시소개</h1>
             </motion.div>
             <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: "-100%" }}
-              transition={{ duration: 1 }}
+              style={{
+                opacity,
+                y
+              }}
             >
               <h2>TAG:'나'의 '초대'를 받아 '길'을 타고오다</h2>
             </motion.div>
             <motion.div
-              initial={{ opacity: 0, y: isEnd ? 0 : 100 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: "-100%" }}
-              transition={{ duration: 1.5 }}
+              style={{
+                opacity,
+                y
+              }}
             >
               <p>
                 우리 개개인의 점들이 각자의 길을 찾아 선이 되고 선이 된 점들은
@@ -248,8 +294,8 @@ export default function IntroductionScreen() {
               </p>
             </motion.div>
           </ContentWrapper>
-        )}
-      </AnimatePresence>
-    </div>
-  );
+        </AnimatePresence>
+      </div>
+    );
+  }
 }

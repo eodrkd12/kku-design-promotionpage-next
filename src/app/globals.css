@@ -9,6 +9,11 @@
   font-style: normal;
 }
 
+
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -109,13 +114,17 @@ div.parent-infinite {
 }
 
 p {
-    font-family: Pretendard-Regular;
+  font-family: Pretendard-Regular;
 }
 
 h1 {
-    font-family: Pretendard-Regular;
+  font-family: Pretendard-Regular;
 }
 
 h2 {
-    font-family: Pretendard-Regular;
+  font-family: Pretendard-Regular;
+}
+
+*::-webkit-scrollbar {
+  display: none;
 }
