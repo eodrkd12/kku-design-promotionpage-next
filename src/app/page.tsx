@@ -197,7 +197,7 @@ export default function IntroductionScreen() {
 
   if (dday > 0) {
     return (
-      <div className="parent">
+      <div className="parent-scroll-hidden">
         <Dday>
           D-{dday}
         </Dday>
