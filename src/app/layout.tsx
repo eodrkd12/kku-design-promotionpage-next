@@ -176,10 +176,11 @@ export default function RootLayout(props: Props) {
         <ChakraProvider>
           <main>
             {props.children}
-            {props.about}
-            {props.student}
-            {props.subject}
-            {props.end}
+
+            {dday <= 0 && props.about}
+            {dday <= 0 && props.student}
+            {dday <= 0 && props.subject}
+            {dday <= 0 && props.end}
 
           </main>
           {/* <motion.div
