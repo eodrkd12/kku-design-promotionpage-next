@@ -89,7 +89,7 @@ export default function RootLayout(props: Props) {
 
   useEffect(() => {
 
-    const setDate = new Date("2023-11-02T00:00:00+0900");
+    const setDate = new Date("2023-10-25T00:00:00+0900");
 
     const now = new Date();
 
