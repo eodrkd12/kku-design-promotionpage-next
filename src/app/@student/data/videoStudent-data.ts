@@ -6,7 +6,7 @@ export default [{
     phoneNumber: '010-3817-8989',
     track: '영상',
     subject: '전공연구프로젝트(영상) / IMC / 프로모션영상',
-    profile: '/image/videoTrack23/강나령-knrpuppy@naver-w.jpg'
+    profile: '/image/videoTrack23/201920134.jpg'
 },
 {
     name: '권다원',
@@ -16,7 +16,7 @@ export default [{
     phoneNumber: '010-2614-6755',
     track: '영상',
     subject: '전공연구프로젝트(영상) / IMC / 프로모션영상',
-    profile: '/image/videoTrack23/권다원-rnjsekdnjs123@gmail-w.jpg'
+    profile: '/image/videoTrack23/201920138.jpg'
 },
 {
     name: '김동현',
@@ -26,7 +26,7 @@ export default [{
     phoneNumber: '010-7916-4131',
     track: '영상',
     subject: '전공연구프로젝트(영상) / IMC / 프로모션영상',
-    profile: '/image/videoTrack23/김동현_.jpg'
+    profile: '/image/videoTrack23/201820145.jpg'
 },
 {
     name: '김예서',
@@ -36,7 +36,7 @@ export default [{
     phoneNumber: '010-7762-9771',
     track: '영상',
     subject: '전공연구프로젝트(영상) / 애니메이션스튜디오 / 브랜드패키지',
-    profile: '/image/videoTrack23/김예서-yehsuh7762@gmail2.jpg'
+    profile: '/image/videoTrack23/202020020.jpg'
 },
 {
     name: '김유미',
@@ -46,7 +46,7 @@ export default [{
     phoneNumber: '010-3273-0412',
     track: '영상',
     subject: '전공연구프로젝트(영상) / IMC / 프로모션영상',
-    profile: '/image/videoTrack23/김유미-midaskym@naver-w.jpg'
+    profile: '/image/videoTrack23/202020158.jpg'
 },
 {
     name: '김의',
@@ -56,7 +56,7 @@ export default [{
     phoneNumber: '010-3920-4112',
     track: '영상',
     subject: '전공연구프로젝트(영상) / IMC / 애니메이션스튜디오',
-    profile: '/image/videoTrack23/김의-dfg4112@naver-w.jpg'
+    profile: '/image/videoTrack23/201720276.jpg'
 },
 {
     name: '김희윤',
@@ -66,7 +66,7 @@ export default [{
     phoneNumber: '010-3161-2099',
     track: '영상',
     subject: '전공연구프로젝트(영상) / IMC / 프로모션영상',
-    profile: '/image/videoTrack23/김희윤.jpeg'
+    profile: '/image/videoTrack23/201920162.jpeg'
 },
 {
     name: '박소영',
@@ -76,7 +76,7 @@ export default [{
     phoneNumber: '010-3221-2152',
     track: '영상',
     subject: '전공연구프로젝트(영상) / IMC / 브랜드패키지',
-    profile: '/image/videoTrack23/박소영-bsy613@naver-w.jpg'
+    profile: '/image/videoTrack23/202023433.jpg'
 },
 {
     name: '박찬영',
@@ -86,7 +86,7 @@ export default [{
     phoneNumber: '010-8803-5180',
     track: '영상',
     subject: '전공연구프로젝트(영상) / IMC / 애니메이션스튜디오',
-    profile: '/image/videoTrack23/박찬영-andrew1202@naver-w.jpg'
+    profile: '/image/videoTrack23/201820176.jpg'
 },
 {
     name: '손한미',
@@ -96,7 +96,7 @@ export default [{
     phoneNumber: '010-7740-6990',
     track: '영상',
     subject: '전공연구프로젝트(영상) / IMC / 프로모션영상',
-    profile: '/image/videoTrack23/손한미-thsgksal16@naver-w.jpg'
+    profile: '/image/videoTrack23/201920174.jpg'
 },
 {
     name: '신제이',
@@ -106,7 +106,7 @@ export default [{
     phoneNumber: '010-4049-3659',
     track: '영상',
     subject: '전공연구프로젝트(영상) / IMC / 프로모션영상',
-    profile: '/image/videoTrack23/신제이-201920179a@gmail-w.jpg'
+    profile: '/image/videoTrack23/201920179.jpg'
 },
 {
     name: '이규민',
@@ -116,7 +116,7 @@ export default [{
     phoneNumber: '010-2169-5492',
     track: '영상',
     subject: '전공연구프로젝트(영상) / IMC / 브랜드패키지',
-    profile: '/image/videoTrack23/이규민-envy9824@gmail-w.jpg'
+    profile: '/image/videoTrack23/201720373.jpg'
 },
 {
     name: '이수빈',
@@ -126,7 +126,7 @@ export default [{
     phoneNumber: '010-7767-6792',
     track: '영상',
     subject: '전공연구프로젝트(영상) / IMC / 프로모션영상',
-    profile: '/image/videoTrack23/이수빈-obaysb@naver-w.jpg'
+    profile: '/image/videoTrack23/201920204.jpg'
 },
 {
     name: '이아연',
@@ -136,7 +136,7 @@ export default [{
     phoneNumber: '010-3529-9876',
     track: '영상',
     subject: '전공연구프로젝트(영상) / IMC / 프로모션영상',
-    profile: '/image/videoTrack23/-이아연-dldkduscheld@naver (1-w.jpg'
+    profile: '/image/videoTrack23/201920206.jpg'
 },
 {
     name: '이유림',
@@ -146,7 +146,7 @@ export default [{
     phoneNumber: '010-3603-2611',
     track: '영상',
     subject: '전공연구프로젝트(영상) / IMC / 프로모션영상',
-    profile: '/image/videoTrack23/이유림-dbfla2611@naver-w.jpg'
+    profile: '/image/videoTrack23/202020213.jpg'
 },
 {
     name: '이주영',
@@ -156,7 +156,7 @@ export default [{
     phoneNumber: '010-9279-7933',
     track: '영상',
     subject: '전공연구프로젝트(영상) / IMC / 애니메이션스튜디오',
-    profile: '/image/videoTrack23/이주영-young001001@naver-w.jpg'
+    profile: '/image/videoTrack23/202023438.jpg'
 },
 {
     name: '이태형',
@@ -166,7 +166,7 @@ export default [{
     phoneNumber: '010-7527-0401',
     track: '영상',
     subject: '전공연구프로젝트(영상) / IMC / 브랜드패키지',
-    profile: '/image/videoTrack23/이태형-gud2212@gmail-w.jpg'
+    profile: '/image/videoTrack23/201720397.jpg'
 },
 {
     name: '이현정',
@@ -176,7 +176,7 @@ export default [{
     phoneNumber: '010-4841-8447',
     track: '영상',
     subject: '전공연구프로젝트(영상) / IMC / 프로모션영상',
-    profile: '/image/videoTrack23/이현정-.jpg'
+    profile: '/image/videoTrack23/202020218.jpg'
 },
 {
     name: '임지수',
@@ -186,7 +186,7 @@ export default [{
     phoneNumber: '010-3149-9350',
     track: '영상',
     subject: '전공연구프로젝트(영상) / IMC / 프로모션영상',
-    profile: '/image/videoTrack23/임지수-booky22@naver-w.jpg'
+    profile: '/image/videoTrack23/201920219.jpg'
 },
 {
     name: '임채영',
@@ -196,7 +196,7 @@ export default [{
     phoneNumber: '010-9583-8803',
     track: '영상',
     subject: '전공연구프로젝트(영상) / 프로모션영상 / UIUX',
-    profile: '/image/videoTrack23/임채영-chae_yeong_@naver-w.jpg'
+    profile: '/image/videoTrack23/201820224.jpg'
 },
 {
     name: '장지현',
@@ -206,7 +206,7 @@ export default [{
     phoneNumber: '010-9445-1273',
     track: '영상',
     subject: '전공연구프로젝트(영상) / IMC / 프로모션영상',
-    profile: '/image/videoTrack23/장지현-wlwlgus153@naver-w.jpg'
+    profile: '/image/videoTrack23/201920223.jpg'
 },
 {
     name: '전인지',
@@ -216,7 +216,7 @@ export default [{
     phoneNumber: '010-9081-8629',
     track: '영상',
     subject: '전공연구프로젝트(영상) / IMC / 프로모션영상',
-    profile: '/image/videoTrack23/전인지.jpg'
+    profile: '/image/videoTrack23/201920225.jpg'
 },
 {
     name: '최현희',
@@ -226,7 +226,7 @@ export default [{
     phoneNumber: '010-2772-5866',
     track: '영상',
     subject: '전공연구프로젝트(영상) / IMC / 프로모션영상',
-    profile: '/image/videoTrack23/최현희-choi01po12@naver-w.jpg'
+    profile: '/image/videoTrack23/201920124.jpg'
 },
 
 ]
