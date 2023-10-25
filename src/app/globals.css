@@ -61,7 +61,7 @@ div.parent {
   justify-content: center;
   align-items: center;
   background-color: black;
-  /* scroll-snap-align: start; */
+
 }
 
 div.parent-75vh {

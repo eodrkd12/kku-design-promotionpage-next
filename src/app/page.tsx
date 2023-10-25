@@ -61,6 +61,10 @@ const ContentWrapper = styled.div`
   flex-direction: column;
   width: 60vw;
   height: 40vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   > div {
     width: 100%;
     height: 100%;
@@ -69,15 +73,18 @@ const ContentWrapper = styled.div`
     justify-content: space-around;
     align-items: center;
     > h1 {
+      will-change: transform;
       color: white;
       font-size: 5vh;
       font-weight: 600;
     }
     > h2 {
+      will-change: transform;
       color: white;
       font-size: 2vh;
     }
     > p {
+      will-change: transform;
       color: white;
       font-size: 2vh;
       font-weight: 300;
@@ -108,7 +115,7 @@ const Dday = styled.p`
 export default function IntroductionScreen() {
   const [contentVisible, setContentVisible] = useState(false);
   const [isEnd, setIsEnd] = useState(false);
-  const [dday, setDday] = useState(100);
+  const [dday, setDday] = useState(0);
 
   const wheel = useMotionValue(0);
 
@@ -139,7 +146,7 @@ export default function IntroductionScreen() {
 
       if (wheel.get() === endWheel) {
         document.getElementsByTagName("main")[0].style.overflow = "unset";
-      } else {
+      } else if (wheel.get() === 0 || event.pageY - event.clientY === 0) {
         document.getElementsByTagName("main")[0].style.overflow = "hidden";
       }
     },

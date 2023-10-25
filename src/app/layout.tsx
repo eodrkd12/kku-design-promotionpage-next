@@ -85,7 +85,7 @@ export default function RootLayout(props: Props) {
   const [progress, setProgress] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const [dday, setDday] = useState(100);
+  const [dday, setDday] = useState(0);
 
   useEffect(() => {
 

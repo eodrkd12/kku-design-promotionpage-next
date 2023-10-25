@@ -74,6 +74,13 @@ export default function AboutScreen() {
   const [intro5Visible, setIntro5Visible] = useState(false);
 
   useEffect(() => {
+
+    const parent: HTMLElement | null = document.getElementById("about");
+
+    // parent!.addEventListener('wheel', event => {
+    //   event.preventDefault();
+    // }, { passive: false })
+
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry, index) => {
