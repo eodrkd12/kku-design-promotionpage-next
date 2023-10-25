@@ -7,7 +7,6 @@ import {
 } from "framer-motion";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useMediaQuery } from 'react-responsive';
 import "./globals.css";
 
 interface Props {
@@ -86,7 +85,20 @@ export default function RootLayout(props: Props) {
   const [progress, setProgress] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
 
+  const [dday, setDday] = useState(100);
+
   useEffect(() => {
+
+    const setDate = new Date("2023-11-02T00:00:00+0900");
+
+    const now = new Date();
+
+    const distance = setDate.getTime() - now.getTime();
+
+    const day = Math.floor(distance / (1000 * 60 * 60 * 24));
+
+    setDday(day + 1);
+
     setTimeout(() => {
       setProgressVisible(true);
     }, 1000)
@@ -174,7 +186,7 @@ export default function RootLayout(props: Props) {
             className="progress-bar"
             style={{ scaleX: scrollYProgress }}
           /> */}
-          {progressVisible &&
+          {progressVisible && dday <= 0 &&
             <ScrollProgressWrapper>
               <motion.div
                 initial={{ opacity: 0, y: -50 }}

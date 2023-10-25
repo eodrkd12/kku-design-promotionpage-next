@@ -8,7 +8,7 @@ import SubjectItem from "./component/item/subject.item";
 const SubjectList = styled.div`
     display: flex;
     flex-direction: column;
-    width: 74vw;
+    width: 70vw;
     margin-left: 20vw;
     margin-right: 6vw;
 
