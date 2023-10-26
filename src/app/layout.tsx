@@ -183,10 +183,6 @@ export default function RootLayout(props: Props) {
             {dday <= 0 && props.end}
 
           </main>
-          {/* <motion.div
-            className="progress-bar"
-            style={{ scaleX: scrollYProgress }}
-          /> */}
           {progressVisible && dday <= 0 &&
             <ScrollProgressWrapper>
               <motion.div

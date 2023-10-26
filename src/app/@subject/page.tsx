@@ -42,7 +42,7 @@ export default function SubjectScreen() {
     }
   }, [])
 
-  return <div id="subject" className="parent-infinite">
+  return <div id="subject" className="parent-200vh">
     {
       contentVisible &&
       <motion.div

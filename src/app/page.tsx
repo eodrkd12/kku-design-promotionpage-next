@@ -1,7 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion, useMotionValue, useTransform } from "framer-motion";
-import { WheelEvent, useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useMediaQuery } from 'react-responsive';
 import styled from "styled-components";
 
@@ -113,82 +112,75 @@ const Dday = styled.p`
 `
 
 export default function IntroductionScreen() {
-  const [contentVisible, setContentVisible] = useState(false);
-  const [isEnd, setIsEnd] = useState(false);
+
   const [dday, setDday] = useState(0);
 
-  const wheel = useMotionValue(0);
-
-  const endWheel = 20;
-
-  const opacity = useTransform(wheel, [0, endWheel], [0, 1]);
-  const y = useTransform(wheel, [0, endWheel], [30, 0]);
 
   const isMobile = useMediaQuery({
     query: '(max-width: 500px)'
   });
 
 
-  const handleWheel = useCallback(
-    (event: WheelEvent<HTMLDivElement>) => {
+  // const handleWheel = useCallback(
+  //   (event: WheelEvent<HTMLDivElement>) => {
 
-      const delta = event.deltaY > 0 ? 1 : -1;
+  //     const delta = event.deltaY > 0 ? 1 : -1;
 
-      if (wheel.get() + delta > 0) {
-        if (wheel.get() + delta > endWheel) {
-          wheel.set(endWheel);
-        } else {
-          wheel.set(wheel.get() + delta)
-        }
-      } else {
-        wheel.set(0);
-      }
+  //     if (wheel.get() + delta > 0) {
+  //       if (wheel.get() + delta > endWheel) {
+  //         wheel.set(endWheel);
+  //       } else {
+  //         wheel.set(wheel.get() + delta)
+  //       }
+  //     } else {
+  //       wheel.set(0);
+  //     }
 
-      if (wheel.get() === endWheel) {
-        document.getElementsByTagName("main")[0].style.overflow = "unset";
-      } else if (wheel.get() === 0 || event.pageY - event.clientY === 0) {
-        document.getElementsByTagName("main")[0].style.overflow = "hidden";
-      }
-    },
-    [isEnd, contentVisible]
-  );
+  //     if (wheel.get() === endWheel) {
+  //       document.getElementsByTagName("main")[0].style.overflow = "unset";
+  //     } else if (wheel.get() === 0 || event.pageY - event.clientY === 0) {
+  //       document.getElementsByTagName("main")[0].style.overflow = "hidden";
+  //     }
+  //   },
+  //   [isEnd, contentVisible]
+  // );
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    if (isMobile) {
-      setTimeout(() => {
-        setContentVisible(true);
-        setIsEnd(true);
-        document.getElementsByTagName("main")[0].style.overflow = "unset";
-      }, 2000)
-    }
+  //   if (isMobile) {
+  //     setTimeout(() => {
+  //       setContentVisible(true);
+  //       setIsEnd(true);
+  //       document.getElementsByTagName("main")[0].style.overflow = "unset";
+  //     }, 2000)
+  //   }
 
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry, index) => {
-          if (entry.isIntersecting) {
-            if (!isEnd) setContentVisible(false);
-          }
-        });
-      },
-      {
-        threshold: 0.2,
-      }
-    );
+  //   const io = new IntersectionObserver(
+  //     (entries) => {
+  //       entries.forEach((entry, index) => {
+  //         if (entry.isIntersecting) {
+  //           if (!isEnd) setContentVisible(false);
+  //         }
+  //       });
+  //     },
+  //     {
+  //       threshold: 0.2,
+  //     }
+  //   );
 
-    const aboutDiv = document.getElementById("about");
-    if (aboutDiv) {
-      io.observe(aboutDiv);
-    }
-  }, []);
+  //   const aboutDiv = document.getElementById("about");
+  //   if (aboutDiv) {
+  //     io.observe(aboutDiv);
+  //   }
+  // }, []);
 
-  useEffect(() => {
-    if (isEnd && !contentVisible) {
-      setTimeout(() => {
-        setContentVisible(true);
-      }, 5000)
-    }
-  }, [contentVisible])
+  // useEffect(() => {
+  //   if (isEnd && !contentVisible) {
+  //     setTimeout(() => {
+  //       setContentVisible(true);
+  //     }, 5000)
+  //   }
+  // }, [contentVisible])
 
   useEffect(() => {
     const setDate = new Date("2023-10-25T00:00:00+0900");
@@ -213,95 +205,8 @@ export default function IntroductionScreen() {
   } else {
 
     return (
-      <div id="introduction" className="parent" onWheel={handleWheel}>
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.5 }}
-        >
-          <MainTitleWrapper>
-            <div>
-              <img src={"/image/tag-logo.png"} />
-            </div>
+      <div className={'parent'}>
 
-            <div>
-              <p>
-                2024 KONKUK UNIVERSITY
-                <br />
-                VISUAL MOVING DESIGN
-                <br />
-                <br />
-                VIDEO/DIGITAL TRACK
-                <br />
-                GRADUATION
-                <br />
-                EXHIBITION
-              </p>
-            </div>
-            <div>
-              <p>
-                2024 건국대학교 시각영상디자인전공
-                <br />
-                영상/디지털 트랙 졸업전시회
-                <br />
-                <br />
-                Fri Nov, 3th - Mon, 6th
-                <br />
-                서울 종로구 우정국로 68
-                <br />
-                동덕빌딩 동덕아트갤러리
-              </p>
-            </div>
-          </MainTitleWrapper>
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0, y: 0 }}
-          transition={{ duration: 1.5 }}
-        >
-        </motion.div>
-        <AnimatePresence>
-          <ContentWrapper>
-            <motion.div
-              style={{
-                opacity
-              }}
-            >
-              <h1>전시소개</h1>
-            </motion.div>
-            <motion.div
-              style={{
-                opacity,
-                y
-              }}
-            >
-              <h2>TAG:'나'의 '초대'를 받아 '길'을 타고오다</h2>
-            </motion.div>
-            <motion.div
-              style={{
-                opacity,
-                y
-              }}
-            >
-              <p>
-                우리 개개인의 점들이 각자의 길을 찾아 선이 되고 선이 된 점들은
-                서로 얽히고 부딪히며 하나의 태그가 됩니다.
-                <br />
-                태그는 또 다른 태그로 이어지고 이어져, 순식간에 세상을 잎맥처럼
-                덮을 거대한 길이 될 것입니다.
-                <br />
-                #건국대학교라는 태그, #시각영상디자인전공이라는 태그로 묶이게
-                되어 배움의 시간이 지난 지금
-                <br />
-                우리는 #영상디지털이라는 태그 아래 묶여 함께 정성껏 졸업 전시를
-                만들었습니다.
-                <br />
-                <br />
-                이제 우리의 노력의 시간들을 담은 결과물을 세상에 보이고자,
-                @당신을 초대합니다.
-              </p>
-            </motion.div>
-          </ContentWrapper>
-        </AnimatePresence>
       </div>
     );
   }
