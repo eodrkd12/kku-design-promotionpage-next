@@ -204,7 +204,7 @@ export default function IntroductionScreen() {
     )
   } else {
     return (
-      <div className={'parent'}>
+      <div className={'parent'} id="introduction">
 
       </div>
     );

@@ -121,8 +121,6 @@ export default function RootLayout(props: Props) {
                 case "introduction":
                   setProgress(1);
                   break;
-                case "subject":
-                  setProgress(3);
               }
             }
           });
@@ -141,12 +139,14 @@ export default function RootLayout(props: Props) {
                   break;
                 case "student":
                   setProgress(2);
+                case "subject":
+                  setProgress(3);
               }
             }
           });
         },
         {
-          threshold: 0.3,
+          threshold: 0.2,
         }
       );
 
@@ -158,7 +158,7 @@ export default function RootLayout(props: Props) {
       if (introDiv && studentDiv && subjectDiv && aboutDiv) {
         io.observe(introDiv);
         io200vh.observe(studentDiv);
-        io.observe(subjectDiv);
+        io200vh.observe(subjectDiv);
         io200vh.observe(aboutDiv);
       }
     }
