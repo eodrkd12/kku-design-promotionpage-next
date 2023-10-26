@@ -1,10 +1,7 @@
 "use client";
 
 import { ChakraProvider } from "@chakra-ui/react";
-import {
-  motion,
-  useScroll
-} from "framer-motion";
+import { motion, useScroll } from "framer-motion";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import "./globals.css";
@@ -17,31 +14,32 @@ interface Props {
   end: React.ReactNode;
 }
 
-
-
 const ScrollProgressWrapper = styled.div`
   position: fixed;
-  top: 4vh;
-  width: 70vw;
-  height: 6vh;
+  top: 0vh;
+  // width: 70vw;
+  width: 100%;
+  height: 10vh;
   left: 50%;
   transform: translate(-50%, 0);
-  
+
   background-color: black;
 
-  > div{
+  > div {
     width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-
+    padding-bottom: 1.5vh;
+    padding-left: 15vw;
+    padding-right: 15vw;
     .line {
       position: absolute;
       background-color: white;
       height: 2px;
-      left: 12.5%;
-      top: 1vh;
+      left: 23.75vw;
+      top: 5vh;
     }
 
     > span {
@@ -49,7 +47,7 @@ const ScrollProgressWrapper = styled.div`
       height: 100%;
       display: flex;
       flex-direction: column;
-      justify-content: space-around;
+      justify-content: flex-end;
       align-items: center;
       .head {
         background-color: white;
@@ -71,7 +69,7 @@ const ScrollProgressWrapper = styled.div`
     > div > span {
       height: 72%;
     }
-    
+
     > div > span > p {
       visibility: hidden;
     }
@@ -79,7 +77,6 @@ const ScrollProgressWrapper = styled.div`
 `;
 
 export default function RootLayout(props: Props) {
-
   const { scrollYProgress } = useScroll();
   const [progressVisible, setProgressVisible] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -88,7 +85,6 @@ export default function RootLayout(props: Props) {
   const [dday, setDday] = useState(0);
 
   useEffect(() => {
-
     const setDate = new Date("2023-10-25T00:00:00+0900");
 
     const now = new Date();
@@ -101,10 +97,10 @@ export default function RootLayout(props: Props) {
 
     setTimeout(() => {
       setProgressVisible(true);
-    }, 1000)
+    }, 1000);
     setTimeout(() => {
       setIsLoaded(true);
-    }, 2000)
+    }, 2000);
     setScreenHeight();
     window.addEventListener("resize", setScreenHeight);
 
@@ -150,7 +146,6 @@ export default function RootLayout(props: Props) {
         }
       );
 
-
       const introDiv = document.getElementById("introduction");
       const studentDiv = document.getElementById("student");
       const subjectDiv = document.getElementById("subject");
@@ -162,8 +157,7 @@ export default function RootLayout(props: Props) {
         io200vh.observe(aboutDiv);
       }
     }
-  }, [isLoaded])
-
+  }, [isLoaded]);
 
   function setScreenHeight() {
     const vh = window.innerHeight * 0.01;
@@ -181,13 +175,12 @@ export default function RootLayout(props: Props) {
             {dday <= 0 && props.student}
             {dday <= 0 && props.subject}
             {dday <= 0 && props.end}
-
           </main>
           {/* <motion.div
             className="progress-bar"
             style={{ scaleX: scrollYProgress }}
           /> */}
-          {progressVisible && dday <= 0 &&
+          {progressVisible && dday <= 0 && (
             <ScrollProgressWrapper>
               <motion.div
                 initial={{ opacity: 0, y: -50 }}
@@ -197,48 +190,56 @@ export default function RootLayout(props: Props) {
                 <motion.div
                   className="line"
                   initial={false}
-                  animate={{ width: `${progress * 25}%` }} />
+                  animate={{ width: `${progress * 17.5}%` }}
+                />
                 <span>
-                  {progress >= 1 && <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 1 }} />}
-                  <p>
-                    OPENING
-                  </p>
+                  {progress >= 1 && (
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 1 }}
+                    />
+                  )}
+                  <p>OPENING</p>
                 </span>
                 <span>
-                  {progress >= 1 && <motion.div className="head"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 1 }} />}
-                  <p>
-                    ABOUT
-                  </p>
+                  {progress >= 1 && (
+                    <motion.div
+                      className="head"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 1 }}
+                    />
+                  )}
+                  <p>ABOUT</p>
                 </span>
                 <span>
-                  {progress >= 2 && <motion.div className="head"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 1 }} />}
-                  <p>
-                    DESIGNER
-                  </p>
+                  {progress >= 2 && (
+                    <motion.div
+                      className="head"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 1 }}
+                    />
+                  )}
+                  <p>DESIGNER</p>
                 </span>
                 <span>
-                  {progress >= 3 && <motion.div className="head"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 1 }} />}
-                  <p>
-                    WORK
-                  </p>
+                  {progress >= 3 && (
+                    <motion.div
+                      className="head"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 1 }}
+                    />
+                  )}
+                  <p>WORK</p>
                 </span>
               </motion.div>
-            </ScrollProgressWrapper>}
+            </ScrollProgressWrapper>
+          )}
         </ChakraProvider>
       </body>
-
     </html>
   );
 }
