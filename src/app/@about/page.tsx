@@ -154,8 +154,10 @@ export default function AboutScreen() {
       controls1.start({ opacity: 0.2 })
     } else if (0.08 <= latest && latest < 0.1) {
       controls1.start({ opacity: 0.6 })
-    } else if (0.11 <= latest) {
+    } else if (0.10 <= latest && latest < 0.12) {
       controls1.start({ opacity: 1 })
+    } else if (0.12 <= latest) {
+      controls1.start({ opacity: 0 })
     }
 
   })
@@ -207,7 +209,9 @@ export default function AboutScreen() {
           <motion.h1
             initial={{ opacity: 0 }}
             animate={controls1}
-          >전시소개</motion.h1>
+            transition={{ duration: 0.5 }}
+          >전시소개
+          </motion.h1>
           <h2>TAG:'나'의 '초대'를 받아 '길'을 타고오다</h2>
           <p>
             우리 개개인의 점들이 각자의 길을 찾아 선이 되고 선이 된 점들은
