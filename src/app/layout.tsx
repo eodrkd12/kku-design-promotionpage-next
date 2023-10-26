@@ -27,7 +27,7 @@ const ScrollProgressWrapper = styled.div`
   left: 50%;
   transform: translate(-50%, 0);
   
-
+  background-color: black;
 
   > div{
     width: 100%;
