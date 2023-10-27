@@ -18,7 +18,7 @@ const ScrollProgressWrapper = styled.div`
   position: fixed;
   top: 0vh;
   width: 100%;
-  height: 10vh;
+  height: 11vh;
   left: 50%;
   transform: translate(-50%, 0);
   background-color: black;
@@ -29,16 +29,16 @@ const ScrollProgressWrapper = styled.div`
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     padding-bottom: 1.5vh;
-    padding-left: 15vw;
-    padding-right: 15vw;
+    padding-left: 20vw;
+    padding-right: 20vw;
     .line {
       position: absolute;
       background-color: white;
       height: 2px;
-      left: 23.75vw;
-      top: 5.5vh;
+      left: 27.5vw;
+      top: 5vh;
     }
 
     > span {
@@ -53,9 +53,11 @@ const ScrollProgressWrapper = styled.div`
         width: 0.7vh;
         height: 0.7vh;
         border-radius: 50%;
+        margin-bottom: 2%;
       }
       > p {
         color: white;
+        font-size: 2.3vh;
         font-weight: 900;
       }
     }
@@ -79,7 +81,7 @@ const ScrollProgressWrapper = styled.div`
 const MainTitleWrapper = styled.div`
   position: fixed;
   left: 2vw;
-  top: 8vh;
+  top: 20vh;
   height: 40vh;
   width: 20vw;
   opacity: 1;
@@ -87,24 +89,28 @@ const MainTitleWrapper = styled.div`
   animation: fadeOut ease-in-out 1s;
 
   > div:nth-child(1) {
-    height: 28%;
-    margin-bottom: 2%;
+    height: 26%;
+    > img {
+      width: 27%;
+    }
   }
   > div:nth-child(2) {
     height: 40%;
-    margin-bottom: 2%;
+    margin-bottom: 8%;
+    padding-left: 0.5vw;
     > p {
       color: white;
-      font-size: 1.5vh;
-      font-weight: 300;
+      font-size: 1.8vh;
+      font-weight: 500;
     }
   }
   > div:nth-child(3) {
-    height: 28%;
+    height: 26%;
+    padding-left: 0.5vw;
     > p {
       color: white;
-      font-size: 1vh;
-      font-weight: 200;
+      font-size: 1.2vh;
+      font-weight: 800;
     }
   }
 
@@ -212,7 +218,7 @@ export default function RootLayout(props: Props) {
                 <motion.div
                   className="line"
                   initial={false}
-                  animate={{ width: `${progress * 17.5}%` }}
+                  animate={{ width: `${progress * 15}%` }}
                 />
                 <span onClick={() => { about?.scrollIntoView({ behavior: 'smooth' }) }}>
                   {progress >= 1 && (
@@ -222,7 +228,7 @@ export default function RootLayout(props: Props) {
                       transition={{ duration: 1 }}
                     />
                   )}
-                  <p>OPENING</p>
+                  <p>HOME</p>
                 </span>
                 <span onClick={() => { about?.scrollIntoView({ behavior: 'smooth' }) }}>
                   {progress >= 1 && (

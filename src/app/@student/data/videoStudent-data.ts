@@ -42,7 +42,7 @@ export default [{
     name: '김유미',
     englishName: 'Youme Kim',
     studentNumber: '202020158',
-    email: 'midaskym@naver.com',
+    email: 'myongemyu@gmail.com',
     phoneNumber: '010-3273-0412',
     track: '영상',
     subject: '전공연구프로젝트(영상) / IMC / 프로모션영상',
