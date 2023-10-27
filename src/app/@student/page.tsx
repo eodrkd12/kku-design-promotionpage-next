@@ -5,7 +5,6 @@ import { Flex, HStack, Text, useDisclosure } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useMediaQuery } from 'react-responsive';
-import styled from 'styled-components';
 import SubjectScreen from '../@subject/page';
 import digitalStudentData from './data/digitalStudent-data';
 import videoStudentData from './data/videoStudent-data';
@@ -19,19 +18,9 @@ interface ImageButtonProps {
     onClick: () => void;
 }
 
-const StuWorkBackground = styled.div`
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  top: 800vh;
-  > img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-`;
-
 export default function StudentScreen() {
+
+    const profileWidth = '13vw';
 
     const [isScrolledToRight, setIsScrolledToRight] = useState(false);
     const [isScrolledToLeft, setIsScrolledToLeft] = useState(true);
@@ -152,12 +141,14 @@ export default function StudentScreen() {
     }, [scrollInterval2]);
 
     const ImageButton = ({ src, alt, name, englishName, onClick }: ImageButtonProps) => (
-        <Flex style={{ position: 'relative', width: '11.5vw', border: '1px solid white', overflowX: 'hidden', overflowY: 'hidden' }}>
+        <Flex style={{ position: 'relative', width: profileWidth, border: '1px solid white', overflowX: 'hidden', overflowY: 'hidden' }}>
             <img
                 src={src}
                 alt={alt}
+                loading='lazy'
+                decoding='async'
                 style={{
-                    width: '11.5vw',
+                    width: profileWidth,
                     transition: 'transform 1s, filter 1s',
                     filter: 'brightness(30%)',
                     objectFit: 'cover'
@@ -174,9 +165,9 @@ export default function StudentScreen() {
                 }}
                 onClick={onClick}
             />
-            <Flex flexDir='column' position={'absolute'} top='80%' left='5%' color='white' >
-                <Text fontSize='14' fontWeight='bold' >{name}</Text>
-                <Text fontSize='12' color={'white'}>{englishName}</Text>
+            <Flex flexDir='column' position={'absolute'} bottom='3%' left='5%' color='white' >
+                <Text fontSize='2vh' fontWeight='bold' >{name}</Text>
+                <Text fontSize='1vh' color={'white'}>{englishName}</Text>
             </Flex>
         </Flex>
     );
@@ -185,6 +176,7 @@ export default function StudentScreen() {
         <div className='parent-400vh'
             style={{
                 backgroundImage: `url(/image/stu_work_background.jpeg)`,
+                backgroundSize: "100vw 100vh",
                 backgroundRepeat: 'no-repeat',
                 backgroundAttachment: 'fixed'
             }}
@@ -212,7 +204,7 @@ export default function StudentScreen() {
                                 }}>
                                     <Flex flexDir={"column"} >
                                         <Flex >
-                                            <div style={{ width: isMobile ? '32vw' : '11.5vw', borderTop: '1px solid white', flexShrink: 0 }}>
+                                            <div style={{ width: isMobile ? '32vw' : profileWidth, borderTop: '1px solid white', flexShrink: 0 }}>
                                                 <div style={{ marginLeft: 15, color: 'white', fontSize: 25 }}>
                                                     VIDEO
                                                     <br />
@@ -239,7 +231,6 @@ export default function StudentScreen() {
                         </motion.div>
 
                     }
-
                     {
                         isStudentModalOpen && (
                             <StudentModal
@@ -249,10 +240,7 @@ export default function StudentScreen() {
                             />
                         )
                     }
-
-
                 </div >
-
                 <div >
                     {contentVisible &&
                         <motion.div
@@ -272,7 +260,7 @@ export default function StudentScreen() {
                                 }}>
                                     <Flex flexDir={"column"} >
                                         <Flex >
-                                            <div style={{ width: isMobile ? '32vw' : '11.5vw', borderTop: '1px solid white', flexShrink: 0 }}>
+                                            <div style={{ width: isMobile ? '32vw' : profileWidth, borderTop: '1px solid white', flexShrink: 0 }}>
                                                 <div style={{ marginLeft: 15, color: 'white', fontSize: 25 }}>
                                                     DIGITAL
                                                     <br />
@@ -295,9 +283,7 @@ export default function StudentScreen() {
                                     <ChevronRightIcon />
                                 </button>}
                             </Flex>
-
                         </motion.div>
-
                     }
                     {
                         isStudentModalOpen && (

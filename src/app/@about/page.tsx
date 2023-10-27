@@ -3,18 +3,9 @@
 import { motion, useAnimationControls, useMotionValueEvent, useScroll } from "framer-motion";
 import { useEffect } from "react";
 import styled from "styled-components";
-const Page = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  width: 60vw;
-  height: 40vh;
 
-  @media (max-width: 500px) {
-    width: 90vw;
-    height: 60vh;
-  }
-`;
+
+
 
 const ContentWrapper = styled.div`
   display: flex;
@@ -70,6 +61,8 @@ const ContentWrapper = styled.div`
     }
   }
 `;
+
+
 
 export default function AboutScreen() {
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { ChakraProvider } from "@chakra-ui/react";
-import { motion, useScroll } from "framer-motion";
+import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import "./globals.css";
@@ -17,13 +17,12 @@ interface Props {
 const ScrollProgressWrapper = styled.div`
   position: fixed;
   top: 0vh;
-  // width: 70vw;
   width: 100%;
   height: 10vh;
   left: 50%;
   transform: translate(-50%, 0);
-
   background-color: black;
+  z-index:1;
 
   > div {
     width: 100%;
@@ -39,7 +38,7 @@ const ScrollProgressWrapper = styled.div`
       background-color: white;
       height: 2px;
       left: 23.75vw;
-      top: 5vh;
+      top: 5.5vh;
     }
 
     > span {
@@ -84,7 +83,7 @@ const MainTitleWrapper = styled.div`
   height: 40vh;
   width: 20vw;
   opacity: 1;
-  zIndex: 1;
+  z-index: 2;
   animation: fadeOut ease-in-out 1s;
 
   > div:nth-child(1) {
@@ -135,15 +134,27 @@ export default function RootLayout(props: Props) {
   const [progress, setProgress] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
 
+  const [about, setAbout] = useState<HTMLElement | null>(null);
+  const [student, setStudent] = useState<HTMLElement | null>(null);
+  const [subject, setSubject] = useState<HTMLElement | null>(null);
+
   const [dday, setDday] = useState(0);
+
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+
+    if (latest <= 0.59) {
+      setProgress(1);
+    } else if (latest <= 0.8181) {
+      setProgress(2);
+    } else {
+      setProgress(3);
+    }
+  })
 
   useEffect(() => {
     const setDate = new Date("2023-10-25T00:00:00+0900");
-
     const now = new Date();
-
     const distance = setDate.getTime() - now.getTime();
-
     const day = Math.floor(distance / (1000 * 60 * 60 * 24));
 
     setDday(day + 1);
@@ -162,66 +173,14 @@ export default function RootLayout(props: Props) {
 
   useEffect(() => {
     if (isLoaded) {
-      const io = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry, index) => {
-            if (entry.isIntersecting) {
-              switch (entry.target.id) {
-                case "introduction":
-                  setProgress(1);
-                  break;
-              }
-            }
-          });
-        },
-        {
-          threshold: 0.6,
-        }
-      );
-      const io200vh = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry, index) => {
-            if (entry.isIntersecting) {
-              switch (entry.target.id) {
-                case "student":
-                  console.log('stu')
-                  setProgress(2);
-                case "subject":
-                  console.log('sub')
-                  setProgress(3);
-              }
-            }
-          });
-        },
-        {
-          threshold: 0.2,
-        }
-      );
-      const io600vh = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry, index) => {
-            if (entry.isIntersecting) {
-              switch (entry.target.id) {
-                case "about":
-                  setProgress(1);
-              }
-            }
-          });
-        },
-        {
-          threshold: 0.05,
-        }
-      );
-
       const introDiv = document.getElementById("introduction");
       const studentDiv = document.getElementById("student");
       const subjectDiv = document.getElementById("subject");
       const aboutDiv = document.getElementById("about");
       if (introDiv && studentDiv && subjectDiv && aboutDiv) {
-        io.observe(introDiv);
-        io200vh.observe(studentDiv);
-        io200vh.observe(subjectDiv);
-        io600vh.observe(aboutDiv);
+        setStudent(studentDiv);
+        setSubject(subjectDiv);
+        setAbout(aboutDiv);
       }
     }
   }, [isLoaded]);
@@ -255,7 +214,7 @@ export default function RootLayout(props: Props) {
                   initial={false}
                   animate={{ width: `${progress * 17.5}%` }}
                 />
-                <span onClick={() => { window.scrollTo(0, window.innerHeight) }}>
+                <span onClick={() => { about?.scrollIntoView({ behavior: 'smooth' }) }}>
                   {progress >= 1 && (
                     <motion.div
                       initial={{ opacity: 0 }}
@@ -265,7 +224,7 @@ export default function RootLayout(props: Props) {
                   )}
                   <p>OPENING</p>
                 </span>
-                <span onClick={() => { window.scrollTo(0, window.innerHeight) }}>
+                <span onClick={() => { about?.scrollIntoView({ behavior: 'smooth' }) }}>
                   {progress >= 1 && (
                     <motion.div
                       className="head"
@@ -276,7 +235,7 @@ export default function RootLayout(props: Props) {
                   )}
                   <p>ABOUT</p>
                 </span>
-                <span onClick={() => { window.scrollTo(0, window.innerHeight * 8) }}>
+                <span onClick={() => { student?.scrollIntoView({ behavior: 'smooth' }) }}>
                   {progress >= 2 && (
                     <motion.div
                       className="head"
@@ -287,7 +246,7 @@ export default function RootLayout(props: Props) {
                   )}
                   <p>DESIGNER</p>
                 </span>
-                <span onClick={() => { window.scrollTo(0, window.innerHeight * 10) }}>
+                <span onClick={() => { subject?.scrollIntoView({ behavior: 'smooth' }) }}>
                   {progress >= 3 && (
                     <motion.div
                       className="head"
