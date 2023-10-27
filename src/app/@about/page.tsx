@@ -73,6 +73,67 @@ const Page = styled.div`
   }
 `;
 
+// const ContentWrapper = styled(motion.div)`
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   width: 100vw;
+//   height: 100vh;
+//   top: 0;
+// position: sticky;
+
+
+//   > div {
+//     width: 100%;
+//     height: 100%;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     align-items: center;
+
+//     > h1 {
+//       color: white;
+//       font-size: 5vh;
+//       font-weight: 600;
+//       margin-bottom: 4vh;
+
+//     }
+//     > h2 {
+//       color: white;
+//       font-size: 2.5vh;
+//       font-weight: 500;
+
+//     }
+//     > p {
+//       color: white;
+//       font-size: 2vh;
+//       font-weight: 300;
+//       text-align: center;
+//       line-height: 3vh;
+
+//     }
+//   }
+
+//   @media (max-width: 500px) {
+//     br {
+//       display: inline-block;
+//       content: " ";
+//     }
+
+//     width: 90vw;
+//     > div {
+//       display: block;
+//       text-align: left;
+//       font-size: 1.5vh;
+//       > p {
+//         font-size: 1.8vh;
+//         text-align: left;
+//       }
+//     }
+//   }
+// `;
+
 const ContentWrapper = styled(motion.div)`
   display: flex;
   flex-direction: column;
@@ -80,20 +141,22 @@ const ContentWrapper = styled(motion.div)`
   align-items: center;
   width: 100vw;
   height: 100vh;
-  // position: sticky;
   top: 0;
+
+  // background-color: red;
+
   > div {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    position: sticky;
+    top: 40%;
+    text-align: center;
+
     > h1 {
       color: white;
       font-size: 5vh;
       font-weight: 600;
       margin-bottom: 4vh;
+
+
     }
     > h2 {
       color: white;
@@ -106,6 +169,7 @@ const ContentWrapper = styled(motion.div)`
       font-weight: 300;
       text-align: center;
       line-height: 3vh;
+      // margin-bottom: 6vh;
     }
   }
 
@@ -137,6 +201,8 @@ export default function AboutScreen() {
   const controls4 = useAnimationControls();
   const controls5 = useAnimationControls();
   const controls6 = useAnimationControls();
+  const controls7 = useAnimationControls();
+  const controls8 = useAnimationControls();
 
   useEffect(() => {}, []);
 
@@ -153,16 +219,40 @@ export default function AboutScreen() {
       controls1.start({ opacity: 0.2 });
     } else if (0.06 <= latest && latest < 0.08) {
       controls1.start({ opacity: 0.6 });
-      // controls2.start({ y: 0})
-    } else if (0.08 <= latest && latest < 0.1) {
+    } else if (0.08 <= latest && latest < 0.09) {
+      controls1.start({ opacity: 1, y: 0 });
+    } else if (0.09 <= latest && latest < 0.14) {
       controls1.start({ opacity: 1, y: 0 });
       controls2.start({ opacity: 1, y: 0 });
-    } else if (0.1 <= latest && latest < 0.12) {
-      controls3.start({ position: "sticky" });
-    } else if (0.12 <= latest && latest < 0.14) {
+    } else if (0.14 <= latest && latest < 0.15) {
       controls1.start({ opacity: 0 });
-      controls2.start({ opacity: 0 });
-      controls3.start({ position: "static" });
+      controls2.start({ opacity: 0, y: 0 });
+    } else if (0.15 <= latest && latest < 0.17){
+      controls3.start({ opacity: 0.2});
+    } else if (0.17 <= latest && latest < 0.19){
+      controls3.start({ opacity: 0.6});
+    } else if (0.19 <= latest && latest < 0.24) {
+      controls3.start({ opacity: 1, y: 0});
+      controls4.start({ opacity: 1, y: 0 });
+    } else if (0.24 <= latest && latest < 0.25) {
+      controls3.start({ opacity: 0 });
+      controls4.start({ opacity: 0, y: 0 });
+    } else if (0.29 <= latest && latest < 0.33) {
+      controls5.start({ opacity: 1, y: 0});
+    } else if (0.33 <= latest && latest < 0.34) {
+      controls5.start({ opacity: 0, y: 0});
+    } else if (0.38 <= latest && latest < 0.42) {
+      controls6.start({ opacity: 1, y: 0});
+    } else if (0.42 <= latest && latest < 0.43) {
+      controls6.start({ opacity: 0, y: 0});
+    } else if (0.47 <= latest && latest < 0.51) {
+      controls7.start({ opacity: 1, y: 0});
+    } else if (0.51 <= latest && latest < 0.52) {
+      controls7.start({ opacity: 0, y: 0});
+    } else if (0.55 <= latest && latest < 0.59) {
+      controls8.start({ opacity: 1, y: 0});
+    } else if (0.59 <= latest && latest < 0.60) {
+      controls8.start({ opacity: 0, y: 0});
     }
   });
 
@@ -208,7 +298,7 @@ export default function AboutScreen() {
           </div>
         </MainTitleWrapper>
       </motion.div>
-      <ContentWrapper animate={controls3}>
+      <ContentWrapper animate={controls2}>
         <motion.div>
           <motion.h1
             initial={{ opacity: 0 }}
@@ -239,17 +329,16 @@ export default function AboutScreen() {
           </motion.p>
         </motion.div>
       </ContentWrapper>
-      <ContentWrapper animate={controls3}>
+      <ContentWrapper>
         <motion.div>
           <motion.h1
-            initial={{ opacity: 0, y: 100 }}
-            animate={{ opacity: 1, y: 0 }}
-            // animate={controls2}
+            initial={{ opacity: 0}}
+            animate={controls3}
             transition={{ duration: 0.5 }}
           >
             졸업축사
           </motion.h1>
-          <p>
+          <motion.p animate={controls4} transition={{ duration: 0.5 }}>
             지금까지의 여러분들의 노력과 열저을 자랑스럽게 생각합니다. 지금은
             훌륭한 성취의 순간입니다.
             <br />
@@ -264,17 +353,13 @@ export default function AboutScreen() {
             <br />
             미래는 여러분을 향해 무한한 가능성을 열어 두고 있습니다. 다시 한번
             축하드리며, 남은 기간 마무리 잘 지으시길 바랍니다.
-          </p>
-          <h2>-디자인대학 학장 이용우 교수님</h2>
+          </motion.p>
+          <motion.h2 animate={controls4} transition={{ duration: 0.5 }}>-디자인대학 학장 이용우 교수님</motion.h2>
         </motion.div>
       </ContentWrapper>
-      <ContentWrapper animate={controls3}>
-        <motion.div
-          initial={{ opacity: 0, y: 100 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 2 }}
-        >
-          <p>
+      <ContentWrapper>
+        <div>
+          <motion.p animate={controls5} transition={{ duration: 0.5 }}>
             졸업을 진심으로 축하합니다. 여러분에게 어떤 인사말이 도움이 될지
             곰곰이 생각해봤는데
             <br />
@@ -294,17 +379,13 @@ export default function AboutScreen() {
             <br />
             다른 사람의 인생이 아닌 여러분의 인생을 사세요. 찬란할 여러분의
             앞날을 응원합니다..
-          </p>
-          <h2>-정혜경 교수님</h2>
-        </motion.div>
+          </motion.p>
+          <motion.h2 animate={controls5} transition={{ duration: 0.5 }}>-정혜경 교수님</motion.h2>
+        </div>
       </ContentWrapper>
-      <ContentWrapper animate={controls3}>
-        <motion.div
-          initial={{ opacity: 0, y: 100 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 2 }}
-        >
-          <p>
+      <ContentWrapper>
+        <div>
+          <motion.p animate={controls6} transition={{ duration: 0.5 }}>
             지금까지의 여러분들의 노력과 열정을 자랑스럽게 생각합니다. 지금은
             훌륭한 성취의 순간입니다.
             <br />
@@ -321,17 +402,13 @@ export default function AboutScreen() {
             무한한 가능성을 열어 두고 있습니다.
             <br />
             다시 한번 축하드리며, 남은 기간 마무리 잘 지으시길 바랍니다.
-          </p>
-          <h2>-김경환 교수님</h2>
-        </motion.div>
+          </motion.p>
+          <motion.h2 animate={controls6} transition={{ duration: 0.5 }}>-김경환 교수님</motion.h2>
+        </div>
       </ContentWrapper>
-      <ContentWrapper animate={controls3}>
-        <motion.div
-          initial={{ opacity: 0, y: 100 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 2 }}
-        >
-          <p>
+      <ContentWrapper>
+        <div>
+          <motion.p animate={controls7} transition={{ duration: 0.5 }}>
             자랑스러운 여러분의 졸업을 진심으로 축하합니다!
             <br />
             여러분의 열정과 안내로 졸업 작품을 무사히 완료하게 되었습니다.
@@ -347,17 +424,13 @@ export default function AboutScreen() {
             <br />
             순수함과 열정에 감동받아 저에게도 많은 동기부여가 되었습니다. 멋진
             사회인으로 거듭나길 바랍니다. 감사합니다.
-          </p>
-          <h2>-백지혜 교수님</h2>
-        </motion.div>
+          </motion.p>
+          <motion.h2 animate={controls7} transition={{ duration: 0.5 }}>-백지혜 교수님</motion.h2>
+        </div>
       </ContentWrapper>
-      <ContentWrapper animate={controls3}>
-        <motion.div
-          initial={{ opacity: 0, y: 100 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 2 }}
-        >
-          <p>
+      <ContentWrapper>
+        <div>
+          <motion.p animate={controls8} transition={{ duration: 0.5 }}>
             우선 졸업을 진심으로 축하합니다.
             <br />
             4년간의 여정을 마무리하고 졸업작품을 통해 빛나는 창의성을 담아내는
@@ -383,9 +456,9 @@ export default function AboutScreen() {
             역량을 발휘하기를 기원합니다.
             <br />
             여러분 각자 한 명 한 명이 자랑스럽습니다. 다시 한 번 축하드립니다.
-          </p>
-          <h2>-박상권 교수님</h2>
-        </motion.div>
+          </motion.p>
+          <motion.h2 animate={controls8} transition={{ duration: 0.5 }}>-박상권 교수님</motion.h2>
+        </div>
       </ContentWrapper>
       {/* <Page id="page1">
         {introVisible && (
