@@ -82,7 +82,7 @@ const SubjectItem = (props: Props) => {
     return (
         <ItemWrapper>
             {!isClicked && <motion.div className="title"
-                initial={{ scaleY: 0.05, y: "-9.5vh" }}
+                initial={{ scaleY: 0.5, y: "-13.5vh" }}
                 animate={{ scaleY: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
                 onHoverStart={() => { setWhileHover(true) }}
@@ -100,7 +100,7 @@ const SubjectItem = (props: Props) => {
             {isClicked && <div className="list-wrapper">
                 <motion.div
                     initial={{ scaleY: 1, y: 0 }}
-                    animate={{ scaleY: 0.05, y: "-9.5vh" }}
+                    animate={{ scaleY: 0.5, y: "-13.5vh" }}
                     transition={{ duration: 0.5 }}
                     onTap={() => {
                         setIsClicked(!isClicked);
@@ -109,14 +109,16 @@ const SubjectItem = (props: Props) => {
                     <p>{props.subject}</p>
                     <motion.img
                         whileHover={{ scale: 1.1 }}
-                        src={props.img} />
+                        src={props.img}
+                        decoding="async"
+                        loading="lazy" />
                 </motion.div>
                 <motion.div
                     initial={{ scaleY: 0, y: "-38vh" }}
                     animate={{ scaleY: 1, y: "-19vh" }}
                     transition={{ duration: 0.3, delay: 0.5 }}
                 >
-                    <WorkList />
+                    <WorkList subject={props.subject} />
                 </motion.div>
             </div>}
         </ItemWrapper>

@@ -3,9 +3,30 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'Pretendard-Regular';
+  font-family: 'Pretendard';
   src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
   font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Black.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Medium.woff') format('woff');
+  font-weight: 500;
   font-style: normal;
 }
 
@@ -62,7 +83,7 @@ div.parent {
   justify-content: center;
   align-items: center;
   background-color: black;
-
+  flex-direction: column;
 }
 
 div.parent-75vh {
@@ -91,7 +112,7 @@ div.parent-200vh {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: black;
+  justify-content: center;
 }
 
 div.parent-infinite {
@@ -101,6 +122,14 @@ div.parent-infinite {
   flex-direction: column;
   align-items: center;
   background-color: black;
+}
+
+div.parent-400vh {
+  width: 100%;
+  height: calc(var(--vh, 1vh) * 400);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 div.parent-600vh {
@@ -125,15 +154,15 @@ div.parent-600vh {
 }
 
 p {
-  font-family: Pretendard-Regular;
+  font-family: Pretendard;
 }
 
 h1 {
-  font-family: Pretendard-Regular;
+  font-family: Pretendard;
 }
 
 h2 {
-  font-family: Pretendard-Regular;
+  font-family: Pretendard;
 }
 
 *::-webkit-scrollbar {

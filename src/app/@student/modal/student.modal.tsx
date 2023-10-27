@@ -38,6 +38,7 @@ interface Work {
     student: Student[];
     introduction: string;
     explanation: string;
+    youtube?: string;
 }
 
 interface Student {
@@ -100,6 +101,10 @@ const StudentModal = (props: Props) => {
         }
     }, [tabIdx])
 
+    useEffect(() => {
+        console.log(work?.youtube)
+    }, [work])
+
     const isMobile = useMediaQuery({
         query: '(max-width: 500px)'
     });
@@ -153,7 +158,7 @@ const StudentModal = (props: Props) => {
                                     <iframe
                                         width="100%"
                                         height="100%"
-                                        src="https://player.vimeo.com/video/697947484"
+                                        src={work && work.youtube ? work.youtube : "https://player.vimeo.com/video/697947484"}
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     ></iframe>
                                 </Flex>
@@ -178,7 +183,7 @@ const StudentModal = (props: Props) => {
                                     <iframe
                                         width="100%"
                                         height="100%"
-                                        src="https://player.vimeo.com/video/697947484"
+                                        src={work && work.youtube ? work.youtube : "https://player.vimeo.com/video/697947484"}
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     ></iframe>
                                 </Flex>
@@ -221,7 +226,7 @@ const StudentModal = (props: Props) => {
                                     <iframe
                                         width="100%"
                                         height="100%"
-                                        src="https://player.vimeo.com/video/697947484"
+                                        src={work && work.youtube ? work.youtube : "https://player.vimeo.com/video/697947484"}
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     ></iframe>
                                 </Flex>

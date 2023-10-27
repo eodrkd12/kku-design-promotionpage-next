@@ -1,7 +1,7 @@
 "use client";
 
 import { ChakraProvider } from "@chakra-ui/react";
-import { motion, useScroll } from "framer-motion";
+import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import "./globals.css";
@@ -17,28 +17,27 @@ interface Props {
 const ScrollProgressWrapper = styled.div`
   position: fixed;
   top: 0vh;
-  // width: 70vw;
   width: 100%;
-  height: 10vh;
+  height: 11vh;
   left: 50%;
   transform: translate(-50%, 0);
-
   background-color: black;
+  z-index:1;
 
   > div {
     width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     padding-bottom: 1.5vh;
-    padding-left: 15vw;
-    padding-right: 15vw;
+    padding-left: 20vw;
+    padding-right: 20vw;
     .line {
       position: absolute;
       background-color: white;
       height: 2px;
-      left: 23.75vw;
+      left: 27.5vw;
       top: 5vh;
     }
 
@@ -54,9 +53,11 @@ const ScrollProgressWrapper = styled.div`
         width: 0.7vh;
         height: 0.7vh;
         border-radius: 50%;
+        margin-bottom: 2%;
       }
       > p {
         color: white;
+        font-size: 2.3vh;
         font-weight: 900;
       }
     }
@@ -76,21 +77,90 @@ const ScrollProgressWrapper = styled.div`
   }
 `;
 
+
+const MainTitleWrapper = styled.div`
+  position: fixed;
+  left: 2vw;
+  top: 20vh;
+  height: 40vh;
+  width: 20vw;
+  opacity: 1;
+  z-index: 2;
+  animation: fadeOut ease-in-out 1s;
+
+  > div:nth-child(1) {
+    height: 26%;
+    > img {
+      width: 27%;
+    }
+  }
+  > div:nth-child(2) {
+    height: 40%;
+    margin-bottom: 8%;
+    padding-left: 0.5vw;
+    > p {
+      color: white;
+      font-size: 1.8vh;
+      font-weight: 500;
+    }
+  }
+  > div:nth-child(3) {
+    height: 26%;
+    padding-left: 0.5vw;
+    > p {
+      color: white;
+      font-size: 1.2vh;
+      font-weight: 800;
+    }
+  }
+
+  @media (max-width: 500px) {
+    br{
+       display: inline-block;
+       content: " ";
+    }
+
+    top: 4vw;
+    width: 100%;
+    left: 5vw;
+
+    > div:nth-child(1){
+      visibility: visible;
+      width: 20vw;
+    }
+    > div {
+      visibility: hidden;
+    }
+  }
+`;
+
 export default function RootLayout(props: Props) {
   const { scrollYProgress } = useScroll();
   const [progressVisible, setProgressVisible] = useState(false);
   const [progress, setProgress] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
 
+  const [about, setAbout] = useState<HTMLElement | null>(null);
+  const [student, setStudent] = useState<HTMLElement | null>(null);
+  const [subject, setSubject] = useState<HTMLElement | null>(null);
+
   const [dday, setDday] = useState(0);
+
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+
+    if (latest <= 0.59) {
+      setProgress(1);
+    } else if (latest <= 0.8181) {
+      setProgress(2);
+    } else {
+      setProgress(3);
+    }
+  })
 
   useEffect(() => {
     const setDate = new Date("2023-10-25T00:00:00+0900");
-
     const now = new Date();
-
     const distance = setDate.getTime() - now.getTime();
-
     const day = Math.floor(distance / (1000 * 60 * 60 * 24));
 
     setDday(day + 1);
@@ -109,52 +179,14 @@ export default function RootLayout(props: Props) {
 
   useEffect(() => {
     if (isLoaded) {
-      const io = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry, index) => {
-            if (entry.isIntersecting) {
-              switch (entry.target.id) {
-                case "introduction":
-                  setProgress(1);
-                  break;
-              }
-            }
-          });
-        },
-        {
-          threshold: 0.6,
-        }
-      );
-      const io200vh = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry, index) => {
-            if (entry.isIntersecting) {
-              switch (entry.target.id) {
-                case "about":
-                  setProgress(1);
-                  break;
-                case "student":
-                  setProgress(2);
-                case "subject":
-                  setProgress(3);
-              }
-            }
-          });
-        },
-        {
-          threshold: 0.2,
-        }
-      );
-
       const introDiv = document.getElementById("introduction");
       const studentDiv = document.getElementById("student");
       const subjectDiv = document.getElementById("subject");
       const aboutDiv = document.getElementById("about");
       if (introDiv && studentDiv && subjectDiv && aboutDiv) {
-        io.observe(introDiv);
-        io200vh.observe(studentDiv);
-        io200vh.observe(subjectDiv);
-        io200vh.observe(aboutDiv);
+        setStudent(studentDiv);
+        setSubject(subjectDiv);
+        setAbout(aboutDiv);
       }
     }
   }, [isLoaded]);
@@ -173,10 +205,9 @@ export default function RootLayout(props: Props) {
 
             {dday <= 0 && props.about}
             {dday <= 0 && props.student}
-            {dday <= 0 && props.subject}
+            {/* {dday <= 0 && props.subject} */}
             {dday <= 0 && props.end}
           </main>
-
           {progressVisible && dday <= 0 && (
             <ScrollProgressWrapper>
               <motion.div
@@ -187,9 +218,9 @@ export default function RootLayout(props: Props) {
                 <motion.div
                   className="line"
                   initial={false}
-                  animate={{ width: `${progress * 17.5}%` }}
+                  animate={{ width: `${progress * 15}%` }}
                 />
-                <span>
+                <span onClick={() => { about?.scrollIntoView({ behavior: 'smooth' }) }}>
                   {progress >= 1 && (
                     <motion.div
                       initial={{ opacity: 0 }}
@@ -197,9 +228,9 @@ export default function RootLayout(props: Props) {
                       transition={{ duration: 1 }}
                     />
                   )}
-                  <p>OPENING</p>
+                  <p>HOME</p>
                 </span>
-                <span>
+                <span onClick={() => { about?.scrollIntoView({ behavior: 'smooth' }) }}>
                   {progress >= 1 && (
                     <motion.div
                       className="head"
@@ -210,7 +241,7 @@ export default function RootLayout(props: Props) {
                   )}
                   <p>ABOUT</p>
                 </span>
-                <span>
+                <span onClick={() => { student?.scrollIntoView({ behavior: 'smooth' }) }}>
                   {progress >= 2 && (
                     <motion.div
                       className="head"
@@ -221,7 +252,7 @@ export default function RootLayout(props: Props) {
                   )}
                   <p>DESIGNER</p>
                 </span>
-                <span>
+                <span onClick={() => { subject?.scrollIntoView({ behavior: 'smooth' }) }}>
                   {progress >= 3 && (
                     <motion.div
                       className="head"
@@ -235,6 +266,46 @@ export default function RootLayout(props: Props) {
               </motion.div>
             </ScrollProgressWrapper>
           )}
+          {dday <= 0 && <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.5 }}
+          >
+            <MainTitleWrapper>
+              <div>
+                <img src={"/image/tag-logo.png"} />
+              </div>
+
+              <div>
+                <p>
+                  2024 KONKUK UNIVERSITY
+                  <br />
+                  VISUAL MOVING DESIGN
+                  <br />
+                  <br />
+                  VIDEO/DIGITAL TRACK
+                  <br />
+                  GRADUATION
+                  <br />
+                  EXHIBITION
+                </p>
+              </div>
+              <div>
+                <p>
+                  2024 건국대학교 시각영상디자인전공
+                  <br />
+                  영상/디지털 트랙 졸업전시회
+                  <br />
+                  <br />
+                  Fri Nov, 3th - Mon, 6th
+                  <br />
+                  서울 종로구 우정국로 68
+                  <br />
+                  동덕빌딩 동덕아트갤러리
+                </p>
+              </div>
+            </MainTitleWrapper>
+          </motion.div>}
         </ChakraProvider>
       </body>
     </html>
