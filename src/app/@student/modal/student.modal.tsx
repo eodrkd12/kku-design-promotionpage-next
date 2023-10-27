@@ -1,5 +1,6 @@
 import {
     Flex,
+    Spacer,
     Modal,
     ModalBody,
     ModalCloseButton,
@@ -181,8 +182,14 @@ const StudentModal = (props: Props) => {
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     ></iframe>
                                 </Flex>
-                                <Flex>
-                                    
+                                <Flex flexDir={'row'} justifyContent={'space-between'}>
+                                        <img src={"/image/lightDoor.png"} alt="SignLogo" style={{ width: '20vw', height: '100%' }} />
+                                        {/* <Spacer /> */}
+                                        <img src={"/image/lightDoor.png"} alt="SignLogo" style={{ width: '20vw', height: '100%' }} />
+                                        {/* <Spacer /> */}
+                                        <img src={"/image/lightDoor.png"} alt="SignLogo" style={{ width: '20vw', height: '100%' }} />
+                                        {/* <Spacer /> */}
+                                        <img src={"/image/lightDoor.png"} alt="SignLogo" style={{ width: '20vw', height: '100%' }} />
                                 </Flex>
                                 <Flex flexDir={'column'} w={'100%'} h={'100%'}>
                                     <Text color={'white'} transform='translateY(6vh)'>지면</Text>
@@ -217,6 +224,23 @@ const StudentModal = (props: Props) => {
                                         src="https://player.vimeo.com/video/697947484"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     ></iframe>
+                                </Flex>
+                                <Flex flexDir={'row'} justifyContent={'space-between'}>
+                                        <img src={"/image/lightDoor.png"} alt="SignLogo" style={{ width: '20vw', height: '100%' }} />
+                                        {/* <Spacer /> */}
+                                        <img src={"/image/lightDoor.png"} alt="SignLogo" style={{ width: '20vw', height: '100%' }} />
+                                        {/* <Spacer /> */}
+                                        <img src={"/image/lightDoor.png"} alt="SignLogo" style={{ width: '20vw', height: '100%' }} />
+                                        {/* <Spacer /> */}
+                                        <img src={"/image/lightDoor.png"} alt="SignLogo" style={{ width: '20vw', height: '100%' }} />
+                                </Flex>
+                                <Flex flexDir={'column'} w={'100%'} h={'100%'}>
+                                    <Text color={'white'} transform='translateY(6vh)'>지면</Text>
+                                        <Flex flexDir={'row'} justifyContent={'space-between'} transform='translateY(8vh)'>
+                                            <img src={"/image/lightDoor.png"} alt="SignLogo" style={{ width: '40vw', height: '40vh' }} />
+                                            {/* <Spacer /> */}
+                                            <img src={"/image/lightDoor.png"} alt="SignLogo" style={{ width: '40vw', height: '40vh' }} />
+                                        </Flex>
                                 </Flex>
                             </TabPanel>
                         </TabPanels>
