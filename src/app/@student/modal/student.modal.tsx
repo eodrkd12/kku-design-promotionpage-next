@@ -136,7 +136,7 @@ const StudentModal = (props: Props) => {
                                 return <Tab key={index} color={tabIdx === index ? 'white' : 'gray.500'}>{value}</Tab>;
                             })}
                         </TabList>
-                        <TabPanels h={'90%'}>
+                        <TabPanels h={'90%'} overflow='auto'>
                             <TabPanel h={'100%'}>
                                 <Flex position={'relative'} h={'30%'}>
                                     <img src={"/image/lightDoor.png"} alt="SignLogo" style={{ width: '100vw', height: '100%' }} />
@@ -176,13 +176,25 @@ const StudentModal = (props: Props) => {
                                         }
                                     </Flex>
                                 </Flex>
-                                <Flex flexDir={'column'} w={'100%'} h={'70%'}>
+                                <Flex flexDir={'column'} w={'100%'} h={'100%'}>
                                     <Text color={'white'} m={'1%'} >{work?.introduction}</Text>
                                     <Text color={'white'} m={'1%'} >{work?.explanation}</Text>
                                     <iframe
                                         width="100%"
                                         height="100%"
                                         src={work && work.youtube ? work.youtube : "https://player.vimeo.com/video/697947484"}
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    ></iframe>
+                                </Flex>
+                                <Flex>
+                                    
+                                </Flex>
+                                <Flex flexDir={'column'} w={'100%'} h={'100%'}>
+                                    <Text color={'white'} transform='translateY(6vh)'>지면</Text>
+                                    <iframe
+                                        width="100%"
+                                        height="100%"
+                                        src="https://player.vimeo.com/video/697947484"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     ></iframe>
                                 </Flex>
