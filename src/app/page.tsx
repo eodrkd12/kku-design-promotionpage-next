@@ -1,12 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useMediaQuery } from 'react-responsive';
+import { useMediaQuery } from "react-responsive";
 import styled from "styled-components";
 
 const MainTitleWrapper = styled.div`
   position: fixed;
-  left: 2vw;
+  left: 2.5vw;
   top: 8vh;
   height: 40vh;
   width: 20vw;
@@ -18,34 +18,37 @@ const MainTitleWrapper = styled.div`
     margin-bottom: 2%;
   }
   > div:nth-child(2) {
-    height: 40%;
+    height: 35%;
     margin-bottom: 2%;
     > p {
       color: white;
-      font-size: 1.5vh;
-      font-weight: 300;
+      font-size: 1.65vh;
+      font-weight: 200;
+      line-height: 2vh;
+      letter-spacing: 0.04em;
     }
   }
   > div:nth-child(3) {
     height: 28%;
     > p {
       color: white;
-      font-size: 1vh;
-      font-weight: 200;
+      font-size: 1.07vh;
+      font-weight: 100;
+      letter-spacing: 0.06em;
     }
   }
 
   @media (max-width: 500px) {
-    br{
-       display: inline-block;
-       content: " ";
+    br {
+      display: inline-block;
+      content: " ";
     }
 
     top: 4vw;
     width: 100%;
     left: 5vw;
 
-    > div:nth-child(1){
+    > div:nth-child(1) {
       visibility: visible;
       width: 20vw;
     }
@@ -66,10 +69,10 @@ const ContentWrapper = styled.div`
   transform: translate(-50%, -50%);
   > div {
     width: 100%;
-    height: 100%;
+    height: 80%;
+    text-align: center;
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     > h1 {
       will-change: transform;
@@ -80,16 +83,23 @@ const ContentWrapper = styled.div`
     > h2 {
       will-change: transform;
       color: white;
-      font-size: 2vh;
+      font-size: 2.3vh;
+      font-weight: 600;
     }
     > p {
       will-change: transform;
       color: white;
-      font-size: 2vh;
-      font-weight: 300;
+      font-size: 1.8vh;
+      font-weight: 100;
       text-align: center;
-      line-height: 3vh;
+      line-height: 3.5vh;
     }
+  }
+  > div:nth-child(1) {
+    height: 40%;
+  }
+  > div:nth-child(2) {
+    height: 70%;
   }
 
   @media (max-width: 500px) {
@@ -104,22 +114,18 @@ const ContentWrapper = styled.div`
   }
 `;
 
-
 const Dday = styled.p`
   color: white;
   font-size: 20vh;
   font-weight: 600;
-`
+`;
 
 export default function IntroductionScreen() {
-
   const [dday, setDday] = useState(0);
 
-
   const isMobile = useMediaQuery({
-    query: '(max-width: 500px)'
+    query: "(max-width: 500px)",
   });
-
 
   // const handleWheel = useCallback(
   //   (event: WheelEvent<HTMLDivElement>) => {
@@ -192,21 +198,15 @@ export default function IntroductionScreen() {
     const day = Math.floor(distance / (1000 * 60 * 60 * 24));
 
     setDday(day + 1);
-  }, [])
+  }, []);
 
   if (dday > 0) {
     return (
       <div className="parent">
-        <Dday>
-          D-{dday}
-        </Dday>
-      </div>
-    )
-  } else {
-    return (
-      <div className={'parent'} id="introduction">
-
+        <Dday>D-{dday}</Dday>
       </div>
     );
+  } else {
+    return <div className={"parent"} id="introduction"></div>;
   }
 }
