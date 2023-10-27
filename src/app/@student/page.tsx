@@ -5,6 +5,8 @@ import { Flex, HStack, Text, useDisclosure } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useMediaQuery } from 'react-responsive';
+import styled from 'styled-components';
+import SubjectScreen from '../@subject/page';
 import digitalStudentData from './data/digitalStudent-data';
 import videoStudentData from './data/videoStudent-data';
 import StudentModal from "./modal/student.modal";
@@ -16,6 +18,18 @@ interface ImageButtonProps {
     englishName: string;
     onClick: () => void;
 }
+
+const StuWorkBackground = styled.div`
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 800vh;
+  > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`;
 
 export default function StudentScreen() {
 
@@ -137,19 +151,16 @@ export default function StudentScreen() {
         if (scrollInterval2) clearInterval(scrollInterval2);
     }, [scrollInterval2]);
 
-
-
-
     const ImageButton = ({ src, alt, name, englishName, onClick }: ImageButtonProps) => (
-        <Flex style={{ position: 'relative', width: '14vw', border: '2px solid white', overflowX: 'hidden', overflowY: 'hidden' }}>
+        <Flex style={{ position: 'relative', width: '11.5vw', border: '1px solid white', overflowX: 'hidden', overflowY: 'hidden' }}>
             <img
                 src={src}
                 alt={alt}
                 style={{
-                    width: isMobile ? '32vw' : '14vw',
-                    height: '30vh',
-                    transition: 'transform 0.3s, filter 0.3s',
-                    filter: 'brightness(30%)'
+                    width: '11.5vw',
+                    transition: 'transform 1s, filter 1s',
+                    filter: 'brightness(30%)',
+                    objectFit: 'cover'
                 }}
                 onMouseEnter={(e) => {
                     e.currentTarget.style.filter = "brightness(100%)";
@@ -171,128 +182,135 @@ export default function StudentScreen() {
     );
 
     return (
-        <Flex id="student" className="parent-200vh" flexDir={'column'}>
-            <div >
-                {contentVisible &&
-                    <motion.div
-                        initial={{ opacity: 0, y: 100 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 2 }}
-                    >
-                        <Flex justifyContent={'center'} alignItems={'center'} ml={isMobile ? 0 : '13vw'} mr={isMobile ? 0 : '1vw'}>
-                            {!isMobile && <button onMouseEnter={() => handleArrowMouseEnter('left')} onMouseLeave={handleArrowMouseLeave}
-                                style={{ fontSize: '5vw', color: isScrolledToLeft ? 'transparent' : 'white', height: '60vh', zIndex: 10 }} >
-                                <ChevronLeftIcon />
-                            </button>}
-                            <HStack ref={studentRef} spacing={2} overflowX="scroll" h={'80vh'} p={isMobile ? 0 : '2%'} maxW={isMobile ? '100vw' : '71vw'} sx={{
-                                '::-webkit-scrollbar': {
-                                    display: 'none',
-                                },
-                            }}>
-                                <Flex flexDir={"column"} >
-                                    <Flex >
-                                        <div style={{ width: isMobile ? '32vw' : '14vw', height: '30vh', borderTop: '2px solid white', flexShrink: 0 }}>
-                                            <div style={{ marginLeft: 15, color: 'white', fontSize: 25 }}>
-                                                VIDEO
-                                                <br />
-                                                TRACK
+        <div className='parent-400vh'
+            style={{
+                backgroundImage: `url(/image/stu_work_background.jpeg)`,
+                backgroundRepeat: 'no-repeat',
+                backgroundAttachment: 'fixed'
+            }}
+        >
+            <Flex
+                id="student"
+                className="parent-200vh"
+                flexDir={'column'}>
+                <div style={{ zIndex: 1 }}>
+                    {contentVisible &&
+                        <motion.div
+                            initial={{ opacity: 0, y: 100 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 2 }}
+                        >
+                            <Flex justifyContent={'center'} alignItems={'center'} ml={isMobile ? 0 : '13vw'} mr={isMobile ? 0 : '1vw'}>
+                                {!isMobile && <button onMouseEnter={() => handleArrowMouseEnter('left')} onMouseLeave={handleArrowMouseLeave}
+                                    style={{ fontSize: '5vw', color: isScrolledToLeft ? 'transparent' : 'white', height: '60vh', zIndex: 10 }} >
+                                    <ChevronLeftIcon />
+                                </button>}
+                                <HStack ref={studentRef} spacing={2} overflowX="scroll" h={'80vh'} p={isMobile ? 0 : '2%'} maxW={isMobile ? '100vw' : '71vw'} sx={{
+                                    '::-webkit-scrollbar': {
+                                        display: 'none',
+                                    },
+                                }}>
+                                    <Flex flexDir={"column"} >
+                                        <Flex >
+                                            <div style={{ width: isMobile ? '32vw' : '11.5vw', borderTop: '1px solid white', flexShrink: 0 }}>
+                                                <div style={{ marginLeft: 15, color: 'white', fontSize: 25 }}>
+                                                    VIDEO
+                                                    <br />
+                                                    TRACK
+                                                </div>
                                             </div>
-                                        </div>
-                                        {videoStudentData.slice(0, Math.ceil(videoStudentData.length / 2 - 1)).map((student, index) => (
-                                            <ImageButton key={index} src={student.profile} alt="SignLogo" name={student.name} englishName={student.englishName} onClick={() => handleStudent(student)} />
-                                        )
-                                        )}
+                                            {videoStudentData.slice(0, Math.ceil(videoStudentData.length / 2 - 1)).map((student, index) => (
+                                                <ImageButton key={index} src={student.profile} alt="SignLogo" name={student.name} englishName={student.englishName} onClick={() => handleStudent(student)} />
+                                            ))}
+                                        </Flex>
+                                        <Flex>
+                                            {videoStudentData.slice(Math.ceil(videoStudentData.length / 2 - 1)).map((student, index) => (
+                                                <ImageButton key={index} src={student.profile} alt="SignLogo" name={student.name} englishName={student.englishName} onClick={() => handleStudent(student)} />
+                                            ))}
+                                        </Flex>
                                     </Flex>
-                                    <Flex>
-                                        {videoStudentData.slice(Math.ceil(videoStudentData.length / 2 - 1)).map((student, index) => (
-                                            <ImageButton key={index} src={student.profile} alt="SignLogo" name={student.name} englishName={student.englishName} onClick={() => handleStudent(student)} />
-                                        )
-                                        )}
+                                </HStack>
+                                {!isMobile && <button onMouseEnter={() => handleArrowMouseEnter('right')} onMouseLeave={handleArrowMouseLeave}
+                                    style={{ fontSize: '5vw', color: isScrolledToRight ? 'transparent' : 'white', height: '60vh' }}  >
+                                    <ChevronRightIcon />
+                                </button>}
+                            </Flex>
 
-                                    </Flex>
-                                </Flex>
-                            </HStack>
-                            {!isMobile && <button onMouseEnter={() => handleArrowMouseEnter('right')} onMouseLeave={handleArrowMouseLeave}
-                                style={{ fontSize: '5vw', color: isScrolledToRight ? 'transparent' : 'white', height: '60vh' }}  >
-                                <ChevronRightIcon />
-                            </button>}
-                        </Flex>
+                        </motion.div>
 
-                    </motion.div>
+                    }
 
-                }
-
-                {
-                    isStudentModalOpen && (
-                        <StudentModal
-                            isOpen={isStudentModalOpen}
-                            onClose={onStudentModalClose}
-                            studentData={selectedStudent}
-                        />
-                    )
-                }
+                    {
+                        isStudentModalOpen && (
+                            <StudentModal
+                                isOpen={isStudentModalOpen}
+                                onClose={onStudentModalClose}
+                                studentData={selectedStudent}
+                            />
+                        )
+                    }
 
 
-            </div >
+                </div >
 
-            <div >
-                {contentVisible &&
-                    <motion.div
-                        initial={{ opacity: 0, y: 100 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 2 }}
-                    >
-                        <Flex justifyContent={'center'} alignItems={'center'} ml={isMobile ? 0 : '13vw'} mr={isMobile ? 0 : '1vw'}>
-                            {!isMobile && <button onMouseEnter={() => handleArrowMouseEnter2('left')} onMouseLeave={handleArrowMouseLeave2}
-                                style={{ fontSize: '5vw', color: isScrolledToLeft2 ? 'transparent' : 'white', height: '60vh', zIndex: 10 }} >
-                                <ChevronLeftIcon />
-                            </button>}
-                            <HStack ref={studentRef2} spacing={2} overflowX="scroll" h={'80vh'} p={isMobile ? 0 : '2%'} maxW={isMobile ? '100vw' : '71vw'} sx={{
-                                '::-webkit-scrollbar': {
-                                    display: 'none',
-                                },
-                            }}>
-                                <Flex flexDir={"column"} >
-                                    <Flex >
-                                        <div style={{ width: isMobile ? '32vw' : '14vw', height: '30vh', borderTop: '2px solid white', flexShrink: 0 }}>
-                                            <div style={{ marginLeft: 15, color: 'white', fontSize: 25 }}>
-                                                DIGITAL
-                                                <br />
-                                                TRACK
+                <div >
+                    {contentVisible &&
+                        <motion.div
+                            initial={{ opacity: 0, y: 100 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 2 }}
+                        >
+                            <Flex justifyContent={'center'} alignItems={'center'} ml={isMobile ? 0 : '13vw'} mr={isMobile ? 0 : '1vw'}>
+                                {!isMobile && <button onMouseEnter={() => handleArrowMouseEnter2('left')} onMouseLeave={handleArrowMouseLeave2}
+                                    style={{ fontSize: '5vw', color: isScrolledToLeft2 ? 'transparent' : 'white', height: '60vh', zIndex: 10 }} >
+                                    <ChevronLeftIcon />
+                                </button>}
+                                <HStack ref={studentRef2} spacing={2} overflowX="scroll" h={'80vh'} p={isMobile ? 0 : '2%'} maxW={isMobile ? '100vw' : '71vw'} sx={{
+                                    '::-webkit-scrollbar': {
+                                        display: 'none',
+                                    },
+                                }}>
+                                    <Flex flexDir={"column"} >
+                                        <Flex >
+                                            <div style={{ width: isMobile ? '32vw' : '11.5vw', borderTop: '1px solid white', flexShrink: 0 }}>
+                                                <div style={{ marginLeft: 15, color: 'white', fontSize: 25 }}>
+                                                    DIGITAL
+                                                    <br />
+                                                    TRACK
+                                                </div>
                                             </div>
-                                        </div>
-                                        {digitalStudentData.slice(0, Math.ceil(digitalStudentData.length / 2 - 1)).map((student, index) => (
-                                            <ImageButton key={index} src={student.profile} alt="SignLogo" name={student.name} englishName={student.englishName} onClick={() => handleStudent(student)} />
-                                        ))}
+                                            {digitalStudentData.slice(0, Math.ceil(digitalStudentData.length / 2 - 1)).map((student, index) => (
+                                                <ImageButton key={index} src={student.profile} alt="SignLogo" name={student.name} englishName={student.englishName} onClick={() => handleStudent(student)} />
+                                            ))}
+                                        </Flex>
+                                        <Flex>
+                                            {digitalStudentData.slice(Math.ceil(digitalStudentData.length / 2 - 1)).map((student, index) => (
+                                                <ImageButton key={index} src={student.profile} alt="SignLogo" name={student.name} englishName={student.englishName} onClick={() => handleStudent(student)} />
+                                            ))}
+                                        </Flex>
                                     </Flex>
-                                    <Flex>
-                                        {digitalStudentData.slice(Math.ceil(digitalStudentData.length / 2 - 1)).map((student, index) => (
-                                            <ImageButton key={index} src={student.profile} alt="SignLogo" name={student.name} englishName={student.englishName} onClick={() => handleStudent(student)} />
-                                        ))}
-                                    </Flex>
-                                </Flex>
-                            </HStack>
-                            {!isMobile && <button onMouseEnter={() => handleArrowMouseEnter2('right')} onMouseLeave={handleArrowMouseLeave2}
-                                style={{ fontSize: '5vw', color: isScrolledToRight2 ? 'transparent' : 'white', height: '60vh' }}  >
-                                <ChevronRightIcon />
-                            </button>}
-                        </Flex>
+                                </HStack>
+                                {!isMobile && <button onMouseEnter={() => handleArrowMouseEnter2('right')} onMouseLeave={handleArrowMouseLeave2}
+                                    style={{ fontSize: '5vw', color: isScrolledToRight2 ? 'transparent' : 'white', height: '60vh' }}  >
+                                    <ChevronRightIcon />
+                                </button>}
+                            </Flex>
 
-                    </motion.div>
+                        </motion.div>
 
-                }
-                {
-                    isStudentModalOpen && (
-                        <StudentModal
-                            isOpen={isStudentModalOpen}
-                            onClose={onStudentModalClose}
-                            studentData={selectedStudent}
-                        />
-                    )
-                }
-            </div >
-        </Flex>
-
-
+                    }
+                    {
+                        isStudentModalOpen && (
+                            <StudentModal
+                                isOpen={isStudentModalOpen}
+                                onClose={onStudentModalClose}
+                                studentData={selectedStudent}
+                            />
+                        )
+                    }
+                </div >
+            </Flex>
+            <SubjectScreen />
+        </div>
     )
 }

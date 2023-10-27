@@ -76,6 +76,59 @@ const ScrollProgressWrapper = styled.div`
   }
 `;
 
+
+const MainTitleWrapper = styled.div`
+  position: fixed;
+  left: 2vw;
+  top: 8vh;
+  height: 40vh;
+  width: 20vw;
+  opacity: 1;
+  zIndex: 1;
+  animation: fadeOut ease-in-out 1s;
+
+  > div:nth-child(1) {
+    height: 28%;
+    margin-bottom: 2%;
+  }
+  > div:nth-child(2) {
+    height: 40%;
+    margin-bottom: 2%;
+    > p {
+      color: white;
+      font-size: 1.5vh;
+      font-weight: 300;
+    }
+  }
+  > div:nth-child(3) {
+    height: 28%;
+    > p {
+      color: white;
+      font-size: 1vh;
+      font-weight: 200;
+    }
+  }
+
+  @media (max-width: 500px) {
+    br{
+       display: inline-block;
+       content: " ";
+    }
+
+    top: 4vw;
+    width: 100%;
+    left: 5vw;
+
+    > div:nth-child(1){
+      visibility: visible;
+      width: 20vw;
+    }
+    > div {
+      visibility: hidden;
+    }
+  }
+`;
+
 export default function RootLayout(props: Props) {
   const { scrollYProgress } = useScroll();
   const [progressVisible, setProgressVisible] = useState(false);
@@ -130,12 +183,11 @@ export default function RootLayout(props: Props) {
           entries.forEach((entry, index) => {
             if (entry.isIntersecting) {
               switch (entry.target.id) {
-                case "about":
-                  setProgress(1);
-                  break;
                 case "student":
+                  console.log('stu')
                   setProgress(2);
                 case "subject":
+                  console.log('sub')
                   setProgress(3);
               }
             }
@@ -143,6 +195,21 @@ export default function RootLayout(props: Props) {
         },
         {
           threshold: 0.2,
+        }
+      );
+      const io600vh = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+              switch (entry.target.id) {
+                case "about":
+                  setProgress(1);
+              }
+            }
+          });
+        },
+        {
+          threshold: 0.05,
         }
       );
 
@@ -154,7 +221,7 @@ export default function RootLayout(props: Props) {
         io.observe(introDiv);
         io200vh.observe(studentDiv);
         io200vh.observe(subjectDiv);
-        io200vh.observe(aboutDiv);
+        io600vh.observe(aboutDiv);
       }
     }
   }, [isLoaded]);
@@ -173,10 +240,9 @@ export default function RootLayout(props: Props) {
 
             {dday <= 0 && props.about}
             {dday <= 0 && props.student}
-            {dday <= 0 && props.subject}
+            {/* {dday <= 0 && props.subject} */}
             {dday <= 0 && props.end}
           </main>
-
           {progressVisible && dday <= 0 && (
             <ScrollProgressWrapper>
               <motion.div
@@ -189,7 +255,7 @@ export default function RootLayout(props: Props) {
                   initial={false}
                   animate={{ width: `${progress * 17.5}%` }}
                 />
-                <span>
+                <span onClick={() => { window.scrollTo(0, window.innerHeight) }}>
                   {progress >= 1 && (
                     <motion.div
                       initial={{ opacity: 0 }}
@@ -199,7 +265,7 @@ export default function RootLayout(props: Props) {
                   )}
                   <p>OPENING</p>
                 </span>
-                <span>
+                <span onClick={() => { window.scrollTo(0, window.innerHeight) }}>
                   {progress >= 1 && (
                     <motion.div
                       className="head"
@@ -210,7 +276,7 @@ export default function RootLayout(props: Props) {
                   )}
                   <p>ABOUT</p>
                 </span>
-                <span>
+                <span onClick={() => { window.scrollTo(0, window.innerHeight * 8) }}>
                   {progress >= 2 && (
                     <motion.div
                       className="head"
@@ -221,7 +287,7 @@ export default function RootLayout(props: Props) {
                   )}
                   <p>DESIGNER</p>
                 </span>
-                <span>
+                <span onClick={() => { window.scrollTo(0, window.innerHeight * 10) }}>
                   {progress >= 3 && (
                     <motion.div
                       className="head"
@@ -235,6 +301,46 @@ export default function RootLayout(props: Props) {
               </motion.div>
             </ScrollProgressWrapper>
           )}
+          {dday <= 0 && <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.5 }}
+          >
+            <MainTitleWrapper>
+              <div>
+                <img src={"/image/tag-logo.png"} />
+              </div>
+
+              <div>
+                <p>
+                  2024 KONKUK UNIVERSITY
+                  <br />
+                  VISUAL MOVING DESIGN
+                  <br />
+                  <br />
+                  VIDEO/DIGITAL TRACK
+                  <br />
+                  GRADUATION
+                  <br />
+                  EXHIBITION
+                </p>
+              </div>
+              <div>
+                <p>
+                  2024 건국대학교 시각영상디자인전공
+                  <br />
+                  영상/디지털 트랙 졸업전시회
+                  <br />
+                  <br />
+                  Fri Nov, 3th - Mon, 6th
+                  <br />
+                  서울 종로구 우정국로 68
+                  <br />
+                  동덕빌딩 동덕아트갤러리
+                </p>
+              </div>
+            </MainTitleWrapper>
+          </motion.div>}
         </ChakraProvider>
       </body>
     </html>

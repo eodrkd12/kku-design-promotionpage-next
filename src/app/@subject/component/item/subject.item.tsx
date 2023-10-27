@@ -116,7 +116,7 @@ const SubjectItem = (props: Props) => {
                     animate={{ scaleY: 1, y: "-19vh" }}
                     transition={{ duration: 0.3, delay: 0.5 }}
                 >
-                    <WorkList />
+                    <WorkList subject={props.subject} />
                 </motion.div>
             </div>}
         </ItemWrapper>

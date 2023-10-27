@@ -1,4 +1,12 @@
+import PromotionVideoData from "@/app/@student/data/PromotionVideo-data";
+import animationStudioData from "@/app/@student/data/animationStudio-data";
+import brandPackageDesignData from "@/app/@student/data/brandPackageDesign-data";
+import digitalMajorProjectData from "@/app/@student/data/digitalMajorProject-data";
+import imcData from "@/app/@student/data/imc-data";
+import uiuxData from "@/app/@student/data/uiux-data";
+import videoMajorProjectData from "@/app/@student/data/videoMajorProject-data";
 import { Flex, HStack } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -9,11 +17,64 @@ const Wrapper = styled.div`
     height: 100%;
 `
 
-const WorkList = () => {
+interface Props {
+    subject: string;
+}
 
-    const ImageButton = () => (
+interface Work {
+    name: string;
+    student: Student[];
+    introduction: string;
+    explanation: string;
+    youtube?: string;
+    img?: string;
+}
+
+interface Student {
+    sname: string;
+    englishName: string;
+    studentNumber: string;
+    email: string;
+}
+
+interface ImageButtonProps {
+    src: string;
+}
+
+const WorkList = ({ subject }: Props) => {
+
+    const [workList, setWorkList] = useState<Work[]>([]);
+
+    useEffect(() => {
+        let _workList: Work[] = [];
+        switch (subject) {
+            case '전공연구프로젝트(영상)':
+                _workList = videoMajorProjectData;
+                break;
+            case 'IMC':
+                _workList = imcData;
+                break;
+            case '프로모션영상':
+                _workList = PromotionVideoData;
+                break;
+            case '전공연구프로젝트(디지털)':
+                _workList = digitalMajorProjectData;
+                break;
+            case 'UIUX캡스톤디자인':
+                _workList = uiuxData;
+                break;
+            case '애니메이션스튜디오':
+                _workList = animationStudioData;
+                break;
+            case '브랜드패키지디자인':
+                _workList = brandPackageDesignData;
+        }
+        setWorkList(_workList);
+    }, [subject])
+
+    const ImageButton = ({ src }: ImageButtonProps) => (
         <img
-            src={"/image/lightDoor.png"}
+            src={src}
             style={{
                 width: '14vw',
                 height: '20vh',
@@ -40,26 +101,14 @@ const WorkList = () => {
             }}>
                 <Flex flexDir={"column"} >
                     <Flex >
-
-                        <ImageButton />
-                        <ImageButton />
-                        <ImageButton />
-                        <ImageButton />
-                        <ImageButton />
-                        <ImageButton />
-                        <ImageButton />
-                        <ImageButton />
+                        {workList.slice(0, Math.ceil(workList.length / 2 - 1)).map((work, index) => (
+                            <ImageButton key={index} src={work.img ? work.img : "/image/lightDoor.png"} />
+                        ))}
                     </Flex>
                     <Flex>
-                        <ImageButton />
-                        <ImageButton />
-                        <ImageButton />
-                        <ImageButton />
-                        <ImageButton />
-                        <ImageButton />
-                        <ImageButton />
-                        <ImageButton />
-                        <ImageButton />
+                        {workList.slice(Math.ceil(workList.length / 2 - 1)).map((work, index) => (
+                            <ImageButton key={index} src={work.img ? work.img : "/image/lightDoor.png"} />
+                        ))}
                     </Flex>
                 </Flex>
             </HStack>

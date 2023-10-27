@@ -32,7 +32,7 @@ export default function SubjectScreen() {
         });
       },
       {
-        threshold: 0.6,
+        threshold: 0.3,
       }
     );
 

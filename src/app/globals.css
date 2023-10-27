@@ -62,7 +62,7 @@ div.parent {
   justify-content: center;
   align-items: center;
   background-color: black;
-
+  flex-direction: column;
 }
 
 div.parent-75vh {
@@ -91,7 +91,6 @@ div.parent-200vh {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: black;
 }
 
 div.parent-infinite {
@@ -101,6 +100,14 @@ div.parent-infinite {
   flex-direction: column;
   align-items: center;
   background-color: black;
+}
+
+div.parent-400vh {
+  width: 100%;
+  height: calc(var(--vh, 1vh) * 400);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 div.parent-600vh {
