@@ -227,7 +227,7 @@ export default function StudentScreen() {
         backgroundImage: `url(/image/stu_work_background.jpeg)`,
         backgroundSize: "100vw 100vh",
         backgroundRepeat: "no-repeat",
-        backgroundAttachment: attachment,
+        backgroundAttachment: "fixed",
       }}
     >
       <Flex
