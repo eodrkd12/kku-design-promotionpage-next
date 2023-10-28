@@ -22,7 +22,7 @@ const ScrollProgressWrapper = styled.div`
   left: 50%;
   transform: translate(-50%, 0);
   background-color: black;
-  z-index:1;
+  z-index: 1;
 
   > div {
     width: 100%;
@@ -77,7 +77,6 @@ const ScrollProgressWrapper = styled.div`
   }
 `;
 
-
 const MainTitleWrapper = styled.div`
   position: fixed;
   left: 2vw;
@@ -115,16 +114,16 @@ const MainTitleWrapper = styled.div`
   }
 
   @media (max-width: 500px) {
-    br{
-       display: inline-block;
-       content: " ";
+    br {
+      display: inline-block;
+      content: " ";
     }
 
     top: 4vw;
     width: 100%;
     left: 5vw;
 
-    > div:nth-child(1){
+    > div:nth-child(1) {
       visibility: visible;
       width: 20vw;
     }
@@ -147,7 +146,6 @@ export default function RootLayout(props: Props) {
   const [dday, setDday] = useState(0);
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-
     if (latest <= 0.59) {
       setProgress(1);
     } else if (latest <= 0.8181) {
@@ -155,7 +153,7 @@ export default function RootLayout(props: Props) {
     } else {
       setProgress(3);
     }
-  })
+  });
 
   useEffect(() => {
     const setDate = new Date("2023-10-25T00:00:00+0900");
@@ -170,6 +168,7 @@ export default function RootLayout(props: Props) {
     }, 1000);
     setTimeout(() => {
       setIsLoaded(true);
+      setProgress(1);
     }, 2000);
     setScreenHeight();
     window.addEventListener("resize", setScreenHeight);
@@ -220,7 +219,11 @@ export default function RootLayout(props: Props) {
                   initial={false}
                   animate={{ width: `${progress * 15}%` }}
                 />
-                <span onClick={() => { about?.scrollIntoView({ behavior: 'smooth' }) }}>
+                <span
+                  onClick={() => {
+                    about?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                >
                   {progress >= 1 && (
                     <motion.div
                       initial={{ opacity: 0 }}
@@ -230,7 +233,11 @@ export default function RootLayout(props: Props) {
                   )}
                   <p>HOME</p>
                 </span>
-                <span onClick={() => { about?.scrollIntoView({ behavior: 'smooth' }) }}>
+                <span
+                  onClick={() => {
+                    about?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                >
                   {progress >= 1 && (
                     <motion.div
                       className="head"
@@ -241,7 +248,11 @@ export default function RootLayout(props: Props) {
                   )}
                   <p>ABOUT</p>
                 </span>
-                <span onClick={() => { student?.scrollIntoView({ behavior: 'smooth' }) }}>
+                <span
+                  onClick={() => {
+                    student?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                >
                   {progress >= 2 && (
                     <motion.div
                       className="head"
@@ -252,7 +263,11 @@ export default function RootLayout(props: Props) {
                   )}
                   <p>DESIGNER</p>
                 </span>
-                <span onClick={() => { subject?.scrollIntoView({ behavior: 'smooth' }) }}>
+                <span
+                  onClick={() => {
+                    subject?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                >
                   {progress >= 3 && (
                     <motion.div
                       className="head"
@@ -266,46 +281,48 @@ export default function RootLayout(props: Props) {
               </motion.div>
             </ScrollProgressWrapper>
           )}
-          {dday <= 0 && <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1.5 }}
-          >
-            <MainTitleWrapper>
-              <div>
-                <img src={"/image/tag-logo.png"} />
-              </div>
+          {dday <= 0 && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1.5 }}
+            >
+              <MainTitleWrapper>
+                <div>
+                  <img src={"/image/tag-logo.png"} />
+                </div>
 
-              <div>
-                <p>
-                  2024 KONKUK UNIVERSITY
-                  <br />
-                  VISUAL MOVING DESIGN
-                  <br />
-                  <br />
-                  VIDEO/DIGITAL TRACK
-                  <br />
-                  GRADUATION
-                  <br />
-                  EXHIBITION
-                </p>
-              </div>
-              <div>
-                <p>
-                  2024 건국대학교 시각영상디자인전공
-                  <br />
-                  영상/디지털 트랙 졸업전시회
-                  <br />
-                  <br />
-                  Fri Nov, 3th - Mon, 6th
-                  <br />
-                  서울 종로구 우정국로 68
-                  <br />
-                  동덕빌딩 동덕아트갤러리
-                </p>
-              </div>
-            </MainTitleWrapper>
-          </motion.div>}
+                <div>
+                  <p>
+                    2024 KONKUK UNIVERSITY
+                    <br />
+                    VISUAL MOVING DESIGN
+                    <br />
+                    <br />
+                    VIDEO/DIGITAL TRACK
+                    <br />
+                    GRADUATION
+                    <br />
+                    EXHIBITION
+                  </p>
+                </div>
+                <div>
+                  <p>
+                    2024 건국대학교 시각영상디자인전공
+                    <br />
+                    영상/디지털 트랙 졸업전시회
+                    <br />
+                    <br />
+                    Fri Nov, 3th - Mon, 6th
+                    <br />
+                    서울 종로구 우정국로 68
+                    <br />
+                    동덕빌딩 동덕아트갤러리
+                  </p>
+                </div>
+              </MainTitleWrapper>
+            </motion.div>
+          )}
         </ChakraProvider>
       </body>
     </html>

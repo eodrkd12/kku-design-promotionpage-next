@@ -6,15 +6,16 @@ import styled from "styled-components";
 import SubjectItem from "./component/item/subject.item";
 
 const SubjectList = styled.div`
-    display: flex;
-    flex-direction: column;
-    width: 70vw;
-    margin-left: 20vw;
-    margin-right: 6vw;
+  display: flex;
+  flex-direction: column;
+  width: 70vw;
+  margin-left: 20vw;
+  margin-right: 6vw;
+  position: relative;
 
-    @media (max-width: 500px) {
-      margin: 0;
-    }
+  @media (max-width: 500px) {
+    margin: 0;
+  }
 `;
 
 export default function SubjectScreen() {
@@ -40,25 +41,47 @@ export default function SubjectScreen() {
     if (subjectDiv) {
       io.observe(subjectDiv);
     }
-  }, [])
+  }, []);
 
-  return <div id="subject" className="parent-200vh">
-    {
-      contentVisible &&
-      <motion.div
-        initial={{ opacity: 0, y: 100 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 2 }}
-      >
-        <SubjectList>
-          <SubjectItem subject={"전공연구프로젝트(영상)"} img={"/image/lightDoor.png"} />
-          <SubjectItem subject={"IMC"} img={"/image/lightDoor.png"} />
-          <SubjectItem subject={"프로모션영상"} img={"/image/lightDoor.png"} />
-          <SubjectItem subject={"전공연구프로젝트(디지털)"} img={"/image/lightDoor.png"} />
-          <SubjectItem subject={"애니메이션스튜디오"} img={"/image/lightDoor.png"} />
-          <SubjectItem subject={"UXUI"} img={"/image/lightDoor.png"} />
-        </SubjectList>
-      </motion.div>}
-
-  </div>;
+  return (
+    <div id="subject" className="parent-200vh">
+      {contentVisible && (
+        <motion.div
+          initial={{ opacity: 0, y: 100 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 2 }}
+        >
+          <SubjectList>
+            <p
+              style={{
+                fontSize: "8vh",
+                color: "white",
+                fontWeight: 400,
+              }}
+            >
+              WORK
+            </p>
+            <SubjectItem
+              subject={"전공연구프로젝트(영상)"}
+              img={"/image/lightDoor.png"}
+            />
+            <SubjectItem subject={"IMC"} img={"/image/lightDoor.png"} />
+            <SubjectItem
+              subject={"프로모션영상"}
+              img={"/image/lightDoor.png"}
+            />
+            <SubjectItem
+              subject={"전공연구프로젝트(디지털)"}
+              img={"/image/lightDoor.png"}
+            />
+            <SubjectItem
+              subject={"애니메이션스튜디오"}
+              img={"/image/lightDoor.png"}
+            />
+            <SubjectItem subject={"UXUI"} img={"/image/lightDoor.png"} />
+          </SubjectList>
+        </motion.div>
+      )}
+    </div>
+  );
 }

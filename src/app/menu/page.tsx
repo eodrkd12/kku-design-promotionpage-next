@@ -81,11 +81,9 @@ export default function Menu() {
             entries => {
                 // entries[0]가 이 경우의 첫 번째(및 유일한) 항목입니다
                 if (entries[0].isIntersecting) {
-                    console.log(1);
                     setScrollable(false); // key가 2일때
                     // lockScroll();
                 } else {
-                    console.log(0);
                     setScrollable(true);
                     // openScroll();
                 }
