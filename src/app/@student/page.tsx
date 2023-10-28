@@ -224,12 +224,18 @@ export default function StudentScreen() {
     <div
       className="parent-400vh"
       style={{
-        backgroundImage: `url(/image/stu_work_background.jpeg)`,
-        backgroundSize: "100vw 100vh",
-        backgroundRepeat: "no-repeat",
-        backgroundAttachment: "fixed",
+        position: "relative",
       }}
     >
+      <img
+        style={{
+          width: "100vw",
+          height: "100vh",
+          position: "sticky",
+          top: "10.9vh",
+        }}
+        src="/image/stu_work_background.jpeg"
+      ></img>
       <Flex
         id="student"
         className="parent-200vh"
