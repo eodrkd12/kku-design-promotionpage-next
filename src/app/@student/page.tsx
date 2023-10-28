@@ -233,6 +233,7 @@ export default function StudentScreen() {
           height: "100vh",
           position: "sticky",
           top: "10.9vh",
+          zIndex: -100,
         }}
         src="/image/stu_work_background.jpeg"
       ></img>
