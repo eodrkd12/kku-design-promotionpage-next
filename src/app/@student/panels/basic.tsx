@@ -72,30 +72,21 @@ const BasicComponent = (props: Props) => {
                         ></iframe>
                     </Flex>
                 )}
-                <Flex justifyContent={"space-between"} h={"20vh"} gap={'3%'}>
-                    <img
-                        src={"/image/workimage/animation/ya/still/1.jpg"}
-                        alt="SignLogo"
-                        style={{ width: "20vw", height: "100%" }}
-                    />
 
-                    <img
-                        src={"/image/workimage/animation/ya/still/1.jpg"}
-                        alt="SignLogo"
-                        style={{ width: "20vw", height: "100%" }}
-                    />
+                <Flex>
+                    {props.work?.still?.map((still: any, index: number) => {
+                        return (
 
-                    <img
-                        src={"/image/workimage/animation/ya/still/1.jpg"}
-                        alt="SignLogo"
-                        style={{ width: "20vw", height: "100%" }}
-                    />
+                            <Flex margin={"2%"}>
+                                <img
+                                    src={props.work?.still[index]}
+                                    alt="SignLogo"
+                                    style={{ width: "20vw", height: "100%" }}
 
-                    <img
-                        src={"/image/workimage/animation/ya/still/1.jpg"}
-                        alt="SignLogo"
-                        style={{ width: "20vw", height: "100%" }}
-                    />
+                                />
+                            </Flex>
+                        );
+                    })}
                 </Flex>
             </Flex>
         </VStack>
