@@ -6,7 +6,9 @@ import imcData from "@/app/@student/data/imc-data";
 import uiuxData from "@/app/@student/data/uiux-data";
 import videoMajorProjectData from "@/app/@student/data/videoMajorProject-data";
 import { Flex, HStack } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { motion } from 'framer-motion';
+import { useEffect, useRef, useState } from "react";
+import { useMediaQuery } from "react-responsive";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -27,7 +29,7 @@ interface Work {
   introduction: string;
   explanation: string;
   youtube?: string;
-  img?: string;
+  still?: string[];
 }
 
 interface Student {
@@ -46,6 +48,51 @@ const WorkList = ({ subject }: Props) => {
   const [row1, setRow1] = useState<Work[]>([]);
   const [row2, setRow2] = useState<Work[]>([]);
 
+  const row1Ref = useRef<HTMLDivElement>(null);
+  const row2Ref = useRef<HTMLDivElement>(null);
+
+  const div = row1Ref.current;
+  const refId = useRef<number | null>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [previousX, setPreviousX] = useState(0);
+  const tickEvent = useRef<{ start: Date; tickCnt: number }>({ start: new Date(), tickCnt: 0 });
+
+  const isMobile = useMediaQuery({
+    query: "(max-width: 500px)",
+  });
+
+  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    setIsDragging(true);
+    setPreviousX(e.clientX);
+    tickEvent.current = { start: new Date(), tickCnt: 0 };
+  };
+
+  const handleMouseUp = (e: React.MouseEvent<HTMLDivElement>) => {
+    setIsDragging(false);
+    if (previousX === e.clientX) {
+      console.log("asdads");
+    }
+  };
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isDragging || !div || refId.current) {
+      return;
+    }
+
+    refId.current = requestAnimationFrame(() => {
+      if (div) {
+        const delta = e.clientX - previousX;
+        div.scrollLeft -= delta;
+        setPreviousX(e.clientX);
+      }
+      refId.current = null;
+      // 아래 예제에서 같이 사용될 코드(지금은 몰라도 무관합니다.)
+      tickEvent.current.tickCnt += 1;
+
+    });
+  };
+
   useEffect(() => {
     let _workList: Work[] = [];
     switch (subject) {
@@ -61,7 +108,7 @@ const WorkList = ({ subject }: Props) => {
       case "전공연구프로젝트(디지털)":
         _workList = digitalMajorProjectData;
         break;
-      case "UIUX캡스톤디자인":
+      case "UXUI":
         _workList = uiuxData;
         break;
       case "애니메이션스튜디오":
@@ -88,23 +135,36 @@ const WorkList = ({ subject }: Props) => {
   }, [workList]);
 
   const ImageButton = ({ src }: ImageButtonProps) => (
-    <img
-      src={src}
+    <div
       style={{
         width: "14vw",
-        height: "20vh",
-        border: "2px solid white",
-        transition: "transform 0.3s, filter 0.3s",
+        height: "16vh",
+        overflowX: 'hidden',
+        overflowY: 'hidden'
       }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.filter = "brightness(120%)";
-        e.currentTarget.style.transform = "scale(1.1)";
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.filter = "brightness(100%)";
-        e.currentTarget.style.transform = "scale(1)";
-      }}
-    />
+      onMouseDown={handleMouseDown}
+      onMouseMove={handleMouseMove}
+      onMouseUp={handleMouseUp}
+    >
+      <img
+        src={src}
+        style={{
+          width: "14vw",
+          height: "16vh",
+          border: "2px solid white",
+          transition: "transform 0.3s, filter 0.3s",
+          objectFit: 'cover',
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.filter = "brightness(120%)";
+          e.currentTarget.style.transform = "scale(1.1)";
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.filter = "brightness(100%)";
+          e.currentTarget.style.transform = "scale(1)";
+        }}
+      />
+    </div>
   );
 
   return (
@@ -113,27 +173,30 @@ const WorkList = ({ subject }: Props) => {
         spacing={2}
         overflowX="scroll"
         h={"100%"}
-        width={"100%"}
+        w={"100%"}
         sx={{
           "::-webkit-scrollbar": {
             display: "none",
           },
         }}
+        ref={row1Ref}
       >
-        <Flex flexDir={"column"}>
-          <Flex>
+        <Flex flexDir={"column"} gap={1}>
+          <Flex position={'relative'} gap={1}>
+            {isMobile && <motion.div>
+            </motion.div>}
             {row1.map((work, index) => (
               <ImageButton
                 key={index}
-                src={work.img ? work.img : "/image/lightDoor.png"}
+                src={work.still ? work.still[0] : "/image/lightDoor.png"}
               />
             ))}
           </Flex>
-          <Flex>
+          <Flex position={'relative'} gap={1}>
             {row2.map((work, index) => (
               <ImageButton
                 key={index}
-                src={work.img ? work.img : "/image/lightDoor.png"}
+                src={work.still ? work.still[0] : "/image/lightDoor.png"}
               />
             ))}
           </Flex>

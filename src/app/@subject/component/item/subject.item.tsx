@@ -1,12 +1,14 @@
+import PromotionVideoData from "@/app/@student/data/PromotionVideo-data";
+import animationStudioData from "@/app/@student/data/animationStudio-data";
+import brandPackageDesignData from "@/app/@student/data/brandPackageDesign-data";
+import digitalMajorProjectData from "@/app/@student/data/digitalMajorProject-data";
+import imcData from "@/app/@student/data/imc-data";
+import uiuxData from "@/app/@student/data/uiux-data";
+import videoMajorProjectData from "@/app/@student/data/videoMajorProject-data";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import WorkList from "../list/work.list";
-
-interface Props {
-  subject: string;
-  img: string;
-}
 
 const ItemWrapper = styled.div`
   position: relative;
@@ -43,7 +45,7 @@ const ItemWrapper = styled.div`
 
   > div.list-wrapper {
     width: 100%;
-    height: 50vh;
+    height: 45vh;
     display: flex;
     flex-direction: column;
 
@@ -71,15 +73,71 @@ const ItemWrapper = styled.div`
     }
     > div:nth-child(2) {
       width: 100%;
-      height: 40vh;
+      height: 33vh;
       margin-top: 0.5vh;
     }
   }
 `;
 
+interface Props {
+  subject: string;
+}
+interface Work {
+  name: string;
+  student: Student[];
+  introduction: string;
+  explanation: string;
+  youtube?: string;
+  still?: string[];
+  poster?: string[];
+}
+interface Student {
+  sname: string;
+  englishName: string;
+  studentNumber: string;
+  email: string;
+}
 const SubjectItem = (props: Props) => {
   const [whileHover, setWhileHover] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
+  const [img, setImg] = useState('');
+
+  useEffect(() => {
+
+    let _workList: Work[] = [];
+
+    switch (props.subject) {
+      case "전공연구프로젝트(영상)":
+        _workList = videoMajorProjectData;
+        break;
+      case "IMC":
+        _workList = imcData;
+        break;
+      case "프로모션영상":
+        _workList = PromotionVideoData;
+        break;
+      case "전공연구프로젝트(디지털)":
+        _workList = digitalMajorProjectData;
+        break;
+      case "UXUI":
+        _workList = uiuxData;
+        break;
+      case "애니메이션스튜디오":
+        _workList = animationStudioData;
+        break;
+      case "브랜드패키지디자인":
+        _workList = brandPackageDesignData;
+    }
+
+    while (1) {
+      const _work = _workList[Math.floor(Math.random() * _workList.length)];
+      if (_work.still) {
+        setImg(_work.still[0]);
+        break;
+      }
+    }
+
+  }, [props])
 
   return (
     <ItemWrapper>
@@ -101,7 +159,10 @@ const SubjectItem = (props: Props) => {
         >
           {!whileHover && <div className="overlay"></div>}
           <p>{props.subject}</p>
-          <motion.img whileHover={{ scale: 1.1 }} src={props.img} />
+          <motion.img whileHover={{ scale: 1.1 }} src={img}
+            style={{
+              objectFit: 'cover'
+            }} />
         </motion.div>
       )}
 
@@ -117,14 +178,17 @@ const SubjectItem = (props: Props) => {
           >
             <motion.img
               whileHover={{ scale: 1.1 }}
-              src={props.img}
+              src={img}
               decoding="async"
               loading="lazy"
+              style={{
+                objectFit: 'cover'
+              }}
             />
           </motion.div>
           <motion.div
             initial={{ height: 0 }}
-            animate={{ height: "40vh" }}
+            animate={{ height: "33vh" }}
             transition={{ duration: 0.3, delay: 0.5 }}
           >
             <WorkList subject={props.subject} />

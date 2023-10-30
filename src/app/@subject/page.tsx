@@ -61,24 +61,12 @@ export default function SubjectScreen() {
             >
               WORK
             </p>
-            <SubjectItem
-              subject={"전공연구프로젝트(영상)"}
-              img={"/image/lightDoor.png"}
-            />
-            <SubjectItem subject={"IMC"} img={"/image/lightDoor.png"} />
-            <SubjectItem
-              subject={"프로모션영상"}
-              img={"/image/lightDoor.png"}
-            />
-            <SubjectItem
-              subject={"전공연구프로젝트(디지털)"}
-              img={"/image/lightDoor.png"}
-            />
-            <SubjectItem
-              subject={"애니메이션스튜디오"}
-              img={"/image/lightDoor.png"}
-            />
-            <SubjectItem subject={"UXUI"} img={"/image/lightDoor.png"} />
+            <SubjectItem subject={"전공연구프로젝트(영상)"} />
+            <SubjectItem subject={"IMC"} />
+            <SubjectItem subject={"프로모션영상"} />
+            <SubjectItem subject={"전공연구프로젝트(디지털)"} />
+            <SubjectItem subject={"애니메이션스튜디오"} />
+            <SubjectItem subject={"UXUI"} />
           </SubjectList>
         </motion.div>
       )}
