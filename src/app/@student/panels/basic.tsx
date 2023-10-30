@@ -53,7 +53,7 @@ const BasicComponent = (props: Props) => {
                     })}
                 </Flex>
             </Flex>
-            <Flex flexDir={"column"} w={"100%"} h={"45vh"} bg={'red'}>
+            <Flex flexDir={"column"} w={"100%"} h={"45vh"}>
                 <Text color={"white"}>
                     {props.work?.introduction}
                 </Text>
@@ -61,14 +61,17 @@ const BasicComponent = (props: Props) => {
                     {props.work?.explanation}
                 </Text>
                 {props.work && props.work.youtube && (
-                    <iframe
-                        width="100%"
-                        height={400}
-                        src={props.work.youtube}
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    ></iframe>
+                    <Flex height={'40vh'}>
+
+                        <iframe
+                            width="100%"
+                            height="100%"
+                            src={props.work.youtube}
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        ></iframe>
+                    </Flex>
                 )}
-                <Flex flexDir={"column"} justifyContent={"space-between"} h={"20vh"}>
+                <Flex justifyContent={"space-between"} h={"20vh"}>
                     <img
                         src={"/image/lightDoor.png"}
                         alt="SignLogo"

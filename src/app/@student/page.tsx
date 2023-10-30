@@ -8,7 +8,7 @@ import { useMediaQuery } from "react-responsive";
 import SubjectScreen from "../@subject/page";
 import digitalStudentData from "./data/digitalStudent-data";
 import videoStudentData from "./data/videoStudent-data";
-import CustomStudentModal from "./modal/cstudent.modal";
+import StudentModal from "./modal/student.modal";
 
 interface ImageButtonProps {
   src: string;
@@ -362,6 +362,7 @@ export default function StudentScreen() {
               </Flex>
             </motion.div>
           )}
+
         </div>
         <div>
           {contentVisible && (
@@ -470,15 +471,11 @@ export default function StudentScreen() {
             </motion.div>
           )}
         </div>
-        {/* {isStudentModalOpen && (
+        {isStudentModalOpen && (
           <StudentModal
             isOpen={isStudentModalOpen}
             onClose={onStudentModalClose}
             studentData={selectedStudent}
-          />
-        )} */}
-        {isStudentModalOpen && (
-          <CustomStudentModal
           />
         )}
       </Flex>
