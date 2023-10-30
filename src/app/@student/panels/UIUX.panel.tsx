@@ -21,6 +21,8 @@ interface Work {
   introduction: string;
   explanation: string;
   youtube?: string;
+  still: string[];
+  poster: string[];
 }
 
 interface Student {
@@ -34,14 +36,13 @@ const UIUXComponent = (props: Props) => {
   const [work, setWork] = useState<Work>();
   useEffect(() => {
     setWork(props.work);
-    console.log("Test" + work?.youtube);
   });
   return (
     // <VStack>
     <TabPanel h={"60vh"}>
       <VStack position={"relative"} h={"30%"}>
         <img
-          src={"../image/modal_image.jpg"}
+          src={"/image/modal_image.jpg"}
           alt="SignLogo"
           style={{ width: "100vw", height: "100%" }}
         />
@@ -91,18 +92,15 @@ const UIUXComponent = (props: Props) => {
           )}
         </VStack>
         <VStack>
-          <img
-            src={"../Image/testimage.jpeg"}
-            alt="SignLogo"
-            style={{ width: "10vw", height: "100%" }}
-          />
-        </VStack>
-        <VStack>
-          <img
-            src={"../Image/testimage.jpeg"}
-            alt="SignLogo"
-            style={{ width: "10vw", height: "50%" }}
-          />
+          {work?.still.map((still: React.ReactNode, index: number) => {
+            return (
+              <img
+                src={work?.still[index]}
+                alt="SignLogo"
+                style={{ width: "100vw", height: "100%" }}
+              />
+            );
+          })}
         </VStack>
       </VStack>
     </TabPanel>

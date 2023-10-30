@@ -60,8 +60,9 @@ const BasicComponent = (props: Props) => {
                 <Text color={"white"}>
                     {props.work?.explanation}
                 </Text>
+
                 {props.work && props.work.youtube && (
-                    <Flex height={'40vh'}>
+                    <Flex height={'40vh'} marginTop={"3%"} marginBottom={"3%"}>
 
                         <iframe
                             width="100%"
@@ -71,27 +72,27 @@ const BasicComponent = (props: Props) => {
                         ></iframe>
                     </Flex>
                 )}
-                <Flex justifyContent={"space-between"} h={"20vh"}>
+                <Flex justifyContent={"space-between"} h={"20vh"} gap={'3%'}>
                     <img
-                        src={"/image/lightDoor.png"}
+                        src={"/image/workimage/animation/ya/still/1.jpg"}
                         alt="SignLogo"
                         style={{ width: "20vw", height: "100%" }}
                     />
 
                     <img
-                        src={"/image/lightDoor.png"}
+                        src={"/image/workimage/animation/ya/still/1.jpg"}
                         alt="SignLogo"
                         style={{ width: "20vw", height: "100%" }}
                     />
 
                     <img
-                        src={"/image/lightDoor.png"}
+                        src={"/image/workimage/animation/ya/still/1.jpg"}
                         alt="SignLogo"
                         style={{ width: "20vw", height: "100%" }}
                     />
 
                     <img
-                        src={"/image/lightDoor.png"}
+                        src={"/image/workimage/animation/ya/still/1.jpg"}
                         alt="SignLogo"
                         style={{ width: "20vw", height: "100%" }}
                     />
