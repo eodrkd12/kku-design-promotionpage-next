@@ -18,6 +18,12 @@ export default [
     introduction: "천원의 소중한 가치를 당신께 전합니다",
     explanation: "추가예정",
     youtube: "https://youtu.be/hBWsDb652bY",
+    still: [
+      "/image/workimage/promotion/tenone/still/1.jpg",
+      "/image/workimage/promotion/tenone/still/2.jpg",
+      "/image/workimage/promotion/tenone/still/3.jpg",
+      "/image/workimage/promotion/tenone/still/4.jpg",
+    ],
   },
   {
     name: "내 손안에 신세계",
@@ -45,6 +51,12 @@ export default [
     explanation:
       "최근 몇 년간 한국 사회를 뜨겁게 달군 키워드 중 하나는 문해력 논란이다. 이처럼 문해력이 낮아지는 가장 큰 이유로 SNS 등의 미디어 이용 증가가 꼽혔다. 특히 코로나 이후 10~20대들에게 ‘읽기’가 점차 멀어지면서 앞으로 젊은 세대의 문해력은 더 떨어질 수 있다는 우려가 나오고 있다. 이를 통해 문해력의 중요성을 보여주고자 독서와 거리가 먼 인물을 주인공으로 설정하여, 조직원이 ‘밀리의 서재’를 활용해 독서를 하며 점차 문해력이 향상되는 모습을 표현하고자 했다. 문해력 논란이 된 대표적인 단어 3개를 선정해 시네마틱 광고 시리즈를 기획하였다. 이를 통해 문제 제기, 해결, 결과를 재밌게 보여주어 사람들의 흥미를 끌고 문해력의 중요성을 느끼게 하고자 했다.",
     youtube: "https://youtu.be/GMvka7PAneY",
+    still: [
+      "/image/workimage/promotion/myhand/still/1.jpg",
+      "/image/workimage/promotion/myhand/still/2.jpg",
+      "/image/workimage/promotion/myhand/still/3.jpg",
+      "/image/workimage/promotion/myhand/still/4.jpg",
+    ],
   },
   {
     name: "못난 동그라미",
@@ -68,6 +80,12 @@ export default [
     완벽함을 추구하며 자신을 못난 사람으로 여기는 주인공 세준은, 어글리어스의 못난이 채소를 활용한 요리를 먹으며 ‘진정한 가치’에 대한 깨달음을 얻고 자기 자신을 다시 마주하게 된다.
     관람자들도 영상 관람 후 '진정한 가치'에 대해 한번쯤 깊이 생각해보는 기회가 되었으면 한다.`,
     youtube: "https://youtu.be/Kl3oAweEuZw",
+    still: [
+      "/image/workimage/promotion/uglycircle/still/1.jpg",
+      "/image/workimage/promotion/uglycircle/still/2.jpg",
+      "/image/workimage/promotion/uglycircle/still/3.jpg",
+      "/image/workimage/promotion/uglycircle/still/4.jpg",
+    ],
   },
   {
     name: "손 글씨의 음색",
@@ -94,6 +112,12 @@ export default [
     introduction: "따뜻한 손 글씨의 한 마디는 당신의 마음을 울리는 음악입니다",
     explanation: `디지털 소통에 푹 빠져있는 주인공 ‘심 송’은 어느 날 친구의 쪽지에서 피아노 소리를 듣게 되고, 이후 일상생활 속의 모든 손글씨에서 소리가 난다는 것을 알게 된다. 점차 주인공은 일상 속에서 핸드폰을 보는 날보다 손글씨를 쓰는 날이 많아진다. 그리고 마침내 스마트폰을 보느라 처음에는 보지 못했던 엄마의 포스트잇에 답장을하며 디지털소통 부작용에서 벗어난다.`,
     youtube: "https://youtu.be/B1AwsVz9mLM",
+    still: [
+      "/image/workimage/promotion/handwriting/still/1.jpg",
+      "/image/workimage/promotion/handwriting/still/2.jpg",
+      "/image/workimage/promotion/handwriting/still/3.jpg",
+      "/image/workimage/promotion/handwriting/still/4.jpg",
+    ],
   },
   {
     name: "겨울나기",
@@ -116,6 +140,12 @@ export default [
     explanation:
       "은둔청년 겨울이의 사회 복귀를 위해 파견된 KT AI 스피커 '봄이'. 봄이를 무시하던 겨울이는 봄이의 개인 맞춤 딥러닝을 통해 점차 마음을 열게 된다. 봄이와 함께하는 KT 은둔청년 사회 복귀 프로젝트를 통해 조금씩 세상 밖으로 나아가는 겨울은 기나긴 겨울을 지내고 다시 봄을 맞게 된다. '겨울나기'는 은둔청년 문제 해결을 위해  KT에 은둔청년 사회 복귀 프로젝트를 제안하고자 제작한 프로모션 영상이다. 은둔청년에 대한 사회의 관심을 촉구하는 것에서 더 나아가 기존 KT AI care 서비스를 적용한 실질적인 해결 방안을 제시하려 한다. 은둔청년 문제를 해결함으로써 KT의 기술을  홍보하고, 사회 환원에 앞장서는 브랜드 이미지를 구축하는 것을 목표로 한다.",
     youtube: "https://youtu.be/E2_J1t-90Qw",
+    still: [
+      "/image/workimage/promotion/winter/still/1.png",
+      "/image/workimage/promotion/winter/still/2.jpg",
+      "/image/workimage/promotion/winter/still/3.jpg",
+      "/image/workimage/promotion/winter/still/4.jpg",
+    ],
   },
   {
     name: "오늘도 자전거",
@@ -137,5 +167,11 @@ export default [
     explanation:
       "주인공 '해솔'은 친구처럼 여겼던 자전거 '천리'를 도둑맞아 찾아 나선다. 이 과정에서 과거 추억을 회상하며, 친구로서의 감성 연결과 소중한 재회를 경험하게 된다. 주인공이 자전거에 대한 애정과 책임감을 갖고 자전거와 함께 환경을 보호하는 모습을 보여줌으로써 시청자들에게 탄소중립의 실천적인 메시지를 전달한다. 이를 통해 일상에서 물건을 소중히 여기고, 미래의 지속 가능한 삶을 향한 한 걸음을 내딛는 데에 일조할 수 있는 효과를 기대한다.",
     youtube: "https://youtu.be/uym11tr1u_A",
+    still: [
+      "/image/workimage/promotion/todaycycle/still/1.jpg",
+      "/image/workimage/promotion/todaycycle/still/1.jpg",
+      "/image/workimage/promotion/todaycycle/still/1.jpg",
+      "/image/workimage/promotion/todaycycle/still/1.jpg",
+    ],
   },
 ];
