@@ -36,14 +36,14 @@ export default [{
     explanation: '2021년 기준 291만 톤의 가정 플라스틱 폐기물이 버려지고 있지만, 재활용의 비율은 56.7%에 불과하다. 가정 플라스틱 폐기물 중 73%는 식품 포장재라는 사실을 바탕으로, 음식을 먹을 때 발생하는 플라스틱 쓰레기를 올바르게 재활용한다면 효과적인 해결 방법이 될 수 있을 것이라는 결론에 도달했다. 따라서 음식을 먹을 때 재활용 실천을 유도하는 "냠코 브랜드 캠페인"을 기획하였다. 냠코하자 캠페인은 냠코앱을 중심으로 진행된다. 앱에서 재활용 인증샷을 찍고 이벤트를 진행하며 재활용을 실천하면 포인트가 쌓인다. 이 포인트로 각종 상품, 냠코 굿즈들을 구매할 수 있다. 또한 여러 가지 미션을 달성하면 앱 내에서 뱃지를 받게 되고, 어떤 뱃지들은 실제로도 받을 수도 있다. 이외에도 배달 용기의 구체적인 재활용법이 적혀있는 재활용 카드, 밥 먹을 때 플라스틱을 덜 쓸 수 있게 하는 수저와 친환경 보관 용기 세트, 각종 팬시 용품을 사용하며 캠페인에 참여할 수 있다.'
     ,
     still: [
-        "/image/workimage/brandpackage/namco/still/1.jpg",
-        "/image/workimage/brandpackage/namco/still/2.jpg",
-        "/image/workimage/brandpackage/namco/still/3.jpg",
-        "/image/workimage/brandpackage/namco/still/4.jpg",
-        "/image/workimage/brandpackage/namco/still/5.jpg",
-        "/image/workimage/brandpackage/namco/still/6.jpg",
-        "/image/workimage/brandpackage/namco/still/7.jpg",
-        "/image/workimage/brandpackage/namco/still/8.jpg"
+        "/image/workimage/brandpackage/namco/still/1.png",
+        "/image/workimage/brandpackage/namco/still/2.png",
+        "/image/workimage/brandpackage/namco/still/3.png",
+        "/image/workimage/brandpackage/namco/still/4.png",
+        "/image/workimage/brandpackage/namco/still/5.png",
+        "/image/workimage/brandpackage/namco/still/6.png",
+        "/image/workimage/brandpackage/namco/still/7.png",
+        "/image/workimage/brandpackage/namco/still/8.png"
     ]
 },
 {

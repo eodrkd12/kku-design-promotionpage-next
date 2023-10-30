@@ -16,7 +16,7 @@ export default [
     email: "rnjsekdnjs123@gmail.com",
     phoneNumber: "010-2614-6755",
     track: "영상",
-    subject: "전공연구프로젝트(영상) / IMC / 프로모션영상",
+    subject: "전공연구프로젝트(영상) / IMC / 애니메이션스튜디오",
     profile: "/image/videoTrack23/201920138.jpg",
   },
   {
@@ -146,7 +146,7 @@ export default [
     email: "dbfla2611@naver.com",
     phoneNumber: "010-3603-2611",
     track: "영상",
-    subject: "전공연구프로젝트(영상) / IMC / 프로모션영상",
+    subject: "전공연구프로젝트(영상) / IMC / 애니메이션스튜디오",
     profile: "/image/videoTrack23/202020213.jpg",
   },
   {
@@ -186,7 +186,7 @@ export default [
     email: "booky22@naver.com",
     phoneNumber: "010-3149-9350",
     track: "영상",
-    subject: "전공연구프로젝트(영상) / IMC / 프로모션영상",
+    subject: "전공연구프로젝트(영상) / IMC / 애니메이션스튜디오",
     profile: "/image/videoTrack23/201920219.jpg",
   },
   {

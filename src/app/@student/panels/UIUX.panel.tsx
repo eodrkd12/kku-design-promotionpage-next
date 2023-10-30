@@ -1,14 +1,6 @@
-import { Flex, TabPanel, Text, VStack } from "@chakra-ui/react";
+import { TabPanel, Text, VStack } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { useMediaQuery } from "react-responsive";
 
-import PromotionVideoData from "../data/PromotionVideo-data";
-import animationStudioData from "../data/animationStudio-data";
-import brandPackageDesignData from "../data/brandPackageDesign-data";
-import digitalMajorProjectData from "../data/digitalMajorProject-data";
-import imcData from "../data/imc-data";
-import uiuxData from "../data/uiux-data";
-import videoMajorProjectData from "../data/videoMajorProject-data";
 
 interface Props {
   //   isOpen: boolean;
@@ -44,7 +36,7 @@ const UIUXComponent = (props: Props) => {
         <img
           src={"/image/modal_image.jpg"}
           alt="SignLogo"
-          style={{ width: "100vw", height: "100%" }}
+          style={{ width: "100vw", height: "100%", objectFit: 'cover' }}
         />
 
         <Text
@@ -97,7 +89,7 @@ const UIUXComponent = (props: Props) => {
               <img
                 src={work?.still[index]}
                 alt="SignLogo"
-                style={{ width: "100vw", height: "100%" }}
+                style={{ width: "100vw", height: "60vh", objectFit: 'contain' }}
               />
             );
           })}

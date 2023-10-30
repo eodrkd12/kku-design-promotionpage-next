@@ -171,6 +171,7 @@ export default function IntroductionScreen() {
           width: "100vw",
           height: "100vh",
           position: "fixed",
+          objectFit: 'cover',
           top: 0,
           zIndex: -100,
         }}

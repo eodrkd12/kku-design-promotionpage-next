@@ -1,5 +1,4 @@
 import {
-  Flex,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -11,8 +10,7 @@ import {
   TabList,
   TabPanel,
   TabPanels,
-  Tabs,
-  Text,
+  Tabs
 } from "@chakra-ui/react";
 import { useCallback, useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
@@ -24,8 +22,8 @@ import digitalMajorProjectData from "../data/digitalMajorProject-data";
 import imcData from "../data/imc-data";
 import uiuxData from "../data/uiux-data";
 import videoMajorProjectData from "../data/videoMajorProject-data";
-import BasicComponent from "../panels/basic";
 import UIUXComponent from "../panels/UIUX.panel";
+import BasicComponent from "../panels/basic";
 import BrandPackageComponent from "../panels/brandPackage.panel";
 import ImcLayoutComponent from "../panels/imcLayout";
 
@@ -86,17 +84,18 @@ const StudentModal = (props: Props) => {
         case "전공연구프로젝트(디지털)":
           workList = digitalMajorProjectData;
           break;
-        case "UIUX캡스톤디자인":
+        case "UIUX":
           workList = uiuxData;
           break;
         case "애니메이션스튜디오":
           workList = animationStudioData;
           break;
-        case "브랜드패키지디자인":
+        case "브랜드패키지":
           workList = brandPackageDesignData;
       }
 
       if (workList) {
+        console.log(workList);
         setWork(
           workList.filter((value) =>
             value.student.some(
@@ -110,7 +109,6 @@ const StudentModal = (props: Props) => {
 
   const getPanel = useCallback(() => {
     if (tabIdx !== null) {
-      console.log(subjectList[tabIdx])
       switch (subjectList[tabIdx]) {
         case "전공연구프로젝트(영상)":
           console.log("전공");
@@ -134,14 +132,14 @@ const StudentModal = (props: Props) => {
         case "애니메이션스튜디오":
           return <BasicComponent work={work} />
 
-        case "브랜드패키지디자인":
+        case "브랜드패키지":
           return <BrandPackageComponent work={work} />
       }
     }
   }, [tabIdx, work])
 
   useEffect(() => {
-
+    console.log(work);
   }, [work]);
 
   const isMobile = useMediaQuery({

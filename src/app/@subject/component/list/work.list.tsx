@@ -114,7 +114,7 @@ const WorkList = ({ subject }: Props) => {
       case "애니메이션스튜디오":
         _workList = animationStudioData;
         break;
-      case "브랜드패키지디자인":
+      case "브랜드패키지":
         _workList = brandPackageDesignData;
     }
     setWorkList(_workList);
@@ -138,7 +138,7 @@ const WorkList = ({ subject }: Props) => {
     <div
       style={{
         width: "14vw",
-        height: "16vh",
+        height: "12vh",
         overflowX: 'hidden',
         overflowY: 'hidden'
       }}
@@ -150,7 +150,7 @@ const WorkList = ({ subject }: Props) => {
         src={src}
         style={{
           width: "14vw",
-          height: "16vh",
+          height: "12vh",
           border: "2px solid white",
           transition: "transform 0.3s, filter 0.3s",
           objectFit: 'cover',

@@ -67,6 +67,7 @@ export default function SubjectScreen() {
             <SubjectItem subject={"전공연구프로젝트(디지털)"} />
             <SubjectItem subject={"애니메이션스튜디오"} />
             <SubjectItem subject={"UXUI"} />
+            <SubjectItem subject={"브랜드패키지"} />
           </SubjectList>
         </motion.div>
       )}

@@ -23,7 +23,7 @@ const BasicComponent = (props: Props) => {
                 <img
                     src={"/image/modal_image.jpg"}
                     alt="SignLogo"
-                    style={{ width: "100vw", height: "100%" }}
+                    style={{ width: "100vw", height: "100%", objectFit: 'cover' }}
                 />
 
                 <Text
@@ -81,7 +81,7 @@ const BasicComponent = (props: Props) => {
                                 <img
                                     src={props.work?.still[index]}
                                     alt="SignLogo"
-                                    style={{ width: "20vw", height: "100%" }}
+                                    style={{ width: "20vw", height: "100%", objectFit: 'contain' }}
 
                                 />
                             </Flex>

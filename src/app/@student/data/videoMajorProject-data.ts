@@ -112,6 +112,13 @@ export default [
     explanation: `현재 우리 사회는 돈의 유무에 따라 계급을 나누는 신계급 사회로 변하고 있다. 금수저, 흙수저를 나누는 우리의 사회에서 흙수저들은 죽을 듯이 노력해도 다 가지고 태어난 금수저들보다 부를 얻을 수 없는 것이 현실이다.
     러한 사회 현실을 다시 한번 고찰해 보며 바뀌려는 노력이 필요하다는 메시지를 전달하고, 더 나아가 계층 고착화가 더욱 심해지지 않도록 사람들의 인식개선을 위해 제작하였다.
     영상 속 자연은 돈을 뜻하고 PR 로봇은 저소득층을, 아기는 고소득층을 의미한다. 영상의 끝은 새롭게 태어나는 또 다른 PR 로봇의 이야기로 이어지는 루프 형식의 영상으로 애니메이션을 제작하였다.`,
+    youtube: "https://youtu.be/nX1BUxG7YGU",
+    still: [
+      "/image/workimage/videomajor/repeatitation/1.jpg",
+      "/image/workimage/videomajor/repeatitation/2.jpg",
+      "/image/workimage/videomajor/repeatitation/3.jpg",
+      "/image/workimage/videomajor/repeatitation/4.jpg",
+    ]
   },
   {
     name: "난 더 멀리 갈거야",
@@ -165,7 +172,7 @@ export default [
     introduction: "아픔을 이겨내고 세상 밖으로 나아가다",
     explanation:
       "다양한 심리적, 사회적 이유로 세상에서 고립된 은둔형 외톨이가 많이 존재한다. 이들은 비난 섞인 시선과 편견으로 인해 더욱더 밖에 나가는 것을 두려워한다. 따라서, 비슷한 상황을 겪고 있는 사람들에게 위로와 용기를 주기 위해 영상과 모션그래픽을 활용하여 뮤직비디오를 제작하였다. 은둔하는 주인공의  모습, 트라우마를 극복하는 과정, 마침내 사회로 나가기로 결심하는 장면을 담아 뮤직비디오로 제작하여 은둔형 외톨이뿐만 아니라 많은 사람들에게 용기를 건네주고자 하였다",
-    youtuble: "https://youtu.be/Tfe4w0zQaQE",
+    youtube: "https://youtu.be/Tfe4w0zQaQE",
     still: [
       "/image/workimage/videomajor/dearaboy/1.jpg",
       "/image/workimage/videomajor/dearaboy/2.jpg",
@@ -197,7 +204,7 @@ export default [
     ],
     introduction: "태엽이 자라는 섬마을의 비밀",
     explanation: `[KUMBAYA]는 아티스트 황푸하의 노래 '쿰바야'를 재해석해 다채로운 색감의 유화풍 애니메이션으로 표현한 아트 뮤직비디오이다. 어느 날 갑자기 자연물의 성장을 멈추게 하는 태엽이 생겨난 마을에 대한 이야기를 구상하였다. 막연한 두려움의 색안경을 낀 채 태엽을 멀리하는 어른들에게, 순수한 마음으로 태엽을 대하는 아이들이 진정한 태엽의 가치를 전해 마을은 더욱 아름답게 다시 피어난다. 편견을 가지지 않고 열린 마음과 순수한 시선을 간직한다면 누구나 새로움에서 참된 가치를 찾아낼 수 있음을 전달하고자 하였다. 또한 Ai라는 태엽이 돋아난 이 새로운 기술의 시대에, 두려움 없이 순수한 마음으로 새 기술을 맞이하고자 일부 장면에서 Ai 기술을 사용하여 이 메시지를 강조하고자 하였다.`,
-    youtuble: "https://youtu.be/oTeTU7cvH-w",
+    youtube: "https://youtu.be/oTeTU7cvH-w",
     still: [
       "/image/workimage/videomajor/kumbaya/1.jpg",
       "/image/workimage/videomajor/kumbaya/2.jpg",
@@ -230,7 +237,7 @@ export default [
     introduction: "갑자기 나는 모든 걸 볼 수 있어. 상록수를.",
     explanation:
       "작은 연구실에 살고 있는 식물연구원은 어느 날 우체통에 놓인 신문을 통해 ‘영원히 시들지 않는 꽃’의 존재를 알게 된다. 연구원은 이 꽃을 직접 연구하며 점차 집착하기 시작하고 이후에는 ‘영원히 시들지 않는 꽃’ 그 자체가 되기를 원하게 되어 마침내 완성된 꽃으로 차를 우려 마신다. 그러나 차를 마신 뒤 심각한 부작용으로 쓰러지게 되고, 마주한 환상 속에서 상록수 숲을 통해 깨달음을 얻는다.",
-    youtuble: "https://youtu.be/HBegAONUohw",
+    youtube: "https://youtu.be/HBegAONUohw",
     still: [
       "/image/workimage/videomajor/evergreen/1.jpg",
       "/image/workimage/videomajor/evergreen/2.jpg",

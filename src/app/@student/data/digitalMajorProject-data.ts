@@ -166,6 +166,12 @@ export default [
     explanation:
       "W.C는 World Crash의 약자로, 자신이 발명한 차원 뚫어뻥을 사용하던 도중 지구를 위험에 빠트리게 된 쥐 과학자가 이를 수습하는 내용의 2D 플랫포머 게임이다. 포인트 앤 클릭, 슬라이드 퍼즐, 플러피 버드, 레이싱 게임과 같은 다양한 미니 게임 요소들을 통합하여 제작하였다. 변기를 뚫다 세계 멸망을 일으키게 된 어처구니없는 상황에서, 인공지능 조수의 도움으로 집에 있는 부품들을 수집하여 해결책을 찾고 세상을 다시 복구하는 이야기를 담고 있다.",
     youtube: "https://youtu.be/HsECsrQ6RWo",
+    still: [
+      "/image/workimage/digital/worldcrash/still/1.jpg",
+      "/image/workimage/digital/worldcrash/still/2.jpg",
+      "/image/workimage/digital/worldcrash/still/3.jpg",
+      "/image/workimage/digital/worldcrash/still/4.jpg",
+    ]
   },
   {
     name: "CLEAN UP!",

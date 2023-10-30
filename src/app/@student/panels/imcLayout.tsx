@@ -22,7 +22,7 @@ const ImcLayoutComponent = (props: Props) => {
                 <img
                     src={"/image/modal_image.jpg"}
                     alt="SignLogo"
-                    style={{ width: "100vw", height: "100%" }}
+                    style={{ width: "100vw", height: "100%", objectFit: 'cover' }}
                 />
 
                 <Text
@@ -81,7 +81,7 @@ const ImcLayoutComponent = (props: Props) => {
                                 <img
                                     src={props.work?.still[index]}
                                     alt="SignLogo"
-                                    style={{ width: "20vw", height: "100%" }}
+                                    style={{ width: "20vw", height: "100%", objectFit: 'contain' }}
 
                                 />
                             </Flex>
@@ -133,7 +133,7 @@ const ImcLayoutComponent = (props: Props) => {
                                 <img
                                     src={props.work?.poster[index]}
                                     alt="SignLogo"
-                                    style={{ width: "40vw", height: "40vh" }}
+                                    style={{ width: "40vw", height: "40vh", objectFit: 'contain' }}
 
                                 />
 

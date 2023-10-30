@@ -14,7 +14,7 @@ const ItemWrapper = styled.div`
   position: relative;
   > div.title {
     width: 100%;
-    height: 20vh;
+    height: 15vh;
     box-sizing: border-box;
     border: 2px solid white;
     overflow-x: hidden;
@@ -45,13 +45,13 @@ const ItemWrapper = styled.div`
 
   > div.list-wrapper {
     width: 100%;
-    height: 45vh;
+    height: 36vh;
     display: flex;
     flex-direction: column;
 
     > div:nth-child(1) {
       width: 100%;
-      height: 20vh;
+      height: 15vh;
       margin-top: 0.5vh;
       box-sizing: border-box;
       border: 2px solid white;
@@ -73,7 +73,7 @@ const ItemWrapper = styled.div`
     }
     > div:nth-child(2) {
       width: 100%;
-      height: 33vh;
+      height: 25vh;
       margin-top: 0.5vh;
     }
   }
@@ -125,7 +125,7 @@ const SubjectItem = (props: Props) => {
       case "애니메이션스튜디오":
         _workList = animationStudioData;
         break;
-      case "브랜드패키지디자인":
+      case "브랜드패키지":
         _workList = brandPackageDesignData;
     }
 
@@ -145,7 +145,7 @@ const SubjectItem = (props: Props) => {
         <motion.div
           className="title"
           initial={{ height: "10vh" }}
-          animate={{ height: "20vh" }}
+          animate={{ height: "15vh" }}
           transition={{ duration: 0.5 }}
           onHoverStart={() => {
             setWhileHover(true);
@@ -169,7 +169,7 @@ const SubjectItem = (props: Props) => {
       {isClicked && (
         <div className="list-wrapper">
           <motion.div
-            initial={{ height: "20vh" }}
+            initial={{ height: "15vh" }}
             animate={{ height: "10vh" }}
             transition={{ duration: 0.5 }}
             onTap={() => {
@@ -188,7 +188,7 @@ const SubjectItem = (props: Props) => {
           </motion.div>
           <motion.div
             initial={{ height: 0 }}
-            animate={{ height: "33vh" }}
+            animate={{ height: "25vh" }}
             transition={{ duration: 0.3, delay: 0.5 }}
           >
             <WorkList subject={props.subject} />

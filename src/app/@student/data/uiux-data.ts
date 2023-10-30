@@ -127,7 +127,7 @@ export default [
     introduction: "Emotions / Goods",
     explanation:
       "이모티콘은 사용자들의 감정을 보다 쉽게 표현하기 위해 제작된 아트 매체이다. '로로 T콘'은 사람들을 빠르게 파악할 수 있는 MBTI들 중, 특히 표현에 어려움을 겪는, 혹은 결과론적인 표현을 주로 사용하는 'T' 성향의 사람들을 위한 원활한 소통의 기능을 제공한다. 같은 말이어도 톤과 말투에 따라 받아들여지는 방식이 상이하다. 다소 무뚝뚝한 '말'이어도 귀엽게 '보임'으로써 상대방의 공감 진입장벽을 낮출 수 있다.",
-    youtube: "https://youtu.be/PeyLSmLx5kU",
+    youtube: "https://youtu.be/2kFOF4bQCyg",
     still: [
       "/image/workimage/uiux/rorotcon/still/1.png",
       "/image/workimage/uiux/rorotcon/still/2.png",
@@ -212,7 +212,14 @@ export default [
       },
     ],
     introduction: "풍부한 영화 감상을 위한 나만의 기록지",
-    explanation: "추가예정",
+    explanation: `현대인들은 편리성을 토대로 발달한 ai 기술과 빅데이터가 추천해 준 영화나 짧은 영상들을 일회성으로 소비하는 일이 증가했다. 
+    하지만 문화란 사유하고 고찰하며 그 의미를 찾아내는 것, 일회적인 문화 소비와 과학기술이 선택하고 요약해 준 취향이 
+    과연 본연의 것이라 할 수 있을까? 
+    영화를 단순히 시청하는 것에서 그치지 않고 영화에 대한 자신만의 생각과 감정을 커스터마이징 한 공간에 녹아낼 수 있도록 
+    기회를 제공하는 수단으로써 '본-로그'를 소개한다. 
+    본로그는 영화의 감상평과 함께 사진, 정보, 인물, 지역에 대한 내용을 일기처럼 기록하여 진정한 개인의 취향 통계를 도출하며, 
+    이 통계표를 다른 사람들과 공유해 많은 사람과 이야기 나눌 수 있는 취향의 공간을 제공한다.`,
+    youtube: "https://youtu.be/hrZpeADFhB4",
     still: [
       "/image/workimage/uiux/bon/still/1.jpg",
       "/image/workimage/uiux/bon/still/2.jpg",

@@ -220,6 +220,9 @@ export default function StudentScreen() {
     </Flex>
   );
 
+
+
+
   return (
     <div
       className="parent-400vh"
@@ -232,6 +235,7 @@ export default function StudentScreen() {
           width: "100vw",
           height: "100vh",
           position: "sticky",
+          objectFit: "cover",
           top: "10.9vh",
           zIndex: -90,
         }}
@@ -242,7 +246,7 @@ export default function StudentScreen() {
         className="parent-200vh"
         flexDir={"column"}
         style={{
-          justifyContent: "flex-end",
+          justifyContent: "center",
         }}
       >
         <div style={{ zIndex: 1 }}>

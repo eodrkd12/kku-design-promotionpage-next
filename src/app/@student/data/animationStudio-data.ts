@@ -186,10 +186,10 @@ export default [
       "구미호, 도깨비 등 우리나라의 괴물들이 다니는 고등학교. 주인공 여우는 좋아하던 개구리 반찬이 급식에 나오지 않아 의문을 가지고 조사에 나선다. 어릴 적 술래잡기를 할 때 부르던 친숙한 동요와 , 달에서 외로이 살던 달두꺼비가 보름만 되면 지상에 내려와  양서류들과 놀이를 즐긴다는 달두꺼비 설화에서 모티브를 얻었다.",
     youtube: "https://youtu.be/YhcbJEFSxRY",
     still: [
-      "/image/workimage/animation/journey/still/1.jpg",
-      "/image/workimage/animation/journey/still/2.jpg",
-      "/image/workimage/animation/journey/still/3.jpg",
-      "/image/workimage/animation/journey/still/4.jpg"
+      "/image/workimage/animation/frog/still/1.jpg",
+      "/image/workimage/animation/frog/still/2.jpg",
+      "/image/workimage/animation/frog/still/3.jpg",
+      "/image/workimage/animation/frog/still/4.jpg"
     ]
   },
   {
@@ -207,10 +207,13 @@ export default [
       "어린 시절의 풍족하고 다양한 경험들을 거쳐, 인생의 중반에 접어들며 사회의 차가움과 반복되는 일상의 단조로움에 지친 루돌프의 일상을 담았다. 지루한 나날들이 로맨스 소설이라는 현실과는 다른 세계들과 상충되어 커플들을 싫어하는 '비틀린 욕망'으로 나타났다. 주로 커플들을 괴롭히고 다니고 악동처럼 굴지만 완전한 '악'은 아니기에 종종 '사슴적인' 면모도 보여준다.",
     youtube: "https://youtu.be/Zp4bZ3xNC1s",
     still: [
-      "/image/workimage/animation/frog/still/1.jpg",
-      "/image/workimage/animation/frog/still/2.jpg",
-      "/image/workimage/animation/frog/still/3.jpg",
-      "/image/workimage/animation/frog/still/4.jpg"
+      "/image/workimage/animation/roro/still/1.png",
+      "/image/workimage/animation/roro/still/2.png",
+      "/image/workimage/animation/roro/still/3.png",
+      "/image/workimage/animation/roro/still/4.png"
+    ],
+    poster: [
+      "/image/workimage/animation/roro/poster/1.jpeg"
     ]
   },
   {
@@ -269,6 +272,12 @@ export default [
     explanation:
       "악몽에 시달려 의지도, 목적도 ‘무’의 상태인 주인공은 빛도 거의 들어오지 않는 어두운 방에 자신을 고립시킨다. 생기를 잃은 공간에 놓인 어머니의 화분은 주인공이 자신의 내면과 현실을 마주하는 계기가 된다. 그는 어두운 고치를 벗어나 앞으로 나아갈 수 있을까? '집'이라는 공간은 우리 모두에게 마음의 안식처지만 동시에 외부로부터 나를 가둘 수 있는 공간이기도 하다. 고치 역시 자연에서 우화 하지 못하면 방치되어 썩는 최후를 맞이하는 것처럼, 자신의 행동이 곧 앞으로의 길을 결정한다는 메세지를 전하고자 한다.",
     youtube: "https://youtu.be/J8DUM90ALUg",
+    still: [
+      "/image/workimage/animation/gochi/still/1.png",
+      "/image/workimage/animation/gochi/still/2.png",
+      "/image/workimage/animation/gochi/still/3.png",
+      "/image/workimage/animation/gochi/still/4.png",
+    ]
   },
   {
     name: "또바기",

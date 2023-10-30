@@ -16,7 +16,7 @@ export default [
         email: 'mini_manimo411@naver.com',
         phoneNumber: '010-6478-3807',
         track: '디지털',
-        subject: '전공연구프로젝트(디지털) / UIUX / IMC',
+        subject: '전공연구프로젝트(디지털) / 애니메이션스튜디오 / IMC',
         profile: '/image/digitalTrack15/202020148.jpg'
     },
     {
@@ -66,7 +66,7 @@ export default [
         email: 'shruddnjs416@naver.com',
         phoneNumber: '010-4423-1294',
         track: '디지털',
-        subject: '전공연구프로젝트(디지털) / UIUX / 애니메이션스튜디오',
+        subject: '전공연구프로젝트(디지털) / UIUX / 프로모션영상',
         profile: '/image/digitalTrack15/201720293.jpg'
     },
     {
@@ -106,7 +106,7 @@ export default [
         email: 'goodluckayj@naver.com',
         phoneNumber: '010-7196-7161',
         track: '디지털',
-        subject: '전공연구프로젝트(디지털) / UIUX / 애니메이션스튜디오',
+        subject: '전공연구프로젝트(디지털) / UIUX / IMC',
         profile: '/image/digitalTrack15/201920181.jpg'
     },
     {
