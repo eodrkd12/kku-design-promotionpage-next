@@ -19,6 +19,17 @@ export default [
     explanation:
       "닌텐도 스위치는 최초의 하이브리드 게임기로, 휴대 가능한 거치형 가정용 게임기이다.휴대용과 거치형 콘솔의 한계에 최초로 도전하여 언제 어디서나 다양한 게임을 다양한 장소에서 다 함께 즐길 수 있는 게임기를 탄생시켰다.우리는 이러한 닌텐도 스위치의 특별함을 담은 메시지를 전달하려고 한다.장소와 시간의 제약을 받지 않고도 더욱 다양한 재미를 체험할 수 있다는 메시지를 명확하게 전달하고자 하여 영상 종류를 두 가지로 제작하였다.모션그래픽 애니메이션과 실사 촬영 등 표현 방법을 다르게 구성함으로써 영상 속 게임 플레이 장면을 다양하게 보여주려 한다.",
     youtube: "https://youtu.be/AIjbzq3Nf-8",
+    still: [
+      "/image/workimage/imc/nintendo/still/1.jpg",
+      "/image/workimage/imc/nintendo/still/2.jpg",
+      "/image/workimage/imc/nintendo/still/3.jpg",
+      "/image/workimage/imc/nintendo/still/4.jpg"
+    ],
+    poster: [
+      "/image/workimage/imc/nintendo/poster/1.png",
+      "/image/workimage/imc/nintendo/poster/2.png",
+      "/image/workimage/imc/nintendo/poster/3.png",
+    ]
   },
   {
     name: "이미지를 찾는 여정, Pinterest",

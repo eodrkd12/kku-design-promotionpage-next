@@ -14,15 +14,13 @@ interface Props {
 
 const BasicComponent = (props: Props) => {
 
-
     return (
-
-        <VStack position={"relative"} h={"30%"}>
-            <Flex >
+        <VStack position={"relative"} h={"100%"} bg={'red'} overflowY={'auto'} maxH={'100%'}>
+            <Flex position={'relative'} h={'30%'}>
                 <img
                     src={"/image/modal_image.jpg"}
                     alt="SignLogo"
-                    style={{ width: "100vw", height: "60%" }}
+                    style={{ width: "100vw", height: "100%" }}
                 />
 
                 <Text
@@ -53,13 +51,13 @@ const BasicComponent = (props: Props) => {
                 </Flex>
             </Flex>
             <Flex flexDir={"column"} w={"100%"} h={"70%"}>
-                <Text color={"white"} m={"1%"}>
+                <Text color={"white"} m={"1%"} h={'10%'}>
                     {props.work?.introduction}
                 </Text>
-                <Text color={"white"} m={"1%"}>
+                <Text color={"white"} m={"1%"} h={'20%'}>
                     {props.work?.explanation}
                 </Text>
-                <Flex margin={"3%"}>
+                <Flex margin={"3%"} h={'100%'}>
                     {props.work && props.work.youtube && (
                         <iframe
                             width="100%"
@@ -69,7 +67,7 @@ const BasicComponent = (props: Props) => {
                         ></iframe>
                     )}
                 </Flex>
-                <Flex flexDir={"row"} justifyContent={"space-between"}>
+                <Flex flexDir={"row"} justifyContent={"space-between"} h={'30%'}>
                     <img
                         src={"/image/lightDoor.png"}
                         alt="SignLogo"
@@ -95,7 +93,6 @@ const BasicComponent = (props: Props) => {
                     />
                 </Flex>
             </Flex>
-
         </VStack>
 
     )

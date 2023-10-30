@@ -119,6 +119,7 @@ const StudentModal = (props: Props) => {
       onClose={props.onClose}
       size={"6xl"}
       isCentered
+      autoFocus
     >
       <ModalOverlay />
       <ModalContent
@@ -130,16 +131,9 @@ const StudentModal = (props: Props) => {
         <ModalHeader>
           <ModalCloseButton color={"white"} />
         </ModalHeader>
-        <ModalBody
-          sx={{
-            "::-webkit-scrollbar": {
-              display: "none",
-            },
-          }}
-        >
+        <ModalBody>
           <Tabs
-            h={"80vh"}
-            position="relative"
+            h={"70vh"}
             variant="unstyled"
             onChange={(index: number) => {
               setTabIdx(index);
@@ -157,63 +151,12 @@ const StudentModal = (props: Props) => {
                 );
               })}
             </TabList>
-            <TabPanels h={"90vh"} overflowY={"auto"} maxH={"70vh"}>
+            <TabPanels h={"60vh"} overflowY={"auto"} maxH={"70vh"}>
               <TabPanel h={"60vh"} overflow="auto">
                 <BasicComponent work={work} />
-
-                {/* <Flex position={"relative"} h={"30%"}>
-                                    <img
-                                        src={"/image/modal_image.jpg"}
-                                        alt="SignLogo"
-                                        style={{ width: "100vw", height: "100%" }}
-                                    />
-
-                                    <Text
-                                        position={"absolute"}
-                                        color={"white"}
-                                        top={"50%"}
-                                        left={"5%"}
-                                        fontSize={50}
-                                        transform="translateY(-50%)"
-                                    >
-                                        {work?.name}
-                                    </Text>
-
-                                    <Flex
-                                        position={"absolute"}
-                                        color={"white"}
-                                        top={"5%"}
-                                        right={0}
-                                        flexDir={"column"}
-                                    >
-                                        {work?.student.map((student, index) => {
-                                            return (
-                                                <Text key={index}>
-                                                    {student.sname} {student.email}
-                                                </Text>
-                                            );
-                                        })}
-                                    </Flex>
-                                </Flex>
-                                <Flex flexDir={"column"} w={"100%"} h={"70%"}>
-                                    <Text color={"white"} m={"1%"}>
-                                        {work?.introduction}
-                                    </Text>
-                                    <Text color={"white"} m={"1%"}>
-                                        {work?.explanation}
-                                    </Text>
-                                    {work && work.youtube && (
-                                        <iframe
-                                            width="100%"
-                                            height="100%"
-                                            src={work.youtube}
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        ></iframe>
-                                    )}
-                                </Flex> */}
               </TabPanel>
               <TabPanel h={"60vh"}>
-                <Flex position={"relative"} h={"30%"}>
+                <Flex h={"30%"}>
                   <img
                     src={"/image/modal_image.jpg"}
                     alt="SignLogo"
@@ -303,7 +246,7 @@ const StudentModal = (props: Props) => {
                 </Flex>
               </TabPanel>
               <TabPanel h={"60vh"}>
-                <Flex position={"relative"} h={"30%"}>
+                <Flex h={"30%"}>
                   <img
                     src={"/image/modal_image.jpg"}
                     alt="SignLogo"
