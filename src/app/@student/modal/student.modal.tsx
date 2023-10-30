@@ -12,7 +12,7 @@ import {
   TabPanel,
   TabPanels,
   Tabs,
-  Text
+  Text,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
@@ -25,6 +25,8 @@ import imcData from "../data/imc-data";
 import uiuxData from "../data/uiux-data";
 import videoMajorProjectData from "../data/videoMajorProject-data";
 import BasicComponent from "../panels/basic";
+import UIUXComponent from "../panels/UIUX.panel";
+import BrandPackageComponent from "../panels/brandPackage.panel";
 
 interface Props {
   isOpen: boolean;
@@ -113,7 +115,6 @@ const StudentModal = (props: Props) => {
   });
 
   return (
-
     <Modal
       closeOnOverlayClick={false}
       isOpen={props.isOpen}
@@ -121,7 +122,7 @@ const StudentModal = (props: Props) => {
       size={"6xl"}
       isCentered
       autoFocus
-      scrollBehavior='inside'
+      scrollBehavior="inside"
     >
       <ModalOverlay />
       <ModalContent
@@ -154,8 +155,10 @@ const StudentModal = (props: Props) => {
               })}
             </TabList>
             <TabPanels flex={1} overflowY={"scroll"} maxH={"70vh"}>
-              <TabPanel h={'100%'}>
-                <BasicComponent work={work} />
+              <TabPanel h={"100%"}>
+                {/* <BasicComponent work={work} /> */}
+                {/* <UIUXComponent work={work} /> */}
+                <BrandPackageComponent work={work} />
               </TabPanel>
               <TabPanel h={"60vh"}>
                 <Flex h={"30%"}>
@@ -351,7 +354,7 @@ const StudentModal = (props: Props) => {
         </ModalBody>
         <ModalFooter></ModalFooter>
       </ModalContent>
-    </Modal >
+    </Modal>
   );
 };
 
