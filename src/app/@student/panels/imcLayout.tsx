@@ -89,71 +89,39 @@ const ImcLayoutComponent = (props: Props) => {
                         );
                     })}
                 </Flex>
-                {/* <Flex flexDir={"column"} w={"100%"} h={"100%"}>
-                    <Text color={"white"} transform="translateY(6vh)">
+
+                <Flex flexDir={"column"} w={"100%"} h={"100%"} >
+
+                    <Text color={"white"} >
                         지면
                     </Text>
-                    {props.work && props.work.youtube && (
-                        <iframe
-                            width="100%"
-                            height="100%"
-                            src={props.work.youtube}
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        ></iframe>
-                    )}
-                </Flex> */}
-                <Flex flexDir={"column"} w={"100%"} h={"100%"}>
-                    <Text color={"white"} transform="translateY(6vh)">
-                        지면
-                    </Text>
-                    {/* <Flex
-                        flexDir={"row"}
-                        justifyContent={"space-between"}
-                        transform="translateY(8vh)"
-                        gap={"2%"}
-                    >
-                        <img
-                            src={"/image/workimage/animation/ya/still/1.jpg"}
-                            alt="SignLogo"
-                            style={{ width: "40vw", height: "40vh" }}
-                        />
-
-                        <img
-                            src={"/image/workimage/animation/ya/still/1.jpg"}
-                            alt="SignLogo"
-                            style={{ width: "40vw", height: "40vh" }}
-                        />
-                    </Flex> */}
-
 
                     {props.work?.poster?.map((poster: any, index: number) => {
                         const isVideo = poster.startsWith("http");
+                        if (isVideo) return null; // 비디오는 제외
                         return (
-                            <Flex margin={"2%"}>
-                                <img
-                                    src={props.work?.poster[index]}
-                                    alt="SignLogo"
-                                    style={{ width: "40vw", height: "40vh" }}
+                            <Flex key={index} margin={"2%"} flexDir={"column"}>
 
-                                />
+                                {isVideo ? (
 
+                                    <iframe
+                                        width="100%"
+                                        height="100%"
+                                        src={props.work?.poster[index]}
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    ></iframe>
+                                ) : (
+                                    <img
+                                        src={props.work?.poster[index]}
+                                        alt="SignLogo"
+                                        style={{ width: "80%", height: "100%" }}
+                                    />
+                                )}
                             </Flex>
+
                         );
                     })}
 
-                    {props.work?.poster?.map((poster: any, index: number) => {
-                        return (
-                            <Flex margin={"2%"}>
-
-                                <iframe
-                                    width="100%"
-                                    height="100%"
-                                    src={props.work?.poster[index]}
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                ></iframe>
-                            </Flex>
-                        );
-                    })}
 
 
                 </Flex>
