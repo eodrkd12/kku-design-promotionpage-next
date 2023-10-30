@@ -15,8 +15,11 @@ interface Props {
 const BasicComponent = (props: Props) => {
 
     return (
-        <VStack position={"relative"} h={"100%"} bg={'red'} overflowY={'auto'} maxH={'100%'}>
-            <Flex position={'relative'} h={'30%'}>
+        <VStack w={'100%'}
+            h={'100%'}
+            flex={1}
+            overflowY={'auto'}>
+            <Flex position={'relative'} h={'15vh'}>
                 <img
                     src={"/image/modal_image.jpg"}
                     alt="SignLogo"
@@ -50,24 +53,22 @@ const BasicComponent = (props: Props) => {
                     })}
                 </Flex>
             </Flex>
-            <Flex flexDir={"column"} w={"100%"} h={"70%"}>
-                <Text color={"white"} m={"1%"} h={'10%'}>
+            <Flex flexDir={"column"} w={"100%"} h={"45vh"} bg={'red'}>
+                <Text color={"white"}>
                     {props.work?.introduction}
                 </Text>
-                <Text color={"white"} m={"1%"} h={'20%'}>
+                <Text color={"white"}>
                     {props.work?.explanation}
                 </Text>
-                <Flex margin={"3%"} h={'100%'}>
-                    {props.work && props.work.youtube && (
-                        <iframe
-                            width="100%"
-                            height="100%"
-                            src={props.work.youtube}
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        ></iframe>
-                    )}
-                </Flex>
-                <Flex flexDir={"row"} justifyContent={"space-between"} h={'30%'}>
+                {props.work && props.work.youtube && (
+                    <iframe
+                        width="100%"
+                        height={400}
+                        src={props.work.youtube}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    ></iframe>
+                )}
+                <Flex flexDir={"column"} justifyContent={"space-between"} h={"20vh"}>
                     <img
                         src={"/image/lightDoor.png"}
                         alt="SignLogo"

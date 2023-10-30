@@ -9,7 +9,6 @@ import SubjectScreen from "../@subject/page";
 import digitalStudentData from "./data/digitalStudent-data";
 import videoStudentData from "./data/videoStudent-data";
 import CustomStudentModal from "./modal/cstudent.modal";
-import StudentModal from "./modal/student.modal";
 
 interface ImageButtonProps {
   src: string;
@@ -363,10 +362,6 @@ export default function StudentScreen() {
               </Flex>
             </motion.div>
           )}
-          {isStudentModalOpen && (
-            <CustomStudentModal
-            />
-          )}
         </div>
         <div>
           {contentVisible && (
@@ -474,14 +469,18 @@ export default function StudentScreen() {
               </Flex>
             </motion.div>
           )}
-          {isStudentModalOpen && (
-            <StudentModal
-              isOpen={isStudentModalOpen}
-              onClose={onStudentModalClose}
-              studentData={selectedStudent}
-            />
-          )}
         </div>
+        {/* {isStudentModalOpen && (
+          <StudentModal
+            isOpen={isStudentModalOpen}
+            onClose={onStudentModalClose}
+            studentData={selectedStudent}
+          />
+        )} */}
+        {isStudentModalOpen && (
+          <CustomStudentModal
+          />
+        )}
       </Flex>
       <SubjectScreen />
     </div>

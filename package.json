@@ -27,6 +27,7 @@
     "react-dom": "18.2.0",
     "react-horizontal-scrolling-menu": "^4.1.1",
     "react-responsive": "^9.0.2",
+    "react-youtube": "10.1.0",
     "styled-components": "^6.0.8",
     "tailwindcss": "3.3.3",
     "typescript": "5.2.2",

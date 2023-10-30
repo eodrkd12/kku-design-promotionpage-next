@@ -4,15 +4,8 @@ import {
   ModalBody,
   ModalCloseButton,
   ModalContent,
-  ModalFooter,
   ModalHeader,
-  ModalOverlay,
-  Tab,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Tabs,
-  Text,
+  ModalOverlay
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
@@ -117,239 +110,263 @@ const StudentModal = (props: Props) => {
       closeOnOverlayClick={false}
       isOpen={props.isOpen}
       onClose={props.onClose}
-      size={"6xl"}
-      isCentered
-      autoFocus
+      size={'6xl'}
+      scrollBehavior='inside'
     >
       <ModalOverlay />
       <ModalContent
         backgroundColor="black"
         borderColor={"blue"}
-        borderWidth={2}
-        borderRadius="25px"
-      >
+        borderWidth={2}>
         <ModalHeader>
           <ModalCloseButton color={"white"} />
         </ModalHeader>
         <ModalBody>
-          <Tabs
-            h={"70vh"}
-            variant="unstyled"
-            onChange={(index: number) => {
-              setTabIdx(index);
-            }}
-          >
-            <TabList justifyContent={"space-around"} mb={"1%"}>
-              {subjectList.map((value, index) => {
-                return (
-                  <Tab
-                    key={index}
-                    color={tabIdx === index ? "white" : "gray.500"}
-                  >
-                    {value}
-                  </Tab>
-                );
-              })}
-            </TabList>
-            <TabPanels h={"60vh"} overflowY={"auto"} maxH={"70vh"}>
-              <TabPanel h={"60vh"} overflow="auto">
-                <BasicComponent work={work} />
-              </TabPanel>
-              <TabPanel h={"60vh"}>
-                <Flex h={"30%"}>
-                  <img
-                    src={"/image/modal_image.jpg"}
-                    alt="SignLogo"
-                    style={{ width: "100vw", height: "100%" }}
-                  />
-
-                  <Text
-                    position={"absolute"}
-                    color={"white"}
-                    top={"50%"}
-                    left={"5%"}
-                    fontSize={50}
-                    transform="translateY(-50%)"
-                  >
-                    {work?.name}
-                  </Text>
-
-                  <Flex
-                    position={"absolute"}
-                    color={"white"}
-                    top={"5%"}
-                    right={0}
-                    flexDir={"column"}
-                  >
-                    {work?.student.map((student, index) => {
-                      return (
-                        <Text key={index}>
-                          {student.sname} {student.email}
-                        </Text>
-                      );
-                    })}
-                  </Flex>
-                </Flex>
-                <Flex flexDir={"column"} w={"100%"} h={"100%"}>
-                  <Text color={"white"} m={"1%"}>
-                    {work?.introduction}
-                  </Text>
-                  <Text color={"white"} m={"1%"}>
-                    {work?.explanation}
-                  </Text>
-                  {work && work.youtube && (
-                    <iframe
-                      width="100%"
-                      height="100%"
-                      src={work.youtube}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    ></iframe>
-                  )}
-                </Flex>
-                <Flex flexDir={"row"} justifyContent={"space-between"}>
-                  <img
-                    src={"/image/lightDoor.png"}
-                    alt="SignLogo"
-                    style={{ width: "20vw", height: "100%" }}
-                  />
-                  {/* <Spacer /> */}
-                  <img
-                    src={"/image/lightDoor.png"}
-                    alt="SignLogo"
-                    style={{ width: "20vw", height: "100%" }}
-                  />
-                  {/* <Spacer /> */}
-                  <img
-                    src={"/image/lightDoor.png"}
-                    alt="SignLogo"
-                    style={{ width: "20vw", height: "100%" }}
-                  />
-                  {/* <Spacer /> */}
-                  <img
-                    src={"/image/lightDoor.png"}
-                    alt="SignLogo"
-                    style={{ width: "20vw", height: "100%" }}
-                  />
-                </Flex>
-                <Flex flexDir={"column"} w={"100%"} h={"100%"}>
-                  <Text color={"white"} transform="translateY(6vh)">
-                    지면
-                  </Text>
-                  {work && work.youtube && (
-                    <iframe
-                      width="100%"
-                      height="100%"
-                      src={work.youtube}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    ></iframe>
-                  )}
-                </Flex>
-              </TabPanel>
-              <TabPanel h={"60vh"}>
-                <Flex h={"30%"}>
-                  <img
-                    src={"/image/modal_image.jpg"}
-                    alt="SignLogo"
-                    style={{ width: "100vw", height: "100%" }}
-                  />
-
-                  <Text
-                    position={"absolute"}
-                    color={"white"}
-                    top={"50%"}
-                    left={"5%"}
-                    fontSize={50}
-                    transform="translateY(-50%)"
-                  >
-                    {work?.name}
-                  </Text>
-
-                  <Flex
-                    position={"absolute"}
-                    color={"white"}
-                    top={"5%"}
-                    right={0}
-                    flexDir={"column"}
-                  >
-                    {work?.student.map((student, index) => {
-                      return (
-                        <Text key={index}>
-                          {student.sname} {student.email}
-                        </Text>
-                      );
-                    })}
-                  </Flex>
-                </Flex>
-                <Flex flexDir={"column"} w={"100%"} h={"70%"}>
-                  <Text color={"white"} m={"1%"}>
-                    {work?.introduction}
-                  </Text>
-                  <Text color={"white"} m={"1%"}>
-                    {work?.explanation}
-                  </Text>
-                  {work && work.youtube && (
-                    <iframe
-                      width="100%"
-                      height="100%"
-                      src={work.youtube}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    ></iframe>
-                  )}
-                </Flex>
-                <Flex flexDir={"row"} justifyContent={"space-between"}>
-                  <img
-                    src={"/image/lightDoor.png"}
-                    alt="SignLogo"
-                    style={{ width: "20vw", height: "100%" }}
-                  />
-                  {/* <Spacer /> */}
-                  <img
-                    src={"/image/lightDoor.png"}
-                    alt="SignLogo"
-                    style={{ width: "20vw", height: "100%" }}
-                  />
-                  {/* <Spacer /> */}
-                  <img
-                    src={"/image/lightDoor.png"}
-                    alt="SignLogo"
-                    style={{ width: "20vw", height: "100%" }}
-                  />
-                  {/* <Spacer /> */}
-                  <img
-                    src={"/image/lightDoor.png"}
-                    alt="SignLogo"
-                    style={{ width: "20vw", height: "100%" }}
-                  />
-                </Flex>
-                <Flex flexDir={"column"} w={"100%"} h={"100%"}>
-                  <Text color={"white"} transform="translateY(6vh)">
-                    지면
-                  </Text>
-                  <Flex
-                    flexDir={"row"}
-                    justifyContent={"space-between"}
-                    transform="translateY(8vh)"
-                  >
-                    <img
-                      src={"/image/lightDoor.png"}
-                      alt="SignLogo"
-                      style={{ width: "40vw", height: "40vh" }}
-                    />
-                    {/* <Spacer /> */}
-                    <img
-                      src={"/image/lightDoor.png"}
-                      alt="SignLogo"
-                      style={{ width: "40vw", height: "40vh" }}
-                    />
-                  </Flex>
-                </Flex>
-              </TabPanel>
-            </TabPanels>
-          </Tabs>
+          <Flex direction={'column'} h={500} w={'100%'}>
+            <BasicComponent work={work} />
+          </Flex>
         </ModalBody>
-        <ModalFooter></ModalFooter>
       </ModalContent>
     </Modal>
+
+    // <Modal
+    //   closeOnOverlayClick={false}
+    //   isOpen={props.isOpen}
+    //   onClose={props.onClose}
+    //   size={"6xl"}
+    //   isCentered
+    //   autoFocus
+    //   scrollBehavior='inside'
+    // >
+    //   <ModalOverlay />
+    //   <ModalContent
+    //     backgroundColor="black"
+    //     borderColor={"blue"}
+    //     borderWidth={2}
+    //     borderRadius="25px"
+    //   >
+    //     <ModalHeader>
+    //       <ModalCloseButton color={"white"} />
+    //     </ModalHeader>
+    //     <ModalBody>
+    //       <Tabs
+    //         h={"70vh"}
+    //         variant="unstyled"
+    //         onChange={(index: number) => {
+    //           setTabIdx(index);
+    //         }}
+    //       >
+    //         <TabList justifyContent={"space-around"} mb={"1%"}>
+    //           {subjectList.map((value, index) => {
+    //             return (
+    //               <Tab
+    //                 key={index}
+    //                 color={tabIdx === index ? "white" : "gray.500"}
+    //               >
+    //                 {value}
+    //               </Tab>
+    //             );
+    //           })}
+    //         </TabList>
+    //         <TabPanels flex={1} overflowY={"scroll"} maxH={"70vh"}>
+    //           <TabPanel h={'100%'}>
+    //             <BasicComponent work={work} />
+    //           </TabPanel>
+    //           <TabPanel h={"60vh"}>
+    //             <Flex h={"30%"}>
+    //               <img
+    //                 src={"/image/modal_image.jpg"}
+    //                 alt="SignLogo"
+    //                 style={{ width: "100vw", height: "100%" }}
+    //               />
+
+    //               <Text
+    //                 position={"absolute"}
+    //                 color={"white"}
+    //                 top={"50%"}
+    //                 left={"5%"}
+    //                 fontSize={50}
+    //                 transform="translateY(-50%)"
+    //               >
+    //                 {work?.name}
+    //               </Text>
+
+    //               <Flex
+    //                 position={"absolute"}
+    //                 color={"white"}
+    //                 top={"5%"}
+    //                 right={0}
+    //                 flexDir={"column"}
+    //               >
+    //                 {work?.student.map((student, index) => {
+    //                   return (
+    //                     <Text key={index}>
+    //                       {student.sname} {student.email}
+    //                     </Text>
+    //                   );
+    //                 })}
+    //               </Flex>
+    //             </Flex>
+    //             <Flex flexDir={"column"} w={"100%"} h={"100%"}>
+    //               <Text color={"white"} m={"1%"}>
+    //                 {work?.introduction}
+    //               </Text>
+    //               <Text color={"white"} m={"1%"}>
+    //                 {work?.explanation}
+    //               </Text>
+    //               {work && work.youtube && (
+    //                 <iframe
+    //                   width="100%"
+    //                   height="100%"
+    //                   src={work.youtube}
+    //                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    //                 ></iframe>
+    //               )}
+    //             </Flex>
+    //             <Flex flexDir={"row"} justifyContent={"space-between"}>
+    //               <img
+    //                 src={"/image/lightDoor.png"}
+    //                 alt="SignLogo"
+    //                 style={{ width: "20vw", height: "100%" }}
+    //               />
+    //               {/* <Spacer /> */}
+    //               <img
+    //                 src={"/image/lightDoor.png"}
+    //                 alt="SignLogo"
+    //                 style={{ width: "20vw", height: "100%" }}
+    //               />
+    //               {/* <Spacer /> */}
+    //               <img
+    //                 src={"/image/lightDoor.png"}
+    //                 alt="SignLogo"
+    //                 style={{ width: "20vw", height: "100%" }}
+    //               />
+    //               {/* <Spacer /> */}
+    //               <img
+    //                 src={"/image/lightDoor.png"}
+    //                 alt="SignLogo"
+    //                 style={{ width: "20vw", height: "100%" }}
+    //               />
+    //             </Flex>
+    //             <Flex flexDir={"column"} w={"100%"} h={"100%"}>
+    //               <Text color={"white"} transform="translateY(6vh)">
+    //                 지면
+    //               </Text>
+    //               {work && work.youtube && (
+    //                 <iframe
+    //                   width="100%"
+    //                   height="100%"
+    //                   src={work.youtube}
+    //                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    //                 ></iframe>
+    //               )}
+    //             </Flex>
+    //           </TabPanel>
+    //           <TabPanel h={"60vh"}>
+    //             <Flex h={"30%"}>
+    //               <img
+    //                 src={"/image/modal_image.jpg"}
+    //                 alt="SignLogo"
+    //                 style={{ width: "100vw", height: "100%" }}
+    //               />
+
+    //               <Text
+    //                 position={"absolute"}
+    //                 color={"white"}
+    //                 top={"50%"}
+    //                 left={"5%"}
+    //                 fontSize={50}
+    //                 transform="translateY(-50%)"
+    //               >
+    //                 {work?.name}
+    //               </Text>
+
+    //               <Flex
+    //                 position={"absolute"}
+    //                 color={"white"}
+    //                 top={"5%"}
+    //                 right={0}
+    //                 flexDir={"column"}
+    //               >
+    //                 {work?.student.map((student, index) => {
+    //                   return (
+    //                     <Text key={index}>
+    //                       {student.sname} {student.email}
+    //                     </Text>
+    //                   );
+    //                 })}
+    //               </Flex>
+    //             </Flex>
+    //             <Flex flexDir={"column"} w={"100%"} h={"70%"}>
+    //               <Text color={"white"} m={"1%"}>
+    //                 {work?.introduction}
+    //               </Text>
+    //               <Text color={"white"} m={"1%"}>
+    //                 {work?.explanation}
+    //               </Text>
+    //               {work && work.youtube && (
+    //                 <iframe
+    //                   width="100%"
+    //                   height="100%"
+    //                   src={work.youtube}
+    //                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    //                 ></iframe>
+    //               )}
+    //             </Flex>
+    //             <Flex flexDir={"row"} justifyContent={"space-between"}>
+    //               <img
+    //                 src={"/image/lightDoor.png"}
+    //                 alt="SignLogo"
+    //                 style={{ width: "20vw", height: "100%" }}
+    //               />
+    //               {/* <Spacer /> */}
+    //               <img
+    //                 src={"/image/lightDoor.png"}
+    //                 alt="SignLogo"
+    //                 style={{ width: "20vw", height: "100%" }}
+    //               />
+    //               {/* <Spacer /> */}
+    //               <img
+    //                 src={"/image/lightDoor.png"}
+    //                 alt="SignLogo"
+    //                 style={{ width: "20vw", height: "100%" }}
+    //               />
+    //               {/* <Spacer /> */}
+    //               <img
+    //                 src={"/image/lightDoor.png"}
+    //                 alt="SignLogo"
+    //                 style={{ width: "20vw", height: "100%" }}
+    //               />
+    //             </Flex>
+    //             <Flex flexDir={"column"} w={"100%"} h={"100%"}>
+    //               <Text color={"white"} transform="translateY(6vh)">
+    //                 지면
+    //               </Text>
+    //               <Flex
+    //                 flexDir={"row"}
+    //                 justifyContent={"space-between"}
+    //                 transform="translateY(8vh)"
+    //               >
+    //                 <img
+    //                   src={"/image/lightDoor.png"}
+    //                   alt="SignLogo"
+    //                   style={{ width: "40vw", height: "40vh" }}
+    //                 />
+    //                 {/* <Spacer /> */}
+    //                 <img
+    //                   src={"/image/lightDoor.png"}
+    //                   alt="SignLogo"
+    //                   style={{ width: "40vw", height: "40vh" }}
+    //                 />
+    //               </Flex>
+    //             </Flex>
+    //           </TabPanel>
+    //         </TabPanels>
+    //       </Tabs>
+    //     </ModalBody>
+    //     <ModalFooter></ModalFooter>
+    //   </ModalContent>
+    // </Modal >
   );
 };
 

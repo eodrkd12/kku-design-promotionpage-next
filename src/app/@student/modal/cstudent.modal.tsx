@@ -5,12 +5,18 @@ const Wrapper = styled.div`
     display: flex;
     width: 100vw;
     height: 100vw;
-    background-color: #00000000;
+    background-color: #AA000000;
 `;
 
-const CustomStudentModal = () => {
+interface Props {
+    isOpen: boolean
+}
+
+const CustomStudentModal = (props: Props) => {
     return (
-        <Wrapper>
+        <Wrapper style={{
+            display: props.isOpen ? 'block' : 'none'
+        }}>
 
         </Wrapper>
     )
