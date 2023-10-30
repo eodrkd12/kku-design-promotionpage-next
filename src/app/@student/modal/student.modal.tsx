@@ -110,6 +110,7 @@ const StudentModal = (props: Props) => {
 
   const getPanel = useCallback(() => {
     if (tabIdx !== null) {
+      console.log(subjectList[tabIdx])
       switch (subjectList[tabIdx]) {
         case "전공연구프로젝트(영상)":
           console.log("전공");
