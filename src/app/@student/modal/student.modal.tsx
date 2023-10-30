@@ -14,7 +14,7 @@ import {
   Tabs,
   Text,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 
 import PromotionVideoData from "../data/PromotionVideo-data";
@@ -27,6 +27,8 @@ import videoMajorProjectData from "../data/videoMajorProject-data";
 import BasicComponent from "../panels/basic";
 import UIUXComponent from "../panels/UIUX.panel";
 import BrandPackageComponent from "../panels/brandPackage.panel";
+import ImcLayoutComponent from "../panels/imcLayout";
+
 
 interface Props {
   isOpen: boolean;
@@ -106,8 +108,35 @@ const StudentModal = (props: Props) => {
     }
   }, [tabIdx]);
 
+  const getPanel = useCallback(() => {
+    if (tabIdx !== null) {
+      switch (subjectList[tabIdx]) {
+        case "전공연구프로젝트(영상)":
+          return <BasicComponent work={work} />
+
+        case "IMC":
+          return <ImcLayoutComponent work={work} />
+
+        case "프로모션영상":
+          return <BasicComponent work={work} />
+
+        case "전공연구프로젝트(디지털)":
+          return <BasicComponent work={work} />
+
+        case "UIUX캡스톤디자인":
+          return <UIUXComponent work={work} />
+
+        case "애니메이션스튜디오":
+          return <BasicComponent work={work} />
+
+        case "브랜드패키지디자인":
+          return
+      }
+    }
+  }, [tabIdx, work])
+
   useEffect(() => {
-    console.log(work?.youtube);
+
   }, [work]);
 
   const isMobile = useMediaQuery({
@@ -155,13 +184,15 @@ const StudentModal = (props: Props) => {
               })}
             </TabList>
             <TabPanels flex={1} overflowY={"scroll"} maxH={"70vh"}>
-              <TabPanel h={"100%"}>
-                {/* <BasicComponent work={work} /> */}
-                {/* <UIUXComponent work={work} /> */}
-                <BrandPackageComponent work={work} />
+              <TabPanel h={'100%'}>
+                {getPanel()}
               </TabPanel>
               <TabPanel h={"60vh"}>
-                <Flex h={"30%"}>
+
+
+                {getPanel()}
+
+                {/* <Flex h={"30%"}>
                   <img
                     src={"/image/modal_image.jpg"}
                     alt="SignLogo"
@@ -217,19 +248,19 @@ const StudentModal = (props: Props) => {
                     alt="SignLogo"
                     style={{ width: "20vw", height: "100%" }}
                   />
-                  {/* <Spacer /> */}
+      
                   <img
                     src={"/image/lightDoor.png"}
                     alt="SignLogo"
                     style={{ width: "20vw", height: "100%" }}
                   />
-                  {/* <Spacer /> */}
+         
                   <img
                     src={"/image/lightDoor.png"}
                     alt="SignLogo"
                     style={{ width: "20vw", height: "100%" }}
                   />
-                  {/* <Spacer /> */}
+            
                   <img
                     src={"/image/lightDoor.png"}
                     alt="SignLogo"
@@ -248,10 +279,11 @@ const StudentModal = (props: Props) => {
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     ></iframe>
                   )}
-                </Flex>
+                </Flex> */}
               </TabPanel>
               <TabPanel h={"60vh"}>
-                <Flex h={"30%"}>
+                {getPanel()}
+                {/* <Flex h={"30%"}>
                   <img
                     src={"/image/modal_image.jpg"}
                     alt="SignLogo"
@@ -307,19 +339,19 @@ const StudentModal = (props: Props) => {
                     alt="SignLogo"
                     style={{ width: "20vw", height: "100%" }}
                   />
-                  {/* <Spacer /> */}
+           
                   <img
                     src={"/image/lightDoor.png"}
                     alt="SignLogo"
                     style={{ width: "20vw", height: "100%" }}
                   />
-                  {/* <Spacer /> */}
+
                   <img
                     src={"/image/lightDoor.png"}
                     alt="SignLogo"
                     style={{ width: "20vw", height: "100%" }}
                   />
-                  {/* <Spacer /> */}
+                  
                   <img
                     src={"/image/lightDoor.png"}
                     alt="SignLogo"
@@ -340,14 +372,14 @@ const StudentModal = (props: Props) => {
                       alt="SignLogo"
                       style={{ width: "40vw", height: "40vh" }}
                     />
-                    {/* <Spacer /> */}
+            
                     <img
                       src={"/image/lightDoor.png"}
                       alt="SignLogo"
                       style={{ width: "40vw", height: "40vh" }}
                     />
                   </Flex>
-                </Flex>
+                </Flex> */}
               </TabPanel>
             </TabPanels>
           </Tabs>
