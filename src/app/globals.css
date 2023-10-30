@@ -82,7 +82,7 @@ div.parent {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: black;
+  background-color: transparent;
   flex-direction: column;
 }
 
@@ -92,7 +92,7 @@ div.parent-75vh {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: black;
+  background-color: transparent;
   /* scroll-snap-align: start; */
 }
 
@@ -103,7 +103,7 @@ div.parent-150vh {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: black;
+  background-color: transparent;
 }
 
 div.parent-200vh {
@@ -121,7 +121,7 @@ div.parent-infinite {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: black;
+  background-color: transparent;
 }
 
 div.parent-400vh {
@@ -138,7 +138,7 @@ div.parent-600vh {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: black;
+  background-color: transparent;
   position: sticky
 }
 

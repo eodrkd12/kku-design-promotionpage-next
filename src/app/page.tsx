@@ -1,5 +1,6 @@
 "use client";
 
+import { useMotionValueEvent, useScroll, useTransform } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import styled from "styled-components";
@@ -127,66 +128,23 @@ export default function IntroductionScreen() {
     query: "(max-width: 500px)",
   });
 
-  // const handleWheel = useCallback(
-  //   (event: WheelEvent<HTMLDivElement>) => {
+  const { scrollYProgress } = useScroll();
 
-  //     const delta = event.deltaY > 0 ? 1 : -1;
+  const imgProgress = useTransform(scrollYProgress, [0, 0.45], [0, 152]);
 
-  //     if (wheel.get() + delta > 0) {
-  //       if (wheel.get() + delta > endWheel) {
-  //         wheel.set(endWheel);
-  //       } else {
-  //         wheel.set(wheel.get() + delta)
-  //       }
-  //     } else {
-  //       wheel.set(0);
-  //     }
+  const [backImage, setBackImage] = useState<string>('/image/png_sequence/back_image_00000.png');
 
-  //     if (wheel.get() === endWheel) {
-  //       document.getElementsByTagName("main")[0].style.overflow = "unset";
-  //     } else if (wheel.get() === 0 || event.pageY - event.clientY === 0) {
-  //       document.getElementsByTagName("main")[0].style.overflow = "hidden";
-  //     }
-  //   },
-  //   [isEnd, contentVisible]
-  // );
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
 
-  // useEffect(() => {
-
-  //   if (isMobile) {
-  //     setTimeout(() => {
-  //       setContentVisible(true);
-  //       setIsEnd(true);
-  //       document.getElementsByTagName("main")[0].style.overflow = "unset";
-  //     }, 2000)
-  //   }
-
-  //   const io = new IntersectionObserver(
-  //     (entries) => {
-  //       entries.forEach((entry, index) => {
-  //         if (entry.isIntersecting) {
-  //           if (!isEnd) setContentVisible(false);
-  //         }
-  //       });
-  //     },
-  //     {
-  //       threshold: 0.2,
-  //     }
-  //   );
-
-  //   const aboutDiv = document.getElementById("about");
-  //   if (aboutDiv) {
-  //     io.observe(aboutDiv);
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   if (isEnd && !contentVisible) {
-  //     setTimeout(() => {
-  //       setContentVisible(true);
-  //     }, 5000)
-  //   }
-  // }, [contentVisible])
+    const _imgProgress = Math.floor(imgProgress.get());
+    if (_imgProgress < 10) {
+      setBackImage(`/image/png_sequence/back_image_0000${_imgProgress}.png`);
+    } else if (imgProgress.get() < 100) {
+      setBackImage(`/image/png_sequence/back_image_000${_imgProgress}.png`);
+    } else {
+      setBackImage(`/image/png_sequence/back_image_00${_imgProgress}.png`);
+    }
+  })
 
   useEffect(() => {
     const setDate = new Date("2023-10-25T00:00:00+0900");
@@ -207,6 +165,17 @@ export default function IntroductionScreen() {
       </div>
     );
   } else {
-    return <div className={"parent"} id="introduction"></div>;
+    return <div className={"parent"} id="introduction">
+      <img
+        style={{
+          width: "100vw",
+          height: "100vh",
+          position: "fixed",
+          top: 0,
+          zIndex: -100,
+        }}
+        src={backImage}
+      ></img>
+    </div>;
   }
 }

@@ -4,7 +4,7 @@ import {
   motion,
   useAnimationControls,
   useMotionValueEvent,
-  useScroll,
+  useScroll
 } from "framer-motion";
 import { useEffect } from "react";
 import styled from "styled-components";
@@ -88,7 +88,7 @@ const ContentWrapper = styled(motion.div)`
 `;
 
 export default function AboutScreen() {
-  const { scrollY, scrollYProgress } = useScroll();
+  const { scrollYProgress } = useScroll();
 
   const controls1 = useAnimationControls();
   const controls2 = useAnimationControls();
@@ -97,9 +97,10 @@ export default function AboutScreen() {
   const controls5 = useAnimationControls();
   const controls6 = useAnimationControls();
 
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
+
     if (latest < 0.091) {
       controls1.start({ opacity: 0 });
       controls2.start({ opacity: 0, y: 100 });
