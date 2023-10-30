@@ -98,7 +98,7 @@ export default function StudentScreen() {
 
             if (
               current.scrollLeft + current.clientWidth >=
-                current.scrollWidth - 0.5 &&
+              current.scrollWidth - 0.5 &&
               direction === "right"
             ) {
               setIsScrolledToRight(true);
@@ -136,7 +136,7 @@ export default function StudentScreen() {
 
             if (
               current.scrollLeft + current.clientWidth >=
-                current.scrollWidth - 0.5 &&
+              current.scrollWidth - 0.5 &&
               direction === "right"
             ) {
               setIsScrolledToRight2(true);
@@ -233,7 +233,7 @@ export default function StudentScreen() {
           height: "100vh",
           position: "sticky",
           top: "10.9vh",
-          zIndex: -100,
+          zIndex: -90,
         }}
         src="/image/stu_work_background.jpeg"
       ></img>
@@ -259,16 +259,6 @@ export default function StudentScreen() {
                 mr={isMobile ? 0 : "1vw"}
                 position={"relative"}
               >
-                <Text
-                  fontSize={"8vh"}
-                  color={"white"}
-                  fontWeight={400}
-                  position={"absolute"}
-                  top={"-7vh"}
-                  left={"6vw"}
-                >
-                  DESIGNER
-                </Text>
                 {!isMobile && (
                   <button
                     onMouseEnter={() => handleArrowMouseEnter("left")}
@@ -298,6 +288,15 @@ export default function StudentScreen() {
                   }}
                 >
                   <Flex flexDir={"column"}>
+                    <p
+                      style={{
+                        fontSize: "8vh",
+                        color: "white",
+                        fontWeight: 400,
+                      }}
+                    >
+                      DESIGNER
+                    </p>
                     <Flex>
                       <div
                         style={{
