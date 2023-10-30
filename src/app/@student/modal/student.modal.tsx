@@ -112,9 +112,11 @@ const StudentModal = (props: Props) => {
     if (tabIdx !== null) {
       switch (subjectList[tabIdx]) {
         case "전공연구프로젝트(영상)":
+          console.log("전공");
           return <BasicComponent work={work} />
 
         case "IMC":
+          console.log("dada123");
           return <ImcLayoutComponent work={work} />
 
         case "프로모션영상":
@@ -123,14 +125,16 @@ const StudentModal = (props: Props) => {
         case "전공연구프로젝트(디지털)":
           return <BasicComponent work={work} />
 
-        case "UIUX캡스톤디자인":
+        case "UIUX":
+          console.log('aaaa');
           return <UIUXComponent work={work} />
+          break;
 
         case "애니메이션스튜디오":
           return <BasicComponent work={work} />
 
         case "브랜드패키지디자인":
-          return
+          return <BrandPackageComponent work={work} />
       }
     }
   }, [tabIdx, work])
@@ -188,198 +192,11 @@ const StudentModal = (props: Props) => {
                 {getPanel()}
               </TabPanel>
               <TabPanel h={"60vh"}>
-
-
                 {getPanel()}
-
-                {/* <Flex h={"30%"}>
-                  <img
-                    src={"/image/modal_image.jpg"}
-                    alt="SignLogo"
-                    style={{ width: "100vw", height: "100%" }}
-                  />
-
-                  <Text
-                    position={"absolute"}
-                    color={"white"}
-                    top={"50%"}
-                    left={"5%"}
-                    fontSize={50}
-                    transform="translateY(-50%)"
-                  >
-                    {work?.name}
-                  </Text>
-
-                  <Flex
-                    position={"absolute"}
-                    color={"white"}
-                    top={"5%"}
-                    right={0}
-                    flexDir={"column"}
-                  >
-                    {work?.student.map((student, index) => {
-                      return (
-                        <Text key={index}>
-                          {student.sname} {student.email}
-                        </Text>
-                      );
-                    })}
-                  </Flex>
-                </Flex>
-                <Flex flexDir={"column"} w={"100%"} h={"100%"}>
-                  <Text color={"white"} m={"1%"}>
-                    {work?.introduction}
-                  </Text>
-                  <Text color={"white"} m={"1%"}>
-                    {work?.explanation}
-                  </Text>
-                  {work && work.youtube && (
-                    <iframe
-                      width="100%"
-                      height="100%"
-                      src={work.youtube}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    ></iframe>
-                  )}
-                </Flex>
-                <Flex flexDir={"row"} justifyContent={"space-between"}>
-                  <img
-                    src={"/image/lightDoor.png"}
-                    alt="SignLogo"
-                    style={{ width: "20vw", height: "100%" }}
-                  />
-      
-                  <img
-                    src={"/image/lightDoor.png"}
-                    alt="SignLogo"
-                    style={{ width: "20vw", height: "100%" }}
-                  />
-         
-                  <img
-                    src={"/image/lightDoor.png"}
-                    alt="SignLogo"
-                    style={{ width: "20vw", height: "100%" }}
-                  />
-            
-                  <img
-                    src={"/image/lightDoor.png"}
-                    alt="SignLogo"
-                    style={{ width: "20vw", height: "100%" }}
-                  />
-                </Flex>
-                <Flex flexDir={"column"} w={"100%"} h={"100%"}>
-                  <Text color={"white"} transform="translateY(6vh)">
-                    지면
-                  </Text>
-                  {work && work.youtube && (
-                    <iframe
-                      width="100%"
-                      height="100%"
-                      src={work.youtube}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    ></iframe>
-                  )}
-                </Flex> */}
               </TabPanel>
               <TabPanel h={"60vh"}>
+
                 {getPanel()}
-                {/* <Flex h={"30%"}>
-                  <img
-                    src={"/image/modal_image.jpg"}
-                    alt="SignLogo"
-                    style={{ width: "100vw", height: "100%" }}
-                  />
-
-                  <Text
-                    position={"absolute"}
-                    color={"white"}
-                    top={"50%"}
-                    left={"5%"}
-                    fontSize={50}
-                    transform="translateY(-50%)"
-                  >
-                    {work?.name}
-                  </Text>
-
-                  <Flex
-                    position={"absolute"}
-                    color={"white"}
-                    top={"5%"}
-                    right={0}
-                    flexDir={"column"}
-                  >
-                    {work?.student.map((student, index) => {
-                      return (
-                        <Text key={index}>
-                          {student.sname} {student.email}
-                        </Text>
-                      );
-                    })}
-                  </Flex>
-                </Flex>
-                <Flex flexDir={"column"} w={"100%"} h={"70%"}>
-                  <Text color={"white"} m={"1%"}>
-                    {work?.introduction}
-                  </Text>
-                  <Text color={"white"} m={"1%"}>
-                    {work?.explanation}
-                  </Text>
-                  {work && work.youtube && (
-                    <iframe
-                      width="100%"
-                      height={400}
-                      src={work.youtube}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    ></iframe>
-                  )}
-                </Flex>
-                <Flex flexDir={"row"} justifyContent={"space-between"}>
-                  <img
-                    src={"/image/lightDoor.png"}
-                    alt="SignLogo"
-                    style={{ width: "20vw", height: "100%" }}
-                  />
-           
-                  <img
-                    src={"/image/lightDoor.png"}
-                    alt="SignLogo"
-                    style={{ width: "20vw", height: "100%" }}
-                  />
-
-                  <img
-                    src={"/image/lightDoor.png"}
-                    alt="SignLogo"
-                    style={{ width: "20vw", height: "100%" }}
-                  />
-                  
-                  <img
-                    src={"/image/lightDoor.png"}
-                    alt="SignLogo"
-                    style={{ width: "20vw", height: "100%" }}
-                  />
-                </Flex>
-                <Flex flexDir={"column"} w={"100%"} h={"100%"}>
-                  <Text color={"white"} transform="translateY(6vh)">
-                    지면
-                  </Text>
-                  <Flex
-                    flexDir={"row"}
-                    justifyContent={"space-between"}
-                    transform="translateY(8vh)"
-                  >
-                    <img
-                      src={"/image/lightDoor.png"}
-                      alt="SignLogo"
-                      style={{ width: "40vw", height: "40vh" }}
-                    />
-            
-                    <img
-                      src={"/image/lightDoor.png"}
-                      alt="SignLogo"
-                      style={{ width: "40vw", height: "40vh" }}
-                    />
-                  </Flex>
-                </Flex> */}
               </TabPanel>
             </TabPanels>
           </Tabs>

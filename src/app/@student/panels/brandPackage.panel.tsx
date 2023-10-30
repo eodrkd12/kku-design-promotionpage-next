@@ -92,7 +92,7 @@ const BrandPackageComponent = (props: Props) => {
           )}
         </VStack> */}
         <VStack>
-          {work?.still.map((still, index) => {
+          {work?.still.map((still: React.ReactNode, index: number) => {
             return (
               <img
                 src={work?.still[index]}
