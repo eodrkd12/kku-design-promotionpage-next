@@ -1,6 +1,5 @@
 import {
   Flex,
-  Spacer,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -13,7 +12,7 @@ import {
   TabPanel,
   TabPanels,
   Tabs,
-  Text,
+  Text
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
@@ -131,7 +130,6 @@ const StudentModal = (props: Props) => {
           <ModalCloseButton color={"white"} />
         </ModalHeader>
         <ModalBody
-          overflowY="scroll"
           sx={{
             "::-webkit-scrollbar": {
               display: "none",
@@ -158,8 +156,8 @@ const StudentModal = (props: Props) => {
                 );
               })}
             </TabList>
-            <TabPanels h={"90%"} overflow="auto">
-              <TabPanel h={"100%"}>
+            <TabPanels h={"90vh"} overflow="auto">
+              <TabPanel h={"60vh"}>
                 <Flex position={"relative"} h={"30%"}>
                   <img
                     src={"/image/modal_image.jpg"}
@@ -211,7 +209,7 @@ const StudentModal = (props: Props) => {
                   )}
                 </Flex>
               </TabPanel>
-              <TabPanel h={"100%"}>
+              <TabPanel h={"60vh"}>
                 <Flex position={"relative"} h={"30%"}>
                   <img
                     src={"/image/modal_image.jpg"}
@@ -301,7 +299,7 @@ const StudentModal = (props: Props) => {
                   )}
                 </Flex>
               </TabPanel>
-              <TabPanel h={"100%"}>
+              <TabPanel h={"60vh"} overflowY={'auto'} maxH={'70vh'}>
                 <Flex position={"relative"} h={"30%"}>
                   <img
                     src={"/image/modal_image.jpg"}
