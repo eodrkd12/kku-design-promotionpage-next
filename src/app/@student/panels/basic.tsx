@@ -13,27 +13,6 @@ const BasicComponent = (props: Props) => {
           alt="SignLogo"
           style={{ width: "100vw", height: "100%", objectFit: "cover" }}
         />
-        {/* <Text
-          position={"absolute"}
-          color={"white"}
-          top={"50%"}
-          left={"5%"}
-          fontSize={50}
-          fontWeight={"700"}
-          transform="translateY(-50%)"
-        >
-          {props.work?.name}
-        </Text>
-        <Text
-          color={"white"}
-          position={"absolute"}
-          top={"50%"}
-          left={"50%"}
-          fontWeight={"500"}
-          transform="translateY(-50%)"
-        >
-          {props.work?.introduction}
-        </Text> */}
         <Box
           display="flex"
           alignItems="center"

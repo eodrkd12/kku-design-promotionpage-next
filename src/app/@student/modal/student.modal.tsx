@@ -98,13 +98,22 @@ const StudentModal = (props: Props) => {
       }
 
       if (workList) {
-        setWork(
-          workList.filter((value) =>
-            value.student.some(
-              (value) => value.sname === props.studentData.name
-            )
-          )[0]
-        );
+        const _work = workList.filter((value) =>
+          value.student.some(
+            (value) => value.sname === props.studentData.name
+          )
+        )[0]
+        const len = _work.student.length;
+        if (len !== undefined) {
+          for (let i = 0; i < len; i++) {
+            if (_work.student[i].sname === props.studentData.name) {
+              const temp = _work.student[i];
+              _work.student.splice(i, 1);
+              _work.student.unshift(temp);
+            }
+          }
+        }
+        setWork(_work);
       }
     }
   }, [tabIdx]);
@@ -135,20 +144,6 @@ const StudentModal = (props: Props) => {
       }
     }
   }, [tabIdx, work]);
-
-  useEffect(() => {
-    console.log("불림");
-    const len = work?.student.length;
-    if (len !== undefined) {
-      for (let i = 0; i < len; i++) {
-        if (work?.student[i].sname === props.studentData.name) {
-          const temp = work!.student[i];
-          work?.student.splice(i, 1);
-          work?.student.unshift(temp);
-        }
-      }
-    }
-  }, [work]);
 
   const isMobile = useMediaQuery({
     query: "(max-width: 500px)",
