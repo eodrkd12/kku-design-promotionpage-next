@@ -185,6 +185,7 @@ const StudentModal = (props: Props) => {
                 position={ isMobile ? "absolute" : "static"}
                 left={ isMobile ? "5%" : "0"}
                 top={"0"}
+                
               >
                 {props.studentData.name}
               </Text>
