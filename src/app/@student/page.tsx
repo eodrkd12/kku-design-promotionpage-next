@@ -310,9 +310,9 @@ export default function StudentScreen() {
                       >
                         <div
                           style={{
-                            marginLeft: 15,
+                            marginLeft: isMobile ? 5 : 15,
                             color: "white",
-                            fontSize: 25,
+                            fontSize: isMobile ? 20 : 25,
                           }}
                         >
                           VIDEO
@@ -419,9 +419,9 @@ export default function StudentScreen() {
                       >
                         <div
                           style={{
-                            marginLeft: 15,
+                            marginLeft: isMobile ? 5 : 15,
                             color: "white",
-                            fontSize: 25,
+                            fontSize: isMobile ? 20 : 25,
                           }}
                         >
                           DIGITAL
