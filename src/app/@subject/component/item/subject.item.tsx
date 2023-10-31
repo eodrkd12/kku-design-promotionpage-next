@@ -77,7 +77,7 @@ const ItemWrapper = styled.div`
   @media (max-width: 500px) {
     > div.title {
        > p {
-        font-size: 2.5vh;
+        font-size: 2vh;
       }
     }
   }
