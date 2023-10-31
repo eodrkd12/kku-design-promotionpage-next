@@ -60,7 +60,7 @@ const StudentModal = (props: Props) => {
 
   useEffect(() => {
     if (props.studentData) {
-      console.log(props.studentData)
+      console.log(props.studentData);
       const _subjectList: string[] = [];
       props.studentData.subject.split("/").forEach((value: string) => {
         _subjectList.push(value.trim());
@@ -135,6 +135,20 @@ const StudentModal = (props: Props) => {
       }
     }
   }, [tabIdx, work]);
+
+  useEffect(() => {
+    console.log("불림");
+    const len = work?.student.length;
+    if (len !== undefined) {
+      for (let i = 0; i < len; i++) {
+        if (work?.student[i].sname === props.studentData.name) {
+          const temp = work!.student[i];
+          work?.student.splice(i, 1);
+          work?.student.unshift(temp);
+        }
+      }
+    }
+  }, [work]);
 
   const isMobile = useMediaQuery({
     query: "(max-width: 500px)",
