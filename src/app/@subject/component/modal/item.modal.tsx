@@ -1,4 +1,12 @@
+import PromotionVideoData from "@/app/@student/data/PromotionVideo-data";
+import animationStudioData from "@/app/@student/data/animationStudio-data";
+import brandPackageDesignData from "@/app/@student/data/brandPackageDesign-data";
+import digitalMajorProjectData from "@/app/@student/data/digitalMajorProject-data";
+import imcData from "@/app/@student/data/imc-data";
+import uiuxData from "@/app/@student/data/uiux-data";
+import videoMajorProjectData from "@/app/@student/data/videoMajorProject-data";
 import {
+  Button,
   Flex,
   Modal,
   ModalBody,
@@ -9,12 +17,14 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
+import { useMediaQuery } from "react-responsive";
 
 interface Props {
   isOpen: boolean;
   onClose: () => void;
   title: string;
   work: Work;
+  subject: string;
 }
 
 interface Work {
@@ -36,10 +46,43 @@ interface Student {
 const ItemModal = (props: Props) => {
 
   const [work, setWork] = useState<Work | null>(null);
+  const [workList, setWorkList] = useState<Work[]>([]);
+
+  const isMobile = useMediaQuery({
+    query: "(max-width: 500px)",
+  });
 
   useEffect(() => {
     if (props.work) {
       setWork(props.work);
+    }
+
+    if (props.work) {
+      let _workList: Work[] = [];
+
+      switch (props.subject) {
+        case "전공연구프로젝트(영상)":
+          _workList = videoMajorProjectData;
+          break;
+        case "IMC":
+          _workList = imcData;
+          break;
+        case "프로모션영상":
+          _workList = PromotionVideoData;
+          break;
+        case "전공연구프로젝트(디지털)":
+          _workList = digitalMajorProjectData;
+          break;
+        case "UXUI":
+          _workList = uiuxData;
+          break;
+        case "애니메이션스튜디오":
+          _workList = animationStudioData;
+          break;
+        case "브랜드패키지":
+          _workList = brandPackageDesignData;
+      }
+      setWorkList(_workList);
     }
 
   }, [props])
@@ -66,7 +109,6 @@ const ItemModal = (props: Props) => {
                 mt={"4%"}
                 display={"flex"}
                 flexDirection={"column"}
-                alignItems={"center"}
               >
                 <Flex
                   display={"flex"}
@@ -75,17 +117,24 @@ const ItemModal = (props: Props) => {
                   position={"fixed"}
                   color={"white"}
                 >
-                  <Text mt={"30%"} mb={"10%"}>
-                    전공연구 프로젝트
+                  <Text mt={"30%"} mb={"10%"} fontWeight={800} fontSize={isMobile ? '1.3vh' : '1.3vw'}>
+                    {props.subject}
                   </Text>
-                  <Text mt={"2.5%"}>제목 - 팀원</Text>
-                  <Text mt={"2.5%"}>제목 - 팀원</Text>
-                  <Text mt={"2.5%"}>제목 - 팀원</Text>
-                  <Text mt={"2.5%"}>제목 - 팀원</Text>
-                  <Text mt={"2.5%"}>제목 - 팀원</Text>
-                  <Text mt={"2.5%"}>제목 - 팀원</Text>
-                  <Text mt={"2.5%"}>제목 - 팀원</Text>
-                  <Text mt={"2.5%"}>제목 - 팀원</Text>
+                  <VStack alignItems={'flex-start'}>
+                    {workList.map((work) => {
+                      return (
+                        <Button variant={'link'} px={2} colorScheme="white" flexDir={'column'} alignItems={'flex-start'}>
+                          <Text fontSize={isMobile ? '1.1vh' : '1.1vw'} color={'white'}>{work.name}</Text>
+                          <Flex gap={1}>
+                            <Text>-</Text>
+                            {work.student.map((student) => <Text fontSize={isMobile ? '1vh' : '1vw'} color={'white'}>
+                              {student.sname}
+                            </Text>)}
+                          </Flex>
+                        </Button>
+                      )
+                    })}
+                  </VStack>
                 </Flex>
               </Flex>
               <Flex w={"80%"} display={"flex"} flexDirection={"column"}>

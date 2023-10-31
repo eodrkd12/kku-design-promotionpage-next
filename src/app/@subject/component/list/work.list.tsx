@@ -298,6 +298,7 @@ const WorkList = ({ subject }: Props) => {
         onClose={itemModalClose}
         title={modalTitle}
         work={selectedItem}
+        subject={subject}
       ></ItemModal>}
     </Wrapper>
   );
