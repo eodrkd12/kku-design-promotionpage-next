@@ -5,11 +5,12 @@ import digitalMajorProjectData from "@/app/@student/data/digitalMajorProject-dat
 import imcData from "@/app/@student/data/imc-data";
 import uiuxData from "@/app/@student/data/uiux-data";
 import videoMajorProjectData from "@/app/@student/data/videoMajorProject-data";
-import { Flex, HStack } from "@chakra-ui/react";
-import { motion } from 'framer-motion';
+import { Flex, HStack, useDisclosure } from "@chakra-ui/react";
+import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import styled from "styled-components";
+import ItemModal from "../modal/item.modal";
 
 const Wrapper = styled.div`
   display: flex;
@@ -55,11 +56,22 @@ const WorkList = ({ subject }: Props) => {
   const refId = useRef<number | null>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [previousX, setPreviousX] = useState(0);
-  const tickEvent = useRef<{ start: Date; tickCnt: number }>({ start: new Date(), tickCnt: 0 });
+  const [modalTitle, setModalTitle] = useState<string>("");
+  const [selectedItem, setSelectedItem] = useState<any>(null);
+  const tickEvent = useRef<{ start: Date; tickCnt: number }>({
+    start: new Date(),
+    tickCnt: 0,
+  });
 
   const isMobile = useMediaQuery({
     query: "(max-width: 500px)",
   });
+
+  const {
+    isOpen: isOpenItemModal,
+    onOpen: itemModalOpen,
+    onClose: itemModalClose,
+  } = useDisclosure();
 
   const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
@@ -71,7 +83,8 @@ const WorkList = ({ subject }: Props) => {
   const handleMouseUp = (e: React.MouseEvent<HTMLDivElement>) => {
     setIsDragging(false);
     if (previousX === e.clientX) {
-      console.log("asdads");
+      setModalTitle("타이틀");
+      itemModalOpen();
     }
   };
 
@@ -89,7 +102,6 @@ const WorkList = ({ subject }: Props) => {
       refId.current = null;
       // 아래 예제에서 같이 사용될 코드(지금은 몰라도 무관합니다.)
       tickEvent.current.tickCnt += 1;
-
     });
   };
 
@@ -140,8 +152,8 @@ const WorkList = ({ subject }: Props) => {
       style={{
         width: "14vw",
         height: "12vh",
-        overflowX: 'hidden',
-        overflowY: 'hidden'
+        overflowX: "hidden",
+        overflowY: "hidden",
       }}
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
@@ -154,7 +166,7 @@ const WorkList = ({ subject }: Props) => {
           height: "12vh",
           border: "2px solid white",
           transition: "transform 0.3s, filter 0.3s",
-          objectFit: 'cover',
+          objectFit: "cover",
         }}
         onMouseEnter={(e) => {
           e.currentTarget.style.filter = "brightness(120%)";
@@ -183,9 +195,8 @@ const WorkList = ({ subject }: Props) => {
         ref={row1Ref}
       >
         <Flex flexDir={"column"} gap={1}>
-          <Flex position={'relative'} gap={1}>
-            {isMobile && <motion.div>
-            </motion.div>}
+          <Flex position={"relative"} gap={1}>
+            {isMobile && <motion.div></motion.div>}
             {row1.map((work, index) => (
               <ImageButton
                 key={index}
@@ -193,7 +204,7 @@ const WorkList = ({ subject }: Props) => {
               />
             ))}
           </Flex>
-          <Flex position={'relative'} gap={1}>
+          <Flex position={"relative"} gap={1}>
             {row2.map((work, index) => (
               <ImageButton
                 key={index}
@@ -203,6 +214,11 @@ const WorkList = ({ subject }: Props) => {
           </Flex>
         </Flex>
       </HStack>
+      <ItemModal
+        isOpen={isOpenItemModal}
+        onClose={itemModalClose}
+        title={modalTitle}
+      />
     </Wrapper>
   );
 };
