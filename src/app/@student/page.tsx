@@ -21,7 +21,12 @@ interface ImageButtonProps {
 export default function StudentScreen() {
   const { scrollYProgress } = useScroll();
 
-  const profileWidth = "11.5vw";
+  const isMobile = useMediaQuery({
+    query: "(max-width: 500px)",
+  });
+
+
+  const profileWidth = isMobile ? "24vw" : "11.5vw";
 
   const [isScrolledToRight, setIsScrolledToRight] = useState(false);
   const [isScrolledToLeft, setIsScrolledToLeft] = useState(true);
@@ -41,10 +46,6 @@ export default function StudentScreen() {
   const [selectedStudent, setSelectedStudent] = useState<any>(null);
 
   const [attachment, setAttachment] = useState("scroll");
-
-  const isMobile = useMediaQuery({
-    query: "(max-width: 500px)",
-  });
 
   const {
     isOpen: isStudentModalOpen,
@@ -221,8 +222,6 @@ export default function StudentScreen() {
   );
 
 
-
-
   return (
     <div
       className="parent-400vh"
@@ -294,7 +293,7 @@ export default function StudentScreen() {
                   <Flex flexDir={"column"}>
                     <p
                       style={{
-                        fontSize: "8vh",
+                        fontSize: isMobile ? "6vh" : "8vh",
                         color: "white",
                         fontWeight: 400,
                       }}
@@ -304,7 +303,7 @@ export default function StudentScreen() {
                     <Flex>
                       <div
                         style={{
-                          width: isMobile ? "32vw" : profileWidth,
+                          width: profileWidth,
                           borderTop: "1px solid white",
                           flexShrink: 0,
                         }}
@@ -408,11 +407,12 @@ export default function StudentScreen() {
                     },
                   }}
                 >
+
                   <Flex flexDir={"column"}>
                     <Flex>
                       <div
                         style={{
-                          width: isMobile ? "32vw" : profileWidth,
+                          width: profileWidth,
                           borderTop: "1px solid white",
                           flexShrink: 0,
                         }}
@@ -457,6 +457,7 @@ export default function StudentScreen() {
                         ))}
                     </Flex>
                   </Flex>
+
                 </HStack>
                 {!isMobile && (
                   <button

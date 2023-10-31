@@ -64,8 +64,12 @@ const ScrollProgressWrapper = styled.div`
   }
 
   @media (max-width: 500px) {
-    left: 60%;
-    top: 5vh;
+    // left: 60%;
+    // top: 5vh;
+
+    // background-color: red;
+    width: 100%;
+    visibility: hidden;
 
     > div > span {
       height: 72%;
@@ -114,21 +118,24 @@ const MainTitleWrapper = styled.div`
   }
 
   @media (max-width: 500px) {
-    br {
-      display: inline-block;
-      content: " ";
-    }
-
-    top: 4vw;
+    top: 0;
+    left: 0;
     width: 100%;
-    left: 5vw;
+    height: 9vh;
+    // box-shadow: 0 0 10px rgba(0, 0, 0, 1);
 
+    background-color: black;
+    > div {
+      visibility: hidden;
+    }
     > div:nth-child(1) {
       visibility: visible;
       width: 20vw;
-    }
-    > div {
-      visibility: hidden;
+      height: 100%;
+      padding: 2vh 0 0 2.5vw;
+      > img {
+        width: 100%;
+      }
     }
   }
 `;

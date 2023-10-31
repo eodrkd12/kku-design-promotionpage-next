@@ -1,132 +1,171 @@
-import {
-    Flex,
-    Text,
-    VStack
-} from "@chakra-ui/react";
-
+import { Box, Flex, Text, VStack } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 
 interface Props {
-    work: any;
-
+  work: any;
+}
+interface Work {
+  name: string;
+  student: Student[];
+  introduction: string;
+  explanation: string;
+  youtube?: string;
+  still: string[];
+  poster: string[];
 }
 
+interface Student {
+  sname: string;
+  englishName: string;
+  studentNumber: string;
+  email: string;
+}
 
 const ImcLayoutComponent = (props: Props) => {
+  const [work, setWork] = useState<Work>();
+  useEffect(() => {
+    setWork(props.work);
+  });
 
-    return (
-        <VStack w={'100%'}
-            h={'100%'}
-            flex={1}
-            overflowY={'auto'}>
-            <Flex position={'relative'} h={'15vh'}>
+  const [isVideo, SetIsVideo] = useState(false);
+
+  useEffect(() => {
+    console.log(work);
+
+    if (work?.poster) {
+      if (work?.poster[0]?.startsWith("http")) {
+        console.log("이것은 영상");
+        SetIsVideo(true);
+      } else {
+        console.log("사진");
+        SetIsVideo(false);
+      }
+    }
+  }, [work]);
+
+  return (
+    <VStack w={"100%"} h={"100%"} flex={1} overflowY={"auto"}>
+      <Flex position={"relative"} h={"15vh"}>
+        <img
+          src={"/image/dark_modal_image.jpeg"}
+          alt="SignLogo"
+          style={{ width: "100vw", height: "100%", objectFit: "cover" }}
+        />
+
+        <Box
+          display="flex"
+          alignItems="center"
+          position="absolute"
+          top="50%"
+          left="5%"
+        >
+          <Text
+            color="white"
+            fontSize={50}
+            fontWeight="700"
+            transform="translateY(-50%)"
+          >
+            {work?.name}
+          </Text>
+          <Text
+            color="white"
+            fontWeight="500"
+            transform="translateY(-150%)"
+            marginLeft="20"
+          >
+            {work?.introduction}
+          </Text>
+        </Box>
+      </Flex>
+      <Flex flexDir={"column"} w={"100%"} h={"45vh"}>
+        <Flex color={"white"} top={"5%"} right={0} flexDir={"row"}>
+          {work?.student.map((student: any, index: number) => {
+            return (
+              <Text
+                key={index}
+                fontSize={"5%"}
+                marginRight={"7%"}
+                style={{ wordSpacing: "4px" }}
+              >
+                {student.sname} | {student.email}
+              </Text>
+            );
+          })}
+        </Flex>
+        <Box mt={4}></Box>
+        <Text color={"white"} fontSize={"15"}>
+          {work?.explanation}
+        </Text>
+        {work && work.youtube && (
+          <Flex height={"40vh"} marginTop={"3%"} marginBottom={"3%"}>
+            <iframe
+              width="100%"
+              height="100%"
+              src={work.youtube}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            ></iframe>
+          </Flex>
+        )}
+
+        <Flex>
+          {work?.still?.map((still: any, index: number) => {
+            return (
+              <Flex margin={"2%"}>
                 <img
-                    src={"/image/modal_image.jpg"}
-                    alt="SignLogo"
-                    style={{ width: "100vw", height: "100%", objectFit: 'cover' }}
+                  src={work?.still[index]}
+                  alt="SignLogo"
+                  style={{
+                    width: "20vw",
+                    height: "100%",
+                    objectFit: "contain",
+                  }}
                 />
+              </Flex>
+            );
+          })}
+        </Flex>
 
-                <Text
-                    position={"absolute"}
-                    color={"white"}
-                    top={"50%"}
-                    left={"5%"}
-                    fontSize={50}
-                    transform="translateY(-50%)"
-                >
-                    {props.work?.name}
-                </Text>
+        <Flex flexDir={"column"} w={"100%"} h={"100%"}>
+          <Text color={"white"}>지면</Text>
 
-                <Flex
-                    position={"absolute"}
-                    color={"white"}
-                    top={"5%"}
-                    right={0}
-                    flexDir={"column"}
-                >
-                    {props.work?.student.map((student: any, index: number) => {
-                        return (
-                            <Text key={index}>
-                                {student.sname} {student.email}
-                            </Text>
-                        );
-                    })}
-                </Flex>
+          {isVideo ? (
+            <Flex flexDir={"column"} justifyContent={"center"}>
+              {work?.poster?.map((poster: any, index: number) => {
+                return (
+                  <Flex key={index} margin={"2%"} width={"100%"}>
+                    <iframe
+                      width="100%"
+                      height="100%"
+                      src={work?.poster[index]}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    ></iframe>
+                  </Flex>
+                );
+              })}
             </Flex>
-            <Flex flexDir={"column"} w={"100%"} h={"45vh"}>
-                <Text color={"white"}>
-                    {props.work?.introduction}
-                </Text>
-                <Text color={"white"}>
-                    {props.work?.explanation}
-                </Text>
-
-                {props.work && props.work.youtube && (
-                    <Flex height={'40vh'} marginTop={"3%"} marginBottom={"3%"}>
-
-                        <iframe
-                            width="100%"
-                            height="100%"
-                            src={props.work.youtube}
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        ></iframe>
-                    </Flex>
-                )}
-
-                <Flex>
-
-                    {props.work?.still?.map((still: any, index: number) => {
-                        return (
-
-                            <Flex margin={"2%"}>
-                                <img
-                                    src={props.work?.still[index]}
-                                    alt="SignLogo"
-                                    style={{ width: "20vw", height: "100%", objectFit: 'contain' }}
-
-                                />
-                            </Flex>
-
-                        );
-                    })}
-                </Flex>
-
-                <Flex flexDir={"column"} w={"100%"} h={"100%"} >
-
-                    <Text color={"white"} >
-                        지면
-                    </Text>
-
-                    {props.work?.poster?.map((poster: any, index: number) => {
-                        const isVideo = poster.startsWith("http");
-                        if (isVideo) return null; // 비디오는 제외
-                        return (
-                            <Flex key={index} margin={"2%"} flexDir={"column"}>
-
-                                {isVideo ? (
-
-                                    <iframe
-                                        width="100%"
-                                        height="100%"
-                                        src={props.work?.poster[index]}
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    ></iframe>
-                                ) : (
-                                    <img
-                                        src={props.work?.poster[index]}
-                                        alt="SignLogo"
-                                        style={{ width: "80%", height: "100%", objectFit: 'contain' }}
-                                    />
-                                )}
-                            </Flex>
-
-                        );
-                    })}
-                </Flex>
+          ) : (
+            <Flex flexDir={"row"} justifyContent={"center"}>
+              {work?.poster?.map((poster: any, index: number) => {
+                return (
+                  <Flex key={index} margin={"2%"} width={"50%"}>
+                    <img
+                      src={work?.poster[index]}
+                      alt="SignLogo"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "contain",
+                      }}
+                    />
+                  </Flex>
+                );
+              })}
             </Flex>
-        </VStack>
-
-    )
-}
-
+          )}
+        </Flex>
+      </Flex>
+    </VStack>
+  );
+};
 
 export default ImcLayoutComponent;

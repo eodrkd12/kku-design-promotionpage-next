@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { useMediaQuery } from "react-responsive";
 import styled from "styled-components";
 import SubjectItem from "./component/item/subject.item";
 
@@ -15,6 +16,8 @@ const SubjectList = styled.div`
 
   @media (max-width: 500px) {
     margin: 0;
+    width: 100vw;
+    text-align: center;
   }
 `;
 
@@ -22,6 +25,10 @@ export default function SubjectScreen() {
   const [isScrolledToBottom, setIsScrolledToBottom] = useState(false);
   const subjectRef = useRef<HTMLDivElement>(null);
   const [contentVisible, setContentVisible] = useState(false);
+
+  const isMobile = useMediaQuery({
+    query: "(max-width: 500px)",
+  });
 
   useEffect(() => {
     const io = new IntersectionObserver(
@@ -54,7 +61,7 @@ export default function SubjectScreen() {
           <SubjectList>
             <p
               style={{
-                fontSize: "8vh",
+                fontSize: isMobile ? "6vh" : "8vh",
                 color: "white",
                 fontWeight: 400,
               }}
