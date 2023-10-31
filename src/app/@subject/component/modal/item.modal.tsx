@@ -1,10 +1,10 @@
 import {
+  Flex,
   Modal,
-  ModalOverlay,
-  ModalContent,
   ModalBody,
   ModalCloseButton,
-  Flex,
+  ModalContent,
+  ModalOverlay,
   Text,
   VStack,
 } from "@chakra-ui/react";
@@ -16,6 +16,8 @@ interface Props {
 }
 
 const ItemModal = (props: Props) => {
+
+
   return (
     <>
       <Modal
