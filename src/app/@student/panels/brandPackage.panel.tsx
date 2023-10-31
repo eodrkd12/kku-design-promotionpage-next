@@ -29,9 +29,8 @@ const BrandPackageComponent = (props: Props) => {
     setWork(props.work);
   });
   return (
-    // <VStack>
-    <TabPanel h={"60vh"}>
-      <VStack position={"relative"} h={"30%"}>
+    <VStack w={"100%"} h={"100%"} flex={1} overflowY={"auto"}>
+      <Flex position={"relative"} h={"30%"}>
         <img
           src={"/image/dark_modal_image.jpeg"}
           alt="SignLogo"
@@ -62,34 +61,32 @@ const BrandPackageComponent = (props: Props) => {
             {work?.introduction}
           </Text>
         </Box>
-
-        <VStack
-          position={"absolute"}
-          color={"white"}
-          top={"5%"}
-          right={0}
-          flexDir={"column"}
-        >
-          {work?.student.map((student, index) => {
+      </Flex>
+      <Flex flexDir={"column"} w={"100%"} h={"70%"}>
+        <Flex color={"white"} top={"5%"} right={0} flexDir={"row"}>
+          {props.work?.student.map((student: any, index: number) => {
             return (
-              <Text key={index}>
-                {student.sname} {student.email}
+              <Text
+                key={index}
+                fontSize={"5%"}
+                marginRight={"7%"}
+                style={{ wordSpacing: "4px" }}
+              >
+                {student.sname} | {student.email}
               </Text>
             );
           })}
-        </VStack>
-      </VStack>
-      <VStack flexDir={"column"} w={"100%"} h={"70%"} alignItems={"flex-start"}>
-        <Text color={"white"} m={"1%"}>
-          {work?.introduction}
+        </Flex>
+        <Box mt={4}></Box>
+        <Text color={"white"} fontSize={"15"}>
+          {props.work?.explanation}
         </Text>
-        <Text color={"white"} m={"1%"}>
-          {work?.explanation}
-        </Text>
-        <VStack>
+        <Box mt={4}></Box>
+
+        <Flex flexDir={"column"}>
           {work?.still?.map((still: React.ReactNode, index: number) => {
             return (
-              <Flex key={index}>
+              <Flex margin={"1%"}>
                 <img
                   src={work?.still[index]}
                   alt="SignLogo"
@@ -102,11 +99,9 @@ const BrandPackageComponent = (props: Props) => {
               </Flex>
             );
           })}
-        </VStack>
-      </VStack>
-    </TabPanel>
-
-    // </VStack>
+        </Flex>
+      </Flex>
+    </VStack>
   );
 };
 
