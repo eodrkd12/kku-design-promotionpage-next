@@ -47,9 +47,12 @@ const WorkList = ({ subject }: Props) => {
   const [workList, setWorkList] = useState<Work[]>([]);
   const [row1, setRow1] = useState<Work[]>([]);
   const [row2, setRow2] = useState<Work[]>([]);
+  const [row1Scroll, setRow1Scroll] = useState<boolean>(false);
+  const [row2Scroll, setRow2Scroll] = useState<boolean>(false);
 
   const row1Ref = useRef<HTMLDivElement>(null);
   const row2Ref = useRef<HTMLDivElement>(null);
+
 
   const div = row1Ref.current;
   const refId = useRef<number | null>(null);
@@ -121,17 +124,11 @@ const WorkList = ({ subject }: Props) => {
   }, [subject]);
 
   useEffect(() => {
-    console.log(workList);
     if (workList.length > 10) {
       setRow1(workList.slice(0, Math.ceil(workList.length / 2)));
       setRow2(workList.slice(Math.ceil(workList.length / 2)));
     } else {
-      if (workList.length < 6) {
-        setRow1(workList);
-      } else {
-        setRow1(workList.slice(0, 5));
-        setRow2(workList.slice(5));
-      }
+      setRow1(workList);
     }
   }, [workList]);
 
@@ -175,6 +172,7 @@ const WorkList = ({ subject }: Props) => {
         overflowX="scroll"
         h={"100%"}
         w={"100%"}
+        alignItems={'flex-start'}
         sx={{
           "::-webkit-scrollbar": {
             display: "none",
@@ -193,14 +191,14 @@ const WorkList = ({ subject }: Props) => {
               />
             ))}
           </Flex>
-          <Flex position={'relative'} gap={2}>
+          {row2.length > 0 && <Flex position={'relative'} gap={2}>
             {row2.map((work, index) => (
               <ImageButton
                 key={index}
                 src={work.still ? work.still[0] : "/image/lightDoor.png"}
               />
             ))}
-          </Flex>
+          </Flex>}
         </Flex>
       </HStack>
     </Wrapper>

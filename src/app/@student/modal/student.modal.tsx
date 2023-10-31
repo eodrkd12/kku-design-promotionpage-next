@@ -149,7 +149,7 @@ const StudentModal = (props: Props) => {
       autoFocus
       scrollBehavior="inside"
     >
-      <ModalOverlay />
+      <ModalOverlay backdropFilter="blur(10px) " />
       <ModalContent backgroundColor="black" borderRadius="25px">
         <ModalHeader>
           <ModalCloseButton color={"white"} />
