@@ -22,25 +22,26 @@ interface Student {
 }
 
 const ImcLayoutComponent = (props: Props) => {
-    // const [isVideo, SetIsVideo] = useState(false);
+
     const [work, setWork] = useState<Work>();
     useEffect(() => {
         setWork(props.work);
     });
 
+    const [isVideo, SetIsVideo] = useState(false);
 
     useEffect(() => {
         console.log(work);
 
         if (work?.poster) {
-            const isVideo = work?.poster[0]?.startsWith("http");
-
-            if (isVideo) {
+            if (work?.poster[0]?.startsWith("http")) {
                 console.log("이것은 영상")
+                SetIsVideo(true);
 
             }
             else {
                 console.log("사진")
+                SetIsVideo(false);
             }
         }
 
@@ -130,19 +131,26 @@ const ImcLayoutComponent = (props: Props) => {
                 <Flex flexDir={"column"} w={"100%"} h={"100%"}>
                     <Text color={"white"}>지면</Text>
 
-                    <Flex flexDir={"row"} justifyContent={"center"}>
-                        {work?.poster?.map((poster: any, index: number) => {
-                            const isVideo = poster.startsWith("http");
-                            return (
-                                <Flex key={index} margin={"2%"} width={"50%"}>
-                                    {isVideo ? (
+                    {isVideo ? (
+                        <Flex flexDir={"column"} justifyContent={"center"}>
+                            {work?.poster?.map((poster: any, index: number) => {
+                                return (
+                                    <Flex key={index} margin={"2%"} width={"100%"}>
                                         <iframe
                                             width="100%"
                                             height="100%"
                                             src={work?.poster[index]}
                                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         ></iframe>
-                                    ) : (
+                                    </Flex>
+                                );
+                            })}
+                        </Flex>) : (
+
+                        <Flex flexDir={"row"} justifyContent={"center"}>
+                            {work?.poster?.map((poster: any, index: number) => {
+                                return (
+                                    <Flex key={index} margin={"2%"} width={"50%"}>
                                         <img
                                             src={work?.poster[index]}
                                             alt="SignLogo"
@@ -152,11 +160,18 @@ const ImcLayoutComponent = (props: Props) => {
                                                 objectFit: "contain",
                                             }}
                                         />
-                                    )}
-                                </Flex>
-                            );
-                        })}
-                    </Flex>
+                                    </Flex>
+                                );
+                            })}
+                        </Flex>
+
+                    )}
+
+
+
+
+
+
                 </Flex>
             </Flex>
         </VStack>
