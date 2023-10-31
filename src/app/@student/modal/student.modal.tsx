@@ -171,17 +171,18 @@ const StudentModal = (props: Props) => {
             }}
           >
             <TabList
-              mb={"3%"}
-              height={isMobile ? "10vh" : "0"}
+              mb={"1%"}
+              height={isMobile ? "10vh" : "4vh"}
               paddingTop={isMobile ? "15%" : "0"}
             >
               <Text
                 marginRight={"3%"}
+                marginLeft={isMobile ? "0" : "1.5%"}
                 color={"white"}
                 fontSize={isMobile ? "32" : "25"}
                 fontWeight={"500"}
                 position={isMobile ? "absolute" : "static"}
-                left={isMobile ? "5%" : "0"}
+                left={isMobile ? "5%" : "0%"}
                 top={"0"}
               >
                 {props.studentData.name}
@@ -216,7 +217,7 @@ const StudentModal = (props: Props) => {
             </TabPanels>
           </Tabs>
         </ModalBody>
-        <ModalFooter></ModalFooter>
+
       </ModalContent>
     </Modal>
   );
