@@ -22,22 +22,23 @@ interface Student {
 }
 
 const ImcLayoutComponent = (props: Props) => {
-  // const [isVideo, SetIsVideo] = useState(false);
   const [work, setWork] = useState<Work>();
   useEffect(() => {
     setWork(props.work);
   });
 
+  const [isVideo, SetIsVideo] = useState(false);
+
   useEffect(() => {
     console.log(work);
 
     if (work?.poster) {
-      const isVideo = work?.poster[0]?.startsWith("http");
-
-      if (isVideo) {
+      if (work?.poster[0]?.startsWith("http")) {
         console.log("이것은 영상");
+        SetIsVideo(true);
       } else {
         console.log("사진");
+        SetIsVideo(false);
       }
     }
   }, [work]);
@@ -51,51 +52,27 @@ const ImcLayoutComponent = (props: Props) => {
           style={{ width: "100vw", height: "100%", objectFit: "cover" }}
         />
 
-        {/* <Text
-                    position={"absolute"}
-                    color={"white"}
-                    top={"50%"}
-                    left={"5%"}
-                    fontSize={50}
-                    fontWeight={"700"}
-                    transform="translateY(-50%)"
-                >
-                    {work?.name}
-                </Text>
-                <Text
-                    color={"white"}
-                    position={"absolute"}
-                    top={"50%"}
-                    left={"50%"}
-                    fontWeight={"500"}
-                    transform="translateY(-50%)"
-                >
-                    {work?.introduction}
-                </Text> */}
-        <Box
-          display="flex"
-          alignItems="center"
-          position="absolute"
-          top="50%"
-          left="5%"
+        <Text
+          position={"absolute"}
+          color={"white"}
+          top={"50%"}
+          left={"5%"}
+          fontSize={50}
+          fontWeight={"700"}
+          transform="translateY(-50%)"
         >
-          <Text
-            color="white"
-            fontSize={50}
-            fontWeight="700"
-            transform="translateY(-50%)"
-          >
-            {work?.name}
-          </Text>
-          <Text
-            color="white"
-            fontWeight="500"
-            transform="translateY(-130%)"
-            marginLeft="20"
-          >
-            {work?.introduction}
-          </Text>
-        </Box>
+          {work?.name}
+        </Text>
+        <Text
+          color={"white"}
+          position={"absolute"}
+          top={"50%"}
+          left={"50%"}
+          fontWeight={"500"}
+          transform="translateY(-50%)"
+        >
+          {work?.introduction}
+        </Text>
       </Flex>
       <Flex flexDir={"column"} w={"100%"} h={"45vh"}>
         <Flex color={"white"} top={"5%"} right={0} flexDir={"row"}>
@@ -148,19 +125,26 @@ const ImcLayoutComponent = (props: Props) => {
         <Flex flexDir={"column"} w={"100%"} h={"100%"}>
           <Text color={"white"}>지면</Text>
 
-          <Flex flexDir={"row"} justifyContent={"center"}>
-            {work?.poster?.map((poster: any, index: number) => {
-              const isVideo = poster.startsWith("http");
-              return (
-                <Flex key={index} margin={"2%"} width={"50%"}>
-                  {isVideo ? (
+          {isVideo ? (
+            <Flex flexDir={"column"} justifyContent={"center"}>
+              {work?.poster?.map((poster: any, index: number) => {
+                return (
+                  <Flex key={index} margin={"2%"} width={"100%"}>
                     <iframe
                       width="100%"
                       height="100%"
                       src={work?.poster[index]}
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     ></iframe>
-                  ) : (
+                  </Flex>
+                );
+              })}
+            </Flex>
+          ) : (
+            <Flex flexDir={"row"} justifyContent={"center"}>
+              {work?.poster?.map((poster: any, index: number) => {
+                return (
+                  <Flex key={index} margin={"2%"} width={"50%"}>
                     <img
                       src={work?.poster[index]}
                       alt="SignLogo"
@@ -170,11 +154,11 @@ const ImcLayoutComponent = (props: Props) => {
                         objectFit: "contain",
                       }}
                     />
-                  )}
-                </Flex>
-              );
-            })}
-          </Flex>
+                  </Flex>
+                );
+              })}
+            </Flex>
+          )}
         </Flex>
       </Flex>
     </VStack>
