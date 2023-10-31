@@ -95,15 +95,17 @@ const UIUXComponent = (props: Props) => {
         <Flex flexDir={"column"}>
           {work?.still?.map((still: React.ReactNode, index: number) => {
             return (
-              <img
-                src={work?.still[index]}
-                alt="SignLogo"
-                style={{
-                  width: "100vw",
-                  height: "60vh",
-                  objectFit: "contain",
-                }}
-              />
+              <Flex margin={"1%"}>
+                <img
+                  src={work?.still[index]}
+                  alt="SignLogo"
+                  style={{
+                    width: "100vw",
+                    height: "60vh",
+                    objectFit: "contain",
+                  }}
+                />
+              </Flex>
             );
           })}
         </Flex>
