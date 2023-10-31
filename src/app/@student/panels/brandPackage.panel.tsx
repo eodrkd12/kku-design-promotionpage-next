@@ -1,5 +1,6 @@
-import { Box, Flex, TabPanel, Text, VStack } from "@chakra-ui/react";
+import { TabPanel, Text, VStack, Flex } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
+
 
 interface Props {
   //   isOpen: boolean;
@@ -29,12 +30,13 @@ const BrandPackageComponent = (props: Props) => {
     setWork(props.work);
   });
   return (
-    <VStack w={"100%"} h={"100%"} flex={1} overflowY={"auto"}>
-      <Flex position={"relative"} h={"30%"}>
+    // <VStack>
+    <TabPanel h={"60vh"}>
+      <VStack position={"relative"} h={"30%"}>
         <img
           src={"/image/modal_image.jpg"}
           alt="SignLogo"
-          style={{ width: "100vw", height: "100%", objectFit: "cover" }}
+          style={{ width: "100vw", height: "100%", objectFit: 'cover' }}
         />
 
         <Text
@@ -43,61 +45,51 @@ const BrandPackageComponent = (props: Props) => {
           top={"50%"}
           left={"5%"}
           fontSize={50}
-          fontWeight={"700"}
           transform="translateY(-50%)"
         >
           {work?.name}
         </Text>
-        <Text
-          color={"white"}
+
+        <VStack
           position={"absolute"}
-          top={"50%"}
-          left={"50%"}
-          fontWeight={"500"}
-          transform="translateY(-50%)"
+          color={"white"}
+          top={"5%"}
+          right={0}
+          flexDir={"column"}
         >
-          {props.work?.introduction}
-        </Text>
-      </Flex>
-      <Flex flexDir={"column"} w={"100%"} h={"70%"}>
-        <Flex color={"white"} top={"5%"} right={0} flexDir={"row"}>
-          {props.work?.student.map((student: any, index: number) => {
+          {work?.student.map((student, index) => {
             return (
-              <Text
-                key={index}
-                fontSize={"5%"}
-                marginRight={"7%"}
-                style={{ wordSpacing: "4px" }}
-              >
-                {student.sname} | {student.email}
+              <Text key={index}>
+                {student.sname} {student.email}
               </Text>
             );
           })}
-        </Flex>
-        <Box mt={4}></Box>
-        <Text color={"white"} fontSize={"15"}>
-          {props.work?.explanation}
+        </VStack>
+      </VStack>
+      <VStack flexDir={"column"} w={"100%"} h={"70%"} alignItems={'flex-start'}>
+        <Text color={"white"} m={"1%"}>
+          {work?.introduction}
         </Text>
         <Text color={"white"} m={"1%"}>
           {work?.explanation}
         </Text>
-        <Flex>
+        <VStack>
           {work?.still?.map((still: React.ReactNode, index: number) => {
             return (
-              <img
-                src={work?.still[index]}
-                alt="SignLogo"
-                style={{
-                  width: "100vw",
-                  height: "60vh",
-                  objectFit: "contain",
-                }}
-              />
+              <Flex key={index}>
+                <img
+                  src={work?.still[index]}
+                  alt="SignLogo"
+                  style={{ width: "100vw", height: "60vh", objectFit: 'contain' }}
+                />
+              </Flex>
             );
           })}
-        </Flex>
-      </Flex>
-    </VStack>
+        </VStack>
+      </VStack>
+    </TabPanel>
+
+    // </VStack>
   );
 };
 
