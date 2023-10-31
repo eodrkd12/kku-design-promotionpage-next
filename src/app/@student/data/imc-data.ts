@@ -58,8 +58,8 @@ export default [
       "/image/workimage/imc/pinterest/still/4.jpg",
     ],
     poster: [
-      "https://youtube.com/shorts/ZTaV-_LFmuM?feature=share",
-      "https://youtube.com/shorts/0m1DJquiOXI",
+      "https://www.youtube.com/embed/ZTaV-_LFmuM",
+      "https://www.youtube.com/embed/0m1DJquiOXI"
     ],
   },
   {
@@ -83,9 +83,9 @@ export default [
       "/image/workimage/imc/zero/still/4.jpg",
     ],
     poster: [
-      "https://youtube.com/shorts/eKCrn6dOB88?feature=share",
-      "https://youtu.be/PouGRt6k0f0",
-      "https://youtu.be/I5_cbRadaNM",
+      "https://www.youtube.com/embed/eKCrn6dOB88",
+      "https://www.youtube.com/embed/PouGRt6k0f0",
+      "https://www.youtube.com/embed/I5_cbRadaNM",
     ],
   },
   {
@@ -115,8 +115,8 @@ export default [
       "/image/workimage/imc/coffee/still/4.jpg",
     ],
     poster: [
-      "https://youtube.com/shorts/Qyq5dwsfzZw?feature=share",
-      "https://youtube.com/shorts/SmnEMTfloS8?feature=share",
+      "https://www.youtube.com/embed/Qyq5dwsfzZw",
+      "https://www.youtube.com/embed/SmnEMTfloS8",
     ],
   },
   {
@@ -147,8 +147,8 @@ export default [
       "/image/workimage/imc/coupang/still/4.jpg",
     ],
     poster: [
-      "https://youtube.com/shorts/yS2jC-pDbUk",
-      "https://youtube.com/shorts/Y81fq2fAe-I?feature=share",
+      "https://www.youtube.com/embed/yS2jC-pDbUk",
+      "https://www.youtube.com/embed/Y81fq2fAe-I",
     ],
   },
   {
@@ -177,7 +177,7 @@ export default [
       "/image/workimage/imc/samsung/still/3.jpg",
       "/image/workimage/imc/samsung/still/4.jpg",
     ],
-    poster: ["https://youtu.be/0qTsgxQ5n-U"],
+    poster: ["https://www.youtube.com/embed/0qTsgxQ5n-U?si=Jkud6zaKWPB-qKhX"],
   },
   {
     name: "센카의 비밀",
@@ -242,7 +242,7 @@ export default [
       "/image/workimage/imc/gpt/still/3.png",
       "/image/workimage/imc/gpt/still/4.png",
     ],
-    poster: ["https://youtu.be/YndlYH_Hr60"],
+    poster: ["https://www.youtube.com/embed/YndlYH_Hr60?si=KJDzwycGqX9PUiJ2"],
   },
   {
     name: "이상한 틱톡 나라의앨리스",
@@ -312,8 +312,8 @@ export default [
       "/image/workimage/imc/artist/still/4.jpg",
     ],
     poster: [
-      "https://youtube.com/shorts/_L_jN6Uh3ms",
-      "https://youtube.com/shorts/Xv5mq1NHY78?feature=share",
+      "https://www.youtube.com/embed/_L_jN6Uh3ms",
+      "https://www.youtube.com/embed/Xv5mq1NHY78",
     ],
   },
   {
@@ -370,8 +370,8 @@ export default [
       "/image/workimage/imc/cherish/still/4.png",
     ],
     poster: [
-      "https://youtube.com/shorts/eiqtf9q4Hts?feature=share",
-      "https://youtube.com/shorts/2eyxk3c_QV8?feature=share",
+      "https://www.youtube.com/embed/eiqtf9q4Hts",
+      "https://www.youtube.com/embed/2eyxk3c_QV8",
     ],
   },
 ];
