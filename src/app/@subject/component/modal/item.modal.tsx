@@ -16,10 +16,16 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
+import { useCallback, useEffect, useState } from "react";
+
+import UIUXComponent from "@/app/@student/panels/UIUX.panel";
+import BasicComponent from "@/app/@student/panels/basic";
+import BrandPackageComponent from "@/app/@student/panels/brandPackage.panel";
+import ImcLayoutComponent from "@/app/@student/panels/imcLayout";
 
 interface Props {
+
   isOpen: boolean;
   onClose: () => void;
   title: string;
@@ -45,6 +51,8 @@ interface Student {
 
 const ItemModal = (props: Props) => {
 
+  const [subjectList, setSubjectList] = useState<string[]>([]);
+  const [tabIdx, setTabIdx] = useState<number | null>(null);
   const [work, setWork] = useState<Work | null>(null);
   const [workList, setWorkList] = useState<Work[]>([]);
 
@@ -87,6 +95,35 @@ const ItemModal = (props: Props) => {
 
   }, [props])
 
+
+
+  const getPanel = useCallback(() => {
+
+    switch (props.subject) {
+      case "전공연구프로젝트(영상)":
+        return <BasicComponent work={work} />;
+
+      case "IMC":
+        return <ImcLayoutComponent work={work} />;
+
+      case "프로모션영상":
+        return <BasicComponent work={work} />;
+
+      case "전공연구프로젝트(디지털)":
+        return <BasicComponent work={work} />;
+
+      case "UIUX":
+        return <UIUXComponent work={work} />;
+
+      case "애니메이션스튜디오":
+        return <BasicComponent work={work} />;
+
+      case "브랜드패키지":
+        return <BrandPackageComponent work={work} />;
+    }
+  }
+    , [work]);
+
   return (
     <>
       <Modal
@@ -99,7 +136,7 @@ const ItemModal = (props: Props) => {
         scrollBehavior="inside"
       >
         <ModalOverlay backdropFilter="blur(10px) " />
-        <ModalContent h={"85vh"} bg={"black"}>
+        <ModalContent h={"70vh"} bg={"black"}>
           <ModalCloseButton color={"white"} />
 
           <ModalBody>
@@ -138,50 +175,7 @@ const ItemModal = (props: Props) => {
                 </Flex>
               </Flex>
               <Flex w={"80%"} display={"flex"} flexDirection={"column"}>
-                <Flex
-                  display={"flex"}
-                  flexDirection={"column"}
-                  color={"white"}
-                  ml={"3%"}
-                >
-                  <Text fontSize={"6vh"}>{props.title}</Text>
-                  <Text fontSize={"3vh"}>한줄 소개</Text>
-                  <Text fontSize={"1.5vh"}>
-                    내용소개ㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐ
-                  </Text>
-                </Flex>
-                <VStack w={"100%"} h={"100%"} overflow={"auto"}>
-                  <Flex
-                    w={"100%"}
-                    h={"100%"}
-                    display={"flex"}
-                    flexDirection={"column"}
-                  >
-                    <Flex h={"55vh"} mt={"5%"} mr={"3%"} mb={"3%"}>
-                      <iframe
-                        width={"100%"}
-                        height={"100%"}
-                        src={
-                          "https://www.youtube.com/embed/3C6xfNeb5Xs?si=Okbo8vxDPa30cNHM"
-                        }
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      />
-                    </Flex>
-                    <Flex>
-                      <img
-                        src={
-                          "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzA5MjZfMzMg%2FMDAxNjk1NzMzMTYwMzIy.-kP478ZJ5Mffn0JNTvzNaoHc0y4PEcM4sFisrt6Y7BYg.Qjo24-eIcrg75eaLkax-nSaijjwumhUJ4-aokPLKkiIg.JPEG.hasun0521%2Foutput_14324252.jpg&type=a340"
-                        }
-                        alt="SignLogo"
-                        style={{
-                          width: "20vw",
-                          height: "80%",
-                          objectFit: "contain",
-                        }}
-                      />
-                    </Flex>
-                  </Flex>
-                </VStack>
+                {getPanel()}
               </Flex>
             </Flex>
           </ModalBody>
