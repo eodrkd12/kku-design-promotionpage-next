@@ -87,8 +87,8 @@ const WorkList = ({ subject }: Props) => {
 
   const handleMouseUp = useCallback(
     (work: Work) => {
-      console.log(work);
       setModalTitle("타이틀");
+      setSelectedItem(work);
       itemModalOpen();
       if (selRow === 1) {
         insertInterval(1);
@@ -118,7 +118,6 @@ const WorkList = ({ subject }: Props) => {
     switch (subject) {
       case "전공연구프로젝트(영상)":
         _workList = videoMajorProjectData;
-        setSelectedItem(_workList);
         break;
       case "IMC":
         _workList = imcData;
@@ -294,11 +293,12 @@ const WorkList = ({ subject }: Props) => {
           </Flex>
         </HStack>
       )}
-      <ItemModal
+      {isOpenItemModal && <ItemModal
         isOpen={isOpenItemModal}
         onClose={itemModalClose}
         title={modalTitle}
-      ></ItemModal>
+        work={selectedItem}
+      ></ItemModal>}
     </Wrapper>
   );
 };

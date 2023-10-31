@@ -8,15 +8,41 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 
 interface Props {
   isOpen: boolean;
   onClose: () => void;
   title: string;
+  work: Work;
+}
+
+interface Work {
+  name: string;
+  student: Student[];
+  introduction: string;
+  explanation: string;
+  youtube?: string;
+  still?: string[];
+}
+
+interface Student {
+  sname: string;
+  englishName: string;
+  studentNumber: string;
+  email: string;
 }
 
 const ItemModal = (props: Props) => {
 
+  const [work, setWork] = useState<Work | null>(null);
+
+  useEffect(() => {
+    if (props.work) {
+      setWork(props.work);
+    }
+
+  }, [props])
 
   return (
     <>
