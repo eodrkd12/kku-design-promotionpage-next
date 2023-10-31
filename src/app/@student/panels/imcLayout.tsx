@@ -1,5 +1,5 @@
 import { Box, Flex, Text, VStack } from "@chakra-ui/react";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 interface Props {
     work: any;
@@ -22,7 +22,6 @@ interface Student {
 }
 
 const ImcLayoutComponent = (props: Props) => {
-
     const [work, setWork] = useState<Work>();
     useEffect(() => {
         setWork(props.work);
@@ -35,24 +34,20 @@ const ImcLayoutComponent = (props: Props) => {
 
         if (work?.poster) {
             if (work?.poster[0]?.startsWith("http")) {
-                console.log("이것은 영상")
+                console.log("이것은 영상");
                 SetIsVideo(true);
-
-            }
-            else {
-                console.log("사진")
+            } else {
+                console.log("사진");
                 SetIsVideo(false);
             }
         }
-
-    }
-        , [work]);
+    }, [work]);
 
     return (
         <VStack w={"100%"} h={"100%"} flex={1} overflowY={"auto"}>
             <Flex position={"relative"} h={"15vh"}>
                 <img
-                    src={"/image/dark_modal_image.jpeg"}
+                    src={"/image/modal_image.jpg"}
                     alt="SignLogo"
                     style={{ width: "100vw", height: "100%", objectFit: "cover" }}
                 />
@@ -127,7 +122,6 @@ const ImcLayoutComponent = (props: Props) => {
                     })}
                 </Flex>
 
-
                 <Flex flexDir={"column"} w={"100%"} h={"100%"}>
                     <Text color={"white"}>지면</Text>
 
@@ -145,8 +139,8 @@ const ImcLayoutComponent = (props: Props) => {
                                     </Flex>
                                 );
                             })}
-                        </Flex>) : (
-
+                        </Flex>
+                    ) : (
                         <Flex flexDir={"row"} justifyContent={"center"}>
                             {work?.poster?.map((poster: any, index: number) => {
                                 return (
@@ -164,14 +158,7 @@ const ImcLayoutComponent = (props: Props) => {
                                 );
                             })}
                         </Flex>
-
                     )}
-
-
-
-
-
-
                 </Flex>
             </Flex>
         </VStack>

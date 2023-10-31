@@ -14,27 +14,51 @@ const BasicComponent = (props: Props) => {
                     style={{ width: "100vw", height: "100%", objectFit: "cover" }}
                 />
 
-                <Text
-                    position={"absolute"}
-                    color={"white"}
-                    top={"50%"}
-                    left={"5%"}
-                    fontSize={50}
-                    fontWeight={"700"}
-                    transform="translateY(-50%)"
+                {/* <Text
+          position={"absolute"}
+          color={"white"}
+          top={"50%"}
+          left={"5%"}
+          fontSize={50}
+          fontWeight={"700"}
+          transform="translateY(-50%)"
+        >
+          {props.work?.name}
+        </Text>
+        <Text
+          color={"white"}
+          position={"absolute"}
+          top={"50%"}
+          left={"50%"}
+          fontWeight={"500"}
+          transform="translateY(-50%)"
+        >
+          {props.work?.introduction}
+        </Text> */}
+                <Box
+                    display="flex"
+                    alignItems="center"
+                    position="absolute"
+                    top="50%"
+                    left="5%"
                 >
-                    {props.work?.name}
-                </Text>
-                <Text
-                    color={"white"}
-                    position={"absolute"}
-                    top={"50%"}
-                    left={"50%"}
-                    fontWeight={"500"}
-                    transform="translateY(-50%)"
-                >
-                    {props.work?.introduction}
-                </Text>
+                    <Text
+                        color="white"
+                        fontSize={50}
+                        fontWeight="700"
+                        transform="translateY(-50%)"
+                    >
+                        {props.work?.name}
+                    </Text>
+                    <Text
+                        color="white"
+                        fontWeight="500"
+                        transform="translateY(-130%)"
+                        marginLeft="20"
+                    >
+                        {props.work?.introduction}
+                    </Text>
+                </Box>
             </Flex>
 
             <Flex flexDir={"column"} w={"100%"} h={"45vh"}>

@@ -1,6 +1,5 @@
-import { TabPanel, Text, VStack, Flex } from "@chakra-ui/react";
+import { TabPanel, Text, VStack, Flex, Box } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-
 
 interface Props {
   //   isOpen: boolean;
@@ -36,19 +35,33 @@ const BrandPackageComponent = (props: Props) => {
         <img
           src={"/image/dark_modal_image.jpeg"}
           alt="SignLogo"
-          style={{ width: "100vw", height: "100%", objectFit: 'cover' }}
+          style={{ width: "100vw", height: "100%", objectFit: "cover" }}
         />
 
-        <Text
-          position={"absolute"}
-          color={"white"}
-          top={"50%"}
-          left={"5%"}
-          fontSize={50}
-          transform="translateY(-50%)"
+        <Box
+          display="flex"
+          alignItems="center"
+          position="absolute"
+          top="50%"
+          left="5%"
         >
-          {work?.name}
-        </Text>
+          <Text
+            color="white"
+            fontSize={50}
+            fontWeight="700"
+            transform="translateY(-50%)"
+          >
+            {work?.name}
+          </Text>
+          <Text
+            color="white"
+            fontWeight="500"
+            transform="translateY(-130%)"
+            marginLeft="20"
+          >
+            {work?.introduction}
+          </Text>
+        </Box>
 
         <VStack
           position={"absolute"}
@@ -66,7 +79,7 @@ const BrandPackageComponent = (props: Props) => {
           })}
         </VStack>
       </VStack>
-      <VStack flexDir={"column"} w={"100%"} h={"70%"} alignItems={'flex-start'}>
+      <VStack flexDir={"column"} w={"100%"} h={"70%"} alignItems={"flex-start"}>
         <Text color={"white"} m={"1%"}>
           {work?.introduction}
         </Text>
@@ -80,7 +93,11 @@ const BrandPackageComponent = (props: Props) => {
                 <img
                   src={work?.still[index]}
                   alt="SignLogo"
-                  style={{ width: "100vw", height: "60vh", objectFit: 'contain' }}
+                  style={{
+                    width: "100vw",
+                    height: "60vh",
+                    objectFit: "contain",
+                  }}
                 />
               </Flex>
             );
