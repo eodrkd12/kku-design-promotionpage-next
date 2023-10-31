@@ -73,6 +73,14 @@ const ItemWrapper = styled.div`
       margin-top: 0.5vh;
     }
   }
+
+  @media (max-width: 500px) {
+    > div.title {
+       > p {
+        font-size: 2.5vh;
+      }
+    }
+  }
 `;
 
 interface Props {

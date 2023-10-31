@@ -25,7 +25,8 @@ export default function StudentScreen() {
     query: "(max-width: 500px)",
   });
 
-  const profileWidth = isMobile ? "32vw" : "11.5vw";
+
+  const profileWidth = isMobile ? "24vw" : "11.5vw";
 
   const [isScrolledToRight, setIsScrolledToRight] = useState(false);
   const [isScrolledToLeft, setIsScrolledToLeft] = useState(true);
@@ -292,7 +293,7 @@ export default function StudentScreen() {
                   <Flex flexDir={"column"}>
                     <p
                       style={{
-                        fontSize: "8vh",
+                        fontSize: isMobile ? "6vh" : "8vh",
                         color: "white",
                         fontWeight: 400,
                       }}
@@ -406,6 +407,7 @@ export default function StudentScreen() {
                     },
                   }}
                 >
+
                   <Flex flexDir={"column"}>
                     <Flex>
                       <div
@@ -455,6 +457,7 @@ export default function StudentScreen() {
                         ))}
                     </Flex>
                   </Flex>
+
                 </HStack>
                 {!isMobile && (
                   <button

@@ -1,4 +1,5 @@
 import {
+  Flex,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -10,7 +11,8 @@ import {
   TabList,
   TabPanel,
   TabPanels,
-  Tabs
+  Tabs,
+  Text,
 } from "@chakra-ui/react";
 import { useCallback, useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
@@ -26,7 +28,6 @@ import UIUXComponent from "../panels/UIUX.panel";
 import BasicComponent from "../panels/basic";
 import BrandPackageComponent from "../panels/brandPackage.panel";
 import ImcLayoutComponent from "../panels/imcLayout";
-
 
 interface Props {
   isOpen: boolean;
@@ -96,7 +97,6 @@ const StudentModal = (props: Props) => {
       }
 
       if (workList) {
-        console.log(workList);
         setWork(
           workList.filter((value) =>
             value.student.some(
@@ -112,36 +112,28 @@ const StudentModal = (props: Props) => {
     if (tabIdx !== null) {
       switch (subjectList[tabIdx]) {
         case "전공연구프로젝트(영상)":
-          console.log("전공");
-          return <BasicComponent work={work} />
+          return <BasicComponent work={work} />;
 
         case "IMC":
-          console.log("dada123");
-          return <ImcLayoutComponent work={work} />
+          return <ImcLayoutComponent work={work} />;
 
         case "프로모션영상":
-          return <BasicComponent work={work} />
+          return <BasicComponent work={work} />;
 
         case "전공연구프로젝트(디지털)":
-          return <BasicComponent work={work} />
+          return <BasicComponent work={work} />;
 
         case "UIUX":
-          console.log('aaaa');
-          return <UIUXComponent work={work} />
-          break;
+          return <UIUXComponent work={work} />;
 
         case "애니메이션스튜디오":
-          return <BasicComponent work={work} />
+          return <BasicComponent work={work} />;
 
         case "브랜드패키지":
-          return <BrandPackageComponent work={work} />
+          return <BrandPackageComponent work={work} />;
       }
     }
-  }, [tabIdx, work])
-
-  useEffect(() => {
-    console.log(work);
-  }, [work]);
+  }, [tabIdx, work]);
 
   const isMobile = useMediaQuery({
     query: "(max-width: 500px)",
@@ -158,12 +150,7 @@ const StudentModal = (props: Props) => {
       scrollBehavior="inside"
     >
       <ModalOverlay />
-      <ModalContent
-        backgroundColor="black"
-        borderColor={"blue"}
-        borderWidth={2}
-        borderRadius="25px"
-      >
+      <ModalContent backgroundColor="black" borderRadius="25px">
         <ModalHeader>
           <ModalCloseButton color={"white"} />
         </ModalHeader>
@@ -175,7 +162,15 @@ const StudentModal = (props: Props) => {
               setTabIdx(index);
             }}
           >
-            <TabList justifyContent={"space-around"} mb={"1%"}>
+            <TabList mb={"1%"}>
+              <Text
+                marginRight={"3%"}
+                color={"white"}
+                fontSize={"25"}
+                fontWeight={"500"}
+              >
+                {props.studentData.name}
+              </Text>
               {subjectList.map((value, index) => {
                 return (
                   <Tab
@@ -186,17 +181,21 @@ const StudentModal = (props: Props) => {
                   </Tab>
                 );
               })}
+              <Flex
+                position={"absolute"}
+                flexDir={"column"}
+                left={"85%"}
+                align={"self-end"}
+                fontSize={"10"}
+              >
+                <Text color={"white"}>{props.studentData.englishName}</Text>
+                <Text color={"white"}>{props.studentData.email}</Text>
+              </Flex>
             </TabList>
             <TabPanels flex={1} overflowY={"scroll"} maxH={"70vh"}>
-              <TabPanel h={'100%'}>
-                {getPanel()}
-              </TabPanel>
-              <TabPanel h={"60vh"}>
-                {getPanel()}
-              </TabPanel>
-              <TabPanel h={"60vh"}>
-                {getPanel()}
-              </TabPanel>
+              <TabPanel h={"60vh"}>{getPanel()}</TabPanel>
+              <TabPanel h={"60vh"}>{getPanel()}</TabPanel>
+              <TabPanel h={"60vh"}>{getPanel()}</TabPanel>
             </TabPanels>
           </Tabs>
         </ModalBody>

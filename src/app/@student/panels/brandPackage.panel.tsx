@@ -1,4 +1,4 @@
-import { TabPanel, Text, VStack } from "@chakra-ui/react";
+import { TabPanel, Text, VStack, Flex } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
 
@@ -74,13 +74,15 @@ const BrandPackageComponent = (props: Props) => {
           {work?.explanation}
         </Text>
         <VStack>
-          {work?.still.map((still: React.ReactNode, index: number) => {
+          {work?.still?.map((still: React.ReactNode, index: number) => {
             return (
-              <img
-                src={work?.still[index]}
-                alt="SignLogo"
-                style={{ width: "100vw", height: "60vh", objectFit: 'contain' }}
-              />
+              <Flex key={index}>
+                <img
+                  src={work?.still[index]}
+                  alt="SignLogo"
+                  style={{ width: "100vw", height: "60vh", objectFit: 'contain' }}
+                />
+              </Flex>
             );
           })}
         </VStack>
