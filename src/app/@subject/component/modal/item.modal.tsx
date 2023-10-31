@@ -31,7 +31,7 @@ const ItemModal = (props: Props) => {
       >
         <ModalOverlay backdropFilter="blur(10px) " />
         <ModalContent h={"85vh"} bg={"black"}>
-          <ModalCloseButton bg={"red.500"} />
+          <ModalCloseButton color={"white"} />
 
           <ModalBody>
             <Flex w={"100%"}>
@@ -46,7 +46,7 @@ const ItemModal = (props: Props) => {
                   flexDirection={"column"}
                   justifyContent={"center"}
                   position={"fixed"}
-                  mt={"3%"}
+                  mt={"2%"}
                   color={"white"}
                 >
                   <Text mt={"30%"} mb={"10%"}>
@@ -63,27 +63,21 @@ const ItemModal = (props: Props) => {
                 </Flex>
               </Flex>
               <Flex w={"80%"} display={"flex"} flexDirection={"column"}>
-                <Flex
-                  display={"flex"}
-                  flexDirection={"column"}
-                  position={"fixed"}
-                  color={"white"}
-                  zIndex={100}
-                >
+                <Flex display={"flex"} flexDirection={"column"} color={"white"}>
                   <Text fontSize={"6vh"}>{props.title}</Text>
                   <Text fontSize={"3vh"}>한줄소개</Text>
                   <Text fontSize={"1.5vh"}>
                     내용소개ㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐ
                   </Text>
                 </Flex>
-                <VStack w={"100%"} h={"100%"} overflow={"auto"} zIndex={0}>
+                <VStack w={"100%"} h={"100%"} overflow={"auto"}>
                   <Flex
                     w={"100%"}
                     h={"100%"}
                     display={"flex"}
                     flexDirection={"column"}
                   >
-                    <Flex h={"55vh"} mt={"5%"} mr={"3%"} mb={"5%"}>
+                    <Flex h={"55vh"} mt={"5%"} mr={"3%"} mb={"3%"}>
                       <iframe
                         width={"100%"}
                         height={"100%"}

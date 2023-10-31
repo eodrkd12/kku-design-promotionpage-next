@@ -1,4 +1,5 @@
 import { Box, Flex, Text, VStack } from "@chakra-ui/react";
+import { useMediaQuery } from "react-responsive";
 import { useEffect, useState } from "react";
 
 interface Props {
@@ -22,6 +23,10 @@ interface Student {
 }
 
 const ImcLayoutComponent = (props: Props) => {
+  const isMobile = useMediaQuery({
+    query: "(max-width: 500px)",
+  });
+
   const [work, setWork] = useState<Work>();
   useEffect(() => {
     setWork(props.work);
@@ -54,24 +59,26 @@ const ImcLayoutComponent = (props: Props) => {
 
         <Box
           display="flex"
-          alignItems="center"
+          flexDirection={ isMobile ? "column" : "row"}
+          alignItems={ isMobile ? "start" : "center"}
           position="absolute"
-          top="50%"
+          top={ isMobile ? "35%" : "50%"}
           left="5%"
         >
           <Text
             color="white"
-            fontSize={50}
+            fontSize={ !isMobile ? "50px" : work?.name && work.name.length >= 20 ? "20px" : "24px"}
             fontWeight="700"
-            transform="translateY(-50%)"
+            transform={ isMobile ? "translateY(-40%)" : "translateY(-50%)"}
           >
             {work?.name}
           </Text>
           <Text
             color="white"
             fontWeight="500"
-            transform="translateY(-150%)"
-            marginLeft="20"
+            transform={ isMobile ? "translateY(-120%)" : "translateY(-130%)"}
+            marginLeft={ isMobile ? "0" : "20"}
+            fontSize={ !isMobile ? "16px" : work?.introduction && work.introduction.length >= 30 ? "10px" : "12px"}
           >
             {work?.introduction}
           </Text>
@@ -93,7 +100,7 @@ const ImcLayoutComponent = (props: Props) => {
           })}
         </Flex>
         <Box mt={4}></Box>
-        <Text color={"white"} fontSize={"15"}>
+        <Text color={"white"} fontSize={ isMobile ? "12" : "15" }>
           {work?.explanation}
         </Text>
         {work && work.youtube && (

@@ -1,10 +1,16 @@
 import { Box, Flex, Text, VStack } from "@chakra-ui/react";
+import { useMediaQuery } from "react-responsive";
 
 interface Props {
   work: any;
 }
 
 const BasicComponent = (props: Props) => {
+  const isMobile = useMediaQuery({
+    query: "(max-width: 500px)",
+  });
+
+
   return (
     <VStack w={"100%"} h={"100%"} flex={1} overflowY={"auto"}>
       <Flex position={"relative"} h={"15vh"}>
@@ -15,24 +21,26 @@ const BasicComponent = (props: Props) => {
         />
         <Box
           display="flex"
-          alignItems="center"
+          flexDirection={ isMobile ? "column" : "row"}
+          alignItems={ isMobile ? "start" : "center"}
           position="absolute"
-          top="50%"
+          top={ isMobile ? "35%" : "50%"}
           left="5%"
         >
           <Text
             color="white"
-            fontSize={50}
             fontWeight="700"
-            transform="translateY(-50%)"
+            transform={ isMobile ? "translateY(-40%)" : "translateY(-50%)"}
+            fontSize={ !isMobile ? "50px" : props.work?.name && props.work.name.length >= 20 ? "20px" : "24px"}
           >
             {props.work?.name}
           </Text>
           <Text
             color="white"
             fontWeight="500"
-            transform="translateY(-130%)"
-            marginLeft="20"
+            transform={ isMobile ? "translateY(-120%)" : "translateY(-130%)"}
+            marginLeft={ isMobile ? "0" : "20"}
+            fontSize={ !isMobile ? "16px" : props.work?.introduction && props.work.introduction.length >= 30 ? "10px" : "12px"}
           >
             {props.work?.introduction}
           </Text>
@@ -55,7 +63,7 @@ const BasicComponent = (props: Props) => {
           })}
         </Flex>
         <Box mt={4}></Box>
-        <Text color={"white"} fontSize={"15"}>
+        <Text color={"white"} fontSize={ isMobile ? "12" : "15"}>
           {props.work?.explanation}
         </Text>
 
