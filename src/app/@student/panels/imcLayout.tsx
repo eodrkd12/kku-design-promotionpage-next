@@ -97,7 +97,7 @@ const ImcLayoutComponent = (props: Props) => {
         </Box>
       </Flex>
       <Flex flexDir={"column"} w={"100%"} h={"45vh"}>
-        <Flex color={"white"} top={"5%"} right={0} flexDir={"row"}>
+        <Flex color={"white"} top={"5%"} right={0} flexDir={ isMobile ? "column" : "row"}>
           {work?.student.map((student: any, index: number) => {
             return (
               <Text
