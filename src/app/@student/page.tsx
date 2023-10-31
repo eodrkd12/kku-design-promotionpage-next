@@ -25,7 +25,7 @@ export default function StudentScreen() {
     query: "(max-width: 500px)",
   });
 
-  const profileWidth = isMobile ? "24vw" : "11.5vw";
+  const profileWidth = isMobile ? "36vw" : "11.5vw";
 
   const [isScrolledToRight, setIsScrolledToRight] = useState(false);
   const [isScrolledToLeft, setIsScrolledToLeft] = useState(true);
@@ -243,7 +243,7 @@ export default function StudentScreen() {
         id="student"
         className="parent-200vh"
         flexDir={"column"}
-        gap={'50vh'}
+        gap={isMobile ? '30vh' : '50vh'}
         style={{
           transform: `translate(0px, -70vh)`,
           justifyContent: 'flex-end'
