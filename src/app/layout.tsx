@@ -88,7 +88,7 @@ const MainTitleWrapper = styled.div`
   height: 40vh;
   width: 20vw;
   opacity: 1;
-  z-index: 2;
+  z-index: -10;
   animation: fadeOut ease-in-out 1s;
 
   > div:nth-child(1) {

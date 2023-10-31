@@ -136,10 +136,10 @@ const ImcLayoutComponent = (props: Props) => {
                     <Text color={"white"}>지면</Text>
 
                     {isVideo ? (
-                        <Flex flexDir={"column"} justifyContent={"center"}>
+                        <Flex flexDir={"column"} alignItems={"center"}>
                             {work?.poster?.map((poster: any, index: number) => {
                                 return (
-                                    <Flex key={index} margin={"2%"} width={"100%"}>
+                                    <Flex key={index} margin={"2%"} width={"100vh"} height={"50vh"}>
                                         <iframe
                                             width="100%"
                                             height="100%"

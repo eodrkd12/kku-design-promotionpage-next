@@ -51,7 +51,9 @@ export default function SubjectScreen() {
   }, []);
 
   return (
-    <div id="subject" className="parent-200vh">
+    <div id="subject" className="parent-200vh" style={{
+      transform: `translate(0px, -40vh)`
+    }}>
       {contentVisible && (
         <motion.div
           initial={{ opacity: 0, y: 100 }}
@@ -64,6 +66,7 @@ export default function SubjectScreen() {
                 fontSize: isMobile ? "6vh" : "8vh",
                 color: "white",
                 fontWeight: 400,
+                textAlign: 'left'
               }}
             >
               WORK
