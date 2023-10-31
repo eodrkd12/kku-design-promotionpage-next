@@ -21,7 +21,7 @@ const BasicComponent = (props: Props) => {
             overflowY={'auto'}>
             <Flex position={'relative'} h={'15vh'}>
                 <img
-                    src={"/image/modal_image.jpg"}
+                    src={"/image/dark_modal_image.jpeg"}
                     alt="SignLogo"
                     style={{ width: "100vw", height: "100%", objectFit: 'cover' }}
                 />

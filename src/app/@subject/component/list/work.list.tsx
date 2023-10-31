@@ -140,6 +140,7 @@ const WorkList = ({ subject }: Props) => {
       style={{
         width: "14vw",
         height: "12vh",
+        borderRadius: '5%',
         overflowX: 'hidden',
         overflowY: 'hidden'
       }}
@@ -152,7 +153,6 @@ const WorkList = ({ subject }: Props) => {
         style={{
           width: "14vw",
           height: "12vh",
-          border: "2px solid white",
           transition: "transform 0.3s, filter 0.3s",
           objectFit: 'cover',
         }}
@@ -182,8 +182,8 @@ const WorkList = ({ subject }: Props) => {
         }}
         ref={row1Ref}
       >
-        <Flex flexDir={"column"} gap={1}>
-          <Flex position={'relative'} gap={1}>
+        <Flex flexDir={"column"} gap={2}>
+          <Flex position={'relative'} gap={2}>
             {isMobile && <motion.div>
             </motion.div>}
             {row1.map((work, index) => (
@@ -193,7 +193,7 @@ const WorkList = ({ subject }: Props) => {
               />
             ))}
           </Flex>
-          <Flex position={'relative'} gap={1}>
+          <Flex position={'relative'} gap={2}>
             {row2.map((work, index) => (
               <ImageButton
                 key={index}

@@ -34,7 +34,7 @@ const UIUXComponent = (props: Props) => {
     <TabPanel h={"60vh"}>
       <VStack position={"relative"} h={"30%"}>
         <img
-          src={"/image/modal_image.jpg"}
+          src={"/image/dark_modal_image.jpeg"}
           alt="SignLogo"
           style={{ width: "100vw", height: "100%", objectFit: 'cover' }}
         />

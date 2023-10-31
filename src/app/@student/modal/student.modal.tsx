@@ -59,6 +59,7 @@ const StudentModal = (props: Props) => {
 
   useEffect(() => {
     if (props.studentData) {
+      console.log(props.studentData)
       const _subjectList: string[] = [];
       props.studentData.subject.split("/").forEach((value: string) => {
         _subjectList.push(value.trim());
@@ -194,7 +195,6 @@ const StudentModal = (props: Props) => {
                 {getPanel()}
               </TabPanel>
               <TabPanel h={"60vh"}>
-
                 {getPanel()}
               </TabPanel>
             </TabPanels>

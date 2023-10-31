@@ -15,8 +15,6 @@ const ItemWrapper = styled.div`
   > div.title {
     width: 100%;
     height: 15vh;
-    box-sizing: border-box;
-    border: 2px solid white;
     overflow-x: hidden;
     overflow-y: hidden;
     > img {
@@ -39,7 +37,7 @@ const ItemWrapper = styled.div`
       width: 100%;
       height: 100%;
       background-color: black;
-      opacity: 0.3;
+      opacity: 0.7;
     }
   }
 
@@ -53,8 +51,6 @@ const ItemWrapper = styled.div`
       width: 100%;
       height: 15vh;
       margin-top: 0.5vh;
-      box-sizing: border-box;
-      border: 2px solid white;
       overflow-x: hidden;
       overflow-y: hidden;
       > img {
