@@ -21,26 +21,26 @@ const BasicComponent = (props: Props) => {
         />
         <Box
           display="flex"
-          flexDirection={ isMobile ? "column" : "row"}
-          alignItems={ isMobile ? "start" : "center"}
+          flexDirection={isMobile ? "column" : "row"}
+          alignItems={isMobile ? "start" : "center"}
           position="absolute"
-          top={ isMobile ? "35%" : "50%"}
+          top={isMobile ? "35%" : "50%"}
           left="5%"
         >
           <Text
             color="white"
             fontWeight="700"
-            transform={ isMobile ? "translateY(-40%)" : "translateY(-50%)"}
-            fontSize={ !isMobile ? "50px" : props.work?.name && props.work.name.length >= 16 ? "20px" : "24px"}
+            transform={isMobile ? "translateY(-40%)" : "translateY(-50%)"}
+            fontSize={!isMobile ? "50px" : props.work?.name && props.work.name.length >= 16 ? "20px" : "24px"}
           >
             {props.work?.name}
           </Text>
           <Text
             color="white"
             fontWeight="500"
-            transform={ isMobile ? "translateY(-120%)" : "translateY(-130%)"}
-            marginLeft={ isMobile ? "0" : "20"}
-            fontSize={ !isMobile ? "16px" : props.work?.introduction && props.work.introduction.length >= 30 ? "10px" : "12px"}
+            transform={isMobile ? "translateY(-120%)" : "translateY(-130%)"}
+            marginLeft={isMobile ? "0" : "20"}
+            fontSize={!isMobile ? "16px" : props.work?.introduction && props.work.introduction.length >= 30 ? "10px" : "12px"}
           >
             {props.work?.introduction}
           </Text>
@@ -63,7 +63,7 @@ const BasicComponent = (props: Props) => {
           })}
         </Flex>
         <Box mt={4}></Box>
-        <Text color={"white"} fontSize={ isMobile ? "12" : "15"}>
+        <Text color={"white"} fontSize={isMobile ? "12" : "15"}>
           {props.work?.explanation}
         </Text>
 

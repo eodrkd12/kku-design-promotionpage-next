@@ -12,12 +12,13 @@ import {
   ModalBody,
   ModalCloseButton,
   ModalContent,
+  ModalHeader,
   ModalOverlay,
   Text,
   VStack,
 } from "@chakra-ui/react";
-import { useMediaQuery } from "react-responsive";
 import { useCallback, useEffect, useState } from "react";
+import { useMediaQuery } from "react-responsive";
 
 import UIUXComponent from "@/app/@student/panels/UIUX.panel";
 import BasicComponent from "@/app/@student/panels/basic";
@@ -53,7 +54,7 @@ const ItemModal = (props: Props) => {
 
   const [subjectList, setSubjectList] = useState<string[]>([]);
   const [tabIdx, setTabIdx] = useState<number | null>(null);
-  const [work, setWork] = useState<Work | null>(null);
+  const [work, setWork] = useState<Work | null>(props.work);
   const [workList, setWorkList] = useState<Work[]>([]);
 
   const isMobile = useMediaQuery({
@@ -62,12 +63,10 @@ const ItemModal = (props: Props) => {
 
   const handleWorkClick = (work: Work) => {
     setWork(work);
+    console.log(work);
   }
 
   useEffect(() => {
-    if (props.work) {
-      setWork(props.work);
-    }
 
     if (props.work) {
       let _workList: Work[] = [];
@@ -101,6 +100,7 @@ const ItemModal = (props: Props) => {
 
 
 
+
   const getPanel = useCallback(() => {
 
     switch (props.subject) {
@@ -125,8 +125,7 @@ const ItemModal = (props: Props) => {
       case "브랜드패키지":
         return <BrandPackageComponent work={work} />;
     }
-  }
-    , [work]);
+  }, [work]);
 
   return (
     <>
@@ -141,35 +140,39 @@ const ItemModal = (props: Props) => {
       >
         <ModalOverlay backdropFilter="blur(10px) " />
         <ModalContent h={"70vh"} bg={"black"}>
-          <ModalCloseButton color={"white"} />
+          <ModalHeader>
+            <ModalCloseButton color={"white"} />
+          </ModalHeader>
 
-          <ModalBody>
-            <Flex w={"100%"}>
+          <ModalBody px={'2%'}>
+            <Flex w={"100%"} h={'100%'} justifyContent={'space-between'}>
               <Flex
-                w={"20%"}
-                mt={"4%"}
-                display={"flex"}
-                flexDirection={"column"}
+                w={"16%"}
+                h={'100%'}
               >
                 <Flex
                   display={"flex"}
                   flexDirection={"column"}
-                  justifyContent={"center"}
                   position={"fixed"}
                   color={"white"}
+                  gap={isMobile ? '1.5vh' : '1.5vw'}
+                  pt={isMobile ? '2vh' : '2vw'}
+                  h={'100%'}
+                  w={'16%'}
                 >
-                  <Text mt={"30%"} mb={"10%"} fontWeight={800} fontSize={isMobile ? '1.3vh' : '1.3vw'}>
+                  <Text fontWeight={800} w={'100%'} wordBreak={'break-word'} fontSize={isMobile ? '1.3vh' : '1.3vw'}>
                     {props.subject}
                   </Text>
-                  <VStack alignItems={'flex-start'}>
+                  <VStack alignItems={'flex-start'} w={'100%'} maxH={isMobile ? '55vh' : '45vh'} overflow={'scroll'}>
                     {workList.map((work) => {
                       return (
-                        <Button variant={'link'} px={2} colorScheme="white" flexDir={'column'} alignItems={'flex-start'}
+                        <Button w={'100%'} variant={'link'} px={1} colorScheme="white" flexDir={'column'} alignItems={'flex-start'} textOverflow={'ellipsis'}
                           onClick={() => handleWorkClick(work)}>
-                          <Text fontSize={isMobile ? '1.1vh' : '1.1vw'} color={'white'}>{work.name}</Text>
-                          <Flex gap={1}>
-                            <Text>-</Text>
-                            {work.student.map((student) => <Text fontSize={isMobile ? '1vh' : '1vw'} color={'white'}>
+                          <Text fontSize={isMobile ? '1.1vh' : '1.1vw'} color={'white'} w={'100%'} textAlign={'left'}>{work.name}</Text>
+                          {isMobile && <Flex backgroundColor={'white'} h={'1px'} w={'100%'}></Flex>}
+                          <Flex gap={isMobile ? 0 : 1} flexDir={isMobile ? 'column' : 'row'}>
+                            {!isMobile && <Text>-</Text>}
+                            {work.student.map((student) => <Text fontSize={isMobile ? '1vh' : '1vw'} color={'white'} textAlign={'left'}>
                               {student.sname}
                             </Text>)}
                           </Flex>
@@ -179,7 +182,7 @@ const ItemModal = (props: Props) => {
                   </VStack>
                 </Flex>
               </Flex>
-              <Flex w={"80%"} display={"flex"} flexDirection={"column"}>
+              <Flex w={"78%"} display={"flex"} flexDirection={"column"}>
                 {getPanel()}
               </Flex>
             </Flex>
