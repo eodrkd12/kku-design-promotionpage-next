@@ -121,6 +121,7 @@ const WorkList = ({ subject }: Props) => {
   }, [subject]);
 
   useEffect(() => {
+    console.log(workList);
     if (workList.length > 10) {
       setRow1(workList.slice(0, Math.ceil(workList.length / 2)));
       setRow2(workList.slice(Math.ceil(workList.length / 2)));
