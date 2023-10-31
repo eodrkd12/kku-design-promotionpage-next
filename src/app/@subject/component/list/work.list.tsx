@@ -41,12 +41,15 @@ interface Student {
 
 interface ImageButtonProps {
   src: string;
+  rowNum: number;
 }
 
 const WorkList = ({ subject }: Props) => {
   const [workList, setWorkList] = useState<Work[]>([]);
   const [row1, setRow1] = useState<Work[]>([]);
   const [row2, setRow2] = useState<Work[]>([]);
+  const [row1Scroll, setRow1Scroll] = useState<NodeJS.Timeout | null>(null);
+  const [row2Scroll, setRow2Scroll] = useState<NodeJS.Timeout | null>(null);
 
   const row1Ref = useRef<HTMLDivElement>(null);
   const row2Ref = useRef<HTMLDivElement>(null);
@@ -121,25 +124,46 @@ const WorkList = ({ subject }: Props) => {
   }, [subject]);
 
   useEffect(() => {
-    console.log(workList);
     if (workList.length > 10) {
       setRow1(workList.slice(0, Math.ceil(workList.length / 2)));
       setRow2(workList.slice(Math.ceil(workList.length / 2)));
     } else {
-      if (workList.length < 6) {
-        setRow1(workList);
-      } else {
-        setRow1(workList.slice(0, 5));
-        setRow2(workList.slice(5));
-      }
+      setRow1(workList);
     }
   }, [workList]);
 
-  const ImageButton = ({ src }: ImageButtonProps) => (
+  useEffect(() => {
+    if (row1 && row1.length > 4) {
+
+    }
+  }, [row1]);
+  useEffect(() => {
+    if (row2 && row2.length > 4) {
+    }
+  }, [row2]);
+
+  const insertInterval = (rowNum: number) => {
+    if (rowNum === 1) {
+      setRow1Scroll(setInterval(() => {
+        if (row1Ref.current) {
+
+        }
+      }, 20))
+    } else {
+      setRow2Scroll(setInterval(() => {
+        if (row2Ref.current) {
+
+        }
+      }, 20))
+    }
+  }
+
+  const ImageButton = ({ src, rowNum }: ImageButtonProps) => (
     <div
       style={{
         width: "14vw",
         height: "12vh",
+        borderRadius: '5%',
         overflowX: 'hidden',
         overflowY: 'hidden'
       }}
@@ -152,7 +176,6 @@ const WorkList = ({ subject }: Props) => {
         style={{
           width: "14vw",
           height: "12vh",
-          border: "2px solid white",
           transition: "transform 0.3s, filter 0.3s",
           objectFit: 'cover',
         }}
@@ -175,6 +198,7 @@ const WorkList = ({ subject }: Props) => {
         overflowX="scroll"
         h={"100%"}
         w={"100%"}
+        alignItems={'flex-start'}
         sx={{
           "::-webkit-scrollbar": {
             display: "none",
@@ -182,25 +206,27 @@ const WorkList = ({ subject }: Props) => {
         }}
         ref={row1Ref}
       >
-        <Flex flexDir={"column"} gap={1}>
-          <Flex position={'relative'} gap={1}>
+        <Flex flexDir={"column"} gap={2}>
+          <Flex position={'relative'} gap={2}>
             {isMobile && <motion.div>
             </motion.div>}
             {row1.map((work, index) => (
               <ImageButton
                 key={index}
                 src={work.still ? work.still[0] : "/image/lightDoor.png"}
+                rowNum={1}
               />
             ))}
           </Flex>
-          <Flex position={'relative'} gap={1}>
+          {row2.length > 0 && <Flex position={'relative'} gap={2} ref={row2Ref}>
             {row2.map((work, index) => (
               <ImageButton
                 key={index}
                 src={work.still ? work.still[0] : "/image/lightDoor.png"}
+                rowNum={2}
               />
             ))}
-          </Flex>
+          </Flex>}
         </Flex>
       </HStack>
     </Wrapper>

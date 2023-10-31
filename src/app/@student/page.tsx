@@ -222,8 +222,6 @@ export default function StudentScreen() {
   );
 
 
-
-
   return (
     <div
       className="parent-400vh"
@@ -305,7 +303,7 @@ export default function StudentScreen() {
                     <Flex>
                       <div
                         style={{
-                          width: isMobile ? "32vw" : profileWidth,
+                          width: profileWidth,
                           borderTop: "1px solid white",
                           flexShrink: 0,
                         }}
@@ -410,56 +408,56 @@ export default function StudentScreen() {
                   }}
                 >
 
-                <Flex flexDir={"column"}>
-                  <Flex>
-                    <div
-                      style={{
-                        width: isMobile ? "32vw" : profileWidth,
-                        borderTop: "1px solid white",
-                        flexShrink: 0,
-                      }}
-                    >
+                  <Flex flexDir={"column"}>
+                    <Flex>
                       <div
                         style={{
-                          marginLeft: 15,
-                          color: "white",
-                          fontSize: 25,
+                          width: profileWidth,
+                          borderTop: "1px solid white",
+                          flexShrink: 0,
                         }}
                       >
-                        DIGITAL
-                        <br />
-                        TRACK
+                        <div
+                          style={{
+                            marginLeft: 15,
+                            color: "white",
+                            fontSize: 25,
+                          }}
+                        >
+                          DIGITAL
+                          <br />
+                          TRACK
+                        </div>
                       </div>
-                    </div>
-                    {digitalStudentData
-                      .slice(0, Math.ceil(digitalStudentData.length / 2 - 1))
-                      .map((student, index) => (
-                        <ImageButton
-                          key={index}
-                          src={student.profile}
-                          alt="SignLogo"
-                          name={student.name}
-                          englishName={student.englishName}
-                          onClick={() => handleStudent(student)}
-                        />
-                      ))}
+                      {digitalStudentData
+                        .slice(0, Math.ceil(digitalStudentData.length / 2 - 1))
+                        .map((student, index) => (
+                          <ImageButton
+                            key={index}
+                            src={student.profile}
+                            alt="SignLogo"
+                            name={student.name}
+                            englishName={student.englishName}
+                            onClick={() => handleStudent(student)}
+                          />
+                        ))}
+                    </Flex>
+                    <Flex>
+                      {digitalStudentData
+                        .slice(Math.ceil(digitalStudentData.length / 2 - 1))
+                        .map((student, index) => (
+                          <ImageButton
+                            key={index}
+                            src={student.profile}
+                            alt="SignLogo"
+                            name={student.name}
+                            englishName={student.englishName}
+                            onClick={() => handleStudent(student)}
+                          />
+                        ))}
+                    </Flex>
                   </Flex>
-                  <Flex>
-                    {digitalStudentData
-                      .slice(Math.ceil(digitalStudentData.length / 2 - 1))
-                      .map((student, index) => (
-                        <ImageButton
-                          key={index}
-                          src={student.profile}
-                          alt="SignLogo"
-                          name={student.name}
-                          englishName={student.englishName}
-                          onClick={() => handleStudent(student)}
-                        />
-                      ))}
-                  </Flex>
-                </Flex>
-                
+
                 </HStack>
                 {!isMobile && (
                   <button

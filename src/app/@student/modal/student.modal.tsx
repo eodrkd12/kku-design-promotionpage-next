@@ -60,11 +60,13 @@ const StudentModal = (props: Props) => {
 
   useEffect(() => {
     if (props.studentData) {
+      console.log(props.studentData);
       const _subjectList: string[] = [];
       props.studentData.subject.split("/").forEach((value: string) => {
         _subjectList.push(value.trim());
       });
       setSubjectList(_subjectList);
+
       setTabIdx(0);
     }
   }, [props]);
@@ -96,13 +98,22 @@ const StudentModal = (props: Props) => {
       }
 
       if (workList) {
-        setWork(
-          workList.filter((value) =>
-            value.student.some(
-              (value) => value.sname === props.studentData.name
-            )
-          )[0]
-        );
+        const _work = workList.filter((value) =>
+          value.student.some(
+            (value) => value.sname === props.studentData.name
+          )
+        )[0]
+        const len = _work.student.length;
+        if (len !== undefined) {
+          for (let i = 0; i < len; i++) {
+            if (_work.student[i].sname === props.studentData.name) {
+              const temp = _work.student[i];
+              _work.student.splice(i, 1);
+              _work.student.unshift(temp);
+            }
+          }
+        }
+        setWork(_work);
       }
     }
   }, [tabIdx]);
@@ -148,7 +159,7 @@ const StudentModal = (props: Props) => {
       autoFocus
       scrollBehavior="inside"
     >
-      <ModalOverlay />
+      <ModalOverlay backdropFilter="blur(10px) " />
       <ModalContent backgroundColor="black" borderRadius="25px">
         <ModalHeader>
           <ModalCloseButton color={"white"} />

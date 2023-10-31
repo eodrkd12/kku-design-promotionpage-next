@@ -38,33 +38,36 @@ const UIUXComponent = (props: Props) => {
     <VStack w={"100%"} h={"100%"} flex={1} overflowY={"auto"}>
       <Flex position={"relative"} h={"30%"}>
         <img
-          src={"/image/modal_image.jpg"}
+          src={"/image/dark_modal_image.jpeg"}
           alt="SignLogo"
           style={{ width: "100vw", height: "100%", objectFit: "cover" }}
         />
 
-        <Text
-          position={"absolute"}
-          color={"white"}
-          top={ isMobile ? "35%" : "50%"}
-          left={"5%"}
-          fontSize={ !isMobile ? "50px" : work?.name && work.name.length >= 20 ? "20px" : "24px"}
-          fontWeight={"700"}
-          transform="translateY(-50%)"
+        <Box
+          display="flex"
+          alignItems="center"
+          position="absolute"
+          top="50%"
+          left="5%"
         >
-          {work?.name}
-        </Text>
-        <Text
-          color={"white"}
-          position={"absolute"}
-          top={ isMobile ? "70%" : "50%"}
-          left={ isMobile ? "5%" : "50%"}
-          fontWeight={"500"}
-          transform="translateY(-50%)"
-          fontSize={ !isMobile ? "16px" : props.work?.introduction && props.work.introduction.length >= 30 ? "10px" : "12px"}
-        >
-          {props.work?.introduction}
-        </Text>
+          <Text
+            color="white"
+            fontSize={ !isMobile ? "50px" : work?.name && work.name.length >= 20 ? "20px" : "24px"}
+            fontWeight="700"
+            transform="translateY(-50%)"
+          >
+            {work?.name}
+          </Text>
+          <Text
+            color="white"
+            fontWeight="500"
+            transform="translateY(-130%)"
+            marginLeft="20"
+            fontSize={ !isMobile ? "16px" : work?.introduction && work.introduction.length >= 30 ? "10px" : "12px"}
+          >
+            {work?.introduction}
+          </Text>
+        </Box>
       </Flex>
       <Flex flexDir={"column"} w={"100%"} h={"70%"}>
         <Flex color={"white"} top={"5%"} right={0} flexDir={"row"}>
@@ -99,15 +102,17 @@ const UIUXComponent = (props: Props) => {
         <Flex flexDir={"column"}>
           {work?.still?.map((still: React.ReactNode, index: number) => {
             return (
-              <img
-                src={work?.still[index]}
-                alt="SignLogo"
-                style={{
-                  width: "100vw",
-                  height: "60vh",
-                  objectFit: "contain",
-                }}
-              />
+              <Flex margin={"1%"}>
+                <img
+                  src={work?.still[index]}
+                  alt="SignLogo"
+                  style={{
+                    width: "100vw",
+                    height: "60vh",
+                    objectFit: "contain",
+                  }}
+                />
+              </Flex>
             );
           })}
         </Flex>
