@@ -106,7 +106,7 @@ const WorkList = ({ subject }: Props) => {
         insertInterval(2);
       }
     },
-    [selRow]
+    [selRow, previousX]
   );
 
   const handleMouseMove = useCallback(
