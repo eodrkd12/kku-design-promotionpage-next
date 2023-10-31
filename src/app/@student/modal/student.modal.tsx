@@ -66,6 +66,7 @@ const StudentModal = (props: Props) => {
         _subjectList.push(value.trim());
       });
       setSubjectList(_subjectList);
+
       setTabIdx(0);
     }
   }, [props]);

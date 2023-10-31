@@ -41,18 +41,18 @@ interface Student {
 
 interface ImageButtonProps {
   src: string;
+  rowNum: number;
 }
 
 const WorkList = ({ subject }: Props) => {
   const [workList, setWorkList] = useState<Work[]>([]);
   const [row1, setRow1] = useState<Work[]>([]);
   const [row2, setRow2] = useState<Work[]>([]);
-  const [row1Scroll, setRow1Scroll] = useState<boolean>(false);
-  const [row2Scroll, setRow2Scroll] = useState<boolean>(false);
+  const [row1Scroll, setRow1Scroll] = useState<NodeJS.Timeout | null>(null);
+  const [row2Scroll, setRow2Scroll] = useState<NodeJS.Timeout | null>(null);
 
   const row1Ref = useRef<HTMLDivElement>(null);
   const row2Ref = useRef<HTMLDivElement>(null);
-
 
   const div = row1Ref.current;
   const refId = useRef<number | null>(null);
@@ -132,7 +132,33 @@ const WorkList = ({ subject }: Props) => {
     }
   }, [workList]);
 
-  const ImageButton = ({ src }: ImageButtonProps) => (
+  useEffect(() => {
+    if (row1 && row1.length > 4) {
+
+    }
+  }, [row1]);
+  useEffect(() => {
+    if (row2 && row2.length > 4) {
+    }
+  }, [row2]);
+
+  const insertInterval = (rowNum: number) => {
+    if (rowNum === 1) {
+      setRow1Scroll(setInterval(() => {
+        if (row1Ref.current) {
+
+        }
+      }, 20))
+    } else {
+      setRow2Scroll(setInterval(() => {
+        if (row2Ref.current) {
+
+        }
+      }, 20))
+    }
+  }
+
+  const ImageButton = ({ src, rowNum }: ImageButtonProps) => (
     <div
       style={{
         width: "14vw",
@@ -188,14 +214,16 @@ const WorkList = ({ subject }: Props) => {
               <ImageButton
                 key={index}
                 src={work.still ? work.still[0] : "/image/lightDoor.png"}
+                rowNum={1}
               />
             ))}
           </Flex>
-          {row2.length > 0 && <Flex position={'relative'} gap={2}>
+          {row2.length > 0 && <Flex position={'relative'} gap={2} ref={row2Ref}>
             {row2.map((work, index) => (
               <ImageButton
                 key={index}
                 src={work.still ? work.still[0] : "/image/lightDoor.png"}
+                rowNum={2}
               />
             ))}
           </Flex>}
