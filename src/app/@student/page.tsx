@@ -21,7 +21,12 @@ interface ImageButtonProps {
 export default function StudentScreen() {
   const { scrollYProgress } = useScroll();
 
-  const profileWidth = "11.5vw";
+  const isMobile = useMediaQuery({
+    query: "(max-width: 500px)",
+  });
+
+
+  const profileWidth = isMobile ? "24vw" : "11.5vw";
 
   const [isScrolledToRight, setIsScrolledToRight] = useState(false);
   const [isScrolledToLeft, setIsScrolledToLeft] = useState(true);
@@ -41,10 +46,6 @@ export default function StudentScreen() {
   const [selectedStudent, setSelectedStudent] = useState<any>(null);
 
   const [attachment, setAttachment] = useState("scroll");
-
-  const isMobile = useMediaQuery({
-    query: "(max-width: 500px)",
-  });
 
   const {
     isOpen: isStudentModalOpen,
@@ -294,7 +295,7 @@ export default function StudentScreen() {
                   <Flex flexDir={"column"}>
                     <p
                       style={{
-                        fontSize: "8vh",
+                        fontSize: isMobile ? "6vh" : "8vh",
                         color: "white",
                         fontWeight: 400,
                       }}
@@ -408,55 +409,57 @@ export default function StudentScreen() {
                     },
                   }}
                 >
-                  <Flex flexDir={"column"}>
-                    <Flex>
+
+                <Flex flexDir={"column"}>
+                  <Flex>
+                    <div
+                      style={{
+                        width: isMobile ? "32vw" : profileWidth,
+                        borderTop: "1px solid white",
+                        flexShrink: 0,
+                      }}
+                    >
                       <div
                         style={{
-                          width: isMobile ? "32vw" : profileWidth,
-                          borderTop: "1px solid white",
-                          flexShrink: 0,
+                          marginLeft: 15,
+                          color: "white",
+                          fontSize: 25,
                         }}
                       >
-                        <div
-                          style={{
-                            marginLeft: 15,
-                            color: "white",
-                            fontSize: 25,
-                          }}
-                        >
-                          DIGITAL
-                          <br />
-                          TRACK
-                        </div>
+                        DIGITAL
+                        <br />
+                        TRACK
                       </div>
-                      {digitalStudentData
-                        .slice(0, Math.ceil(digitalStudentData.length / 2 - 1))
-                        .map((student, index) => (
-                          <ImageButton
-                            key={index}
-                            src={student.profile}
-                            alt="SignLogo"
-                            name={student.name}
-                            englishName={student.englishName}
-                            onClick={() => handleStudent(student)}
-                          />
-                        ))}
-                    </Flex>
-                    <Flex>
-                      {digitalStudentData
-                        .slice(Math.ceil(digitalStudentData.length / 2 - 1))
-                        .map((student, index) => (
-                          <ImageButton
-                            key={index}
-                            src={student.profile}
-                            alt="SignLogo"
-                            name={student.name}
-                            englishName={student.englishName}
-                            onClick={() => handleStudent(student)}
-                          />
-                        ))}
-                    </Flex>
+                    </div>
+                    {digitalStudentData
+                      .slice(0, Math.ceil(digitalStudentData.length / 2 - 1))
+                      .map((student, index) => (
+                        <ImageButton
+                          key={index}
+                          src={student.profile}
+                          alt="SignLogo"
+                          name={student.name}
+                          englishName={student.englishName}
+                          onClick={() => handleStudent(student)}
+                        />
+                      ))}
                   </Flex>
+                  <Flex>
+                    {digitalStudentData
+                      .slice(Math.ceil(digitalStudentData.length / 2 - 1))
+                      .map((student, index) => (
+                        <ImageButton
+                          key={index}
+                          src={student.profile}
+                          alt="SignLogo"
+                          name={student.name}
+                          englishName={student.englishName}
+                          onClick={() => handleStudent(student)}
+                        />
+                      ))}
+                  </Flex>
+                </Flex>
+                
                 </HStack>
                 {!isMobile && (
                   <button

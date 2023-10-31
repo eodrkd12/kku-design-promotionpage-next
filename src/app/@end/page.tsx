@@ -73,6 +73,32 @@ const Footer = styled.div`
       }
     }
   }
+
+  @media (max-width: 500px) {
+    > div {
+      > div {
+        flex-direction: column;
+        justify-content: start;
+        width: 13vw;
+        > div {
+          width: 100%;
+          > p {
+            font-size: 1.5vh;
+          }
+          > h1 {
+            font-size: 1.5vh;
+          }
+        }
+        > div:nth-child(1) {
+          justify-content: flex-start;
+        }
+        > div:nth-child(2) {
+          width: 100%;
+          height: 1px;
+        }
+      }
+    }
+  }
 `;
 
 const Divider = styled.div<{ height: string }>`
