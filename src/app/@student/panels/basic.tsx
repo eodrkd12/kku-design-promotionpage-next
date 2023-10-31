@@ -9,7 +9,7 @@ const BasicComponent = (props: Props) => {
         <VStack w={"100%"} h={"100%"} flex={1} overflowY={"auto"}>
             <Flex position={"relative"} h={"15vh"}>
                 <img
-                    src={"/image/modal_image.jpg"}
+                    src={"/image/dark_modal_image.jpg"}
                     alt="SignLogo"
                     style={{ width: "100vw", height: "100%", objectFit: "cover" }}
                 />
