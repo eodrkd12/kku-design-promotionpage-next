@@ -112,6 +112,36 @@ const ImcLayoutComponent = (props: Props) => {
               </Flex>
             );
           })}
+          <Flex flexDir={"column"} w={"100%"} h={"100%"}>
+            <Text color={"white"}>지면</Text>
+            <Flex flexDir={"row"} justifyContent={"center"}>
+              {props.work?.poster?.map((poster: any, index: number) => {
+                const isVideo = poster.startsWith("http");
+                return (
+                  <Flex key={index} margin={"2%"} width={"50%"}>
+                    {isVideo ? (
+                      <iframe
+                        width="100%"
+                        height="100%"
+                        src={props.work?.poster[index]}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      ></iframe>
+                    ) : (
+                      <img
+                        src={props.work?.poster[index]}
+                        alt="SignLogo"
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "contain",
+                        }}
+                      />
+                    )}
+                  </Flex>
+                );
+              })}
+            </Flex>
+          </Flex>
         </Flex>
       </Flex>
     </VStack>

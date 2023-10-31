@@ -78,7 +78,10 @@ const BrandPackageComponent = (props: Props) => {
         <Text color={"white"} fontSize={"15"}>
           {props.work?.explanation}
         </Text>
-        <Flex flexDir={"column"}>
+        <Text color={"white"} m={"1%"}>
+          {work?.explanation}
+        </Text>
+        <Flex>
           {work?.still?.map((still: React.ReactNode, index: number) => {
             return (
               <img

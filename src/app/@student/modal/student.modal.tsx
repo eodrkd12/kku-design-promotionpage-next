@@ -96,7 +96,6 @@ const StudentModal = (props: Props) => {
       }
 
       if (workList) {
-        console.log(workList);
         setWork(
           workList.filter((value) =>
             value.student.some(
@@ -134,10 +133,6 @@ const StudentModal = (props: Props) => {
       }
     }
   }, [tabIdx, work]);
-
-  useEffect(() => {
-    console.log(work);
-  }, [work]);
 
   const isMobile = useMediaQuery({
     query: "(max-width: 500px)",
@@ -196,9 +191,8 @@ const StudentModal = (props: Props) => {
                 <Text color={"white"}>{props.studentData.email}</Text>
               </Flex>
             </TabList>
-
             <TabPanels flex={1} overflowY={"scroll"} maxH={"70vh"}>
-              <TabPanel h={"100%"}>{getPanel()}</TabPanel>
+              <TabPanel h={"60vh"}>{getPanel()}</TabPanel>
               <TabPanel h={"60vh"}>{getPanel()}</TabPanel>
               <TabPanel h={"60vh"}>{getPanel()}</TabPanel>
             </TabPanels>
