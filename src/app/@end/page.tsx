@@ -1,7 +1,13 @@
 "use client";
 import { Button, Flex, Text } from "@chakra-ui/react";
 import styled from "styled-components";
-import { AnimatePresence, motion } from "framer-motion";
+import {
+  AnimatePresence,
+  motion,
+  useAnimationControls,
+  useMotionValueEvent,
+  useScroll,
+} from "framer-motion";
 import { useState } from "react";
 
 const Wrapper = styled.div`
@@ -31,7 +37,7 @@ const Wrapper = styled.div`
     text-align: center;
   }
 `;
-const Footer = styled.div`
+const Footer = styled(motion.div)`
   width: 45vw;
   height: 24vh;
   display: flex;
@@ -107,17 +113,52 @@ const Divider = styled.div<{ height: string }>`
 `;
 
 export default function EndScreen() {
+  const { scrollYProgress } = useScroll();
+
+  const controls1 = useAnimationControls();
+  const controls2 = useAnimationControls();
+
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    if (latest < 0.97) {
+      controls1.start({ opacity: 0 });
+    } else if (0.97 <= latest && latest < 0.98) {
+      controls1.start({ opacity: 0.4 });
+      controls2.start({ opacity: 0, y: 100 });
+    } else if (0.98 <= latest && latest < 0.986) {
+      controls1.start({ opacity: 1 });
+      controls2.start({ opacity: 0.3, y: 60 });
+    } else if (0.986 <= latest && latest < 0.94) {
+      controls2.start({ opacity: 0.6, y: 30 });
+    } else if (0.94 <= latest && latest < 1) {
+      controls2.start({ opacity: 1, y: 0 });
+    }
+  });
+
   return (
     <div className="parent" id="end">
       <Wrapper>
         <img src="/image/end_logo.jpg" />
-        <h1>Take my Tag</h1>
-        <p>
+        <motion.h1
+          initial={{ opacity: 0 }}
+          animate={controls1}
+          transition={{ duration: 0.5 }}
+        >
+          Take my Tag
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={controls1}
+          transition={{ duration: 0.5 }}
+        >
           2024 KONKUK MOVING DESIGN
           <br />
           VIDEO/DIGITAL TRACK GRADUATION EXHIBITION
-        </p>
-        <Footer>
+        </motion.p>
+        <Footer
+          initial={{ opacity: 0, y: 100 }}
+          animate={controls2}
+          transition={{ duration: 0.5 }}
+        >
           <div>
             <div>
               <div>

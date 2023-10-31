@@ -44,7 +44,6 @@ const ItemWrapper = styled.div`
   > div.list-wrapper {
     width: 100%;
     display: flex;
-    height: 37vh;
     flex-direction: column;
 
     > div:nth-child(1) {
@@ -70,12 +69,13 @@ const ItemWrapper = styled.div`
     > div:nth-child(2) {
       width: 100%;
       margin-top: 0.5vh;
+      margin-bottom: 0.5vh;
     }
   }
 
   @media (max-width: 500px) {
     > div.title {
-       > p {
+      > p {
         font-size: 2vh;
       }
     }
@@ -103,10 +103,9 @@ interface Student {
 const SubjectItem = (props: Props) => {
   const [whileHover, setWhileHover] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
-  const [img, setImg] = useState('');
+  const [img, setImg] = useState("");
 
   useEffect(() => {
-
     let _workList: Work[] = [];
 
     switch (props.subject) {
@@ -139,8 +138,7 @@ const SubjectItem = (props: Props) => {
         break;
       }
     }
-
-  }, [props])
+  }, [props]);
 
   return (
     <ItemWrapper>
@@ -162,10 +160,13 @@ const SubjectItem = (props: Props) => {
         >
           {!whileHover && <div className="overlay"></div>}
           <p>{props.subject}</p>
-          <motion.img whileHover={{ scale: 1.1 }} src={img}
+          <motion.img
+            whileHover={{ scale: 1.1 }}
+            src={img}
             style={{
-              objectFit: 'cover'
-            }} />
+              objectFit: "cover",
+            }}
+          />
         </motion.div>
       )}
 
@@ -185,13 +186,13 @@ const SubjectItem = (props: Props) => {
               decoding="async"
               loading="lazy"
               style={{
-                objectFit: 'cover'
+                objectFit: "cover",
               }}
             />
           </motion.div>
           <motion.div
             initial={{ height: 0 }}
-            animate={{ height: "25vh" }}
+            animate={{ height: "100%" }}
             transition={{ duration: 0.3, delay: 0.5 }}
           >
             <WorkList subject={props.subject} />

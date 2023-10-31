@@ -60,9 +60,7 @@ export default function StudentScreen() {
   const studentRef = useRef<HTMLDivElement>(null);
   const studentRef2 = useRef<HTMLDivElement>(null);
 
-  const scrollSpeed = 10; // 스크롤 속도
-
-  // let scrollInterval: NodeJS.Timeout | null = null; // setInterval의 반환값을 저장하기 위한 변수
+  const scrollSpeed = 4; // 스크롤 속도
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     if (latest > 0.622) setAttachment("fixed");
@@ -79,7 +77,7 @@ export default function StudentScreen() {
         });
       },
       {
-        threshold: 0.2,
+        threshold: 0.3,
       }
     );
 
@@ -95,10 +93,9 @@ export default function StudentScreen() {
         setScrollInterval(
           setInterval(() => {
             const current = studentRef.current!;
-
             if (
               current.scrollLeft + current.clientWidth >=
-              current.scrollWidth - 0.5 &&
+                current.scrollWidth - 0.5 &&
               direction === "right"
             ) {
               setIsScrolledToRight(true);
@@ -114,8 +111,8 @@ export default function StudentScreen() {
                   (direction === "right" ? scrollSpeed : -scrollSpeed),
               });
             }
-          }, 10)
-        ); // 100ms마다 실행
+          }, 20)
+        );
       }
     },
     [isScrolledToLeft, isScrolledToRight]
@@ -136,7 +133,7 @@ export default function StudentScreen() {
 
             if (
               current.scrollLeft + current.clientWidth >=
-              current.scrollWidth - 0.5 &&
+                current.scrollWidth - 0.5 &&
               direction === "right"
             ) {
               setIsScrolledToRight2(true);
@@ -152,7 +149,7 @@ export default function StudentScreen() {
                   (direction === "right" ? scrollSpeed : -scrollSpeed),
               });
             }
-          }, 10)
+          }, 20)
         ); // 100ms마다 실행
       }
     },
@@ -175,7 +172,7 @@ export default function StudentScreen() {
       style={{
         position: "relative",
         width: profileWidth,
-        boxSizing: 'border-box',
+        boxSizing: "border-box",
         border: "1px solid white",
         overflowX: "hidden",
         overflowY: "hidden",
@@ -226,15 +223,15 @@ export default function StudentScreen() {
       className="parent-400vh"
       style={{
         position: "relative",
+        zIndex: 0,
       }}
     >
       <img
         style={{
           width: "100vw",
-          height: "90vh",
           position: "sticky",
           objectFit: "cover",
-          top: "10.9vh",
+          top: "7vh",
           zIndex: -90,
         }}
         src="/image/stu_work_background.jpeg"
@@ -243,10 +240,10 @@ export default function StudentScreen() {
         id="student"
         className="parent-200vh"
         flexDir={"column"}
-        gap={isMobile ? '30vh' : '50vh'}
+        gap={"20vh"}
         style={{
-          transform: `translate(0px, -70vh)`,
-          justifyContent: 'flex-end'
+          transform: `translate(0px, -80vh)`,
+          justifyContent: "flex-end",
         }}
       >
         <div style={{ zIndex: 3 }}>
@@ -259,7 +256,7 @@ export default function StudentScreen() {
               <div>
                 <p
                   style={{
-                    marginLeft: isMobile ? 0 : "18vw",
+                    marginLeft: isMobile ? 0 : "5vw",
                     fontSize: isMobile ? "6vh" : "8vh",
                     color: "white",
                     fontWeight: 400,
@@ -270,8 +267,6 @@ export default function StudentScreen() {
                 <Flex
                   justifyContent={"center"}
                   alignItems={"center"}
-                  ml={isMobile ? 0 : "13vw"}
-                  mr={isMobile ? 0 : "1vw"}
                   position={"relative"}
                 >
                   {!isMobile && (
@@ -291,8 +286,7 @@ export default function StudentScreen() {
                     ref={studentRef}
                     spacing={2}
                     overflowX="scroll"
-
-                    maxW={isMobile ? "100vw" : "71vw"}
+                    maxW={isMobile ? "100vw" : "70vw"}
                     sx={{
                       "::-webkit-scrollbar": {
                         display: "none",
@@ -373,12 +367,7 @@ export default function StudentScreen() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 2 }}
             >
-              <Flex
-                justifyContent={"center"}
-                alignItems={"center"}
-                ml={isMobile ? 0 : "13vw"}
-                mr={isMobile ? 0 : "1vw"}
-              >
+              <Flex justifyContent={"center"} alignItems={"center"}>
                 {!isMobile && (
                   <button
                     onMouseEnter={() => handleArrowMouseEnter2("left")}
@@ -396,7 +385,7 @@ export default function StudentScreen() {
                   ref={studentRef2}
                   spacing={2}
                   overflowX="scroll"
-                  maxW={isMobile ? "100vw" : "71vw"}
+                  maxW={isMobile ? "100vw" : "70vw"}
                   sx={{
                     "::-webkit-scrollbar": {
                       display: "none",

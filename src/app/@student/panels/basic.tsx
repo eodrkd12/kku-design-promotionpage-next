@@ -34,8 +34,8 @@ const BasicComponent = (props: Props) => {
               !isMobile
                 ? "50px"
                 : props.work?.name && props.work.name.length >= 16
-                  ? "20px"
-                  : "24px"
+                ? "20px"
+                : "24px"
             }
           >
             {props.work?.name}
@@ -50,8 +50,8 @@ const BasicComponent = (props: Props) => {
                 ? "16px"
                 : props.work?.introduction &&
                   props.work.introduction.length >= 30
-                  ? "10px"
-                  : "12px"
+                ? "10px"
+                : "12px"
             }
           >
             {props.work?.introduction}
@@ -60,7 +60,12 @@ const BasicComponent = (props: Props) => {
       </Flex>
 
       <Flex flexDir={"column"} w={"100%"} h={"45vh"}>
-        <Flex color={"white"} top={"5%"} right={0} flexDir={isMobile ? "column" : "row"}>
+        <Flex
+          color={"white"}
+          top={"5%"}
+          right={0}
+          flexDir={isMobile ? "column" : "row"}
+        >
           {props.work?.student.map((student: any, index: number) => {
             return (
               <Text
@@ -92,7 +97,7 @@ const BasicComponent = (props: Props) => {
         {props.work && props.work.youtube && (
           <Flex
             marginTop="3%"
-            marginBottom="3%"
+            mb={"1vh"}
             style={{
               position: "relative",
               width: "100%",
@@ -111,16 +116,15 @@ const BasicComponent = (props: Props) => {
           </Flex>
         )}
 
-        <Flex>
+        <Flex gap={"0.5vw"}>
           {props.work?.still?.map((still: any, index: number) => {
             return (
-              <Flex margin={"2%"}>
+              <Flex key={index} flex={1}>
                 <img
                   src={props.work?.still[index]}
                   alt="SignLogo"
                   style={{
-                    width: "20vw",
-                    height: "100%",
+                    width: "100vw",
                     objectFit: "contain",
                   }}
                 />

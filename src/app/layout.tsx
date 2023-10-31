@@ -4,6 +4,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+
 import "./globals.css";
 
 interface Props {
@@ -18,7 +19,7 @@ const ScrollProgressWrapper = styled.div`
   position: fixed;
   top: 0vh;
   width: 100%;
-  height: 11vh;
+  height: 7vh;
   left: 50%;
   transform: translate(-50%, 0);
   background-color: black;
@@ -30,7 +31,7 @@ const ScrollProgressWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-around;
-    padding-bottom: 1.5vh;
+    padding-bottom: 0.5vh;
     padding-left: 20vw;
     padding-right: 20vw;
     .line {
@@ -38,7 +39,7 @@ const ScrollProgressWrapper = styled.div`
       background-color: white;
       height: 2px;
       left: 27.5vw;
-      top: 5vh;
+      top: 2vh;
     }
 
     > span {
@@ -81,12 +82,12 @@ const ScrollProgressWrapper = styled.div`
   }
 `;
 
-const MainTitleWrapper = styled.div`
+const MainTitleWrapper = styled(motion.div)`
   position: fixed;
-  left: 2vw;
+  left: 1vw;
   top: 20vh;
-  height: 40vh;
-  width: 20vw;
+  height: 30vh;
+  width: 10vw;
   opacity: 1;
   z-index: -10;
   animation: fadeOut ease-in-out 1s;
@@ -94,7 +95,7 @@ const MainTitleWrapper = styled.div`
   > div:nth-child(1) {
     height: 26%;
     > img {
-      width: 27%;
+      width: 50%;
     }
   }
   > div:nth-child(2) {
@@ -103,7 +104,7 @@ const MainTitleWrapper = styled.div`
     padding-left: 0.5vw;
     > p {
       color: white;
-      font-size: 1.8vh;
+      font-size: 1.2vh;
       font-weight: 500;
     }
   }
@@ -112,7 +113,7 @@ const MainTitleWrapper = styled.div`
     padding-left: 0.5vw;
     > p {
       color: white;
-      font-size: 1.2vh;
+      font-size: 1vh;
       font-weight: 800;
     }
   }
@@ -208,7 +209,6 @@ export default function RootLayout(props: Props) {
         <ChakraProvider>
           <main>
             {props.children}
-
             {dday <= 0 && props.about}
             {dday <= 0 && props.student}
             {/* {dday <= 0 && props.subject} */}
@@ -257,7 +257,8 @@ export default function RootLayout(props: Props) {
                 </span>
                 <span
                   onClick={() => {
-                    student?.scrollIntoView({ behavior: "smooth" });
+                    window.scrollTo(0, window.innerHeight * 7.6);
+                    // student?.scrollIntoView({ behavior: "smooth" });
                   }}
                 >
                   {progress >= 2 && (
@@ -272,7 +273,8 @@ export default function RootLayout(props: Props) {
                 </span>
                 <span
                   onClick={() => {
-                    subject?.scrollIntoView({ behavior: "smooth" });
+                    window.scrollTo(0, window.innerHeight * 9.4);
+                    // subject?.scrollIntoView({ behavior: "smooth" });
                   }}
                 >
                   {progress >= 3 && (
@@ -289,46 +291,44 @@ export default function RootLayout(props: Props) {
             </ScrollProgressWrapper>
           )}
           {dday <= 0 && (
-            <motion.div
+            <MainTitleWrapper
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1.5 }}
             >
-              <MainTitleWrapper>
-                <div>
-                  <img src={"/image/tag-logo.png"} />
-                </div>
+              <div>
+                <img src={"/image/tag-logo.png"} />
+              </div>
 
-                <div>
-                  <p>
-                    2024 KONKUK UNIVERSITY
-                    <br />
-                    VISUAL MOVING DESIGN
-                    <br />
-                    <br />
-                    VIDEO/DIGITAL TRACK
-                    <br />
-                    GRADUATION
-                    <br />
-                    EXHIBITION
-                  </p>
-                </div>
-                <div>
-                  <p>
-                    2024 건국대학교 시각영상디자인전공
-                    <br />
-                    영상/디지털 트랙 졸업전시회
-                    <br />
-                    <br />
-                    Fri Nov, 3th - Mon, 6th
-                    <br />
-                    서울 종로구 우정국로 68
-                    <br />
-                    동덕빌딩 동덕아트갤러리
-                  </p>
-                </div>
-              </MainTitleWrapper>
-            </motion.div>
+              <div>
+                <p>
+                  2024 KONKUK UNIVERSITY
+                  <br />
+                  VISUAL MOVING DESIGN
+                  <br />
+                  <br />
+                  VIDEO/DIGITAL TRACK
+                  <br />
+                  GRADUATION
+                  <br />
+                  EXHIBITION
+                </p>
+              </div>
+              <div>
+                <p>
+                  2024 건국대학교 시각영상디자인전공
+                  <br />
+                  영상/디지털 트랙 졸업전시회
+                  <br />
+                  <br />
+                  Fri Nov, 3th - Mon, 6th
+                  <br />
+                  서울 종로구 우정국로 68
+                  <br />
+                  동덕빌딩 동덕아트갤러리
+                </p>
+              </div>
+            </MainTitleWrapper>
           )}
         </ChakraProvider>
       </body>

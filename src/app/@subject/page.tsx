@@ -10,8 +10,6 @@ const SubjectList = styled.div`
   display: flex;
   flex-direction: column;
   width: 70vw;
-  margin-left: 20vw;
-  margin-right: 6vw;
   position: relative;
 
   @media (max-width: 500px) {
@@ -51,9 +49,13 @@ export default function SubjectScreen() {
   }, []);
 
   return (
-    <div id="subject" className="parent-200vh" style={{
-      transform: `translate(0px, -40vh)`
-    }}>
+    <div
+      id="subject"
+      className="parent-200vh"
+      style={{
+        transform: `translate(0px, -70vh)`,
+      }}
+    >
       {contentVisible && (
         <motion.div
           initial={{ opacity: 0, y: 100 }}
@@ -66,7 +68,7 @@ export default function SubjectScreen() {
                 fontSize: isMobile ? "6vh" : "8vh",
                 color: "white",
                 fontWeight: 400,
-                textAlign: 'left'
+                textAlign: "left",
               }}
             >
               WORK
