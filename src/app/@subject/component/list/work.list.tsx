@@ -42,6 +42,7 @@ interface Student {
 interface ImageButtonProps {
   src: string;
   rowNum: number;
+  work: Work;
 }
 
 const WorkList = ({ subject }: Props) => {
@@ -56,15 +57,8 @@ const WorkList = ({ subject }: Props) => {
   const row1Ref = useRef<HTMLDivElement>(null);
   const row2Ref = useRef<HTMLDivElement>(null);
 
-  const refId = useRef<number | null>(null);
-  const [isDragging, setIsDragging] = useState(false);
-  const [previousX, setPreviousX] = useState(0);
   const [modalTitle, setModalTitle] = useState<string>("");
   const [selectedItem, setSelectedItem] = useState<any>(null);
-  const tickEvent = useRef<{ start: Date; tickCnt: number }>({
-    start: new Date(),
-    tickCnt: 0,
-  });
 
   const isMobile = useMediaQuery({
     query: "(max-width: 500px)",
@@ -78,9 +72,6 @@ const WorkList = ({ subject }: Props) => {
   const handleMouseDown = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
       e.preventDefault();
-      setIsDragging(true);
-      setPreviousX(e.clientX);
-      tickEvent.current = { start: new Date(), tickCnt: 0 };
 
       if (selRow === 1) {
         if (row1Scroll) clearInterval(row1Scroll);
@@ -94,42 +85,32 @@ const WorkList = ({ subject }: Props) => {
   );
 
   const handleMouseUp = useCallback(
-    (e: React.MouseEvent<HTMLDivElement>) => {
-      setIsDragging(false);
-      if (previousX === e.clientX) {
-        setModalTitle("타이틀");
-        itemModalOpen();
-      }
+    (work: Work) => {
+      console.log(work);
+      setModalTitle("타이틀");
+      itemModalOpen();
       if (selRow === 1) {
         insertInterval(1);
       } else if (selRow === 2) {
         insertInterval(2);
       }
     },
-    [selRow, previousX]
-  );
-
-  const handleMouseMove = useCallback(
-    (e: React.MouseEvent<HTMLDivElement>) => {
-      if (!isDragging || refId.current) {
-        return;
-      }
-
-      const div = selRow === 1 ? row1Ref.current : row2Ref.current;
-
-      refId.current = requestAnimationFrame(() => {
-        if (div) {
-          const delta = e.clientX - previousX;
-          div.scrollLeft -= delta;
-          setPreviousX(e.clientX);
-        }
-        refId.current = null;
-
-        tickEvent.current.tickCnt += 1;
-      });
-    },
     [selRow]
   );
+
+  const getRow = useCallback((rowNum: number) => {
+    if (rowNum === 1) {
+      if (workList.length > 10) {
+        return workList.slice(0, Math.ceil(workList.length / 2));
+      } else {
+        return workList;
+      }
+    } else if (rowNum === 2) {
+      if (workList.length > 10) {
+        return workList.slice(Math.ceil(workList.length / 2));
+      }
+    }
+  }, [workList])
 
   useEffect(() => {
     let _workList: Work[] = [];
@@ -160,20 +141,20 @@ const WorkList = ({ subject }: Props) => {
 
   useEffect(() => {
     if (workList.length > 10) {
-      setRow1(workList.slice(0, Math.ceil(workList.length / 2)));
-      setRow2(workList.slice(Math.ceil(workList.length / 2)));
+      setRow1(getRow(1)!);
+      setRow2(getRow(2)!);
     } else {
-      setRow1(workList);
+      setRow1(getRow(1)!);
     }
   }, [workList]);
 
   useEffect(() => {
-    if (row1 && row1.length > 4) {
+    if (row1 && row1.length > 4 && row1Scroll === null) {
       insertInterval(1);
     }
   }, [row1]);
   useEffect(() => {
-    if (row2 && row2.length > 4) {
+    if (row2 && row2.length > 4 && row2Scroll === null) {
       insertInterval(2);
     }
   }, [row2]);
@@ -189,6 +170,13 @@ const WorkList = ({ subject }: Props) => {
               top: 0,
               left: current!.scrollLeft + 1,
             });
+
+            if (current.scrollWidth - (current.scrollLeft + current.clientWidth) < 100) {
+              const _row = getRow(1);
+              if (_row) {
+                setRow1([...row1, ..._row])
+              }
+            }
           }
         }, 30)
       );
@@ -202,13 +190,20 @@ const WorkList = ({ subject }: Props) => {
               top: 0,
               left: current!.scrollLeft + 2,
             });
+
+            if (current.scrollWidth - (current.scrollLeft + current.clientWidth) < 100) {
+              const _row = getRow(2);
+              if (_row) {
+                setRow2([...row2, ..._row])
+              }
+            }
           }
         }, 30)
       );
     }
   };
 
-  const ImageButton = ({ src, rowNum }: ImageButtonProps) => (
+  const ImageButton = ({ src, rowNum, work }: ImageButtonProps) => (
     <div
       style={{
         width: "14vw",
@@ -224,8 +219,7 @@ const WorkList = ({ subject }: Props) => {
         setSelRow(0);
       }}
       onMouseDown={handleMouseDown}
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
+      onMouseUp={() => { handleMouseUp(work) }}
     >
       <img
         src={src}
@@ -268,6 +262,7 @@ const WorkList = ({ subject }: Props) => {
               key={index}
               src={work.still ? work.still[0] : "/image/lightDoor.png"}
               rowNum={1}
+              work={work}
             />
           ))}
         </Flex>
@@ -292,6 +287,7 @@ const WorkList = ({ subject }: Props) => {
                 key={index}
                 src={work.still ? work.still[0] : "/image/lightDoor.png"}
                 rowNum={2}
+                work={work}
               />
             ))}
           </Flex>
