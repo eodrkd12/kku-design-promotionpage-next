@@ -161,12 +161,19 @@ const StudentModal = (props: Props) => {
               setTabIdx(index);
             }}
           >
-            <TabList mb={"1%"}>
+            <TabList
+              mb={"1%"}
+              height={ isMobile ? "10vh" : "0"}
+              paddingTop={ isMobile ? "15%" : "0"}
+            >
               <Text
                 marginRight={"3%"}
                 color={"white"}
-                fontSize={"25"}
-                fontWeight={"500"}
+                fontSize={ isMobile ? "32" : "25"}
+                fontWeight={ "500" }
+                position={ isMobile ? "absolute" : "static"}
+                left={ isMobile ? "5%" : "0"}
+                top={"0"}
               >
                 {props.studentData.name}
               </Text>
@@ -175,6 +182,7 @@ const StudentModal = (props: Props) => {
                   <Tab
                     key={index}
                     color={tabIdx === index ? "white" : "gray.500"}
+                    fontSize={ isMobile ? "10px" : "16px"}
                   >
                     {value}
                   </Tab>
@@ -183,9 +191,10 @@ const StudentModal = (props: Props) => {
               <Flex
                 position={"absolute"}
                 flexDir={"column"}
-                left={"85%"}
-                align={"self-end"}
+                left={ isMobile ? "32%" : "85%"}
+                align={ isMobile ? "self-start" : "self-end"}
                 fontSize={"10"}
+                top={ isMobile ? "2%" : "0"}
               >
                 <Text color={"white"}>{props.studentData.englishName}</Text>
                 <Text color={"white"}>{props.studentData.email}</Text>
