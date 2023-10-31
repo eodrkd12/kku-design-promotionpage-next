@@ -77,7 +77,7 @@ const BasicComponent = (props: Props) => {
                     {props.work?.still?.map((still: any, index: number) => {
                         return (
 
-                            <Flex margin={"2%"}>
+                            <Flex key={index} margin={"2%"}>
                                 <img
                                     src={props.work?.still[index]}
                                     alt="SignLogo"

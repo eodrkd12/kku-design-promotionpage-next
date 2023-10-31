@@ -95,7 +95,6 @@ const StudentModal = (props: Props) => {
       }
 
       if (workList) {
-        console.log(workList);
         setWork(
           workList.filter((value) =>
             value.student.some(
@@ -107,15 +106,14 @@ const StudentModal = (props: Props) => {
     }
   }, [tabIdx]);
 
+
   const getPanel = useCallback(() => {
     if (tabIdx !== null) {
       switch (subjectList[tabIdx]) {
         case "전공연구프로젝트(영상)":
-          console.log("전공");
           return <BasicComponent work={work} />
 
         case "IMC":
-          console.log("dada123");
           return <ImcLayoutComponent work={work} />
 
         case "프로모션영상":
@@ -125,9 +123,7 @@ const StudentModal = (props: Props) => {
           return <BasicComponent work={work} />
 
         case "UIUX":
-          console.log('aaaa');
           return <UIUXComponent work={work} />
-          break;
 
         case "애니메이션스튜디오":
           return <BasicComponent work={work} />
@@ -137,10 +133,6 @@ const StudentModal = (props: Props) => {
       }
     }
   }, [tabIdx, work])
-
-  useEffect(() => {
-    console.log(work);
-  }, [work]);
 
   const isMobile = useMediaQuery({
     query: "(max-width: 500px)",
@@ -187,14 +179,13 @@ const StudentModal = (props: Props) => {
               })}
             </TabList>
             <TabPanels flex={1} overflowY={"scroll"} maxH={"70vh"}>
-              <TabPanel h={'100%'}>
-                {getPanel()}
-              </TabPanel>
               <TabPanel h={"60vh"}>
                 {getPanel()}
               </TabPanel>
               <TabPanel h={"60vh"}>
-
+                {getPanel()}
+              </TabPanel>
+              <TabPanel h={"60vh"}>
                 {getPanel()}
               </TabPanel>
             </TabPanels>

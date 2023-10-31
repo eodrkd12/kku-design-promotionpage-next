@@ -77,7 +77,7 @@ const ImcLayoutComponent = (props: Props) => {
                     {props.work?.still?.map((still: any, index: number) => {
                         return (
 
-                            <Flex margin={"2%"}>
+                            <Flex key={index} margin={"2%"}>
                                 <img
                                     src={props.work?.still[index]}
                                     alt="SignLogo"
@@ -95,32 +95,30 @@ const ImcLayoutComponent = (props: Props) => {
                     <Text color={"white"} >
                         지면
                     </Text>
+                    <Flex flexDir={"row"} justifyContent={'center'}>
+                        {props.work?.poster?.map((poster: any, index: number) => {
+                            const isVideo = poster.startsWith("http");
+                            return (
+                                <Flex key={index} margin={"2%"} width={"50%"}>
+                                    {isVideo ? (
+                                        <iframe
+                                            width="100%"
+                                            height="100%"
+                                            src={props.work?.poster[index]}
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        ></iframe>
+                                    ) : (
+                                        <img
+                                            src={props.work?.poster[index]}
+                                            alt="SignLogo"
+                                            style={{ width: "100%", height: "100%", objectFit: 'contain' }}
+                                        />
+                                    )}
 
-                    {props.work?.poster?.map((poster: any, index: number) => {
-                        const isVideo = poster.startsWith("http");
-                        if (isVideo) return null; // 비디오는 제외
-                        return (
-                            <Flex key={index} margin={"2%"} flexDir={"column"}>
-
-                                {isVideo ? (
-
-                                    <iframe
-                                        width="100%"
-                                        height="100%"
-                                        src={props.work?.poster[index]}
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    ></iframe>
-                                ) : (
-                                    <img
-                                        src={props.work?.poster[index]}
-                                        alt="SignLogo"
-                                        style={{ width: "80%", height: "100%", objectFit: 'contain' }}
-                                    />
-                                )}
-                            </Flex>
-
-                        );
-                    })}
+                                </Flex>
+                            );
+                        })}
+                    </Flex>
                 </Flex>
             </Flex>
         </VStack>
