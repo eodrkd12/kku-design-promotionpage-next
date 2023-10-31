@@ -31,7 +31,7 @@ const BasicComponent = (props: Props) => {
             color="white"
             fontWeight="700"
             transform={ isMobile ? "translateY(-40%)" : "translateY(-50%)"}
-            fontSize={ !isMobile ? "50px" : props.work?.name && props.work.name.length >= 20 ? "20px" : "24px"}
+            fontSize={ !isMobile ? "50px" : props.work?.name && props.work.name.length >= 16 ? "20px" : "24px"}
           >
             {props.work?.name}
           </Text>

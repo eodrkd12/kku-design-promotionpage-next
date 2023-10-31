@@ -67,7 +67,7 @@ const ImcLayoutComponent = (props: Props) => {
                 >
                     <Text
                         color="white"
-                        fontSize={!isMobile ? "50px" : work?.name && work.name.length >= 20 ? "20px" : "24px"}
+                        fontSize={ !isMobile ? "50px" : props.work?.name && props.work.name.length >= 16 ? "20px" : "24px"}
                         fontWeight="700"
                         transform={isMobile ? "translateY(-40%)" : "translateY(-50%)"}
                     >

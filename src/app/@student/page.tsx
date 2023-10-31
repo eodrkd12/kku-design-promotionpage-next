@@ -244,6 +244,7 @@ export default function StudentScreen() {
         flexDir={"column"}
         style={{
           justifyContent: "center",
+          transform: "translateY(-100vh)",
         }}
       >
         <div style={{ zIndex: 3 }}>
