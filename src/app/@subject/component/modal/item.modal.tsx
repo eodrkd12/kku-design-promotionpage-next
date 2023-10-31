@@ -52,6 +52,10 @@ const ItemModal = (props: Props) => {
     query: "(max-width: 500px)",
   });
 
+  const handleWorkClick = (work: Work) => {
+    setWork(work);
+  }
+
   useEffect(() => {
     if (props.work) {
       setWork(props.work);
@@ -123,7 +127,8 @@ const ItemModal = (props: Props) => {
                   <VStack alignItems={'flex-start'}>
                     {workList.map((work) => {
                       return (
-                        <Button variant={'link'} px={2} colorScheme="white" flexDir={'column'} alignItems={'flex-start'}>
+                        <Button variant={'link'} px={2} colorScheme="white" flexDir={'column'} alignItems={'flex-start'}
+                          onClick={() => handleWorkClick(work)}>
                           <Text fontSize={isMobile ? '1.1vh' : '1.1vw'} color={'white'}>{work.name}</Text>
                           <Flex gap={1}>
                             <Text>-</Text>
