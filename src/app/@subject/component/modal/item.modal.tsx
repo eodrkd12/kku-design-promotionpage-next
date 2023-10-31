@@ -2,8 +2,6 @@ import {
   Modal,
   ModalOverlay,
   ModalContent,
-  ModalHeader,
-  ModalFooter,
   ModalBody,
   ModalCloseButton,
   Flex,
@@ -37,6 +35,7 @@ const ItemModal = (props: Props) => {
             <Flex w={"100%"}>
               <Flex
                 w={"20%"}
+                mt={"4%"}
                 display={"flex"}
                 flexDirection={"column"}
                 alignItems={"center"}
@@ -46,7 +45,6 @@ const ItemModal = (props: Props) => {
                   flexDirection={"column"}
                   justifyContent={"center"}
                   position={"fixed"}
-                  mt={"2%"}
                   color={"white"}
                 >
                   <Text mt={"30%"} mb={"10%"}>
@@ -63,9 +61,14 @@ const ItemModal = (props: Props) => {
                 </Flex>
               </Flex>
               <Flex w={"80%"} display={"flex"} flexDirection={"column"}>
-                <Flex display={"flex"} flexDirection={"column"} color={"white"}>
+                <Flex
+                  display={"flex"}
+                  flexDirection={"column"}
+                  color={"white"}
+                  ml={"3%"}
+                >
                   <Text fontSize={"6vh"}>{props.title}</Text>
-                  <Text fontSize={"3vh"}>한줄소개</Text>
+                  <Text fontSize={"3vh"}>한줄 소개</Text>
                   <Text fontSize={"1.5vh"}>
                     내용소개ㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐ
                   </Text>
@@ -94,8 +97,8 @@ const ItemModal = (props: Props) => {
                         }
                         alt="SignLogo"
                         style={{
-                          width: "100%",
-                          height: "20vh",
+                          width: "20vw",
+                          height: "80%",
                           objectFit: "contain",
                         }}
                       />

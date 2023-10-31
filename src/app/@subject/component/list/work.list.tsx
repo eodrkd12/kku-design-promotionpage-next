@@ -69,6 +69,7 @@ const WorkList = ({ subject }: Props) => {
   const isMobile = useMediaQuery({
     query: "(max-width: 500px)",
   });
+
   const {
     isOpen: isOpenItemModal,
     onOpen: itemModalOpen,
@@ -97,6 +98,7 @@ const WorkList = ({ subject }: Props) => {
     (e: React.MouseEvent<HTMLDivElement>) => {
       setIsDragging(false);
       if (previousX === e.clientX) {
+        console.log(selectedItem);
         setModalTitle("타이틀");
         itemModalOpen();
       }
@@ -136,6 +138,7 @@ const WorkList = ({ subject }: Props) => {
     switch (subject) {
       case "전공연구프로젝트(영상)":
         _workList = videoMajorProjectData;
+        setSelectedItem(_workList);
         break;
       case "IMC":
         _workList = imcData;
