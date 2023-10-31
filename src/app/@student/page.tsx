@@ -25,7 +25,6 @@ export default function StudentScreen() {
     query: "(max-width: 500px)",
   });
 
-
   const profileWidth = isMobile ? "24vw" : "11.5vw";
 
   const [isScrolledToRight, setIsScrolledToRight] = useState(false);
@@ -99,7 +98,7 @@ export default function StudentScreen() {
 
             if (
               current.scrollLeft + current.clientWidth >=
-              current.scrollWidth - 0.5 &&
+                current.scrollWidth - 0.5 &&
               direction === "right"
             ) {
               setIsScrolledToRight(true);
@@ -137,7 +136,7 @@ export default function StudentScreen() {
 
             if (
               current.scrollLeft + current.clientWidth >=
-              current.scrollWidth - 0.5 &&
+                current.scrollWidth - 0.5 &&
               direction === "right"
             ) {
               setIsScrolledToRight2(true);
@@ -221,7 +220,6 @@ export default function StudentScreen() {
     </Flex>
   );
 
-
   return (
     <div
       className="parent-400vh"
@@ -248,7 +246,7 @@ export default function StudentScreen() {
           justifyContent: "center",
         }}
       >
-        <div style={{ zIndex: 1 }}>
+        <div style={{ zIndex: 3 }}>
           {contentVisible && (
             <motion.div
               initial={{ opacity: 0, y: 100 }}
@@ -365,7 +363,6 @@ export default function StudentScreen() {
               </Flex>
             </motion.div>
           )}
-
         </div>
         <div>
           {contentVisible && (
@@ -407,7 +404,6 @@ export default function StudentScreen() {
                     },
                   }}
                 >
-
                   <Flex flexDir={"column"}>
                     <Flex>
                       <div
@@ -457,7 +453,6 @@ export default function StudentScreen() {
                         ))}
                     </Flex>
                   </Flex>
-
                 </HStack>
                 {!isMobile && (
                   <button
