@@ -1,6 +1,5 @@
-import { TabPanel, Text, VStack } from "@chakra-ui/react";
+import { Box, Flex, TabPanel, Text, VStack } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-
 
 interface Props {
   //   isOpen: boolean;
@@ -30,13 +29,12 @@ const UIUXComponent = (props: Props) => {
     setWork(props.work);
   });
   return (
-    // <VStack>
-    <TabPanel h={"60vh"}>
-      <VStack position={"relative"} h={"30%"}>
+    <VStack w={"100%"} h={"100%"} flex={1} overflowY={"auto"}>
+      <Flex position={"relative"} h={"30%"}>
         <img
           src={"/image/modal_image.jpg"}
           alt="SignLogo"
-          style={{ width: "100vw", height: "100%", objectFit: 'cover' }}
+          style={{ width: "100vw", height: "100%", objectFit: "cover" }}
         />
 
         <Text
@@ -45,35 +43,43 @@ const UIUXComponent = (props: Props) => {
           top={"50%"}
           left={"5%"}
           fontSize={50}
+          fontWeight={"700"}
           transform="translateY(-50%)"
         >
           {work?.name}
         </Text>
-
-        <VStack
-          position={"absolute"}
+        <Text
           color={"white"}
-          top={"5%"}
-          right={0}
-          flexDir={"column"}
+          position={"absolute"}
+          top={"50%"}
+          left={"50%"}
+          fontWeight={"500"}
+          transform="translateY(-50%)"
         >
-          {work?.student.map((student, index) => {
+          {props.work?.introduction}
+        </Text>
+      </Flex>
+      <Flex flexDir={"column"} w={"100%"} h={"70%"}>
+        <Flex color={"white"} top={"5%"} right={0} flexDir={"row"}>
+          {props.work?.student.map((student: any, index: number) => {
             return (
-              <Text key={index}>
-                {student.sname} {student.email}
+              <Text
+                key={index}
+                fontSize={"5%"}
+                marginRight={"7%"}
+                style={{ wordSpacing: "4px" }}
+              >
+                {student.sname} | {student.email}
               </Text>
             );
           })}
-        </VStack>
-      </VStack>
-      <VStack flexDir={"column"} w={"100%"} h={"70%"}>
-        <Text color={"white"} m={"1%"}>
-          {work?.introduction}
+        </Flex>
+        <Box mt={4}></Box>
+        <Text color={"white"} fontSize={"15"}>
+          {props.work?.explanation}
         </Text>
-        <Text color={"white"} m={"1%"}>
-          {work?.explanation}
-        </Text>
-        <VStack>
+
+        <Flex>
           {work && work.youtube && (
             <iframe
               width="100%"
@@ -82,22 +88,24 @@ const UIUXComponent = (props: Props) => {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             ></iframe>
           )}
-        </VStack>
-        <VStack>
+        </Flex>
+        <Flex flexDir={"column"}>
           {work?.still?.map((still: React.ReactNode, index: number) => {
             return (
               <img
                 src={work?.still[index]}
                 alt="SignLogo"
-                style={{ width: "100vw", height: "60vh", objectFit: 'contain' }}
+                style={{
+                  width: "100vw",
+                  height: "60vh",
+                  objectFit: "contain",
+                }}
               />
             );
           })}
-        </VStack>
-      </VStack>
-    </TabPanel>
-
-    // </VStack>
+        </Flex>
+      </Flex>
+    </VStack>
   );
 };
 
