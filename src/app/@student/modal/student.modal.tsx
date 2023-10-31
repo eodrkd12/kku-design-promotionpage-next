@@ -177,7 +177,7 @@ const StudentModal = (props: Props) => {
             >
               <Text
                 marginRight={"3%"}
-                marginLeft={ isMobile ? "0" : "1.5%"}
+                marginLeft={isMobile ? "0" : "1.5%"}
                 color={"white"}
                 fontSize={isMobile ? "32" : "25"}
                 fontWeight={"500"}
@@ -217,7 +217,7 @@ const StudentModal = (props: Props) => {
             </TabPanels>
           </Tabs>
         </ModalBody>
-        <ModalFooter></ModalFooter>
+
       </ModalContent>
     </Modal>
   );
