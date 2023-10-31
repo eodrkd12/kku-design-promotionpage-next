@@ -4,7 +4,7 @@ import {
   motion,
   useAnimationControls,
   useMotionValueEvent,
-  useScroll
+  useScroll,
 } from "framer-motion";
 import { useEffect } from "react";
 import styled from "styled-components";
@@ -25,7 +25,7 @@ const ContentWrapper = styled(motion.div)`
 
     > h1 {
       color: white;
-      font-size: 4.5vh;
+      font-size: 3.15vh;
       font-weight: 800;
       margin-bottom: 6vh;
       letter-spacing: -1px;
@@ -38,26 +38,26 @@ const ContentWrapper = styled(motion.div)`
 
     > h2:nth-child(1) {
       color: white;
-      font-size: 2.8vh;
+      font-size: 1.96vh;
       font-weight: 900;
       letter-spacing: -1px;
     }
     > h2:nth-child(2) {
       color: white;
-      font-size: 2.8vh;
+      font-size: 1.96vh;
       font-weight: 900;
       letter-spacing: -1px;
     }
 
     > h2:nth-child(4) {
       color: white;
-      font-size: 2.5vh;
+      font-size: 1.75vh;
       font-weight: 600;
     }
 
     > p {
       color: white;
-      font-size: 2.3vh;
+      font-size: 1.61vh;
       font-weight: 300;
       text-align: center;
       line-height: 3vh;
@@ -78,7 +78,7 @@ const ContentWrapper = styled(motion.div)`
     > div {
       display: block;
       text-align: left;
-      font-size: 1.5vh;
+      font-size: 1.05vh;
       > p {
         font-size: 1.8vh;
         text-align: left;
@@ -97,10 +97,9 @@ export default function AboutScreen() {
   const controls5 = useAnimationControls();
   const controls6 = useAnimationControls();
 
-  useEffect(() => { }, []);
+  useEffect(() => {}, []);
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-
     if (latest < 0.091) {
       controls1.start({ opacity: 0 });
       controls2.start({ opacity: 0, y: 100 });

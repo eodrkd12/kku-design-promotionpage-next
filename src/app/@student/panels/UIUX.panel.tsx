@@ -104,12 +104,25 @@ const UIUXComponent = (props: Props) => {
 
         <Flex>
           {work && work.youtube && (
-            <iframe
-              width="100%"
-              height="100%"
-              src={work.youtube}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            ></iframe>
+            <Flex
+              marginTop="3%"
+              marginBottom="3%"
+              style={{
+                position: "relative",
+                width: "100%",
+                paddingBottom: "40%",
+              }}
+            >
+              <iframe
+                style={{
+                  position: "absolute",
+                  width: "100%",
+                  height: "100%",
+                }}
+                src={work.youtube}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              ></iframe>
+            </Flex>
           )}
         </Flex>
         <Flex flexDir={"column"}>

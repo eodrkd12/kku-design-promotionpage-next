@@ -20,14 +20,14 @@ const Wrapper = styled.div`
 
   > h1 {
     color: white;
-    font-size: 5vh;
+    font-size: 3.5vh;
     font-weight: 800;
     margin-top: 3vh;
     margin-bottom: 2vh;
   }
   > p {
     color: white;
-    font-size: 2vh;
+    font-size: 1.4vh;
     text-align: center;
   }
 `;
@@ -54,12 +54,12 @@ const Footer = styled.div`
         > p {
           color: white;
           font-weight: 400;
-          font-size: 2vh;
+          font-size: 1.4vh;
         }
         > h1 {
           color: white;
           font-weight: 800;
-          font-size: 2vh;
+          font-size: 1.4vh;
         }
       }
       > div:first-child {
