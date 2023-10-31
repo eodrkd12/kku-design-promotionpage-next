@@ -6,15 +6,14 @@ import imcData from "@/app/@student/data/imc-data";
 import uiuxData from "@/app/@student/data/uiux-data";
 import videoMajorProjectData from "@/app/@student/data/videoMajorProject-data";
 import { Flex, HStack } from "@chakra-ui/react";
-import { motion } from 'framer-motion';
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
   width: 100%;
   height: 100%;
 `;
@@ -51,10 +50,11 @@ const WorkList = ({ subject }: Props) => {
   const [row1Scroll, setRow1Scroll] = useState<NodeJS.Timeout | null>(null);
   const [row2Scroll, setRow2Scroll] = useState<NodeJS.Timeout | null>(null);
 
+  const [selRow, setSelRow] = useState(0);
+
   const row1Ref = useRef<HTMLDivElement>(null);
   const row2Ref = useRef<HTMLDivElement>(null);
 
-  const div = row1Ref.current;
   const refId = useRef<number | null>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [previousX, setPreviousX] = useState(0);
@@ -64,24 +64,41 @@ const WorkList = ({ subject }: Props) => {
     query: "(max-width: 500px)",
   });
 
-  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseDown = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     setIsDragging(true);
     setPreviousX(e.clientX);
     tickEvent.current = { start: new Date(), tickCnt: 0 };
-  };
 
-  const handleMouseUp = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (selRow === 1) {
+      if (row1Scroll)
+        clearInterval(row1Scroll);
+      setRow1Scroll(null);
+    } else if (selRow === 2) {
+      if (row2Scroll)
+        clearInterval(row2Scroll);
+      setRow2Scroll(null);
+    }
+
+  }, [selRow]);
+
+  const handleMouseUp = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     setIsDragging(false);
     if (previousX === e.clientX) {
-      console.log("asdads");
     }
-  };
+    if (selRow === 1) {
+      insertInterval(1);
+    } else if (selRow === 2) {
+      insertInterval(2);
+    }
+  }, [selRow]);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!isDragging || !div || refId.current) {
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isDragging || refId.current) {
       return;
     }
+
+    const div = selRow === 1 ? row1Ref.current : row2Ref.current;
 
     refId.current = requestAnimationFrame(() => {
       if (div) {
@@ -90,11 +107,11 @@ const WorkList = ({ subject }: Props) => {
         setPreviousX(e.clientX);
       }
       refId.current = null;
-      // 아래 예제에서 같이 사용될 코드(지금은 몰라도 무관합니다.)
+
       tickEvent.current.tickCnt += 1;
 
     });
-  };
+  }, [selRow]);
 
   useEffect(() => {
     let _workList: Work[] = [];
@@ -134,11 +151,12 @@ const WorkList = ({ subject }: Props) => {
 
   useEffect(() => {
     if (row1 && row1.length > 4) {
-
+      insertInterval(1);
     }
   }, [row1]);
   useEffect(() => {
     if (row2 && row2.length > 4) {
+      insertInterval(2);
     }
   }, [row2]);
 
@@ -146,15 +164,27 @@ const WorkList = ({ subject }: Props) => {
     if (rowNum === 1) {
       setRow1Scroll(setInterval(() => {
         if (row1Ref.current) {
+          const current = row1Ref.current;
 
+          current!.scrollTo({
+            top: 0,
+            left:
+              current!.scrollLeft + 1
+          });
         }
-      }, 20))
+      }, 30))
     } else {
       setRow2Scroll(setInterval(() => {
         if (row2Ref.current) {
+          const current = row2Ref.current;
 
+          current!.scrollTo({
+            top: 0,
+            left:
+              current!.scrollLeft + 2
+          });
         }
-      }, 20))
+      }, 30))
     }
   }
 
@@ -167,6 +197,8 @@ const WorkList = ({ subject }: Props) => {
         overflowX: 'hidden',
         overflowY: 'hidden'
       }}
+      onMouseEnter={() => { setSelRow(rowNum) }}
+      onMouseLeave={() => { setSelRow(0) }}
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
@@ -196,7 +228,7 @@ const WorkList = ({ subject }: Props) => {
       <HStack
         spacing={2}
         overflowX="scroll"
-        h={"100%"}
+        h={"50%"}
         w={"100%"}
         alignItems={'flex-start'}
         sx={{
@@ -206,29 +238,39 @@ const WorkList = ({ subject }: Props) => {
         }}
         ref={row1Ref}
       >
-        <Flex flexDir={"column"} gap={2}>
-          <Flex position={'relative'} gap={2}>
-            {isMobile && <motion.div>
-            </motion.div>}
-            {row1.map((work, index) => (
-              <ImageButton
-                key={index}
-                src={work.still ? work.still[0] : "/image/lightDoor.png"}
-                rowNum={1}
-              />
-            ))}
-          </Flex>
-          {row2.length > 0 && <Flex position={'relative'} gap={2} ref={row2Ref}>
-            {row2.map((work, index) => (
-              <ImageButton
-                key={index}
-                src={work.still ? work.still[0] : "/image/lightDoor.png"}
-                rowNum={2}
-              />
-            ))}
-          </Flex>}
+        <Flex position={'relative'} gap={2}>
+          {row1.map((work, index) => (
+            <ImageButton
+              key={index}
+              src={work.still ? work.still[0] : "/image/lightDoor.png"}
+              rowNum={1}
+            />
+          ))}
         </Flex>
       </HStack>
+      {row2 && row2.length > 0 && <HStack
+        spacing={2}
+        overflowX="scroll"
+        h={"50%"}
+        w={"100%"}
+        alignItems={'flex-start'}
+        sx={{
+          "::-webkit-scrollbar": {
+            display: "none",
+          },
+        }}
+        ref={row2Ref}
+      >
+        <Flex position={'relative'} gap={2}>
+          {row2.map((work, index) => (
+            <ImageButton
+              key={index}
+              src={work.still ? work.still[0] : "/image/lightDoor.png"}
+              rowNum={2}
+            />
+          ))}
+        </Flex>
+      </HStack>}
     </Wrapper>
   );
 };
