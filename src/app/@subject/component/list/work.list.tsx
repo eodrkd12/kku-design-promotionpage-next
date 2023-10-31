@@ -5,7 +5,7 @@ import digitalMajorProjectData from "@/app/@student/data/digitalMajorProject-dat
 import imcData from "@/app/@student/data/imc-data";
 import uiuxData from "@/app/@student/data/uiux-data";
 import videoMajorProjectData from "@/app/@student/data/videoMajorProject-data";
-import { Flex, HStack } from "@chakra-ui/react";
+import { Flex, HStack, useDisclosure } from "@chakra-ui/react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import styled from "styled-components";
@@ -74,55 +74,62 @@ const WorkList = ({ subject }: Props) => {
     onOpen: itemModalOpen,
     onClose: itemModalClose,
   } = useDisclosure();
-  const handleMouseDown = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    setIsDragging(true);
-    setPreviousX(e.clientX);
-    tickEvent.current = { start: new Date(), tickCnt: 0 };
 
-    if (selRow === 1) {
-      if (row1Scroll)
-        clearInterval(row1Scroll);
-      setRow1Scroll(null);
-    } else if (selRow === 2) {
-      if (row2Scroll)
-        clearInterval(row2Scroll);
-      setRow2Scroll(null);
-    }
+  const handleMouseDown = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      e.preventDefault();
+      setIsDragging(true);
+      setPreviousX(e.clientX);
+      tickEvent.current = { start: new Date(), tickCnt: 0 };
 
-  }, [selRow]);
-
-  const handleMouseUp = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    setIsDragging(false);
-    if (previousX === e.clientX) {
-      setModalTitle("타이틀");
-      itemModalOpen();
-    }
-    if (selRow === 1) {
-      insertInterval(1);
-    } else if (selRow === 2) {
-      insertInterval(2);
-    }
-  }, [selRow]);
-
-  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    if (!isDragging || refId.current) {
-      return;
-    }
-
-    const div = selRow === 1 ? row1Ref.current : row2Ref.current;
-
-    refId.current = requestAnimationFrame(() => {
-      if (div) {
-        const delta = e.clientX - previousX;
-        div.scrollLeft -= delta;
-        setPreviousX(e.clientX);
+      if (selRow === 1) {
+        if (row1Scroll) clearInterval(row1Scroll);
+        setRow1Scroll(null);
+      } else if (selRow === 2) {
+        if (row2Scroll) clearInterval(row2Scroll);
+        setRow2Scroll(null);
       }
-      refId.current = null;
+    },
+    [selRow]
+  );
 
-      tickEvent.current.tickCnt += 1;
-    });
-  }, [selRow]);
+  const handleMouseUp = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      setIsDragging(false);
+      if (previousX === e.clientX) {
+        setModalTitle("타이틀");
+        itemModalOpen();
+      }
+      if (selRow === 1) {
+        insertInterval(1);
+      } else if (selRow === 2) {
+        insertInterval(2);
+      }
+    },
+    [selRow]
+  );
+
+  const handleMouseMove = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      if (!isDragging || refId.current) {
+        return;
+      }
+
+      const div = selRow === 1 ? row1Ref.current : row2Ref.current;
+
+      refId.current = requestAnimationFrame(() => {
+        if (div) {
+          const delta = e.clientX - previousX;
+          div.scrollLeft -= delta;
+          setPreviousX(e.clientX);
+        }
+        refId.current = null;
+
+        tickEvent.current.tickCnt += 1;
+      });
+    },
+    [selRow]
+  );
 
   useEffect(() => {
     let _workList: Work[] = [];
@@ -173,43 +180,49 @@ const WorkList = ({ subject }: Props) => {
 
   const insertInterval = (rowNum: number) => {
     if (rowNum === 1) {
-      setRow1Scroll(setInterval(() => {
-        if (row1Ref.current) {
-          const current = row1Ref.current;
+      setRow1Scroll(
+        setInterval(() => {
+          if (row1Ref.current) {
+            const current = row1Ref.current;
 
-          current!.scrollTo({
-            top: 0,
-            left:
-              current!.scrollLeft + 1
-          });
-        }
-      }, 30))
+            current!.scrollTo({
+              top: 0,
+              left: current!.scrollLeft + 1,
+            });
+          }
+        }, 30)
+      );
     } else {
-      setRow2Scroll(setInterval(() => {
-        if (row2Ref.current) {
-          const current = row2Ref.current;
+      setRow2Scroll(
+        setInterval(() => {
+          if (row2Ref.current) {
+            const current = row2Ref.current;
 
-          current!.scrollTo({
-            top: 0,
-            left:
-              current!.scrollLeft + 2
-          });
-        }
-      }, 30))
+            current!.scrollTo({
+              top: 0,
+              left: current!.scrollLeft + 2,
+            });
+          }
+        }, 30)
+      );
     }
-  }
+  };
 
   const ImageButton = ({ src, rowNum }: ImageButtonProps) => (
     <div
       style={{
         width: "14vw",
         height: "12vh",
-        borderRadius: '5%',
-        overflowX: 'hidden',
-        overflowY: 'hidden'
+        borderRadius: "5%",
+        overflowX: "hidden",
+        overflowY: "hidden",
       }}
-      onMouseEnter={() => { setSelRow(rowNum) }}
-      onMouseLeave={() => { setSelRow(0) }}
+      onMouseEnter={() => {
+        setSelRow(rowNum);
+      }}
+      onMouseLeave={() => {
+        setSelRow(0);
+      }}
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
@@ -241,7 +254,7 @@ const WorkList = ({ subject }: Props) => {
         overflowX="scroll"
         h={"50%"}
         w={"100%"}
-        alignItems={'flex-start'}
+        alignItems={"flex-start"}
         sx={{
           "::-webkit-scrollbar": {
             display: "none",
@@ -249,7 +262,7 @@ const WorkList = ({ subject }: Props) => {
         }}
         ref={row1Ref}
       >
-        <Flex position={'relative'} gap={2}>
+        <Flex position={"relative"} gap={2}>
           {row1.map((work, index) => (
             <ImageButton
               key={index}
@@ -259,29 +272,36 @@ const WorkList = ({ subject }: Props) => {
           ))}
         </Flex>
       </HStack>
-      {row2 && row2.length > 0 && <HStack
-        spacing={2}
-        overflowX="scroll"
-        h={"50%"}
-        w={"100%"}
-        alignItems={'flex-start'}
-        sx={{
-          "::-webkit-scrollbar": {
-            display: "none",
-          },
-        }}
-        ref={row2Ref}
-      >
-        <Flex position={'relative'} gap={2}>
-          {row2.map((work, index) => (
-            <ImageButton
-              key={index}
-              src={work.still ? work.still[0] : "/image/lightDoor.png"}
-              rowNum={2}
-            />
-          ))}
-        </Flex>
-      </HStack>}
+      {row2 && row2.length > 0 && (
+        <HStack
+          spacing={2}
+          overflowX="scroll"
+          h={"50%"}
+          w={"100%"}
+          alignItems={"flex-start"}
+          sx={{
+            "::-webkit-scrollbar": {
+              display: "none",
+            },
+          }}
+          ref={row2Ref}
+        >
+          <Flex position={"relative"} gap={2}>
+            {row2.map((work, index) => (
+              <ImageButton
+                key={index}
+                src={work.still ? work.still[0] : "/image/lightDoor.png"}
+                rowNum={2}
+              />
+            ))}
+          </Flex>
+        </HStack>
+      )}
+      <ItemModal
+        isOpen={isOpenItemModal}
+        onClose={itemModalClose}
+        title={modalTitle}
+      ></ItemModal>
     </Wrapper>
   );
 };
