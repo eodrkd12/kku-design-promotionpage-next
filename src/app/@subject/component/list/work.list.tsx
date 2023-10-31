@@ -188,7 +188,7 @@ const WorkList = ({ subject }: Props) => {
 
             current!.scrollTo({
               top: 0,
-              left: current!.scrollLeft + 2,
+              left: current!.scrollLeft + 1,
             });
 
             if (current.scrollWidth - (current.scrollLeft + current.clientWidth) < 100) {
@@ -198,7 +198,7 @@ const WorkList = ({ subject }: Props) => {
               }
             }
           }
-        }, 30)
+        }, 20)
       );
     }
   };
