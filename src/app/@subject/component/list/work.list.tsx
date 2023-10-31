@@ -87,8 +87,8 @@ const WorkList = ({ subject }: Props) => {
 
   const handleMouseUp = useCallback(
     (work: Work) => {
-      console.log(work);
       setModalTitle("타이틀");
+      setSelectedItem(work);
       itemModalOpen();
       if (selRow === 1) {
         insertInterval(1);
@@ -118,7 +118,6 @@ const WorkList = ({ subject }: Props) => {
     switch (subject) {
       case "전공연구프로젝트(영상)":
         _workList = videoMajorProjectData;
-        setSelectedItem(_workList);
         break;
       case "IMC":
         _workList = imcData;
@@ -208,8 +207,8 @@ const WorkList = ({ subject }: Props) => {
   const ImageButton = ({ src, rowNum, work }: ImageButtonProps) => (
     <div
       style={{
-        width: "14vw",
-        height: "12vh",
+        width: isMobile ? "36vw" : "14vw",
+        height: isMobile ? "12vh" : "12vh",
         borderRadius: "5%",
         overflowX: "hidden",
         overflowY: "hidden",
@@ -226,8 +225,8 @@ const WorkList = ({ subject }: Props) => {
       <img
         src={src}
         style={{
-          width: "14vw",
-          height: "12vh",
+          width: "100%",
+          height: "100%",
           transition: "transform 0.3s, filter 0.3s",
           objectFit: "cover",
         }}
@@ -248,7 +247,6 @@ const WorkList = ({ subject }: Props) => {
       <HStack
         spacing={2}
         overflowX="scroll"
-        h={"50%"}
         w={"100%"}
         alignItems={"flex-start"}
         sx={{
@@ -273,9 +271,9 @@ const WorkList = ({ subject }: Props) => {
         <HStack
           spacing={2}
           overflowX="scroll"
-          h={"50%"}
           w={"100%"}
           alignItems={"flex-start"}
+          mt={2}
           sx={{
             "::-webkit-scrollbar": {
               display: "none",
@@ -295,11 +293,13 @@ const WorkList = ({ subject }: Props) => {
           </Flex>
         </HStack>
       )}
-      <ItemModal
+      {isOpenItemModal && <ItemModal
         isOpen={isOpenItemModal}
         onClose={itemModalClose}
         title={modalTitle}
-      ></ItemModal>
+        work={selectedItem}
+        subject={subject}
+      ></ItemModal>}
     </Wrapper>
   );
 };

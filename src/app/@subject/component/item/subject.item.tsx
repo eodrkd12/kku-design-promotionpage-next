@@ -43,8 +43,8 @@ const ItemWrapper = styled.div`
 
   > div.list-wrapper {
     width: 100%;
-    height: 36vh;
     display: flex;
+    height: 37vh;
     flex-direction: column;
 
     > div:nth-child(1) {
@@ -69,7 +69,6 @@ const ItemWrapper = styled.div`
     }
     > div:nth-child(2) {
       width: 100%;
-      height: 25vh;
       margin-top: 0.5vh;
     }
   }
@@ -77,7 +76,7 @@ const ItemWrapper = styled.div`
   @media (max-width: 500px) {
     > div.title {
        > p {
-        font-size: 2.5vh;
+        font-size: 2vh;
       }
     }
   }

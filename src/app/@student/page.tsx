@@ -79,7 +79,7 @@ export default function StudentScreen() {
         });
       },
       {
-        threshold: 0.3,
+        threshold: 0.2,
       }
     );
 
@@ -98,7 +98,7 @@ export default function StudentScreen() {
 
             if (
               current.scrollLeft + current.clientWidth >=
-                current.scrollWidth - 0.5 &&
+              current.scrollWidth - 0.5 &&
               direction === "right"
             ) {
               setIsScrolledToRight(true);
@@ -136,7 +136,7 @@ export default function StudentScreen() {
 
             if (
               current.scrollLeft + current.clientWidth >=
-                current.scrollWidth - 0.5 &&
+              current.scrollWidth - 0.5 &&
               direction === "right"
             ) {
               setIsScrolledToRight2(true);
@@ -175,6 +175,7 @@ export default function StudentScreen() {
       style={{
         position: "relative",
         width: profileWidth,
+        boxSizing: 'border-box',
         border: "1px solid white",
         overflowX: "hidden",
         overflowY: "hidden",
@@ -230,7 +231,7 @@ export default function StudentScreen() {
       <img
         style={{
           width: "100vw",
-          height: "100vh",
+          height: "90vh",
           position: "sticky",
           objectFit: "cover",
           top: "10.9vh",
@@ -242,8 +243,10 @@ export default function StudentScreen() {
         id="student"
         className="parent-200vh"
         flexDir={"column"}
+        gap={'50vh'}
         style={{
-          justifyContent: "center",
+          transform: `translate(0px, -70vh)`,
+          justifyContent: 'flex-end'
         }}
       >
         <div style={{ zIndex: 3 }}>
@@ -253,114 +256,113 @@ export default function StudentScreen() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 2 }}
             >
-              <Flex
-                justifyContent={"center"}
-                alignItems={"center"}
-                ml={isMobile ? 0 : "13vw"}
-                mr={isMobile ? 0 : "1vw"}
-                position={"relative"}
-              >
-                {!isMobile && (
-                  <button
-                    onMouseEnter={() => handleArrowMouseEnter("left")}
-                    onMouseLeave={handleArrowMouseLeave}
-                    style={{
-                      fontSize: "5vw",
-                      color: isScrolledToLeft ? "transparent" : "white",
-                      height: "60vh",
-                      zIndex: 10,
-                    }}
-                  >
-                    <ChevronLeftIcon />
-                  </button>
-                )}
-                <HStack
-                  ref={studentRef}
-                  spacing={2}
-                  overflowX="scroll"
-                  h={"80vh"}
-                  p={isMobile ? 0 : "2%"}
-                  pt={0}
-                  maxW={isMobile ? "100vw" : "71vw"}
-                  sx={{
-                    "::-webkit-scrollbar": {
-                      display: "none",
-                    },
+              <div>
+                <p
+                  style={{
+                    marginLeft: isMobile ? 0 : "18vw",
+                    fontSize: isMobile ? "6vh" : "8vh",
+                    color: "white",
+                    fontWeight: 400,
                   }}
                 >
-                  <Flex flexDir={"column"}>
-                    <p
+                  DESIGNER
+                </p>
+                <Flex
+                  justifyContent={"center"}
+                  alignItems={"center"}
+                  ml={isMobile ? 0 : "13vw"}
+                  mr={isMobile ? 0 : "1vw"}
+                  position={"relative"}
+                >
+                  {!isMobile && (
+                    <button
+                      onMouseEnter={() => handleArrowMouseEnter("left")}
+                      onMouseLeave={handleArrowMouseLeave}
                       style={{
-                        fontSize: isMobile ? "6vh" : "8vh",
-                        color: "white",
-                        fontWeight: 400,
+                        fontSize: "5vw",
+                        color: isScrolledToLeft ? "transparent" : "white",
+                        zIndex: 10,
                       }}
                     >
-                      DESIGNER
-                    </p>
-                    <Flex>
-                      <div
-                        style={{
-                          width: profileWidth,
-                          borderTop: "1px solid white",
-                          flexShrink: 0,
-                        }}
-                      >
-                        <div
-                          style={{
-                            marginLeft: isMobile ? 5 : 15,
-                            color: "white",
-                            fontSize: isMobile ? 20 : 25,
-                          }}
-                        >
-                          VIDEO
-                          <br />
-                          TRACK
-                        </div>
-                      </div>
-                      {videoStudentData
-                        .slice(0, Math.ceil(videoStudentData.length / 2 - 1))
-                        .map((student, index) => (
-                          <ImageButton
-                            key={index}
-                            src={student.profile}
-                            alt="SignLogo"
-                            name={student.name}
-                            englishName={student.englishName}
-                            onClick={() => handleStudent(student)}
-                          />
-                        ))}
-                    </Flex>
-                    <Flex>
-                      {videoStudentData
-                        .slice(Math.ceil(videoStudentData.length / 2 - 1))
-                        .map((student, index) => (
-                          <ImageButton
-                            key={index}
-                            src={student.profile}
-                            alt="SignLogo"
-                            name={student.name}
-                            englishName={student.englishName}
-                            onClick={() => handleStudent(student)}
-                          />
-                        ))}
-                    </Flex>
-                  </Flex>
-                </HStack>
-                {!isMobile && (
-                  <button
-                    onMouseEnter={() => handleArrowMouseEnter("right")}
-                    onMouseLeave={handleArrowMouseLeave}
-                    style={{
-                      fontSize: "5vw",
-                      color: isScrolledToRight ? "transparent" : "white",
-                      height: "60vh",
+                      <ChevronLeftIcon />
+                    </button>
+                  )}
+                  <HStack
+                    ref={studentRef}
+                    spacing={2}
+                    overflowX="scroll"
+
+                    maxW={isMobile ? "100vw" : "71vw"}
+                    sx={{
+                      "::-webkit-scrollbar": {
+                        display: "none",
+                      },
                     }}
                   >
-                    <ChevronRightIcon />
-                  </button>
-                )}
-              </Flex>
+                    <Flex flexDir={"column"}>
+                      <Flex>
+                        <div
+                          style={{
+                            width: profileWidth,
+                            borderTop: "1px solid white",
+                            flexShrink: 0,
+                          }}
+                        >
+                          <div
+                            style={{
+                              marginLeft: isMobile ? 5 : 15,
+                              color: "white",
+                              fontSize: isMobile ? 20 : 25,
+                            }}
+                          >
+                            VIDEO
+                            <br />
+                            TRACK
+                          </div>
+                        </div>
+                        {videoStudentData
+                          .slice(0, Math.ceil(videoStudentData.length / 2 - 1))
+                          .map((student, index) => (
+                            <ImageButton
+                              key={index}
+                              src={student.profile}
+                              alt="SignLogo"
+                              name={student.name}
+                              englishName={student.englishName}
+                              onClick={() => handleStudent(student)}
+                            />
+                          ))}
+                      </Flex>
+                      <Flex>
+                        {videoStudentData
+                          .slice(Math.ceil(videoStudentData.length / 2 - 1))
+                          .map((student, index) => (
+                            <ImageButton
+                              key={index}
+                              src={student.profile}
+                              alt="SignLogo"
+                              name={student.name}
+                              englishName={student.englishName}
+                              onClick={() => handleStudent(student)}
+                            />
+                          ))}
+                      </Flex>
+                    </Flex>
+                  </HStack>
+                  {!isMobile && (
+                    <button
+                      onMouseEnter={() => handleArrowMouseEnter("right")}
+                      onMouseLeave={handleArrowMouseLeave}
+                      style={{
+                        fontSize: "5vw",
+                        color: isScrolledToRight ? "transparent" : "white",
+                      }}
+                    >
+                      <ChevronRightIcon />
+                    </button>
+                  )}
+                </Flex>
+              </div>
             </motion.div>
           )}
         </div>
@@ -384,7 +386,6 @@ export default function StudentScreen() {
                     style={{
                       fontSize: "5vw",
                       color: isScrolledToLeft2 ? "transparent" : "white",
-                      height: "60vh",
                       zIndex: 10,
                     }}
                   >
@@ -395,8 +396,6 @@ export default function StudentScreen() {
                   ref={studentRef2}
                   spacing={2}
                   overflowX="scroll"
-                  h={"80vh"}
-                  p={isMobile ? 0 : "2%"}
                   maxW={isMobile ? "100vw" : "71vw"}
                   sx={{
                     "::-webkit-scrollbar": {
@@ -461,7 +460,6 @@ export default function StudentScreen() {
                     style={{
                       fontSize: "5vw",
                       color: isScrolledToRight2 ? "transparent" : "white",
-                      height: "60vh",
                     }}
                   >
                     <ChevronRightIcon />

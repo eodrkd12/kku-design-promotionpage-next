@@ -33,7 +33,7 @@ const BasicComponent = (props: Props) => {
             fontSize={
               !isMobile
                 ? "50px"
-                : props.work?.name && props.work.name.length >= 20
+                : props.work?.name && props.work.name.length >= 16
                 ? "20px"
                 : "24px"
             }

@@ -177,6 +177,46 @@ const ImcLayoutComponent = (props: Props) => {
                   </Flex>
                 );
               })}
+              <Box
+                display="flex"
+                flexDirection={isMobile ? "column" : "row"}
+                alignItems={isMobile ? "start" : "center"}
+                position="absolute"
+                top={isMobile ? "35%" : "50%"}
+                left="5%"
+              >
+                <Text
+                  color="white"
+                  fontSize={
+                    !isMobile
+                      ? "50px"
+                      : props.work?.name && props.work.name.length >= 16
+                      ? "20px"
+                      : "24px"
+                  }
+                  fontWeight="700"
+                  transform={isMobile ? "translateY(-40%)" : "translateY(-50%)"}
+                >
+                  {work?.name}
+                </Text>
+                <Text
+                  color="white"
+                  fontWeight="500"
+                  transform={
+                    isMobile ? "translateY(-120%)" : "translateY(-130%)"
+                  }
+                  marginLeft={isMobile ? "0" : "20"}
+                  fontSize={
+                    !isMobile
+                      ? "16px"
+                      : work?.introduction && work.introduction.length >= 30
+                      ? "10px"
+                      : "12px"
+                  }
+                >
+                  {work?.introduction}
+                </Text>
+              </Box>
             </Flex>
           ) : (
             <Flex flexDir={"row"} justifyContent={"center"}>

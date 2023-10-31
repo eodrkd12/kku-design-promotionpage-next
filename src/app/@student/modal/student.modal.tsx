@@ -174,6 +174,7 @@ const StudentModal = (props: Props) => {
               mb={"1%"}
               height={isMobile ? "10vh" : "4vh"}
               paddingTop={isMobile ? "15%" : "0"}
+              justifyContent={ isMobile ? "space-around" : ""}
             >
               <Text
                 marginRight={"3%"}
@@ -184,6 +185,7 @@ const StudentModal = (props: Props) => {
                 position={isMobile ? "absolute" : "static"}
                 left={isMobile ? "5%" : "0%"}
                 top={"0"}
+  
               >
                 {props.studentData.name}
               </Text>
@@ -193,6 +195,7 @@ const StudentModal = (props: Props) => {
                     key={index}
                     color={tabIdx === index ? "white" : "gray.500"}
                     fontSize={isMobile ? "10px" : "16px"}
+                    padding={ isMobile ? "0" : ""}
                   >
                     {value}
                   </Tab>
