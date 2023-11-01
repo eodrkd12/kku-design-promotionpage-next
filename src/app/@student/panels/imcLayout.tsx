@@ -105,7 +105,7 @@ const ImcLayoutComponent = (props: Props) => {
           {props.work.explanation.split(". ").map((value) => {
             const regExp = new RegExp("[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]");
             return (
-              <Text color={"white"} fontSize={isMobile ? "1.3vw" : "1.3vh"}>
+              <Text color={"white"} fontSize={isMobile ? "2.2vw" : "1.3vh"}>
                 {value}
                 {value.length > 0 && regExp.test(value[value.length - 1])
                   ? "."
@@ -144,7 +144,6 @@ const ImcLayoutComponent = (props: Props) => {
                   alt="SignLogo"
                   style={{
                     width: "20vw",
-                    height: "100%",
                     objectFit: "contain",
                   }}
                 />
@@ -186,7 +185,6 @@ const ImcLayoutComponent = (props: Props) => {
                       alt="SignLogo"
                       style={{
                         width: "100%",
-                        height: "100%",
                         objectFit: "contain",
                       }}
                     />

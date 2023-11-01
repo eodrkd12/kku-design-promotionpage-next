@@ -135,11 +135,12 @@ const ItemModal = (props: Props) => {
         <ModalOverlay backdropFilter="blur(10px) " />
         <ModalContent bg={"black"}>
           <ModalHeader>
-            <ModalCloseButton color={"white"} />
+            {!isMobile && <ModalCloseButton color={"white"} />}
           </ModalHeader>
 
           <ModalBody
             px={"2%"}
+            pt={isMobile ? 0 : "3%"}
             pb={"3%"}
             sx={{
               "*::-webkit-scrollbar": {
@@ -149,8 +150,8 @@ const ItemModal = (props: Props) => {
           >
             <Flex w={"100%"} h={"70vh"} justifyContent={"space-between"}>
               <Flex
-                w={"10vw"}
-                h={"100%"}
+                w={isMobile ? "100vw" : "10vw"}
+                h={isMobile ? "10vh" : "100%"}
                 left={0}
                 top={0}
                 pt={isMobile ? "5vw" : "5vh"}
@@ -159,9 +160,12 @@ const ItemModal = (props: Props) => {
                 backgroundColor={"black"}
                 borderLeftRadius={"md"}
                 style={{
-                  transform: `translate(${-9}vw, 0)`,
+                  transform: isMobile
+                    ? `translate(0, ${-10}vh)`
+                    : `translate(${-9}vw, 0)`,
                 }}
               >
+                {isMobile && <ModalCloseButton color={"white"} zIndex={10} />}
                 <Flex
                   display={"flex"}
                   flexDirection={"column"}
@@ -175,33 +179,49 @@ const ItemModal = (props: Props) => {
                     fontWeight={800}
                     w={"100%"}
                     wordBreak={"break-word"}
-                    fontSize={isMobile ? "0.7vh" : "0.7vw"}
+                    fontSize={isMobile ? "1.2vh" : "0.7vw"}
                   >
                     {props.subject}
                   </Text>
-                  <VStack
+                  <Flex
+                    flexDir={isMobile ? "row" : "column"}
                     alignItems={"flex-start"}
                     w={"100%"}
-                    maxH={"80%"}
+                    h={"100%"}
+                    maxH={"100%"}
+                    gap={2}
+                    style={
+                      isMobile
+                        ? {
+                            height: "100%",
+                            maxWidth: "100%",
+                          }
+                        : {
+                            width: "100%",
+                            maxHeight: "80%",
+                          }
+                    }
                     overflow={"scroll"}
                   >
                     {workList.map((work) => {
                       return (
                         <Button
-                          w={"100%"}
+                          maxW={isMobile ? "20%" : "100%"}
+                          minW={"20%"}
                           variant={"link"}
                           px={1}
                           colorScheme="white"
                           flexDir={"column"}
                           alignItems={"flex-start"}
-                          textOverflow={"ellipsis"}
                           onClick={() => handleWorkClick(work)}
                         >
                           <Text
-                            fontSize={isMobile ? "0.7vh" : "0.7vw"}
+                            fontSize={isMobile ? "0.9vh" : "0.7vw"}
                             color={"white"}
                             w={"100%"}
+                            noOfLines={1}
                             textAlign={"left"}
+                            textOverflow={"ellipsis"}
                           >
                             {work.name}
                           </Text>
@@ -217,13 +237,13 @@ const ItemModal = (props: Props) => {
                             flexDir={isMobile ? "column" : "row"}
                           >
                             {!isMobile && (
-                              <Text fontSize={isMobile ? "0.5vh" : "0.5vw"}>
+                              <Text fontSize={isMobile ? "0.9vh" : "0.5vw"}>
                                 -
                               </Text>
                             )}
                             {work.student.map((student) => (
                               <Text
-                                fontSize={isMobile ? "0.5vh" : "0.5vw"}
+                                fontSize={isMobile ? "0.9vh" : "0.5vw"}
                                 color={"white"}
                                 textAlign={"left"}
                               >
@@ -234,7 +254,7 @@ const ItemModal = (props: Props) => {
                         </Button>
                       );
                     })}
-                  </VStack>
+                  </Flex>
                 </Flex>
               </Flex>
               <Flex w={"100%"} display={"flex"} flexDirection={"column"}>
