@@ -1,221 +1,219 @@
 import {
-    Flex,
-    Modal,
-    ModalBody,
-    ModalCloseButton,
-    ModalContent,
-    ModalFooter,
-    ModalHeader,
-    ModalOverlay,
-    Tab,
-    TabList,
-    TabPanel,
-    TabPanels,
-    Tabs,
-    Text
-} from '@chakra-ui/react';
-import { useEffect, useState } from "react";
-import { useMediaQuery } from 'react-responsive';
+  Flex,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+  Text,
+} from "@chakra-ui/react";
+import { useCallback, useEffect, useState } from "react";
+import { useMediaQuery } from "react-responsive";
 
-import PromotionVideoData from '../data/PromotionVideo-data';
-import animationStudioData from '../data/animationStudio-data';
-import brandPackageDesignData from '../data/brandPackageDesign-data';
-import digitalMajorProjectData from '../data/digitalMajorProject-data';
-import imcData from '../data/imc-data';
-import uiuxData from '../data/uiux-data';
-import videoMajorProjectData from '../data/videoMajorProject-data';
-
+import PromotionVideoData from "../data/PromotionVideo-data";
+import animationStudioData from "../data/animationStudio-data";
+import brandPackageDesignData from "../data/brandPackageDesign-data";
+import digitalMajorProjectData from "../data/digitalMajorProject-data";
+import imcData from "../data/imc-data";
+import uiuxData from "../data/uiux-data";
+import videoMajorProjectData from "../data/videoMajorProject-data";
+import UIUXComponent from "../panels/UIUX.panel";
+import BasicComponent from "../panels/basic";
+import BrandPackageComponent from "../panels/brandPackage.panel";
+import ImcLayoutComponent from "../panels/imcLayout";
+import { Work } from "@/common/interfaces/work.interface";
 
 interface Props {
-    isOpen: boolean;
-    onClose: () => void;
-    studentData: any;
-}
-
-interface Work {
-    name: string;
-    student: Student[];
-    introduction: string;
-    explanation: string;
-}
-
-interface Student {
-    sname: string;
-    englishName: string;
-    studentNumber: string;
-    email: string;
+  isOpen: boolean;
+  onClose: () => void;
+  studentData: any;
 }
 
 const StudentModal = (props: Props) => {
+  // 선택한 학생
+  const [selectedStudent, setSelectedStudent] = useState<any>(null);
 
-    // 선택한 학생
-    const [selectedStudent, setSelectedStudent] = useState<any>(null);
+  const [subjectList, setSubjectList] = useState<string[]>([]);
+  const [tabIdx, setTabIdx] = useState<number | null>(null);
+  const [work, setWork] = useState<Work>();
 
-    const [subjectList, setSubjectList] = useState<string[]>([]);
-    const [tabIdx, setTabIdx] = useState<number | null>(null);
-    const [work, setWork] = useState<Work>();
+  useEffect(() => {
+    if (props.studentData) {
+      console.log(props.studentData);
+      const _subjectList: string[] = [];
+      props.studentData.subject.split("/").forEach((value: string) => {
+        _subjectList.push(value.trim());
+      });
+      setSubjectList(_subjectList);
 
-    useEffect(() => {
+      setTabIdx(0);
+    }
+  }, [props]);
 
-        if (props.studentData) {
-            const _subjectList: string[] = [];
-            props.studentData.subject.split("/").forEach((value: string) => {
-                _subjectList.push(value.trim());
-            })
-            setSubjectList(_subjectList);
-            setTabIdx(0);
-        }
-    }, [props])
+  useEffect(() => {
+    if (tabIdx !== null) {
+      let workList: Work[] = [];
+      switch (subjectList[tabIdx]) {
+        case "전공연구프로젝트(영상)":
+          workList = videoMajorProjectData;
+          break;
+        case "IMC":
+          workList = imcData;
+          break;
+        case "프로모션영상":
+          workList = PromotionVideoData;
+          break;
+        case "전공연구프로젝트(디지털)":
+          workList = digitalMajorProjectData;
+          break;
+        case "UIUX":
+          workList = uiuxData;
+          break;
+        case "애니메이션스튜디오":
+          workList = animationStudioData;
+          break;
+        case "브랜드패키지":
+          workList = brandPackageDesignData;
+      }
 
-    useEffect(() => {
-        if (tabIdx !== null) {
-            let workList: Work[] = [];
-            switch (subjectList[tabIdx]) {
-                case '전공연구프로젝트(영상)':
-                    workList = videoMajorProjectData;
-                    break;
-                case 'IMC':
-                    workList = imcData;
-                    break;
-                case '프로모션영상':
-                    workList = PromotionVideoData;
-                    break;
-                case '전공연구프로젝트(디지털)':
-                    workList = digitalMajorProjectData;
-                    break;
-                case 'UIUX캡스톤디자인':
-                    workList = uiuxData;
-                    break;
-                case '애니메이션스튜디오':
-                    workList = animationStudioData;
-                    break;
-                case '브랜드패키지디자인':
-                    workList = brandPackageDesignData;
+      if (workList) {
+        const _work = workList.filter((value) =>
+          value.student.some((value) => value.sname === props.studentData.name)
+        )[0];
+        const len = _work.student.length;
+        if (len !== undefined) {
+          for (let i = 0; i < len; i++) {
+            if (_work.student[i].sname === props.studentData.name) {
+              const temp = _work.student[i];
+              _work.student.splice(i, 1);
+              _work.student.unshift(temp);
             }
-
-            if (workList) {
-                setWork(workList.filter((value) => value.student.some((value) => value.sname === props.studentData.name))[0]);
-            }
+          }
         }
-    }, [tabIdx])
+        setWork(_work);
+      }
+    }
+  }, [tabIdx]);
 
-    const isMobile = useMediaQuery({
-        query: '(max-width: 500px)'
-    });
+  const getPanel = useCallback(() => {
+    if (tabIdx !== null && work) {
+      switch (subjectList[tabIdx]) {
+        case "전공연구프로젝트(영상)":
+          return <BasicComponent work={work} />;
 
-    return (
-        <Modal
-            closeOnOverlayClick={false}
-            isOpen={props.isOpen}
-            onClose={props.onClose}
-            size={'6xl'}
-            isCentered
+        case "IMC":
+          return <ImcLayoutComponent work={work} />;
+
+        case "프로모션영상":
+          return <BasicComponent work={work} />;
+
+        case "전공연구프로젝트(디지털)":
+          return <BasicComponent work={work} />;
+
+        case "UIUX":
+          return <UIUXComponent work={work} />;
+
+        case "애니메이션스튜디오":
+          return <BasicComponent work={work} />;
+
+        case "브랜드패키지":
+          return <BrandPackageComponent work={work} />;
+      }
+    }
+  }, [tabIdx, work]);
+
+  const isMobile = useMediaQuery({
+    query: "(max-width: 500px)",
+  });
+
+  return (
+    <Modal
+      closeOnOverlayClick={false}
+      isOpen={props.isOpen}
+      onClose={props.onClose}
+      size={"6xl"}
+      isCentered
+      autoFocus
+      scrollBehavior="inside"
+    >
+      <ModalOverlay backdropFilter="blur(10px) " />
+      <ModalContent backgroundColor="black" borderRadius="25px">
+        <ModalHeader>
+          <ModalCloseButton color={"white"} />
+        </ModalHeader>
+        <ModalBody
+          sx={{
+            "*::-webkit-scrollbar": {
+              display: "none",
+            },
+          }}
         >
-            <ModalOverlay />
-            <ModalContent backgroundColor="black" borderColor={'blue'} borderWidth={2} borderRadius="25px">
-                <ModalHeader>
-
-                    <ModalCloseButton color={'white'} />
-
-                </ModalHeader>
-                <ModalBody overflowY="scroll" sx={{
-                    '::-webkit-scrollbar': {
-                        display: 'none',
-                    },
-                }} >
-                    <Tabs h={'80vh'} position="relative" variant="unstyled" onChange={(index: number) => {
-                        setTabIdx(index);
-                    }}>
-                        <TabList justifyContent={'space-around'} mb={'1%'}>
-                            {subjectList.map((value, index) => {
-                                return <Tab key={index} color={tabIdx === index ? 'white' : 'gray.500'}>{value}</Tab>;
-                            })}
-                        </TabList>
-                        <TabPanels h={'90%'}>
-                            <TabPanel h={'100%'}>
-                                <Flex position={'relative'} h={'30%'}>
-                                    <img src={"/image/lightDoor.png"} alt="SignLogo" style={{ width: '100vw', height: '100%' }} />
-
-                                    <Text position={'absolute'} color={'white'} top={'50%'} left={'5%'} fontSize={50} transform='translateY(-50%)'>{work?.name}</Text>
-
-                                    <Flex position={'absolute'} color={'white'} top={'5%'} right={0} flexDir={'column'}>
-                                        {
-                                            work?.student.map((student, index) => {
-                                                return <Text key={index}>{student.sname} {student.email}</Text>
-                                            })
-                                        }
-                                    </Flex>
-                                </Flex>
-                                <Flex flexDir={'column'} w={'100%'} h={'70%'}>
-                                    <Text color={'white'} m={'1%'} >{work?.introduction}</Text>
-                                    <Text color={'white'} m={'1%'} >{work?.explanation}</Text>
-                                    <iframe
-                                        width="100%"
-                                        height="100%"
-                                        src="https://player.vimeo.com/video/697947484"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    ></iframe>
-                                </Flex>
-                            </TabPanel>
-                            <TabPanel h={'100%'}>
-                                <Flex position={'relative'} h={'30%'}>
-                                    <img src={"/image/lightDoor.png"} alt="SignLogo" style={{ width: '100vw', height: '100%' }} />
-
-                                    <Text position={'absolute'} color={'white'} top={'50%'} left={'5%'} fontSize={50} transform='translateY(-50%)'>{work?.name}</Text>
-
-                                    <Flex position={'absolute'} color={'white'} top={'5%'} right={0} flexDir={'column'}>
-                                        {
-                                            work?.student.map((student, index) => {
-                                                return <Text key={index}>{student.sname} {student.email}</Text>
-                                            })
-                                        }
-                                    </Flex>
-                                </Flex>
-                                <Flex flexDir={'column'} w={'100%'} h={'70%'}>
-                                    <Text color={'white'} m={'1%'} >{work?.introduction}</Text>
-                                    <Text color={'white'} m={'1%'} >{work?.explanation}</Text>
-                                    <iframe
-                                        width="100%"
-                                        height="100%"
-                                        src="https://player.vimeo.com/video/697947484"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    ></iframe>
-                                </Flex>
-                            </TabPanel>
-                            <TabPanel h={'100%'}>
-                                <Flex position={'relative'} h={'30%'}>
-                                    <img src={"/image/lightDoor.png"} alt="SignLogo" style={{ width: '100vw', height: '100%' }} />
-
-                                    <Text position={'absolute'} color={'white'} top={'50%'} left={'5%'} fontSize={50} transform='translateY(-50%)'>{work?.name}</Text>
-
-                                    <Flex position={'absolute'} color={'white'} top={'5%'} right={0} flexDir={'column'}>
-                                        {
-                                            work?.student.map((student, index) => {
-                                                return <Text key={index}>{student.sname} {student.email}</Text>
-                                            })
-                                        }
-                                    </Flex>
-                                </Flex>
-                                <Flex flexDir={'column'} w={'100%'} h={'70%'}>
-                                    <Text color={'white'} m={'1%'} >{work?.introduction}</Text>
-                                    <Text color={'white'} m={'1%'} >{work?.explanation}</Text>
-                                    <iframe
-                                        width="100%"
-                                        height="100%"
-                                        src="https://player.vimeo.com/video/697947484"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    ></iframe>
-                                </Flex>
-                            </TabPanel>
-                        </TabPanels>
-                    </Tabs>
-                </ModalBody>
-                <ModalFooter>
-
-                </ModalFooter>
-            </ModalContent>
-        </Modal>
-    );
+          <Tabs
+            h={"70vh"}
+            variant="unstyled"
+            onChange={(index: number) => {
+              setTabIdx(index);
+            }}
+          >
+            <TabList
+              mb={"1%"}
+              height={isMobile ? "10vh" : "4vh"}
+              paddingTop={isMobile ? "15%" : "0"}
+              justifyContent={isMobile ? "space-around" : ""}
+            >
+              <Text
+                marginRight={"3%"}
+                marginLeft={isMobile ? "0" : "1.5%"}
+                color={"white"}
+                fontSize={isMobile ? "32" : "25"}
+                fontWeight={"500"}
+                position={isMobile ? "absolute" : "static"}
+                left={isMobile ? "5%" : "0%"}
+                top={"0"}
+              >
+                {props.studentData.name}
+              </Text>
+              {subjectList.map((value, index) => {
+                return (
+                  <Tab
+                    key={index}
+                    color={tabIdx === index ? "white" : "gray.500"}
+                    fontSize={isMobile ? "10px" : "16px"}
+                    padding={isMobile ? "0" : ""}
+                  >
+                    {value}
+                  </Tab>
+                );
+              })}
+              <Flex
+                position={"absolute"}
+                flexDir={"column"}
+                left={isMobile ? "32%" : "85%"}
+                align={isMobile ? "self-start" : "self-end"}
+                fontSize={"10"}
+                top={isMobile ? "2%" : "0"}
+              >
+                <Text color={"white"}>{props.studentData.englishName}</Text>
+                <Text color={"white"}>{props.studentData.email}</Text>
+              </Flex>
+            </TabList>
+            <TabPanels flex={1} overflowY={"scroll"} maxH={"70vh"}>
+              <TabPanel h={"60vh"}>{getPanel()}</TabPanel>
+              <TabPanel h={"60vh"}>{getPanel()}</TabPanel>
+              <TabPanel h={"60vh"}>{getPanel()}</TabPanel>
+            </TabPanels>
+          </Tabs>
+        </ModalBody>
+      </ModalContent>
+    </Modal>
+  );
 };
 
 export default StudentModal;

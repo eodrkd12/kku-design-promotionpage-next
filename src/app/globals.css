@@ -3,12 +3,36 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'Pretendard-Regular';
-  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+  font-family: "Pretendard";
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+    format("woff");
   font-weight: 400;
   font-style: normal;
 }
 
+@font-face {
+  font-family: "Pretendard";
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Black.woff")
+    format("woff");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Pretendard";
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff")
+    format("woff");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Pretendard";
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Medium.woff")
+    format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
 
 html {
   scroll-behavior: smooth;
@@ -19,7 +43,6 @@ html {
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
   --white: #ffffff;
-
 }
 
 @media (prefers-color-scheme: dark) {
@@ -33,19 +56,24 @@ html {
 body {
   height: calc(var(--vh, 1vh) * 100);
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(to bottom,
+  background: linear-gradient(
+      to bottom,
       transparent,
-      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
 
   overflow: auto;
+  overflow-x: hidden;
 }
 
 main {
   width: 100%;
   height: calc(var(--vh, 1vh) * 100);
-  overflow: hidden;
-  scroll-snap-type: y mandatory;
-
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media (max-width: 500px) {
@@ -60,8 +88,8 @@ div.parent {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: black;
-  /* scroll-snap-align: start; */
+  background-color: transparent;
+  flex-direction: column;
 }
 
 div.parent-75vh {
@@ -70,7 +98,7 @@ div.parent-75vh {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: black;
+  background-color: transparent;
   /* scroll-snap-align: start; */
 }
 
@@ -81,7 +109,7 @@ div.parent-150vh {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: black;
+  background-color: transparent;
 }
 
 div.parent-200vh {
@@ -90,7 +118,7 @@ div.parent-200vh {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: black;
+  justify-content: center;
 }
 
 div.parent-infinite {
@@ -99,7 +127,43 @@ div.parent-infinite {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: black;
+  background-color: transparent;
+}
+
+div.parent-400vh {
+  width: 100%;
+  height: calc(var(--vh, 1vh) * 400);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+div.parent-600vh {
+  width: 100%;
+  height: calc(var(--vh, 1vh) * 600);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: transparent;
+  position: sticky;
+}
+
+div.parent-infinite-200vh {
+  width: 100%;
+  min-height: calc(var(--vh, 1vh) * 200);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+div.parent-infinite-400vh {
+  width: 100%;
+  min-height: calc(var(--vh, 1vh) * 400);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .progress-bar {
@@ -114,17 +178,33 @@ div.parent-infinite {
 }
 
 p {
-  font-family: Pretendard-Regular;
+  font-family: Pretendard;
 }
 
 h1 {
-  font-family: Pretendard-Regular;
+  font-family: Pretendard;
 }
 
 h2 {
-  font-family: Pretendard-Regular;
+  font-family: Pretendard;
 }
 
-*::-webkit-scrollbar {
-  display: none;
+button {
+  font-family: Pretendard;
+}
+
+body::-webkit-scrollbar {
+  height: 5px;
+  width: 0.5vw;
+  background: transparent;
+  -webkit-border-radius: 1ex;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #25ca;
+  -webkit-border-radius: 1ex;
+}
+
+body::-webkit-scrollbar-track {
+  background: black;
 }
