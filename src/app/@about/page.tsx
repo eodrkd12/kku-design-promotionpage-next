@@ -100,80 +100,68 @@ export default function AboutScreen() {
   useEffect(() => {}, []);
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    if (latest < 0.091) {
+    console.log(latest);
+
+    if (latest < 0.082) {
       controls1.start({ opacity: 0 });
       controls2.start({ opacity: 0, y: 100 });
-    } else if (0.091 <= latest && latest < 0.095) {
+    } else if (0.082 <= latest && latest < 0.086) {
       controls1.start({ opacity: 0.3 });
       controls2.start({ opacity: 0.3, y: 60 });
-    } else if (0.095 <= latest && latest < 0.098) {
+    } else if (0.086 <= latest && latest < 0.091) {
       controls1.start({ opacity: 0.5 });
       controls2.start({ opacity: 0.5, y: 45 });
-    } else if (0.098 <= latest && latest < 0.102) {
+    } else if (0.091 <= latest && latest < 0.094) {
       controls1.start({ opacity: 0.7 });
       controls2.start({ opacity: 0.7, y: 30 });
-    } else if (0.102 <= latest && latest < 0.105) {
-      controls1.start({ opacity: 0.9 });
-      controls2.start({ opacity: 0.9, y: 15 });
-    } else if (0.105 <= latest && latest < 0.108) {
+    } else if (0.094 <= latest && latest < 0.099) {
       controls1.start({ opacity: 1, y: 0 });
       controls2.start({ opacity: 1, y: 0 });
-    } else if (0.14 <= latest && latest < 0.15) {
+    } else if (0.12 <= latest && latest < 0.13) {
       controls1.start({ opacity: 0, y: -40 });
       controls2.start({ opacity: 0, y: -40 });
-    } else if (0.16 <= latest && latest < 0.17) {
+    } else if (0.13 <= latest && latest < 0.136) {
       controls3.start({ opacity: 0.3, y: 60 });
-    } else if (0.17 <= latest && latest < 0.175) {
+    } else if (0.136 <= latest && latest < 0.142) {
       controls3.start({ opacity: 0.5, y: 45 });
-    } else if (0.175 <= latest && latest < 0.182) {
+    } else if (0.142 <= latest && latest < 0.148) {
       controls3.start({ opacity: 0.7, y: 30 });
-    } else if (0.182 <= latest && latest < 0.195) {
-      controls3.start({ opacity: 0.9, y: 15 });
-    } else if (0.195 <= latest && latest < 0.208) {
+    } else if (0.154 <= latest && latest < 0.16) {
       controls3.start({ opacity: 1, y: 0 });
-    } else if (0.231 <= latest && latest < 0.242) {
+    } else if (0.192 <= latest && latest < 0.205) {
       controls3.start({ opacity: 0.6, y: -20 });
-    } else if (0.242 <= latest && latest < 0.244) {
+    } else if (0.205 <= latest && latest < 0.213) {
       controls3.start({ opacity: 0, y: -40 });
-    } else if (0.253 <= latest && latest < 0.256) {
       controls4.start({ opacity: 0.3, y: 60 });
-    } else if (0.256 <= latest && latest < 0.262) {
+    } else if (0.213 <= latest && latest < 0.221) {
       controls4.start({ opacity: 0.5, y: 45 });
-    } else if (0.262 <= latest && latest < 0.266) {
+    } else if (0.221 <= latest && latest < 0.228) {
       controls4.start({ opacity: 0.7, y: 30 });
-    } else if (0.266 <= latest && latest < 0.272) {
-      controls4.start({ opacity: 0.9, y: 15 });
-    } else if (0.272 <= latest && latest < 0.28) {
+    } else if (0.228 <= latest && latest < 0.236) {
       controls4.start({ opacity: 1, y: 0 });
-    } else if (0.3 <= latest && latest < 0.32) {
+    } else if (0.278 <= latest && latest < 0.287) {
       controls4.start({ opacity: 0.6, y: -20 });
-    } else if (0.32 <= latest && latest < 0.34) {
+    } else if (0.287 <= latest && latest < 0.297) {
       controls4.start({ opacity: 0, y: -40 });
       controls5.start({ opacity: 0.3, y: 60 });
-    } else if (0.34 <= latest && latest < 0.346) {
+    } else if (0.297 <= latest && latest < 0.305) {
       controls5.start({ opacity: 0.5, y: 45 });
-    } else if (0.346 <= latest && latest < 0.358) {
+    } else if (0.305 <= latest && latest < 0.313) {
       controls5.start({ opacity: 0.7, y: 30 });
-    } else if (0.358 <= latest && latest < 0.37) {
-      controls5.start({ opacity: 0.9, y: 15 });
-    } else if (0.37 <= latest && latest < 0.39) {
+    } else if (0.313 <= latest && latest < 0.32) {
       controls5.start({ opacity: 1, y: 0 });
-    } else if (0.39 <= latest && latest < 0.39) {
-      controls5.start({ opacity: 1, y: 0 });
-    } else if (0.413 <= latest && latest < 0.42) {
+    } else if (0.369 <= latest && latest < 0.377) {
       controls5.start({ opacity: 0.6, y: -20 });
-    } else if (0.42 <= latest && latest < 0.43) {
+    } else if (0.377 <= latest && latest < 0.385) {
       controls5.start({ opacity: 0, y: -40 });
       controls6.start({ opacity: 0.3, y: 60 });
-    } else if (0.43 <= latest && latest < 0.44) {
+    } else if (0.385 <= latest && latest < 0.393) {
       controls6.start({ opacity: 0.5, y: 45 });
-    } else if (0.44 <= latest && latest < 0.45) {
-      controls6.start({ opacity: 0.7, y: 30 });
-    } else if (0.45 <= latest && latest < 0.46) {
+    } else if (0.393 <= latest && latest < 0.4) {
       controls6.start({ opacity: 1, y: 0 });
-    } else if (0.46 <= latest && latest < 0.47) {
+    } else if (0.42 <= latest && latest < 0.426) {
       controls6.start({ opacity: 0.6, y: -20 });
-    } else if (0.47 <= latest) {
+    } else if (0.434 <= latest) {
       controls6.start({ opacity: 0, y: -40 });
     }
   });

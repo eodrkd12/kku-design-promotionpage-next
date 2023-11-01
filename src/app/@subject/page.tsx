@@ -51,7 +51,7 @@ export default function SubjectScreen() {
   return (
     <div
       id="subject"
-      className="parent-200vh"
+      className="parent-infinite-200vh"
       style={{
         transform: `translate(0px, -70vh)`,
       }}

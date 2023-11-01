@@ -229,7 +229,8 @@ export default function RootLayout(props: Props) {
                 />
                 <span
                   onClick={() => {
-                    about?.scrollIntoView({ behavior: "smooth" });
+                    // about?.scrollIntoView({ behavior: "smooth" });
+                    window.scrollTo(0, 0);
                   }}
                 >
                   {progress >= 1 && (
@@ -243,7 +244,7 @@ export default function RootLayout(props: Props) {
                 </span>
                 <span
                   onClick={() => {
-                    about?.scrollIntoView({ behavior: "smooth" });
+                    window.scrollTo(0, 0);
                   }}
                 >
                   {progress >= 1 && (

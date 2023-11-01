@@ -224,7 +224,7 @@ export default function StudentScreen() {
 
   return (
     <div
-      className="parent-400vh"
+      className="parent-infinite-400vh"
       style={{
         position: "relative",
         zIndex: 0,

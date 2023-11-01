@@ -71,8 +71,8 @@ const BasicComponent = (props: Props) => {
             return (
               <Text
                 key={index}
-                fontSize={"5%"}
-                marginRight={"7%"}
+                fontSize={isMobile ? "2vw" : "1.5vh"}
+                marginRight={4}
                 style={{ wordSpacing: "4px" }}
               >
                 {student.sname} | {student.email}

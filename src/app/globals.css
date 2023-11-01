@@ -148,6 +148,24 @@ div.parent-600vh {
   position: sticky;
 }
 
+div.parent-infinite-200vh {
+  width: 100%;
+  min-height: calc(var(--vh, 1vh) * 200);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+div.parent-infinite-400vh {
+  width: 100%;
+  min-height: calc(var(--vh, 1vh) * 400);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
 .progress-bar {
   position: fixed;
   top: 4%;
