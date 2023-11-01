@@ -26,7 +26,6 @@ import BrandPackageComponent from "@/app/@student/panels/brandPackage.panel";
 import ImcLayoutComponent from "@/app/@student/panels/imcLayout";
 
 interface Props {
-
   isOpen: boolean;
   onClose: () => void;
   title: string;
@@ -51,7 +50,6 @@ interface Student {
 }
 
 const ItemModal = (props: Props) => {
-
   const [subjectList, setSubjectList] = useState<string[]>([]);
   const [tabIdx, setTabIdx] = useState<number | null>(null);
   const [work, setWork] = useState<Work | null>(props.work);
@@ -64,10 +62,9 @@ const ItemModal = (props: Props) => {
   const handleWorkClick = (work: Work) => {
     setWork(work);
     console.log(work);
-  }
+  };
 
   useEffect(() => {
-
     if (props.work) {
       let _workList: Work[] = [];
 
@@ -95,35 +92,32 @@ const ItemModal = (props: Props) => {
       }
       setWorkList(_workList);
     }
-
-  }, [props])
-
-
-
+  }, [props]);
 
   const getPanel = useCallback(() => {
+    if (work) {
+      switch (props.subject) {
+        case "전공연구프로젝트(영상)":
+          return <BasicComponent work={work} />;
 
-    switch (props.subject) {
-      case "전공연구프로젝트(영상)":
-        return <BasicComponent work={work} />;
+        case "IMC":
+          return <ImcLayoutComponent work={work} />;
 
-      case "IMC":
-        return <ImcLayoutComponent work={work} />;
+        case "프로모션영상":
+          return <BasicComponent work={work} />;
 
-      case "프로모션영상":
-        return <BasicComponent work={work} />;
+        case "전공연구프로젝트(디지털)":
+          return <BasicComponent work={work} />;
 
-      case "전공연구프로젝트(디지털)":
-        return <BasicComponent work={work} />;
+        case "UXUI":
+          return <UIUXComponent work={work} />;
 
-      case "UIUX":
-        return <UIUXComponent work={work} />;
+        case "애니메이션스튜디오":
+          return <BasicComponent work={work} />;
 
-      case "애니메이션스튜디오":
-        return <BasicComponent work={work} />;
-
-      case "브랜드패키지":
-        return <BrandPackageComponent work={work} />;
+        case "브랜드패키지":
+          return <BrandPackageComponent work={work} />;
+      }
     }
   }, [work]);
 
@@ -139,50 +133,111 @@ const ItemModal = (props: Props) => {
         scrollBehavior="inside"
       >
         <ModalOverlay backdropFilter="blur(10px) " />
-        <ModalContent h={"70vh"} bg={"black"}>
+        <ModalContent bg={"black"}>
           <ModalHeader>
             <ModalCloseButton color={"white"} />
           </ModalHeader>
 
-          <ModalBody px={'2%'}>
-            <Flex w={"100%"} h={'100%'} justifyContent={'space-between'}>
+          <ModalBody
+            px={"2%"}
+            pb={"3%"}
+            sx={{
+              "*::-webkit-scrollbar": {
+                display: "none",
+              },
+            }}
+          >
+            <Flex w={"100%"} h={"70vh"} justifyContent={"space-between"}>
               <Flex
-                w={"16%"}
-                h={'100%'}
+                w={"10vw"}
+                h={"100%"}
+                left={0}
+                top={0}
+                pt={isMobile ? "5vw" : "5vh"}
+                pl={"1vw"}
+                position={"absolute"}
+                backgroundColor={"black"}
+                borderLeftRadius={"md"}
+                style={{
+                  transform: `translate(${-9}vw, 0)`,
+                }}
               >
                 <Flex
                   display={"flex"}
                   flexDirection={"column"}
                   position={"fixed"}
                   color={"white"}
-                  gap={isMobile ? '1.5vh' : '1.5vw'}
-                  pt={isMobile ? '2vh' : '2vw'}
-                  h={'100%'}
-                  w={'16%'}
+                  gap={isMobile ? "1vh" : "1vw"}
+                  h={"100%"}
+                  w={"100%"}
                 >
-                  <Text fontWeight={800} w={'100%'} wordBreak={'break-word'} fontSize={isMobile ? '1.3vh' : '1.3vw'}>
+                  <Text
+                    fontWeight={800}
+                    w={"100%"}
+                    wordBreak={"break-word"}
+                    fontSize={isMobile ? "0.7vh" : "0.7vw"}
+                  >
                     {props.subject}
                   </Text>
-                  <VStack alignItems={'flex-start'} w={'100%'} maxH={isMobile ? '55vh' : '45vh'} overflow={'scroll'}>
+                  <VStack
+                    alignItems={"flex-start"}
+                    w={"100%"}
+                    maxH={"80%"}
+                    overflow={"scroll"}
+                  >
                     {workList.map((work) => {
                       return (
-                        <Button w={'100%'} variant={'link'} px={1} colorScheme="white" flexDir={'column'} alignItems={'flex-start'} textOverflow={'ellipsis'}
-                          onClick={() => handleWorkClick(work)}>
-                          <Text fontSize={isMobile ? '1.1vh' : '1.1vw'} color={'white'} w={'100%'} textAlign={'left'}>{work.name}</Text>
-                          {isMobile && <Flex backgroundColor={'white'} h={'1px'} w={'100%'}></Flex>}
-                          <Flex gap={isMobile ? 0 : 1} flexDir={isMobile ? 'column' : 'row'}>
-                            {!isMobile && <Text>-</Text>}
-                            {work.student.map((student) => <Text fontSize={isMobile ? '1vh' : '1vw'} color={'white'} textAlign={'left'}>
-                              {student.sname}
-                            </Text>)}
+                        <Button
+                          w={"100%"}
+                          variant={"link"}
+                          px={1}
+                          colorScheme="white"
+                          flexDir={"column"}
+                          alignItems={"flex-start"}
+                          textOverflow={"ellipsis"}
+                          onClick={() => handleWorkClick(work)}
+                        >
+                          <Text
+                            fontSize={isMobile ? "0.7vh" : "0.7vw"}
+                            color={"white"}
+                            w={"100%"}
+                            textAlign={"left"}
+                          >
+                            {work.name}
+                          </Text>
+                          {isMobile && (
+                            <Flex
+                              backgroundColor={"white"}
+                              h={"1px"}
+                              w={"100%"}
+                            ></Flex>
+                          )}
+                          <Flex
+                            gap={isMobile ? 0 : 1}
+                            flexDir={isMobile ? "column" : "row"}
+                          >
+                            {!isMobile && (
+                              <Text fontSize={isMobile ? "0.5vh" : "0.5vw"}>
+                                -
+                              </Text>
+                            )}
+                            {work.student.map((student) => (
+                              <Text
+                                fontSize={isMobile ? "0.5vh" : "0.5vw"}
+                                color={"white"}
+                                textAlign={"left"}
+                              >
+                                {student.sname}
+                              </Text>
+                            ))}
                           </Flex>
                         </Button>
-                      )
+                      );
                     })}
                   </VStack>
                 </Flex>
               </Flex>
-              <Flex w={"78%"} display={"flex"} flexDirection={"column"}>
+              <Flex w={"100%"} display={"flex"} flexDirection={"column"}>
                 {getPanel()}
               </Flex>
             </Flex>

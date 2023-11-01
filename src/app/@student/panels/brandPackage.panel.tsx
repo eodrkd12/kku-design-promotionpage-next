@@ -1,3 +1,4 @@
+import { Work } from "@/common/interfaces/work.interface";
 import { TabPanel, Text, VStack, Flex, Box } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
@@ -5,23 +6,7 @@ import { useMediaQuery } from "react-responsive";
 interface Props {
   //   isOpen: boolean;
   //   onClose: () => void;
-  work: any;
-}
-interface Work {
-  name: string;
-  student: Student[];
-  introduction: string;
-  explanation: string;
-  youtube?: string;
-  still: string[];
-  poster: string[];
-}
-
-interface Student {
-  sname: string;
-  englishName: string;
-  studentNumber: string;
-  email: string;
+  work: Work;
 }
 
 const BrandPackageComponent = (props: Props) => {
@@ -83,7 +68,12 @@ const BrandPackageComponent = (props: Props) => {
         </Box>
       </Flex>
       <Flex flexDir={"column"} w={"100%"} h={"45vh"}>
-        <Flex color={"white"} top={"5%"} right={0} flexDir={ isMobile ? "column" : "row"}>
+        <Flex
+          color={"white"}
+          top={"5%"}
+          right={0}
+          flexDir={isMobile ? "column" : "row"}
+        >
           {props.work?.student.map((student: any, index: number) => {
             return (
               <Text
@@ -97,18 +87,26 @@ const BrandPackageComponent = (props: Props) => {
             );
           })}
         </Flex>
-        <Box mt={4}></Box>
-        <Text color={"white"} fontSize={isMobile ? "12" : "15"}>
-          {props.work?.explanation}
-        </Text>
-        <Box mt={4}></Box>
+        <Flex flexDir={"column"} mt={"1vh"}>
+          {props.work.explanation.split(". ").map((value) => {
+            const regExp = new RegExp("[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]");
+            return (
+              <Text color={"white"} fontSize={isMobile ? "1.3vw" : "1.3vh"}>
+                {value}
+                {value.length > 0 && regExp.test(value[value.length - 1])
+                  ? "."
+                  : ""}
+              </Text>
+            );
+          })}
+        </Flex>
 
         <Flex flexDir={"column"}>
           {work?.still?.map((still: React.ReactNode, index: number) => {
             return (
               <Flex margin={"2%"}>
                 <img
-                  src={work?.still[index]}
+                  src={work?.still![index]}
                   alt="SignLogo"
                   style={{
                     width: "100vw",

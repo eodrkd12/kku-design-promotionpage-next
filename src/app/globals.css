@@ -64,6 +64,7 @@ body {
     rgb(var(--background-start-rgb));
 
   overflow: auto;
+  overflow-x: hidden;
 }
 
 main {
@@ -174,6 +175,18 @@ button {
   font-family: Pretendard;
 }
 
-*::-webkit-scrollbar {
-  display: none;
+body::-webkit-scrollbar {
+  height: 5px;
+  width: 0.5vw;
+  background: transparent;
+  -webkit-border-radius: 1ex;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #25ca;
+  -webkit-border-radius: 1ex;
+}
+
+body::-webkit-scrollbar-track {
+  background: black;
 }

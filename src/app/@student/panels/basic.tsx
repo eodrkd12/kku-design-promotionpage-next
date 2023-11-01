@@ -1,8 +1,9 @@
+import { Work } from "@/common/interfaces/work.interface";
 import { Box, Flex, Text, VStack } from "@chakra-ui/react";
 import { useMediaQuery } from "react-responsive";
 
 interface Props {
-  work: any;
+  work: Work;
 }
 
 const BasicComponent = (props: Props) => {
@@ -79,25 +80,22 @@ const BasicComponent = (props: Props) => {
             );
           })}
         </Flex>
-        <Box mt={4}></Box>
-        <Text color={"white"} fontSize={isMobile ? "12" : "15"}>
-          {props.work?.explanation}
-        </Text>
-
-        {/* {props.work && props.work.youtube && (
-          <Flex height={"40vh"} marginTop={"3%"} marginBottom={"3%"}>
-            <iframe
-              width="100%"
-              height="100%"
-              src={props.work.youtube}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            ></iframe>
-          </Flex>
-        )} */}
+        <Flex flexDir={"column"} mt={"1vh"}>
+          {props.work.explanation.split(". ").map((value) => {
+            const regExp = new RegExp("[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]");
+            return (
+              <Text color={"white"} fontSize={isMobile ? "1.3vw" : "1.3vh"}>
+                {value}
+                {value.length > 0 && regExp.test(value[value.length - 1])
+                  ? "."
+                  : ""}
+              </Text>
+            );
+          })}
+        </Flex>
         {props.work && props.work.youtube && (
           <Flex
-            marginTop="3%"
-            mb={"1vh"}
+            my={"1vh"}
             style={{
               position: "relative",
               width: "100%",
@@ -121,7 +119,7 @@ const BasicComponent = (props: Props) => {
             return (
               <Flex key={index} flex={1}>
                 <img
-                  src={props.work?.still[index]}
+                  src={props.work!.still![index]}
                   alt="SignLogo"
                   style={{
                     width: "100vw",

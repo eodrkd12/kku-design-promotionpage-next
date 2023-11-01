@@ -28,26 +28,12 @@ import UIUXComponent from "../panels/UIUX.panel";
 import BasicComponent from "../panels/basic";
 import BrandPackageComponent from "../panels/brandPackage.panel";
 import ImcLayoutComponent from "../panels/imcLayout";
+import { Work } from "@/common/interfaces/work.interface";
 
 interface Props {
   isOpen: boolean;
   onClose: () => void;
   studentData: any;
-}
-
-interface Work {
-  name: string;
-  student: Student[];
-  introduction: string;
-  explanation: string;
-  youtube?: string;
-}
-
-interface Student {
-  sname: string;
-  englishName: string;
-  studentNumber: string;
-  email: string;
 }
 
 const StudentModal = (props: Props) => {
@@ -117,7 +103,7 @@ const StudentModal = (props: Props) => {
   }, [tabIdx]);
 
   const getPanel = useCallback(() => {
-    if (tabIdx !== null) {
+    if (tabIdx !== null && work) {
       switch (subjectList[tabIdx]) {
         case "전공연구프로젝트(영상)":
           return <BasicComponent work={work} />;
@@ -162,7 +148,13 @@ const StudentModal = (props: Props) => {
         <ModalHeader>
           <ModalCloseButton color={"white"} />
         </ModalHeader>
-        <ModalBody>
+        <ModalBody
+          sx={{
+            "*::-webkit-scrollbar": {
+              display: "none",
+            },
+          }}
+        >
           <Tabs
             h={"70vh"}
             variant="unstyled"
@@ -174,7 +166,7 @@ const StudentModal = (props: Props) => {
               mb={"1%"}
               height={isMobile ? "10vh" : "4vh"}
               paddingTop={isMobile ? "15%" : "0"}
-              justifyContent={ isMobile ? "space-around" : ""}
+              justifyContent={isMobile ? "space-around" : ""}
             >
               <Text
                 marginRight={"3%"}
@@ -185,7 +177,6 @@ const StudentModal = (props: Props) => {
                 position={isMobile ? "absolute" : "static"}
                 left={isMobile ? "5%" : "0%"}
                 top={"0"}
-  
               >
                 {props.studentData.name}
               </Text>
@@ -195,7 +186,7 @@ const StudentModal = (props: Props) => {
                     key={index}
                     color={tabIdx === index ? "white" : "gray.500"}
                     fontSize={isMobile ? "10px" : "16px"}
-                    padding={ isMobile ? "0" : ""}
+                    padding={isMobile ? "0" : ""}
                   >
                     {value}
                   </Tab>
@@ -220,7 +211,6 @@ const StudentModal = (props: Props) => {
             </TabPanels>
           </Tabs>
         </ModalBody>
-
       </ModalContent>
     </Modal>
   );

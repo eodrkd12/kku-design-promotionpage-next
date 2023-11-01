@@ -1,7 +1,7 @@
 "use client";
 
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
-import { Flex, HStack, Text, useDisclosure } from "@chakra-ui/react";
+import { Flex, HStack, Image, Text, useDisclosure } from "@chakra-ui/react";
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "react-responsive";
@@ -9,6 +9,8 @@ import SubjectScreen from "../@subject/page";
 import digitalStudentData from "./data/digitalStudent-data";
 import videoStudentData from "./data/videoStudent-data";
 import StudentModal from "./modal/student.modal";
+import { ImageUtil } from "@/common/utils/image.util";
+// import videoImages from "../../../public/image/videoTrack23/";
 
 interface ImageButtonProps {
   src: string;
@@ -77,7 +79,7 @@ export default function StudentScreen() {
         });
       },
       {
-        threshold: 0.3,
+        threshold: 0.2,
       }
     );
 
@@ -167,56 +169,58 @@ export default function StudentScreen() {
     name,
     englishName,
     onClick,
-  }: ImageButtonProps) => (
-    <Flex
-      style={{
-        position: "relative",
-        width: profileWidth,
-        boxSizing: "border-box",
-        border: "1px solid white",
-        overflowX: "hidden",
-        overflowY: "hidden",
-      }}
-    >
-      <img
-        src={src}
-        alt={alt}
-        loading="lazy"
-        decoding="async"
-        style={{
-          width: profileWidth,
-          transition: "transform 1s, filter 1s",
-          filter: "brightness(30%)",
-          objectFit: "cover",
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.filter = "brightness(100%)";
-          e.currentTarget.style.transform = "scale(1.1)";
-          e.currentTarget.style.zIndex = "10";
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.filter = "brightness(30%)";
-          e.currentTarget.style.transform = "scale(1)";
-          e.currentTarget.style.zIndex = "0";
-        }}
-        onClick={onClick}
-      />
+  }: ImageButtonProps) => {
+    return (
       <Flex
-        flexDir="column"
-        position={"absolute"}
-        bottom="3%"
-        left="5%"
-        color="white"
+        style={{
+          position: "relative",
+          width: profileWidth,
+          boxSizing: "border-box",
+          border: "1px solid white",
+          overflowX: "hidden",
+          overflowY: "hidden",
+        }}
       >
-        <Text fontSize="2vh" fontWeight="bold">
-          {name}
-        </Text>
-        <Text fontSize="1vh" color={"white"}>
-          {englishName}
-        </Text>
+        <img
+          src={src}
+          alt={alt}
+          loading="lazy"
+          decoding="async"
+          style={{
+            width: profileWidth,
+            transition: "transform 1s, filter 1s",
+            filter: "brightness(30%)",
+            objectFit: "cover",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.filter = "brightness(100%)";
+            e.currentTarget.style.transform = "scale(1.1)";
+            e.currentTarget.style.zIndex = "10";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.filter = "brightness(30%)";
+            e.currentTarget.style.transform = "scale(1)";
+            e.currentTarget.style.zIndex = "0";
+          }}
+          onClick={onClick}
+        />
+        <Flex
+          flexDir="column"
+          position={"absolute"}
+          bottom="3%"
+          left="5%"
+          color="white"
+        >
+          <Text fontSize="2vh" fontWeight="bold">
+            {name}
+          </Text>
+          <Text fontSize="1vh" color={"white"}>
+            {englishName}
+          </Text>
+        </Flex>
       </Flex>
-    </Flex>
-  );
+    );
+  };
 
   return (
     <div

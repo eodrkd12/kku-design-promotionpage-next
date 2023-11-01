@@ -1,25 +1,10 @@
 import { Box, Flex, Text, VStack } from "@chakra-ui/react";
 import { useMediaQuery } from "react-responsive";
 import { useEffect, useState } from "react";
+import { Work } from "@/common/interfaces/work.interface";
 
 interface Props {
-  work: any;
-}
-interface Work {
-  name: string;
-  student: Student[];
-  introduction: string;
-  explanation: string;
-  youtube?: string;
-  still: string[];
-  poster: string[];
-}
-
-interface Student {
-  sname: string;
-  englishName: string;
-  studentNumber: string;
-  email: string;
+  work: Work;
 }
 
 const ImcLayoutComponent = (props: Props) => {
@@ -116,14 +101,22 @@ const ImcLayoutComponent = (props: Props) => {
             );
           })}
         </Flex>
-        <Box mt={4}></Box>
-        <Text color={"white"} fontSize={isMobile ? "12" : "15"}>
-          {work?.explanation}
-        </Text>
+        <Flex flexDir={"column"} mt={"1vh"}>
+          {props.work.explanation.split(". ").map((value) => {
+            const regExp = new RegExp("[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]");
+            return (
+              <Text color={"white"} fontSize={isMobile ? "1.3vw" : "1.3vh"}>
+                {value}
+                {value.length > 0 && regExp.test(value[value.length - 1])
+                  ? "."
+                  : ""}
+              </Text>
+            );
+          })}
+        </Flex>
         {work && work.youtube && (
           <Flex
-            marginTop="3%"
-            marginBottom="3%"
+            my={"1vh"}
             style={{
               position: "relative",
               width: "100%",
@@ -147,7 +140,7 @@ const ImcLayoutComponent = (props: Props) => {
             return (
               <Flex margin={"2%"}>
                 <img
-                  src={work?.still[index]}
+                  src={work?.still![index]}
                   alt="SignLogo"
                   style={{
                     width: "20vw",
@@ -176,7 +169,7 @@ const ImcLayoutComponent = (props: Props) => {
                     <iframe
                       width="100%"
                       height="100%"
-                      src={work?.poster[index]}
+                      src={work?.poster![index]}
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     ></iframe>
                   </Flex>
@@ -189,7 +182,7 @@ const ImcLayoutComponent = (props: Props) => {
                 return (
                   <Flex key={index} margin={"2%"} width={"50%"}>
                     <img
-                      src={work?.poster[index]}
+                      src={work?.poster![index]}
                       alt="SignLogo"
                       style={{
                         width: "100%",
