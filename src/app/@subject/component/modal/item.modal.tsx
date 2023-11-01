@@ -189,7 +189,7 @@ const ItemModal = (props: Props) => {
                     w={"100%"}
                     h={"100%"}
                     maxH={"100%"}
-                    gap={2}
+                    gap={3}
                     style={
                       isMobile
                         ? {
@@ -216,7 +216,7 @@ const ItemModal = (props: Props) => {
                           onClick={() => handleWorkClick(work)}
                         >
                           <Text
-                            fontSize={isMobile ? "0.9vh" : "0.7vw"}
+                            fontSize={isMobile ? "0.7vh" : "0.55vw"}
                             color={"white"}
                             w={"100%"}
                             noOfLines={1}
@@ -233,17 +233,17 @@ const ItemModal = (props: Props) => {
                             ></Flex>
                           )}
                           <Flex
-                            gap={isMobile ? 0 : 1}
+                            gap={isMobile ? 1 : 1}
                             flexDir={isMobile ? "column" : "row"}
                           >
                             {!isMobile && (
-                              <Text fontSize={isMobile ? "0.9vh" : "0.5vw"}>
+                              <Text fontSize={isMobile ? "0.7vh" : "0.5vw"}>
                                 -
                               </Text>
                             )}
                             {work.student.map((student) => (
                               <Text
-                                fontSize={isMobile ? "0.9vh" : "0.5vw"}
+                                fontSize={isMobile ? "0.7vh" : "0.5vw"}
                                 color={"white"}
                                 textAlign={"left"}
                               >
