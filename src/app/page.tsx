@@ -132,10 +132,11 @@ export default function IntroductionScreen() {
 
   const imgProgress = useTransform(scrollYProgress, [0, 0.45], [0, 152]);
 
-  const [backImage, setBackImage] = useState<string>('/image/png_sequence/back_image_00000.png');
+  const [backImage, setBackImage] = useState<string>(
+    "/image/png_sequence/back_image_00000.png"
+  );
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-
     const _imgProgress = Math.floor(imgProgress.get());
     if (_imgProgress < 10) {
       setBackImage(`/image/png_sequence/back_image_0000${_imgProgress}.png`);
@@ -144,39 +145,46 @@ export default function IntroductionScreen() {
     } else {
       setBackImage(`/image/png_sequence/back_image_00${_imgProgress}.png`);
     }
-  })
+  });
 
   useEffect(() => {
-    const setDate = new Date("2023-10-25T00:00:00+0900");
+    const setDate = new Date("2023-11-02T00:00:00+0900");
 
     const now = new Date();
 
     const distance = setDate.getTime() - now.getTime();
 
     const day = Math.floor(distance / (1000 * 60 * 60 * 24));
-
+    console.log(day + 1);
     setDday(day + 1);
   }, []);
 
   if (dday > 0) {
     return (
-      <div className="parent">
+      <div
+        className="parent"
+        style={{
+          backgroundColor: "black",
+        }}
+      >
         <Dday>D-{dday}</Dday>
       </div>
     );
   } else {
-    return <div className={"parent"} id="introduction">
-      <img
-        style={{
-          width: "100vw",
-          height: "100vh",
-          position: "fixed",
-          objectFit: 'cover',
-          top: 0,
-          zIndex: -100,
-        }}
-        src={backImage}
-      ></img>
-    </div>;
+    return (
+      <div className={"parent"} id="introduction">
+        <img
+          style={{
+            width: "100vw",
+            height: "100vh",
+            position: "fixed",
+            objectFit: "cover",
+            top: 0,
+            zIndex: -100,
+          }}
+          src={backImage}
+        ></img>
+      </div>
+    );
   }
 }

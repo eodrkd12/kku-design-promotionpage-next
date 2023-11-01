@@ -164,7 +164,7 @@ export default function RootLayout(props: Props) {
   });
 
   useEffect(() => {
-    const setDate = new Date("2023-10-25T00:00:00+0900");
+    const setDate = new Date("2023-11-02T00:00:00+0900");
     const now = new Date();
     const distance = setDate.getTime() - now.getTime();
     const day = Math.floor(distance / (1000 * 60 * 60 * 24));
