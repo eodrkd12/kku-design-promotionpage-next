@@ -19,7 +19,7 @@ const ScrollProgressWrapper = styled.div`
   position: fixed;
   top: 0vh;
   width: 100%;
-  height: 7vh;
+  height: 6vh;
   left: 50%;
   transform: translate(-50%, 0);
   background-color: black;
@@ -39,7 +39,7 @@ const ScrollProgressWrapper = styled.div`
       background-color: white;
       height: 2px;
       left: 27.5vw;
-      top: 2vh;
+      top: 2.2vh;
     }
 
     > span {
@@ -58,7 +58,7 @@ const ScrollProgressWrapper = styled.div`
       }
       > p {
         color: white;
-        font-size: 2.3vh;
+        font-size: 1.5vh;
         font-weight: 900;
       }
     }
@@ -164,7 +164,7 @@ export default function RootLayout(props: Props) {
   });
 
   useEffect(() => {
-    const setDate = new Date("2023-11-02T00:00:00+0900");
+    const setDate = new Date("2023-11-01T19:00:00+0900");
     const now = new Date();
     const distance = setDate.getTime() - now.getTime();
     const day = Math.floor(distance / (1000 * 60 * 60 * 24));

@@ -135,15 +135,15 @@ const ImcLayoutComponent = (props: Props) => {
           </Flex>
         )}
 
-        <Flex>
-          {work?.still?.map((still: any, index: number) => {
+        <Flex gap={"0.5vw"}>
+          {props.work?.still?.map((still: any, index: number) => {
             return (
-              <Flex margin={"2%"}>
+              <Flex key={index} flex={1}>
                 <img
-                  src={work?.still![index]}
+                  src={props.work!.still![index]}
                   alt="SignLogo"
                   style={{
-                    width: "20vw",
+                    width: "100vw",
                     objectFit: "contain",
                   }}
                 />

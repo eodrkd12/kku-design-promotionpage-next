@@ -148,7 +148,7 @@ export default function IntroductionScreen() {
   });
 
   useEffect(() => {
-    const setDate = new Date("2023-11-02T00:00:00+0900");
+    const setDate = new Date("2023-11-01T19:00:00+0900");
 
     const now = new Date();
 
