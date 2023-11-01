@@ -100,8 +100,6 @@ export default function AboutScreen() {
   useEffect(() => {}, []);
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    console.log(latest);
-
     if (latest < 0.082) {
       controls1.start({ opacity: 0 });
       controls2.start({ opacity: 0, y: 100 });

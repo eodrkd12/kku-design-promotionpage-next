@@ -62,7 +62,7 @@ export default function StudentScreen() {
   const studentRef = useRef<HTMLDivElement>(null);
   const studentRef2 = useRef<HTMLDivElement>(null);
 
-  const scrollSpeed = 4; // 스크롤 속도
+  const scrollSpeed = 10; // 스크롤 속도
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     if (latest > 0.622) setAttachment("fixed");

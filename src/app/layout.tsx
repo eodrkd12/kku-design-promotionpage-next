@@ -142,7 +142,7 @@ const MainTitleWrapper = styled(motion.div)`
 `;
 
 export default function RootLayout(props: Props) {
-  const { scrollYProgress } = useScroll();
+  const { scrollY, scrollYProgress } = useScroll();
   const [progressVisible, setProgressVisible] = useState(false);
   const [progress, setProgress] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -154,9 +154,9 @@ export default function RootLayout(props: Props) {
   const [dday, setDday] = useState(0);
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    if (latest <= 0.59) {
+    if (latest <= 0.631) {
       setProgress(1);
-    } else if (latest <= 0.8181) {
+    } else if (latest <= 0.773) {
       setProgress(2);
     } else {
       setProgress(3);
@@ -259,7 +259,7 @@ export default function RootLayout(props: Props) {
                 </span>
                 <span
                   onClick={() => {
-                    window.scrollTo(0, window.innerHeight * 7.6);
+                    window.scrollTo(0, window.innerHeight * 8);
                     // student?.scrollIntoView({ behavior: "smooth" });
                   }}
                 >
@@ -275,7 +275,7 @@ export default function RootLayout(props: Props) {
                 </span>
                 <span
                   onClick={() => {
-                    window.scrollTo(0, window.innerHeight * 9.4);
+                    window.scrollTo(0, window.innerHeight * 9.8);
                     // subject?.scrollIntoView({ behavior: "smooth" });
                   }}
                 >
