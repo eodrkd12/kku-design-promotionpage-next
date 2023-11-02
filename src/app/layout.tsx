@@ -87,7 +87,7 @@ const MainTitleWrapper = styled(motion.div)`
   left: 1vw;
   top: 20vh;
   height: 30vh;
-  width: 10vw;
+  width: 12vw;
   opacity: 1;
   z-index: -10;
   animation: fadeOut ease-in-out 1s;
